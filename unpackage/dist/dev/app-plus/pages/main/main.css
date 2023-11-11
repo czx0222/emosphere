@@ -1,0 +1,19 @@
+
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  text-align: center;
+  color: #2c3e50;
+  max-width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
