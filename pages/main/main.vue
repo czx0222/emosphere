@@ -2,7 +2,10 @@
 <template>
   <div id="app">
     <img alt="背景图" src="/static/assets/z.png" style="width: auto;">
-    <img alt="z11" src="/static/assets/z11.png" style="position: absolute; top: 40px; left: 20px;">
+	<router-link :to="{ path: '/pages/about/about' }">
+		<img alt="z11" src="/static/assets/z11.png" style="position: absolute; top: 40px; left: 20px;">
+	</router-link>
+
     <img alt="z12" src="/static/assets/z12.png" style="position: absolute; top: calc(50% - 80px); left: 50%; transform: translate(-50%, -50%);">
     <div style="position: absolute; top: calc(70% - 30px); left: 50%; transform: translateX(-50%); display: flex; justify-content: space-between; width: 80%;">
       <div style="position: relative;">

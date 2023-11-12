@@ -39,20 +39,23 @@
 	const password = ref('6666');
 	
 	const handleLogin = () => {
-	
-	  axios.post('http://8.136.81.197:8080/user/login', {
-		phone: phoneNumber.value,
-	    authCode: password.value
-	  })
-	  .then(response => {
-	    const responseData = response.data; 
-		const user = responseData['user']; 
-	    console.log(response.data);
-		router.push('/pages/main/main');
-	  })
-	  .catch(error => {
-	    // 登录请求失败的处理逻辑
-	    console.error(error);
+	  uni.request({
+	    url: 'http://8.136.81.197:8080/user/login',
+	    method: 'POST',
+	    data: {
+	      phone: phoneNumber.value,
+	      authCode: password.value
+	    },
+	    success: (response) => {
+	      const responseData = response.data;
+	      const user = responseData['user'];
+	      console.log(response.data);
+	      router.push('/pages/main/main');
+	    },
+	    fail: (error) => {
+	      // 登录请求失败的处理逻辑
+	      console.error(error);
+	    }
 	  });
 	};
 	

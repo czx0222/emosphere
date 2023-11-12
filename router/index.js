@@ -3,6 +3,7 @@ import login from '@/pages/login/login.vue';
 import main from '@/pages/main/main.vue';
 import clander from '@/pages/clander/clander.vue';
 import clander1 from '@/pages/clander1/clander1.vue';
+import about from '@/pages/about/about.vue';
 const routes = [
   {
     path: '/pages/login/login',
@@ -23,6 +24,11 @@ const routes = [
     path: '/pages/clander1/clander1',
     name: 'clander1',
     component: clander1,
+  },
+  {
+    path: '/pages/about/about',
+    name: 'about',
+    component: about,
   },
   // 其他路由...
 ];
