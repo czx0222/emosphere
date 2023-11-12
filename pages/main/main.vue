@@ -2,7 +2,7 @@
 <template>
   <div id="app">
     <img alt="背景图" src="/static/assets/z.png" style="width: auto;">
-	<router-link :to="{ path: '/pages/about/about' }">
+	<router-link :to="{ path: '/pages/myScreen/myScreen' }">
 		<img alt="z11" src="/static/assets/z11.png" style="position: absolute; top: 40px; left: 20px;">
 	</router-link>
 

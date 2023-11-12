@@ -3,7 +3,7 @@
 
 	<view class="about">
 		<view class="header">
-			<router-link :to="{ path: '/pages/main/main' }">
+			<router-link :to="{ path: '/pages/myScreen/myScreen' }">
 				<img src="/static/images/fan.png">
 			</router-link>
 			<span>关于EmoSphere</span>
@@ -24,8 +24,7 @@
 			</view>
 		</view>
 
-		<!-- 	 <img alt="图片25" src="/static/images/25.png" style="position: absolute; top: 62%; left: 50%; transform: translateX(-50%);" @click="showPopup = true"> -->
-
+	
 
 		<div v-if="showPopup" class="popup" :style="{ width: popupWidth, height: popupHeight}">
 			<p>{{ description }}</p>
