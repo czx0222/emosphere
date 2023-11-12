@@ -2,11 +2,8 @@
 	<view class="my-page">
 		<view class="header">
 			<view class="head-left" @click="goBack">
-					<img src="/static/images/fanhui.png" />
-					<text>返回</text>
-
-				
-				
+				<img src="/static/images/fanhui.png" />
+				<text>返回</text>
 			</view>
 		</view>
 		<view class="form">
@@ -14,11 +11,10 @@
 			<view class="role">
 				<img src="/static/images/logo.png" alt="">
 			</view>
-
 			<view class="info">
-				<text class="user-name">zzz</text>
+				<text class="user-name">{{ username}}</text>
 				<text class="user-info">♂ 30岁</text>
-				<text class="user-id">UserID:1021081</text>
+				<text class="user-id">UserID:{{ userid }}</text>
 			</view>
 		</view>
 		<!-- 个人资料 -->
@@ -46,38 +42,38 @@
 	</view>
 </template>
 
-<script>
-	export default {
-		methods: {
-			goBack() {
-				// 跳转到关于页面的逻辑
-				this.$router.push( '/pages/main/main' )
-			},
-			goToProfile() {
-				// 跳转到个人资料页面的逻辑
-				console.log("aboutme")
-				this.$router.push('/pages/aboutMe/aboutMe')
-			},
-			goToFavorites() {
-				// 跳转到收藏内容页面的逻辑
-				console.log("like")
-			},
-			goToAbout() {
-				// 跳转到关于页面的逻辑
-				this.$router.push('/pages/about/about')
-			},
-			logout() {
-				if (confirm("确定要退出登录吗？")) {
-
-					console.log("logout");
-					// 跳转到登录界面
-					this.$router.push('/pages/login/login'); // 假设登录界面的路由路径为'/login'
-				} else {
-					// 否，不做任何操作
-				}
-			},
-		},
-	}
+<script setup>
+	import {ref} from 'vue';
+	import store from '@/store';
+	import { useRouter } from 'vue-router';
+	const router = useRouter();
+	const username = ref(store.getters.getUsername);
+	const userid = ref(store.getters.getUserId)
+	 const goBack = () => {
+	    router.push('/pages/main/main');
+	  };
+	
+	  const goToProfile = () => {
+	    console.log('aboutme');
+	    router.push('/pages/aboutMe/aboutMe');
+	  };
+	
+	  const goToFavorites = () => {
+	    console.log('like');
+	  };
+	
+	  const goToAbout = () => {
+	    router.push('/pages/about/about');
+	  };
+	
+	  const logout = () => {
+	    if (confirm('确定要退出登录吗？')) {
+	      console.log('logout');
+	      router.push('/pages/login/login');
+	    } else {
+	      // 否，不做任何操作
+	    }
+	  };
 </script>
 
 <style>
@@ -166,7 +162,7 @@
 	}
 
 	.user-name {
-		font-size: 3rem;
+		font-size: 1.5rem;
 		margin-bottom: 10px;
 		text-align: center;
 		font-weight: 700;

@@ -35,6 +35,7 @@
 	import { ref } from 'vue';
 	import axios from 'axios';
 	import { useRouter } from 'vue-router';
+	import store from '@/store';
 	const router = useRouter();
 	const phoneNumber = ref('19959561535');
 	const password = ref('6666');
@@ -48,9 +49,14 @@
 	      authCode: password.value
 	    },
 	    success: (response) => {
-	      const responseData = response.data;
-	      const user = responseData['user'];
+	      const user = response.data['user'];
 	      console.log(response.data);
+		    store.commit('setUserData', {
+		            id: user.id,
+		            username: user.username,
+		          });
+				  console.log('User data stored in Vuex:', store.state.userId, store.state.username);
+
 	      router.push('/pages/main/main');
 	    },
 	    fail: (error) => {
