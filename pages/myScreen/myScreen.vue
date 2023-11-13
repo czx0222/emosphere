@@ -12,7 +12,7 @@
 				<img src="/static/images/logo.png" alt="">
 			</view>
 			<view class="info">
-				<text class="user-name">{{ username}}</text>
+				<text class="user-name">{{username}}</text>
 				<text class="user-info">♂ 30岁</text>
 				<text class="user-id">UserID:{{ userid }}</text>
 			</view>

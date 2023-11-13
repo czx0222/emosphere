@@ -2,9 +2,8 @@
 
 	<view class="backarea">
 		<view class="header">
-
-			<router-link :to="{ path: '/pages/relax/relax' }">
-				<view class="head-left" @click="getback">
+			<router-link :to="{ path: '/pages/main/main' }">
+				<view class="head-left">
 					<img src="/static/images/fanhui.png" />
 					<text>返回</text>
 				</view>

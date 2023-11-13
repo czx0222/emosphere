@@ -4,7 +4,7 @@
 				<image class="logo" src="/static/images/logo.png"></image>
 				<view class="login-card-input">
 					<input class="account-input" type="text" placeholder="Phone/Email Address" v-model="phoneNumber">
-					<input class="code-input" type="text" placeholder="Password" v-model="password">
+					<input class="code-input" type="password" placeholder="Password" v-model="password">
 					
 				</view>
 				<view class="login-card-loginIn-btn" @click="handleLogin">
@@ -31,14 +31,12 @@
 </template>
 
 <script setup>
-	uni.request
 	import { ref } from 'vue';
-	import axios from 'axios';
 	import { useRouter } from 'vue-router';
 	import store from '@/store';
 	const router = useRouter();
-	const phoneNumber = ref('19959561535');
-	const password = ref('6666');
+	const phoneNumber = ref('');
+	const password = ref('');
 	
 	const handleLogin = () => {
 	  uni.request({

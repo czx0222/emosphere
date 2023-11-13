@@ -1,10 +1,11 @@
-// stores/index.js
-import { createStore } from 'vuex';
+import {createStore} from 'vuex';
+
 
 export default createStore({
   state: {
     userId: null,
     username: null,
+	emotionIcons: ['xiyue', 'beiai', 'danyou', 'yane', 'jingqi', 'fennu'],
   },
   mutations: {
     setUserData(state, { id, username }) {
@@ -12,10 +13,10 @@ export default createStore({
       state.username = username;
     },
   },
-  actions: {
-  },
+  actions: {},
   getters: {
     getUserId: (state) => state.userId,
     getUsername: (state) => state.username,
+	 getEmotionIcons: (state) => state.emotionIcons,
   },
 });

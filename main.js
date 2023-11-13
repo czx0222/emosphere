@@ -6,7 +6,7 @@ import store from './stores';
 Vue.config.productionTip = false
 
 App.mpType = 'app'
-
+app.provide('store', store);
 const app = new Vue({
 	store,
 	router,
