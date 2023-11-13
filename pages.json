@@ -13,7 +13,7 @@
 			}
 		},
 		{
-			"path": "pages/clander/clander",
+			"path": "pages/calendar/calendar",
 			"style": {
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false
@@ -27,7 +27,7 @@
 			}
 		},
 		{
-			"path": "pages/clander1/clander1",
+			"path": "pages/EmoRecord/EmoRecord",
 			"style": {
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false
@@ -50,6 +50,22 @@
 		},
 		{
 			"path" : "pages/myScreen/myScreen",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/relax/relax",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/test/test",
 			"style" : 
 			{
 				"navigationBarTitleText" : "",

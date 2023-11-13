@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import login from '@/pages/login/login.vue';
 import main from '@/pages/main/main.vue';
-import clander from '@/pages/clander/clander.vue';
-import clander1 from '@/pages/clander1/clander1.vue';
+import calendar from '@/pages/calendar/calendar.vue';
+import EmoRecord from '@/pages/EmoRecord/EmoRecord.vue';
 import about from '@/pages/about/about.vue';
 const routes = [
   {
@@ -16,14 +16,14 @@ const routes = [
     component: main,
   },
   {
-    path: '/pages/clander/clander',
-    name: 'clander',
-    component: clander,
+    path: '/pages/calendar/calendar',
+    name: 'calendar',
+    component: calendar,
   },
   {
-    path: '/pages/clander1/clander1',
-    name: 'clander1',
-    component: clander1,
+    path: '/pages/EmoRecord/EmoRecord',
+    name: 'EmoRecord',
+    component: EmoRecord,
   },
   {
     path: '/pages/about/about',

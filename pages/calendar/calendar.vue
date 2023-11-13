@@ -2,17 +2,21 @@
 
 	<view class="backarea">
 		<view class="header">
-			<view class="head-left" @click="getback">
-				<img src="/static/images/fanhui.png" />
-				<text>返回</text>
-			</view>
+
+			<router-link :to="{ path: '/pages/relax/relax' }">
+				<view class="head-left" @click="getback">
+					<img src="/static/images/fanhui.png" />
+					<text>返回</text>
+				</view>
+			</router-link>
 		</view>
-		<view class="calendar" >
+		<view class="calendar">
 			<view>
-				<uni-calendar class="uni-calendar--hook" :selected="info.selected" :showMonth="false" @change="change" @monthSwitch="monthSwitch" />
+				<uni-calendar class="uni-calendar--hook" :selected="info.selected" :showMonth="false" @change="change"
+					@monthSwitch="monthSwitch" />
 			</view>
 		</view>
-		<view class="calendar-content" >
+		<view class="calendar-content">
 			<view class="v">
 				<view class="left">
 					<text class="time">11月10日</text>
@@ -23,7 +27,7 @@
 					<text class="content">"大家贵州带回来的特产都很好次！！！"</text>
 				</view>
 			</view>
-			<view class="v"> 
+			<view class="v">
 				<view class="left">
 					<text class="time">11月9日</text>
 					<img src="/static/images/qingxu-xiyue.png" alt="" />
@@ -48,11 +52,6 @@
 </template>
 
 <script>
-	import { useRouter } from 'vue-router';
-	const router = useRouter();
-	const getback = () =>{
-		router.push('/pages/main/main')
-	}
 	function getDate(date, AddDayCount = 0) {
 		if (!date) {
 			date = new Date()
@@ -79,7 +78,7 @@
 		components: {},
 		data() {
 			return {
-				showCalendar:false,
+				showCalendar: false,
 				info: {
 					lunar: true,
 					range: true,
@@ -89,16 +88,16 @@
 			}
 		},
 		onReady() {
-					this.$nextTick(() => {
-						this.showCalendar = true
-					})
-					// TODO 模拟请求异步同步数据
-					setTimeout(() => {
-						this.info.date = getDate(new Date(),-30).fullDate
-						this.info.startDate = getDate(new Date(),-60).fullDate
-						this.info.endDate =  getDate(new Date(),30).fullDate
-					}, 2000)
-				},
+			this.$nextTick(() => {
+				this.showCalendar = true
+			})
+			// TODO 模拟请求异步同步数据
+			setTimeout(() => {
+				this.info.date = getDate(new Date(), -30).fullDate
+				this.info.startDate = getDate(new Date(), -60).fullDate
+				this.info.endDate = getDate(new Date(), 30).fullDate
+			}, 2000)
+		},
 	}
 </script>
 
@@ -113,81 +112,88 @@
 		height: 100vh;
 		align-items: center;
 		/* 水平居中 */
-	
+
 	}
-	
+
 	.header {
 		display: flex;
 		justify-content: space-between;
 		width: 90%;
 		position: relative;
 		top: 1rem;
-	
+
 	}
-	
+
 	.header text {
 		color: #ffffff;
 		font-size: 1rem;
 		font-weight: 550;
-	
+
 	}
-	
+
 	.head-left {
 		display: flex;
 		align-items: center;
 		float: left;
 	}
-		
-	.calendar{
+
+	.calendar {
 		position: relative;
 		top: 2rem;
-	
+
 	}
-		
-	.calendar-content{
+
+	.calendar-content {
 		position: relative;
 		top: 3rem;
 		width: 90%;
 	}
+
 	.v {
 		display: flex;
 		margin: 4px;
 		min-height: 6rem;
 		border-radius: 10px;
-		background-color: rgb(255,255,255,0.9);
+		background-color: rgb(255, 255, 255, 0.9);
 	}
-	.calendar-content view img{
+
+	.calendar-content view img {
 		height: 50px;
 		width: 50px;
 	}
-	.left{
+
+	.left {
 		border-top-left-radius: 10px;
 		border-bottom-left-radius: 10px;
 		display: flex;
-		 flex-direction: column;
-		align-items: center; 
+		flex-direction: column;
+		align-items: center;
 		justify-content: center;
 		width: 30%;
 	}
-	.left text{
+
+	.left text {
 		font-size: 1rem;
 		font-weight: bold;
 	}
-	 .right{
-		 border-top-right-radius: 10px;
-		 border-bottom-right-radius: 10px;
+
+	.right {
+		border-top-right-radius: 10px;
+		border-bottom-right-radius: 10px;
 		display: flex;
 		flex-direction: column;
-		align-items: center; 
+		align-items: center;
 		width: 70%;
-		
+
 	}
-	.right .title{
+
+	.right .title {
 		font-size: 1.5rem;
 		font-weight: bold;
-	
+
 	}
-	.right .content{
+
+	.right .content {
 		font-size: 18px;
 		margin: 5px;
 	}

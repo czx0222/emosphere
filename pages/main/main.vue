@@ -15,7 +15,10 @@
 	  <view >
 	  	<div style="position: relative;">
 	  	  <img alt="z2" src="/static/assets/z2.png">
-	  	  <img alt="z4" src="/static/assets/z4.png" style="position: absolute; top: 12px; left: 11px;">
+		  <router-link :to="{ path: '/pages/calendar/calendar' }">
+		  	<img alt="z4" src="/static/assets/z4.png" style="position: absolute; top: 12px; left: 11px;">
+		  </router-link>
+	  	  
 	  	</div>
 	  </view>
 
@@ -25,11 +28,13 @@
       </div>
       <div style="position: relative;">
         <img alt="z2" src="/static/assets/z2.png">
-        <img alt="z6" src="/static/assets/z6.png" style="position: absolute; top: 5px; left: 5px;">
+		<router-link :to="{ path: '/pages/relax/relax' }">
+			<img alt="z6" src="/static/assets/z6.png" style="position: absolute; top: 5px; left: 5px;">
+		</router-link>
       </div>
     </div>
 	
-    <div @click="Toclander" style="position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); display: flex;">
+    <div @click="ToRecord" style="position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); display: flex;">
       <img alt="z10" src="/static/assets/z10.png" style="align-self: center; margin-right: 20px;">
       <img alt="z13" src="/static/assets/z13.png" style="align-self: center;">
     </div>
@@ -39,8 +44,8 @@
 <script setup>
 	import { useRouter } from 'vue-router';
 	const router = useRouter();
-	const Toclander = () =>{
-		router.push('/pages/clander/clander')
+	const ToRecord = () =>{
+		router.push('/pages/EmoRecord/EmoRecord')
 	}
 </script>
 

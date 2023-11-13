@@ -6,8 +6,7 @@
 </template>
 
 <script>
-	import { useRouter } from 'vue-router'; 
-	const router = useRouter();
+
 	export default {
 		onLaunch: function() {
 			console.log('App Launch')

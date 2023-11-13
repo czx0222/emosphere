@@ -5,7 +5,7 @@
 				<img src="/static/images/fanhui.png" />
 				<text>返回</text>
 			</view>
-			<view class="right" @click="toclander">
+			<view class="right" @click="Tocalendar">
 				<img src="/static/images/gou.png" />
 				<text>保存</text>
 			</view>
@@ -109,8 +109,8 @@
 <script setup>
 	import { useRouter } from 'vue-router';
 	const router = useRouter();
-	const toclander = () =>{
-		router.push('/pages/clander1/clander1')
+	const Tocalendar = () =>{
+		router.push('/pages/calendar/calendar')
 	}
 	const getback = () =>{
 		router.push('/pages/main/main')
