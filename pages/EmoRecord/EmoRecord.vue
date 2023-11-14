@@ -79,13 +79,9 @@
 </template>
 
 <script setup>
-	import {
-		useRouter
-	} from 'vue-router';
+	import {useRouter} from 'vue-router';
 	import store from '@/store';
-	import {
-		ref
-	} from 'vue';
+	import {ref} from 'vue';
 	const emotionIcons = store.getters.getEmotionIcons;
 	console.log(emotionIcons)
 	let Icon = null;

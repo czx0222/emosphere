@@ -1,42 +1,42 @@
 
 <template>
   <div id="app">
-    <img alt="背景图" src="/static/assets/z.png" style="width: auto;">
+    <img alt="背景图" src="/static/images/z.png" style="width: auto;">
 	<router-link :to="{ path: '/pages/myScreen/myScreen' }">
-		<img alt="z11" src="/static/assets/z11.png" style="position: absolute; top: 40px; left: 20px;">
+		<img alt="z11" src="/static/images/z11.png" style="position: absolute; top: 20px; left: 20px;">
 	</router-link>
 
-    <img alt="z12" src="/static/assets/z12.png" style="position: absolute; top: calc(50% - 80px); left: 50%; transform: translate(-50%, -50%);">
+    <img alt="z12" src="/static/images/z12.png" style="position: absolute; top: calc(50% - 80px); left: 50%; transform: translate(-50%, -50%);">
     <div style="position: absolute; top: calc(70% - 30px); left: 50%; transform: translateX(-50%); display: flex; justify-content: space-between; width: 80%;">
       <div style="position: relative;">
-        <img alt="z2" src="/static/assets/z2.png">
-        <img alt="z3" src="/static/assets/z3.png" style="position: absolute; top: 8px; left: 8px;">
+        <img alt="z2" src="/static/images/z2.png">
+        <img alt="z3" src="/static/images/z3.png" style="position: absolute; top: 8px; left: 8px;">
       </div>
 	  <view >
 	  	<div style="position: relative;">
-	  	  <img alt="z2" src="/static/assets/z2.png">
+	  	  <img alt="z2" src="/static/images/z2.png">
 		  <router-link :to="{ path: '/pages/calendar/calendar' }">
-		  	<img alt="z4" src="/static/assets/z4.png" style="position: absolute; top: 12px; left: 11px;">
+		  	<img alt="z4" src="/static/images/z4.png" style="position: absolute; top: 12px; left: 11px;">
 		  </router-link>
 	  	  
 	  	</div>
 	  </view>
 
       <div style="position: relative;">
-        <img alt="z2" src="/static/assets/z2.png">
-        <img alt="z5" src="/static/assets/z5.png" style="position: absolute; top: 10px; left: 7px;">
+        <img alt="z2" src="/static/images/z2.png">
+        <img alt="z5" src="/static/images/z5.png" style="position: absolute; top: 10px; left: 7px;">
       </div>
       <div style="position: relative;">
-        <img alt="z2" src="/static/assets/z2.png">
+        <img alt="z2" src="/static/images/z2.png">
 		<router-link :to="{ path: '/pages/relax/relax' }">
-			<img alt="z6" src="/static/assets/z6.png" style="position: absolute; top: 5px; left: 5px;">
+			<img alt="z6" src="/static/images/z6.png" style="position: absolute; top: 5px; left: 5px;">
 		</router-link>
       </div>
     </div>
 	
     <div @click="ToRecord" style="position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); display: flex;">
-      <img alt="z10" src="/static/assets/z10.png" style="align-self: center; margin-right: 20px;">
-      <img alt="z13" src="/static/assets/z13.png" style="align-self: center;">
+      <img alt="z10" src="/static/images/z10.png" style="align-self: center; margin-right: 20px;">
+      <img alt="z13" src="/static/images/z13.png" style="align-self: center;">
     </div>
   </div>
 </template>

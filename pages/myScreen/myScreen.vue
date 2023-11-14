@@ -49,7 +49,8 @@
 	const router = useRouter();
 	
 	const username = ref(store.getters.getUsername);
-	const userid = ref(store.getters.getUserId)
+	const userid = ref(store.getters.getUserId);
+	
 	 const goBack = () => {
 	    router.push('/pages/main/main');
 	  };

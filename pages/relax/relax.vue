@@ -4,7 +4,7 @@
 			<router-link to="/pages/main/main">
 				<img src="/static/f1.png" @click="incrementCount('f1', 5)">
 			</router-link>
-			<router-link to="/pages/blank/blank">
+			<router-link to="/pages/music/music">
 				<img src="/static/f2.png" @click="incrementCount('f2', 5)">
 			</router-link>
 			<img src="/static/f3.png">

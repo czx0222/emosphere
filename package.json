@@ -11,9 +11,10 @@
   "license": "ISC",
   "dependencies": {
     "@vitejs/plugin-vue": "^4.4.1",
-    "axios": "^1.6.1",
-    "axios-adapter-uniapp": "^0.1.4",
-    "axios-miniprogram-adapter": "^0.3.5",
+    "node-sass": "^9.0.0",
+    "sass-loader": "^13.3.2",
+    "sentry": "^0.1.2",
+    "thorui-uni": "^2.9.5",
     "uniapp-axios-adapter": "^0.3.2",
     "vue-router": "^4.2.5",
     "vuex": "^4.1.0"

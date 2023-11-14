@@ -135,7 +135,10 @@
 		align-items: center;
 		float: left;
 	}
-
+	.head-right {
+		display: flex;
+		align-items: center;
+	}
 	.calendar {
 		position: relative;
 		top: 2rem;

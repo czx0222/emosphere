@@ -3,11 +3,15 @@ import Vue from 'vue'
 import App from './App'
 import router from './router';
 import store from './stores';
+import uView from "uview-ui";
+//Vue.use(uView) 
+import './uni.promisify.adaptor'
 Vue.config.productionTip = false
 
 App.mpType = 'app'
-app.provide('store', store);
+//app.provide('store', store);
 const app = new Vue({
+	uView,
 	store,
 	router,
     ...App

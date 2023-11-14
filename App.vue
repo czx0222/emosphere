@@ -21,11 +21,13 @@
 </script>
 
 <style lang="scss">
-	/*每个页面公共css */
+	@import "@/node_modules/uview-ui/index.scss";
 	@import '@/uni_modules/uni-scss/index.scss';
 	/* #ifndef APP-NVUE */
 	@import '@/static/customicons.css';
 	@import url('static/images/icon.css');
+	@import "static/colorui/icon.css";
+	@import "static/colorui/main.css";
 	// 设置整个项目的背景色
 	page {
 		background-color: #f5f5f5;
