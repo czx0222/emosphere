@@ -1,0 +1,29 @@
+
+.calendar[data-v-727d09f0] {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 1000;
+}
+.header[data-v-727d09f0] {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+table[data-v-727d09f0] {
+  width: 100%;
+  border-collapse: collapse;
+}
+td[data-v-727d09f0] {
+  padding: 5px;
+  border: 1px solid #ccc;
+  text-align: center;
+  cursor: pointer;
+}
+td[data-v-727d09f0]:hover {
+  background-color: #f0f0f0;
+}
+td.isCurrentMonth[data-v-727d09f0] {
+  background-color: #e0e0e0;
+}

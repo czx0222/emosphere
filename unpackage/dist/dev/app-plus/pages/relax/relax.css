@@ -1,0 +1,93 @@
+
+.choose[data-v-3a9d0990] {
+		background-color: rgb(172,217,185,0.3);
+		border-radius: 5px;
+}
+.method[data-v-3a9d0990]{
+		position: absolute; top: 64%; right: 5%; display: flex; flex-direction: column; gap: 20px;
+}
+.title[data-v-3a9d0990] {
+		position: relative;
+		top: 6%;
+}
+.title uni-text[data-v-3a9d0990] {
+		font-weight: bold;
+		font-size: 4rem;
+		color: #377F7F;
+}
+.page[data-v-3a9d0990] {
+		display: flex;
+		flex-direction: column;
+		background-image: url('../../static/relaxback.png');
+		background-size: cover;
+		background-repeat: no-repeat;
+		width: 100%;
+		height: 100vh;
+		align-items: center;
+		/* 水平居中 */
+}
+.header[data-v-3a9d0990] {
+		position: relative;
+		top: 1.5rem;
+		display: flex;
+		justify-content: space-between;
+		width: 80%;
+}
+.header img[data-v-3a9d0990] {
+		width: auto;
+		height: 40px;
+}
+.popup[data-v-3a9d0990] {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background-color: #e8f5e9;
+		color: #2e7d32;
+		padding: 30px;
+		border: 2px solid #5F9EA0;
+		border-radius: 10px;
+		font-size: 25px;
+		box-sizing: border-box;
+		overflow: auto;
+		font-family: '华文新魏', cursive;
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+uni-button[data-v-3a9d0990] {
+		background-color: #5F9EA0;
+		color: white;
+		border: none;
+		padding: 2px 10px;
+		margin-right: 10px;
+		border-radius: 4px;
+		cursor: pointer;
+		font-size: 25px;
+		font-family: '华文新魏', cursive;
+		box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+		transition: background-color 0.3s;
+		display: inline-block;
+}
+uni-button[data-v-3a9d0990]:hover {
+		background-color: #3f7f7f;
+}
+uni-button[data-v-3a9d0990]:active {
+		background-color: #367568;
+		box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+.completed-animation[data-v-3a9d0990] {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		color: #5F9EA0;
+		font-size: 30px;
+		font-family: '华文新魏', cursive;
+}
+@keyframes fadeInOut-3a9d0990 {
+0% {
+			opacity: 1;
+}
+100% {
+			opacity: 0;
+}
+}

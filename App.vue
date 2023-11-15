@@ -21,7 +21,6 @@
 </script>
 
 <style lang="scss">
-	@import "@/node_modules/uview-ui/index.scss";
 	@import '@/uni_modules/uni-scss/index.scss';
 	/* #ifndef APP-NVUE */
 	@import '@/static/customicons.css';

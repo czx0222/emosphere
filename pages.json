@@ -1,12 +1,5 @@
 {
-		"easycom": {
-			"autoscan": true,
-			"custom": {
-				"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue",
-				"tui-(.*)": "thorui-uni/lib/thorui/tui-$1/tui-$1.vue"
-			}
-			},
-	
+
 	"pages": [{
 			"path": "pages/index/index",
 			"style": {
@@ -81,15 +74,7 @@
 				"navigationStyle": "custom" // 隐藏系统导航栏
 			}
 		},
-		{
-			"path" : "pages/space/space",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle": "custom" // 隐藏系统导航栏
-			}
-		},
+
 		{
 			"path" : "pages/user/me",
 			"style" : 
@@ -109,6 +94,14 @@
 		},
 		{
 			"path" : "pages/music/music",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/test/test",
 			"style" : 
 			{
 				"navigationBarTitleText" : "",

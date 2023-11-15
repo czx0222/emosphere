@@ -8,97 +8,73 @@
 					<text>返回</text>
 				</view>
 			</router-link>
+			<view class="head-right" @click="getemo">
+				<img src="/static/images/gou.png" />
+				<text>获取</text>
+			</view>
 		</view>
 		<view class="calendar">
-			<view>
+<!-- 						<view>
 				<uni-calendar class="uni-calendar--hook" :selected="info.selected" :showMonth="false" @change="change"
 					@monthSwitch="monthSwitch" />
-			</view>
+			</view> -->
 		</view>
 		<view class="calendar-content">
-			<view class="v">
-				<view class="left">
-					<text class="time">11月10日</text>
-					<img src="/static/images/qingxu-xiyue.png" alt="" />
+			<template v-for="(record, index) in records" :key="index">
+				<view class="v">
+					<view class="left">
+						<text class="time">{{ formatDate(record.createDate) }}</text>
+						<img :src="'/static/images/qingxu-' + record.mood + '.png'" alt="" />
+					</view>
+					<view class="right">
+						<text class="title">{{ record.title }}</text>
+						<text class="content">{{ record.content }}</text>
+					</view>
 				</view>
-				<view class="right">
-					<text class="title">满足</text>
-					<text class="content">"大家贵州带回来的特产都很好次！！！"</text>
-				</view>
-			</view>
-			<view class="v">
-				<view class="left">
-					<text class="time">11月9日</text>
-					<img src="/static/images/qingxu-xiyue.png" alt="" />
-				</view>
-				<view class="right">
-					<text class="title">很烦</text>
-					<text class="content">"复习图形学哪有不疯的"</text>
-				</view>
-			</view>
-			<view class="v">
-				<view class="left">
-					<text class="time">11月8日</text>
-					<img src="/static/images/qingxu-xiyue.png" alt="" />
-				</view>
-				<view class="right">
-					<text class="title">时间过的好快</text>
-					<text class="content">"十月份怎么就结束了"</text>
-				</view>
-			</view>
+			</template>
 		</view>
 	</view>
 </template>
 
-<script>
-	function getDate(date, AddDayCount = 0) {
-		if (!date) {
-			date = new Date()
-		}
-		if (typeof date !== 'object') {
-			date = date.replace(/-/g, '/')
-		}
-		const dd = new Date(date)
+<script setup>
+	import store from '@/store';
+	import {
+		ref,onMounted
+	} from 'vue';
 
-		dd.setDate(dd.getDate() + AddDayCount) // 获取AddDayCount天后的日期
+	const emotionIcons = store.getters.getEmotionIcons;
+	const records = ref([]);
 
-		const y = dd.getFullYear()
-		const m = dd.getMonth() + 1 < 10 ? '0' + (dd.getMonth() + 1) : dd.getMonth() + 1 // 获取当前月份的日期，不足10补0
-		const d = dd.getDate() < 10 ? '0' + dd.getDate() : dd.getDate() // 获取当前几号，不足10补0
-		return {
-			fullDate: y + '-' + m + '-' + d,
-			year: y,
-			month: m,
-			date: d,
-			day: dd.getDay()
-		}
-	}
-	export default {
-		components: {},
-		data() {
-			return {
-				showCalendar: false,
-				info: {
-					lunar: true,
-					range: true,
-					insert: false,
-					selected: []
-				}
+	const formatDate = (dateString) => {
+		const originalDate = new Date(dateString);
+		const month = originalDate.getMonth() + 1; // 注意月份是从0开始计数，需要加1
+		const day = originalDate.getDate();
+		return `${month}月${day}日`;
+	};
+
+	const getemo = () => {
+		uni.request({
+			url: 'http://8.136.81.197:8080/mood_record',
+			method: 'GET',
+			data: {
+				uid: 5,
+				nums: 2,
+			},
+			success: (response) => {
+				console.log(response.data);
+				records.value = response.data['records'];
+			},
+			fail: (error) => {
+				console.error(error);
 			}
-		},
-		onReady() {
-			this.$nextTick(() => {
-				this.showCalendar = true
-			})
-			// TODO 模拟请求异步同步数据
-			setTimeout(() => {
-				this.info.date = getDate(new Date(), -30).fullDate
-				this.info.startDate = getDate(new Date(), -60).fullDate
-				this.info.endDate = getDate(new Date(), 30).fullDate
-			}, 2000)
-		},
-	}
+		});
+	};
+	onMounted(() => {
+		// 在页面加载时自动调用 getemo 函数
+		getemo();
+	});
 </script>
+
 
 <style>
 	.backarea {
@@ -135,10 +111,12 @@
 		align-items: center;
 		float: left;
 	}
+
 	.head-right {
 		display: flex;
 		align-items: center;
 	}
+
 	.calendar {
 		position: relative;
 		top: 2rem;
@@ -185,6 +163,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		justify-content: center;
 		width: 70%;
 
 	}

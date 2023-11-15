@@ -9,6 +9,7 @@
 		<view class="btn" @click="tiao">
 			<text>SIGN IN</text>
 		</view>
+		
 	</view>
 
 </template>

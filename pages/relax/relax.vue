@@ -7,7 +7,7 @@
 			<router-link to="/pages/music/music">
 				<img src="/static/f2.png" @click="incrementCount('f2', 5)">
 			</router-link>
-			<img src="/static/f3.png">
+			<img class="choose" src="/static/f3.png" >
 			<router-link to="">
 				<img src="/static/f4.png" @click="incrementCount('f4', 5)">
 			</router-link>
@@ -16,7 +16,7 @@
 			<text>Relax</text>
 		</view>
 		<img alt="图片f6" src="/static/f6.png" style="position: absolute; top: 58%; left: 65%; transform: translate(-50%, -50%);">
-		<view class="method">
+		<view class="method" >
 			<img alt="图片f7" src="/static/f7.png" @click="startRelaxation('f7')" style="margin-bottom: 10px;">
 			<img alt="图片f8" src="/static/f8.png" @click="startRelaxation('f8')" style="margin-bottom: 10px;">
 			<img alt="图片f9" src="/static/f9.png" @click="startRelaxation('f9')" style="margin-bottom: 10px;">
@@ -24,7 +24,7 @@
 		</view>
 	</view>
 
-	<view v-if="currentPopup" :class="`popup popup-${currentPopup}`" style="width: 80%; height: 50%;">
+	<view v-if="currentPopup" :class="`popup popup-${currentPopup}`" style="width: 80%; height: 50%; text-align: center;z-index: 10;">
 
 		<ul style="text-align: left; margin-bottom: 20px; font-size: 22px; font-family: '华文新魏', cursive;">
 			<li v-for="step in popupContent[currentPopup].steps.slice(0, 4)" :key="step">{{ step }}</li>
@@ -166,6 +166,10 @@
 </script>
 
 <style scoped>
+	.choose {
+		background-color: rgb(172,217,185,0.3);
+		border-radius: 5px;
+	}
 	.method{
 		position: absolute; top: 64%; right: 5%; display: flex; flex-direction: column; gap: 20px;
 	}

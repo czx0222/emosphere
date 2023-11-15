@@ -1,0 +1,83 @@
+
+.backarea {
+		display: flex;
+		flex-direction: column;
+		background-image: url('../../static/images/back2.png');
+		background-size: cover;
+		background-repeat: no-repeat;
+		width: 100%;
+		height: 100vh;
+		align-items: center;
+		/* 水平居中 */
+}
+.header {
+		display: flex;
+		justify-content: space-between;
+		width: 90%;
+		position: relative;
+		top: 1rem;
+}
+.header uni-text {
+		color: #ffffff;
+		font-size: 1rem;
+		font-weight: 550;
+}
+.head-left {
+		display: flex;
+		align-items: center;
+		float: left;
+}
+.head-right {
+		display: flex;
+		align-items: center;
+}
+.calendar {
+		position: relative;
+		top: 2rem;
+}
+.calendar-content {
+		position: relative;
+		top: 3rem;
+		width: 90%;
+}
+.v {
+		display: flex;
+		margin: 4px;
+		min-height: 6rem;
+		border-radius: 10px;
+		background-color: rgb(255, 255, 255, 0.9);
+}
+.calendar-content uni-view img {
+		height: 50px;
+		width: 50px;
+}
+.left {
+		border-top-left-radius: 10px;
+		border-bottom-left-radius: 10px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		width: 30%;
+}
+.left uni-text {
+		font-size: 1rem;
+		font-weight: bold;
+}
+.right {
+		border-top-right-radius: 10px;
+		border-bottom-right-radius: 10px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		width: 70%;
+}
+.right .title {
+		font-size: 1.5rem;
+		font-weight: bold;
+}
+.right .content {
+		font-size: 18px;
+		margin: 5px;
+}
