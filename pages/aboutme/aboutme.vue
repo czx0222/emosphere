@@ -22,21 +22,21 @@
 
 			<view class="menu-item">
 				<text class="menu-text">性别</text>
-				<text class="menu-text1">♂ 男 </text>
+				<text class="menu-text1">{{usergender}} </text>
 				<img src="/static/images/yuanjiantou.png" alt="" />
 			</view>
 
 			<!-- 个人资料 -->
 			<view class="menu-item" @click="goToProfile">
 				<text class="menu-text">常驻地</text>
-				<text class="menu-text1">福州</text>
+				<text class="menu-text1">{{userstatus}}</text>
 				<img src="/static/images/yuanjiantou.png" alt="" />
 			</view>
 
 			<!-- 个人资料 -->
 			<view class="menu-item" @click="goToProfile">
 				<text class="menu-text">生日</text>
-				<text class="menu-text1">1998-2-12</text>
+				<text class="menu-text1">{{userbirthday}}</text>
 				<img src="/static/images/yuanjiantou.png" alt="" />
 			</view>
 
@@ -62,42 +62,11 @@
 	import store from '@/store';
 
 	const router = useRouter();
-	const username = ref(store.getters.getUsername);
-
-	const goToProfile = () => {
-		
-	};
-
-	// const uploadImage = () => {
-	// 	uni.chooseImage({
-	// 		count: 1,
-	// 		sizeType: ['compressed'],
-	// 		sourceType: ['album', 'camera'],
-	// 		success: (res) => {
-	// 			const tempFilePaths = res.tempFilePaths;
-	// 			const filePath = tempFilePaths[0];
-	// 			uploadImage(filePath);
-	// 		},
-	// 	});
-	// };
-	// const uploadImage = (filePath) => {
-	// 	uni.uploadFile({
-	// 		// url: 'https://yourserver.com/upload', // 替换为你的服务器上传接口地址
-	// 		filePath: filePath,
-	// 		name: 'file',
-	// 		formData: {
-	// 			'user': 'test',
-	// 		},
-	// 		success: (uploadRes) => {
-	// 			console.log('上传成功', uploadRes.data);
-	// 			// 在这里处理上传成功后的逻辑，比如更新用户头像信息等
-	// 		},
-	// 		fail: (err) => {
-	// 			console.log('上传失败', err);
-	// 			// 在这里处理上传失败后的逻辑
-	// 		},
-	// 	});
-	// };
+	const username = ref(store.state.username);
+	const userbirthday = ref(store.state.userBirthday);
+	const usergender = ref(store.state.userGender);
+	const userstatus = ref(store.state.userStatus);
+	
 </script>
 
 <style lang="scss">

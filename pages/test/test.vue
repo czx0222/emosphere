@@ -1,125 +1,99 @@
 <template>
-  <div>
-    <input
-      type="text"
-      v-model="selectedDate"
-      @click="showCalendar = !showCalendar"
-      placeholder="点击选择日期"
-    />
-    <div v-if="showCalendar" class="calendar">
-      <div class="header">
-        <button @click="prevMonth">&lt;</button>
-        <span>{{ currentMonth }}</span>
-        <button @click="nextMonth">&gt;</button>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th v-for="day in daysOfWeek" :key="day">{{ day }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(week, index) in calendar" :key="index">
-            <td v-for="day in week" :key="day.value" @click="selectDate(day)">
-              {{ day.display }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+	<view class="uPImg">
+		<view class="Img">上传照片 :</view>
+		<!-- 上传图片 -->
+		<view class="shangchuan">
+			<view class="sc2" v-for="(item, index) in imgList" :key="index">
+				<image class="del" @click="del(index)" src="/static/things/删除.png" mode=""></image>
+				<image class="Img3" :src="item" mode=""></image>
+			</view>
+			<view class="sc2" v-if="imgList.length < 1" @click="upload">
+				<image class="sc3" src="/static/things/加号.png" mode=""></image>
+			</view>
+		</view>
+	</view>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      daysOfWeek: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-      showCalendar: false,
-      selectedDate: "",
-      currentDate: new Date(),
-    };
-  },
-  computed: {
-    currentMonth() {
-      const options = { month: "long", year: "numeric" };
-      return this.currentDate.toLocaleDateString("en-US", options);
-    },
-    calendar() {
-      const firstDayOfMonth = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), 1);
-      const lastDayOfMonth = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1, 0);
-      const startDate = new Date(firstDayOfMonth);
-      startDate.setDate(startDate.getDate() - startDate.getDay());
-      const endDate = new Date(lastDayOfMonth);
-      endDate.setDate(endDate.getDate() + (6 - endDate.getDay()));
-
-      const calendar = [];
-      let currentDate = new Date(startDate);
-
-      while (currentDate <= endDate) {
-        const week = [];
-        for (let i = 0; i < 7; i++) {
-          const dateValue = new Date(currentDate);
-          const display = dateValue.getDate();
-          const isCurrentMonth = dateValue.getMonth() === this.currentDate.getMonth();
-          week.push({ value: dateValue.toISOString(), display, isCurrentMonth });
-          currentDate.setDate(currentDate.getDate() + 1);
-        }
-        calendar.push(week);
-      }
-
-      return calendar;
-    },
-  },
-  methods: {
-    prevMonth() {
-      this.currentDate.setMonth(this.currentDate.getMonth() - 1);
-    },
-    nextMonth() {
-      this.currentDate.setMonth(this.currentDate.getMonth() + 1);
-    },
-    selectDate(day) {
-      if (day.isCurrentMonth) {
-        this.selectedDate = day.value;
-        this.showCalendar = false;
-      }
-    },
-  },
-};
+	export default {
+		data() {
+			return {
+				imgList: []
+			};
+		},
+		methods: {
+			// 点击上传图片
+			upload() {
+				uni.chooseImage({
+					count: 3,
+					sizeType: ['original', 'compressed'],
+					sourceType: ['album'],
+					loop: true,
+					success: (res) => {
+						console.log(res);
+						if (res.tempFilePaths.length != 0) {
+							this.imgList.push(res.tempFilePaths[0]);
+							var tempFilePaths = res.tempFilePaths;
+							// uni.uploadFile({
+							// 	url: 'http://douzhuoqianshouba.xieenguoji.com/api/ajax/upload',
+							// 	filePath: tempFilePaths[0],
+							// 	name: 'file',
+							// 	success: (uploadFileRes) => {
+							// 	},
+							// 	fail: (err) => {
+							// 		console.log(err);
+							// 	}
+							// });
+						}
+					}
+				});
+			},
+			// 删除图片
+			del(index) {
+				this.imgList.splice(index, 1);
+				console.log(this.imgList);
+			},
+		}
+	};
 </script>
+<style lang="scss">
+	.shangchuan {
+		width: 90%;
+		height: 200rpx;
+		margin: 0 auto;
+		display: flex;
+		align-items: center;
 
-<style scoped>
-.calendar {
-  position: absolute;
-  background-color: white;
-  border: 1px solid #ccc;
-  padding: 10px;
-  z-index: 1000;
-}
+		.sc2 {
+			width: 30%;
+			height: 90%;
+			border-radius: 10rpx;
+			background-color: #dadfef;
+			text-align: center;
+			line-height: 240rpx;
+			margin: 0 10rpx;
+			position: relative;
+		}
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
+		.Img3 {
+			width: 100%;
+			height: 100%;
+			border-radius: 10rpx;
+		}
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
+		.del {
+			width: 32rpx;
+			height: 32rpx;
+			position: absolute;
+			z-index: 1000;
+			top: 0rpx;
+			right: 0;
+		}
 
-td {
-  padding: 5px;
-  border: 1px solid #ccc;
-  text-align: center;
-  cursor: pointer;
-}
-
-td:hover {
-  background-color: #f0f0f0;
-}
-
-td.isCurrentMonth {
-  background-color: #e0e0e0;
-}
+		.sc3 {
+			width: 96rpx;
+			height: 96rpx;
+			border-radius: 10rpx;
+		}
+	}
 </style>

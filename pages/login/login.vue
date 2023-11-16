@@ -8,10 +8,7 @@
 					
 				</view>
 				<view class="login-card-loginIn-btn" @click="handleLogin">
-					登 录
-				</view>
-				<view class="login-card-loginIn-btn" click="">
-					注册
+					登 录 / 注 册
 				</view>
 				<view class="otherlogin">
 					<text>-----其他登录方式-----</text>
@@ -35,8 +32,8 @@
 	import { useRouter } from 'vue-router';
 	import store from '@/store';
 	const router = useRouter();
-	const phoneNumber = ref('');
-	const password = ref('');
+	const phoneNumber = ref('15159606435');
+	const password = ref('123456');
 	
 	const handleLogin = () => {
 	  uni.request({
@@ -44,7 +41,7 @@
 	    method: 'POST',
 	    data: {
 	      phone: phoneNumber.value,
-	      authCode: password.value
+	      pwd: password.value
 	    },
 	    success: (response) => {
 	      const user = response.data['user'];
@@ -55,7 +52,7 @@
 		          });
 				  console.log('User data stored in Vuex:', store.state.userId, store.state.username);
 
-	      router.push('/pages/main/main');
+	      router.push('/pages/set/set');
 	    },
 	    fail: (error) => {
 	      // 登录请求失败的处理逻辑

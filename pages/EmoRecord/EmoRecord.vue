@@ -71,42 +71,61 @@
 			<view class="content">
 				<input type="text" placeholder="请具体描述" v-model="Content">
 			</view>
-			<view class="photo">
-				<button class="circle"><img src="/static/things/加号.png" alt="" /></button>
+
+			<view class="uPImg">
+				<view class="shangchuan">
+					<view class="sc2" v-for="(item, index) in imgList" :key="index">
+						<image class="del" @click="del(index)" src="/static/things/删除.png" mode=""></image>
+						<image class="Img3" :src="item" mode=""></image>
+					</view>
+					<view class="sc2" v-if="imgList.length < 1" @click="upload">
+						<image class="sc3" src="/static/things/加号.png" mode=""></image>
+					</view>
+				</view>
 			</view>
+
+
+
+
+
 		</view>
 	</view>
 </template>
 
 <script setup>
-	import {useRouter} from 'vue-router';
-	import store from '@/store';
 	import {ref} from 'vue';
+	import {
+		
+		useRouter
+	} from 'vue-router';
+	import store from '@/store';
+
 	const emotionIcons = store.getters.getEmotionIcons;
-	console.log(emotionIcons)
 	let Icon = null;
 	const router = useRouter();
+
 	const getback = () => {
 		router.push('/pages/main/main');
-	}
+	};
+
 	const selectIcon = (iconName) => {
 		Icon = Icon === iconName ? null : iconName;
 		console.log('选中的图标：', Icon);
 	};
+
 	const isSelected = (iconName) => {
 		return Icon === iconName;
 	};
-	const userid = ref(store.getters.getUserId).value
-	const Title = ref('');
-	const Content = ref('')
-	const savadata = () => {
 
-		
+	const userid = store.getters.getUserId;
+	let Title = '';
+	let Content = '';
+	const savadata = () => {
 		const data = {
 			uid: userid,
 			mood: Icon,
-			title: Title.value,
-			content: Content.value,
+			title: Title,
+			content: Content,
 		};
 		console.log(data);
 		uni.request({
@@ -118,13 +137,90 @@
 			},
 			fail: (error) => {
 				console.error('保存失败', error);
-			}
+			},
 		});
+	};
+
+	const imgList = ref([]);
+	const upload = () => {
+		uni.chooseImage({
+			count: 3,
+			sizeType: ['original', 'compressed'],
+			sourceType: ['album'],
+			loop: true,
+			success: (res) => {
+				console.log(res);
+				if (res.tempFilePaths.length !== 0) {
+					imgList.value.push(res.tempFilePaths[0]);
+					var tempFilePaths = res.tempFilePaths;
+					// uni.uploadFile({
+					//   url: 'http://douzhuoqianshouba.xieenguoji.com/api/ajax/upload',
+					//   filePath: tempFilePaths[0],
+					//   name: 'file',
+					//   success: (uploadFileRes) => {},
+					//   fail: (err) => {
+					//     console.log(err);
+					//   },
+					// });
+				}
+			},
+		});
+	};
+
+	// 删除图片
+	const del = (index) => {
+		imgList.value.splice(index, 1);
+		console.log(imgList);
 	};
 </script>
 
 
 <style>
+	
+
+
+	.shangchuan {
+		position: relative;
+		top: 1rem;
+		border-radius: 10px;
+		align-items: center;
+		display: flex;
+		justify-content: center;
+		width: 50%;
+		height: 150px;
+		box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+		background-color: rgba(255, 255, 255, 0.8); 
+	}
+	.sc2 {
+		text-align: center;
+		width: 95%;
+		height: 95%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 10px;
+	}
+
+	.Img3 {
+		border-radius: 10px;
+		width: 100%;
+		height: 100%;
+	}
+	.del {
+		width: 50rpx;
+		height: 50rpx;
+		position: absolute;
+		z-index: 1000;
+		top: 5px;
+		right: 5px;
+	}
+
+	.sc3 {
+		width: 96rpx;
+		height: 96rpx;
+		
+	}
+
 	.backarea {
 		display: flex;
 		flex-direction: column;
@@ -279,15 +375,5 @@
 		padding: 8px;
 	}
 
-	.photo {
-		border-radius: 20px;
-		background-color: rgb(255, 255, 255, 0.8);
-		margin-top: 1rem;
-		width: 50%;
-		height: 9rem;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-	}
+
 </style>

@@ -8,10 +8,6 @@
 					<text>返回</text>
 				</view>
 			</router-link>
-			<view class="head-right" @click="getemo">
-				<img src="/static/images/gou.png" />
-				<text>获取</text>
-			</view>
 		</view>
 		<view class="calendar">
 <!-- 						<view>

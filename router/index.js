@@ -4,6 +4,9 @@ import main from '@/pages/main/main.vue';
 import calendar from '@/pages/calendar/calendar.vue';
 import EmoRecord from '@/pages/EmoRecord/EmoRecord.vue';
 import about from '@/pages/about/about.vue';
+import questions from '@/pages/questions/questions.vue';
+import set from '@/pages/set/set.vue';
+
 const routes = [
   {
     path: '/pages/login/login',
@@ -30,7 +33,16 @@ const routes = [
     name: 'about',
     component: about,
   },
-  // 其他路由...
+  {
+    path: '/pages/questions/questions',
+    name: 'questions',
+    component: questions,
+  },
+  {
+    path: '/pages/set/set',
+    name: 'set',
+    component: set,
+  },
 ];
 
 const router = createRouter({

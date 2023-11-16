@@ -1,0 +1,44 @@
+
+	/* 设置背景的大小 */
+.background {
+		background-image: url("../../static/images/back2.png");
+		height: 844px;
+		width: 390;
+}
+.rounded-box {
+		background-color: #f5f8f7;
+		/* 设置方框的颜色 */
+		border-radius: 30px;
+		/* 设置圆角的半径 */
+}
+.rounded-res {
+		background-color: #f5f8f7;
+		/* 设置方框的颜色 */
+		border-radius: 20px;
+		/* 设置圆角的半径 */
+}
+.rounded-circle {
+		background-color: #f5f8f7;
+		/* 设置方框的颜色 */
+		border-radius: 100px;
+		/* 设置圆角的半径 */
+}
+.text-output {
+		font-size: 23px;
+		font-weight: bold;
+		color: #00b881;
+		text-align: left;
+}
+.text-output1 {
+		font-size: 23px;
+		font-weight: bold;
+		color: darkcyan;
+		text-align: left;
+}
+.text-res {
+		font-size: 50px;
+		font-weight: bold;
+		color: darkcyan;
+		text-align: left;
+		z-index: 999;
+}

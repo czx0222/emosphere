@@ -13,7 +13,7 @@
 			</view>
 			<view class="info">
 				<text class="user-name">{{username}}</text>
-				<text class="user-info">♂ 30岁</text>
+				<text class="user-info">{{age}}</text>
 				<text class="user-id">UserID:{{ userid }}</text>
 			</view>
 		</view>
@@ -43,39 +43,52 @@
 </template>
 
 <script setup>
-	import {ref} from 'vue';
+	import {
+		ref
+	} from 'vue';
 	import store from '@/store';
-	import { useRouter } from 'vue-router';
+	import {
+		useRouter
+	} from 'vue-router';
+
+	const calculateAge = (birthdate) => {
+		const today = new Date();
+		const birthDate = new Date(birthdate);
+		let age = today.getFullYear() - birthDate.getFullYear();
+		return age;
+	};
+
+	const userbirthday = ref(store.state.userBirthday);
+	const age = ref(calculateAge(userbirthday.value));
 	const router = useRouter();
-	
 	const username = ref(store.getters.getUsername);
 	const userid = ref(store.getters.getUserId);
-	
-	 const goBack = () => {
-	    router.push('/pages/main/main');
-	  };
-	
-	  const goToProfile = () => {
-	    console.log('aboutme');
-	    router.push('/pages/aboutMe/aboutMe');
-	  };
-	
-	  const goToFavorites = () => {
-	    console.log('like');
-	  };
-	
-	  const goToAbout = () => {
-	    router.push('/pages/about/about');
-	  };
-	
-	  const logout = () => {
-	    if (confirm('确定要退出登录吗？')) {
-	      console.log('logout');
-	      router.push('/pages/login/login');
-	    } else {
-	      // 否，不做任何操作
-	    }
-	  };
+
+
+
+	const goBack = () => {
+		router.push('/pages/main/main');
+	};
+
+	const goToProfile = () => {
+		console.log('aboutme');
+		router.push('/pages/aboutMe/aboutMe');
+	};
+
+	const goToFavorites = () => {
+		console.log('like');
+	};
+
+	const goToAbout = () => {
+		router.push('/pages/about/about');
+	};
+
+	const logout = () => {
+		if (confirm('确定要退出登录吗？')) {
+			console.log('logout');
+			router.push('/pages/login/login');
+		} else {}
+	};
 </script>
 
 <style>
