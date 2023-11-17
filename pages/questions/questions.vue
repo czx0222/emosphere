@@ -161,12 +161,10 @@
 		justify-content: center;
 		align-items: center;
 		height: 10vh;
-		/* 调整为你需要的高度 */
 	}
 
 	.green-circle {
 		position: relative;
-		/* 设置父元素为相对定位，以使子元素绝对定位相对于父元素 */
 		display: flex;
 
 		height: 100vh;
@@ -207,11 +205,11 @@
 
 	.button {
 		display: flex;
-		/* 设置按钮为Flex布局 */
+
 		justify-content: center;
-		/* 设置主轴对齐方式为居中 */
+
 		align-items: center;
-		/* 设置交叉轴对齐方式为居中 */
+
 
 		background: linear-gradient(to right, darkcyan 0%, darkcyan 10%, white 10%, white 100%);
 		color: darkcyan;
@@ -222,7 +220,6 @@
 		box-sizing: border-box;
 		text-align: center;
 		border-radius: 13px;
-		/* 设置按钮边框圆角 */
 
 		font-weight: bold;
 	}

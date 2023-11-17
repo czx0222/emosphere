@@ -78,7 +78,7 @@
 						botContent: "",
 						recordId: 0,
 						titleId: 0,
-						userContent: "你好呀我想问你一件事",
+						userContent: "",
 						userId: 0
 					},
 				]
@@ -138,21 +138,41 @@
 					})
 				}, 15)
 			},
-			handleSend() {
-				if (!this.chatMsg || !/^\s+$/.test(this.chatMsg)) {
-					let obj = {
-						botContent: "",
-						recordId: 0,
-						titleId: 0,
-						userContent: this.chatMsg,
-						userId: 0
-					}
-					this.msgList.push(obj);
-					this.chatMsg = '';
-					this.scrollToBottom()
-				} else {
-					this.$modal.showToast('不能发送空白消息')
-				}
+			async handleSend() {
+			    if (!this.chatMsg || !/^\s+$/.test(this.chatMsg)) {
+			        let obj = {
+			            botContent: "",
+			            recordId: 0,
+			            titleId: 0,
+			            userContent: this.chatMsg,
+			            userId: 0
+			        };
+			        console.log(this.chatMsg);
+			        try {
+			            const response = await uni.request({
+			                url: 'http://localhost:8080/api/',
+			                method: 'POST',
+			                data: {
+			                    message: this.chatMsg
+			                },
+			                header: {
+			                    'content-type': 'application/json',
+			                }
+			            });
+			
+			            const serverResponse = response.data;
+			            obj.botContent = serverResponse.message;
+			            this.msgList.push(obj);
+			            this.chatMsg = '';
+			            this.scrollToBottom();
+			            console.log('发送成功:', serverResponse);
+			        } catch (error) {
+			            console.error('发送消息失败:', error);
+			            this.$modal.showToast('发送消息失败');
+			        }
+			    } else {
+			        this.$modal.showToast('不能发送空白消息');
+			    }
 			},
 		}
 	}

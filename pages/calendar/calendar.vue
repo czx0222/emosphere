@@ -10,10 +10,9 @@
 			</router-link>
 		</view>
 		<view class="calendar">
-<!-- 						<view>
-				<uni-calendar class="uni-calendar--hook" :selected="info.selected" :showMonth="false" @change="change"
-					@monthSwitch="monthSwitch" />
-			</view> -->
+			<view>
+				<uni-calendar class="uni-calendar--hook" :showMonth="false" />
+			</view>
 		</view>
 		<view class="calendar-content">
 			<template v-for="(record, index) in records" :key="index">
@@ -35,7 +34,8 @@
 <script setup>
 	import store from '@/store';
 	import {
-		ref,onMounted
+		ref,
+		onMounted
 	} from 'vue';
 
 	const emotionIcons = store.getters.getEmotionIcons;
