@@ -1,4 +1,48 @@
 
+.dialog[data-v-42d6f2a0]{
+	position: absolute;
+	z-index: 999;
+	overflow: hidden;
+	transition-timing-function: cubic-bezier(0.69 ,0.15, 0.52, 1.04);
+	box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px 0px, rgba(0, 0, 0, 0.5) 0px 0px 1px 0px;
+	padding: 0.5rem 1rem;
+	box-sizing: border-box;
+	overflow: scroll;
+	height: 100px;
+}
+.title[data-v-42d6f2a0]{
+	display: flex;
+	position: relative;
+	justify-content: space-between;
+	align-items: center;
+	padding-bottom: 1rem;
+}
+.title > h2[data-v-42d6f2a0]{
+	letter-spacing: 0.125rem;
+	color: #333;
+	position: relative;
+}
+.title > .close[data-v-42d6f2a0]{
+	color: #333;
+	font-size: 2rem;
+}
+.mask[data-v-42d6f2a0]{
+	padding-top: var(--status-bar-height);
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: #00000099;
+	pointer-events: none;
+	opacity: 0;
+	transition: .3s ease-in-out;
+}
+.mask.show[data-v-42d6f2a0]{
+	pointer-events: all;
+	opacity: 1;
+}
+
+
 @font-face {
 		font-family: 'icon';
 		src: url('//at.alicdn.com/t/font_1104838_fxzimc34xw.eot');
@@ -61,6 +105,16 @@ to {
 }
 
 
+.play-list-content-title {
+		font-size: 0.875rem;
+		margin-bottom: 0.5rem;
+}
+.play-list {
+		margin: 0.625rem 0.3125rem;
+		font-size: 1.125rem;
+		color: #343434;
+		padding: 0.625rem;
+}
 .radius-lg {
 		position: relative;
 		top: 1.5rem;
@@ -95,7 +149,7 @@ to {
 		padding: 5px;
 }
 .list {
-		font-size: 20px;
+		font-size: 16px;
 		line-height: 2.0625rem;
 		padding-left: 0.15625rem;
 		background: #fff;
@@ -106,4 +160,10 @@ to {
 .active {
 		background: #169af3;
 		color: #fff;
+}
+.iconbtn{
+		width: 1.71875rem;
+		height: 1.71875rem;	
+		margin-left: 1.03125rem;
+		margin-right: 1.03125rem;
 }

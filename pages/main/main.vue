@@ -29,12 +29,14 @@
 			</view>
 
 			<div style="position: relative;">
+				<router-link :to="{ path: '/pages/chat/chat' }">
 				<img alt="z2" src="/static/images/z2.png">
 				<img alt="z5" src="/static/images/z5.png" style="position: absolute; top: 10px; left: 7px;">
+				</router-link>
 			</div>
 			<div style="position: relative;">
-				<img alt="z2" src="/static/images/z2.png">
 				<router-link :to="{ path: '/pages/relax/relax' }">
+				<img alt="z2" src="/static/images/z2.png">
 					<img alt="z6" src="/static/images/z6.png" style="position: absolute; top: 5px; left: 5px;">
 				</router-link>
 			</div>

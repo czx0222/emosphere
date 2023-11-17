@@ -1400,7 +1400,7 @@ if (uni.restoreGlobal) {
         }
       ];
       const onPreviewImage = (url) => {
-        formatAppLog("log", "at pages/main/main.vue:76", url);
+        formatAppLog("log", "at pages/main/main.vue:78", url);
         uni.previewImage({
           urls: pictures.map((v) => v.url),
           current: url
@@ -1484,23 +1484,29 @@ if (uni.restoreGlobal) {
               ])
             ]),
             vue.createElementVNode("div", { style: { "position": "relative" } }, [
-              vue.createElementVNode("img", {
-                alt: "z2",
-                src: "/static/images/z2.png"
-              }),
-              vue.createElementVNode("img", {
-                alt: "z5",
-                src: "/static/images/z5.png",
-                style: { "position": "absolute", "top": "10px", "left": "7px" }
+              vue.createVNode(_component_router_link, { to: { path: "/pages/chat/chat" } }, {
+                default: vue.withCtx(() => [
+                  vue.createElementVNode("img", {
+                    alt: "z2",
+                    src: "/static/images/z2.png"
+                  }),
+                  vue.createElementVNode("img", {
+                    alt: "z5",
+                    src: "/static/images/z5.png",
+                    style: { "position": "absolute", "top": "10px", "left": "7px" }
+                  })
+                ]),
+                _: 1
+                /* STABLE */
               })
             ]),
             vue.createElementVNode("div", { style: { "position": "relative" } }, [
-              vue.createElementVNode("img", {
-                alt: "z2",
-                src: "/static/images/z2.png"
-              }),
               vue.createVNode(_component_router_link, { to: { path: "/pages/relax/relax" } }, {
                 default: vue.withCtx(() => [
+                  vue.createElementVNode("img", {
+                    alt: "z2",
+                    src: "/static/images/z2.png"
+                  }),
                   vue.createElementVNode("img", {
                     alt: "z6",
                     src: "/static/images/z6.png",
@@ -1536,7 +1542,6 @@ if (uni.restoreGlobal) {
     __name: "EmoRecord",
     setup(__props) {
       const emotionIcons = store.getters.getEmotionIcons;
-      formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:98", emotionIcons);
       let Icon = null;
       const router = useRouter();
       const getback = () => {
@@ -1544,33 +1549,53 @@ if (uni.restoreGlobal) {
       };
       const selectIcon = (iconName) => {
         Icon = Icon === iconName ? null : iconName;
-        formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:106", "选中的图标：", Icon);
+        formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:113", "选中的图标：", Icon);
       };
       const isSelected = (iconName) => {
         return Icon === iconName;
       };
-      const userid = vue.ref(store.getters.getUserId).value;
-      const Title = vue.ref("");
-      const Content = vue.ref("");
+      const userid = store.getters.getUserId;
+      let Title = "";
+      let Content = "";
       const savadata = () => {
         const data = {
           uid: userid,
           mood: Icon,
-          title: Title.value,
-          content: Content.value
+          title: Title,
+          content: Content
         };
-        formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:123", data);
+        formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:130", data);
         uni.request({
           url: "http://8.136.81.197:8080/mood_record",
           method: "POST",
           data,
           success: (response) => {
-            formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:129", response.data);
+            formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:136", response.data);
           },
           fail: (error) => {
-            formatAppLog("error", "at pages/EmoRecord/EmoRecord.vue:132", "保存失败", error);
+            formatAppLog("error", "at pages/EmoRecord/EmoRecord.vue:139", "保存失败", error);
           }
         });
+      };
+      const imgList = vue.ref([]);
+      const upload = () => {
+        uni.chooseImage({
+          count: 3,
+          sizeType: ["original", "compressed"],
+          sourceType: ["album"],
+          loop: true,
+          success: (res) => {
+            formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:152", res);
+            if (res.tempFilePaths.length !== 0) {
+              imgList.value.push(res.tempFilePaths[0]);
+              res.tempFilePaths;
+            }
+          }
+        });
+      };
+      const del = (index) => {
+        imgList.value.splice(index, 1);
+        formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:173", imgList);
       };
       return (_ctx, _cache) => {
         return vue.openBlock(), vue.createElementBlock("view", { class: "backarea" }, [
@@ -1684,13 +1709,13 @@ if (uni.restoreGlobal) {
                 {
                   type: "text",
                   placeholder: "今天心情怎么样",
-                  "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => Title.value = $event)
+                  "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => vue.isRef(Title) ? Title.value = $event : Title = $event)
                 },
                 null,
                 512
                 /* NEED_PATCH */
               ), [
-                [vue.vModelText, Title.value]
+                [vue.vModelText, vue.unref(Title)]
               ])
             ]),
             vue.createElementVNode("view", { class: "content" }, [
@@ -1699,13 +1724,13 @@ if (uni.restoreGlobal) {
                 {
                   type: "text",
                   placeholder: "请具体描述",
-                  "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => Content.value = $event)
+                  "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => vue.isRef(Content) ? Content.value = $event : Content = $event)
                 },
                 null,
                 512
                 /* NEED_PATCH */
               ), [
-                [vue.vModelText, Content.value]
+                [vue.vModelText, vue.unref(Content)]
               ])
             ]),
             vue.createElementVNode("view", { class: "uPImg" }, [
@@ -1713,14 +1738,14 @@ if (uni.restoreGlobal) {
                 (vue.openBlock(true), vue.createElementBlock(
                   vue.Fragment,
                   null,
-                  vue.renderList(_ctx.imgList, (item, index) => {
+                  vue.renderList(imgList.value, (item, index) => {
                     return vue.openBlock(), vue.createElementBlock("view", {
                       class: "sc2",
                       key: index
                     }, [
                       vue.createElementVNode("image", {
                         class: "del",
-                        onClick: ($event) => _ctx.del(index),
+                        onClick: ($event) => del(index),
                         src: "/static/things/删除.png",
                         mode: ""
                       }, null, 8, ["onClick"]),
@@ -1734,16 +1759,16 @@ if (uni.restoreGlobal) {
                   128
                   /* KEYED_FRAGMENT */
                 )),
-                _ctx.imgList.length < 1 ? (vue.openBlock(), vue.createElementBlock("view", {
+                imgList.value.length < 1 ? (vue.openBlock(), vue.createElementBlock("view", {
                   key: 0,
-                  class: "sc2"
+                  class: "sc2",
+                  onClick: upload
                 }, [
-                  vue.createElementVNode("button", { class: "circle" }, [
-                    vue.createElementVNode("img", {
-                      src: "/static/things/加号.png",
-                      onClick: _cache[2] || (_cache[2] = (...args) => _ctx.upload && _ctx.upload(...args))
-                    })
-                  ])
+                  vue.createElementVNode("image", {
+                    class: "sc3",
+                    src: "/static/things/加号.png",
+                    mode: ""
+                  })
                 ])) : vue.createCommentVNode("v-if", true)
               ])
             ])
@@ -1777,7 +1802,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_router_link = vue.resolveComponent("router-link");
     return vue.openBlock(), vue.createElementBlock("view", { class: "about" }, [
       vue.createElementVNode("view", { class: "header" }, [
@@ -1875,7 +1900,7 @@ if (uni.restoreGlobal) {
       )) : vue.createCommentVNode("v-if", true)
     ]);
   }
-  const PagesAboutAbout = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$j], ["__scopeId", "data-v-13a78ac6"], ["__file", "D:/软工实践/EmoSphere/pages/about/about.vue"]]);
+  const PagesAboutAbout = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$i], ["__scopeId", "data-v-13a78ac6"], ["__file", "D:/软工实践/EmoSphere/pages/about/about.vue"]]);
   const _sfc_main$k = {
     __name: "aboutme",
     setup(__props) {
@@ -2227,7 +2252,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_router_link = vue.resolveComponent("router-link");
     return vue.openBlock(), vue.createElementBlock(
       vue.Fragment,
@@ -2363,9 +2388,9 @@ if (uni.restoreGlobal) {
       /* STABLE_FRAGMENT */
     );
   }
-  const PagesRelaxRelax = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$i], ["__scopeId", "data-v-3a9d0990"], ["__file", "D:/软工实践/EmoSphere/pages/relax/relax.vue"]]);
+  const PagesRelaxRelax = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$h], ["__scopeId", "data-v-3a9d0990"], ["__file", "D:/软工实践/EmoSphere/pages/relax/relax.vue"]]);
   const _sfc_main$h = {};
-  function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("div", { id: "building" }, [
       vue.createCommentVNode(' 		<u-navbar :is-back="false" title="" height=80 leftIconSize=25 leftIconColor="#488C88"\r\n			:bgColor="`rgb(255 255 255 / 0%)`">\r\n			<view class="slot-wrap" slot="right">\r\n				<u-button color=#488C88 shape="circle" text="分享">\r\n				</u-button>\r\n			</view>\r\n		</u-navbar> '),
       vue.createCommentVNode(` 		<u-textarea v-model="value1" placeholder="What's your emotion" count="true" class="text-style">\r
@@ -2373,191 +2398,8 @@ if (uni.restoreGlobal) {
       vue.createCommentVNode(' 		<u-upload :fileList="fileList6" @afterRead="afterRead" @delete="deletePic" name="6" multiple :maxCount="1"\r\n			width="130" height="130" class="update-style" uploadText="上传图片" uploadIcon="plus-circle-fill"\r\n			uploadIconColor="#488C88">\r\n\r\n		</u-upload> ')
     ]);
   }
-  const PagesShareShare = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["render", _sfc_render$h], ["__scopeId", "data-v-ceb22cc9"], ["__file", "D:/软工实践/EmoSphere/pages/share/share.vue"]]);
+  const PagesShareShare = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["render", _sfc_render$g], ["__scopeId", "data-v-ceb22cc9"], ["__file", "D:/软工实践/EmoSphere/pages/share/share.vue"]]);
   const _sfc_main$g = {
-    data() {
-      return {
-        top: 10,
-        current: 0,
-        currentTab: 0,
-        tabs: [
-          {
-            name: "我的"
-          },
-          {
-            name: "赞过"
-          }
-        ],
-        userInfo: {
-          avatar: "/static/xiaodiao.png",
-          username: "Xiaodiao",
-          id: "The sun will shion on us again.",
-          followCount: 25,
-          fanCount: 25,
-          like: 25
-        },
-        seed: 0,
-        uid: "",
-        show: false,
-        radio: [
-          {
-            text: "取消",
-            type: "white"
-          },
-          {
-            text: "确定",
-            type: "red"
-          }
-        ],
-        mid: "",
-        screenHeight: 0,
-        top_show: false,
-        vHeight: 0
-      };
-    }
-  };
-  function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_tui_button = vue.resolveComponent("tui-button");
-    const _component_tui_tabs = vue.resolveComponent("tui-tabs");
-    const _component_Trend = vue.resolveComponent("Trend");
-    const _component_Album = vue.resolveComponent("Album");
-    const _component_Collection = vue.resolveComponent("Collection");
-    const _component_tui_modal = vue.resolveComponent("tui-modal");
-    return vue.openBlock(), vue.createElementBlock("view", { class: "content" }, [
-      vue.createElementVNode("image", {
-        src: "/static/back.png",
-        class: "tui-header-img"
-      }),
-      vue.createElementVNode("view", { class: "main" }, [
-        vue.createElementVNode("view", { class: "top" }, [
-          vue.createElementVNode("view", { class: "user" }, [
-            vue.createElementVNode("view", { class: "user-left" }, [
-              vue.createElementVNode("image", {
-                src: "/static/xiaodiao.png",
-                class: "avatar",
-                mode: "aspectFill"
-              }),
-              vue.createElementVNode("view", { class: "user-content" }, [
-                vue.createElementVNode(
-                  "h3",
-                  null,
-                  vue.toDisplayString($data.userInfo.username),
-                  1
-                  /* TEXT */
-                ),
-                vue.createElementVNode(
-                  "view",
-                  { class: "user-id f" },
-                  vue.toDisplayString($data.userInfo.id),
-                  1
-                  /* TEXT */
-                ),
-                vue.createElementVNode(
-                  "view",
-                  { class: "descrpition f" },
-                  vue.toDisplayString($data.userInfo.description),
-                  1
-                  /* TEXT */
-                )
-              ])
-            ]),
-            vue.createElementVNode("view", { class: "user-right" }, [
-              vue.createVNode(_component_tui_button, {
-                type: "green",
-                shape: "circle",
-                onClick: _ctx.editUserInfo,
-                height: "60rpx",
-                width: "140rpx",
-                size: 28
-              }, {
-                default: vue.withCtx(() => [
-                  vue.createTextVNode("编辑")
-                ]),
-                _: 1
-                /* STABLE */
-              }, 8, ["onClick"])
-            ])
-          ]),
-          vue.createElementVNode("view", { class: "info" }, [
-            vue.createElementVNode("view", { class: "up-down" }, [
-              vue.createElementVNode(
-                "view",
-                { class: "up-number" },
-                vue.toDisplayString($data.userInfo.followCount),
-                1
-                /* TEXT */
-              ),
-              vue.createElementVNode("view", { class: "down-zi" }, " 关注 ")
-            ]),
-            vue.createElementVNode("view", { class: "up-down" }, [
-              vue.createElementVNode(
-                "view",
-                { class: "up-number" },
-                vue.toDisplayString($data.userInfo.fanCount),
-                1
-                /* TEXT */
-              ),
-              vue.createElementVNode("view", { class: "down-zi" }, " 粉丝 ")
-            ]),
-            vue.createElementVNode("view", { class: "up-down" }, [
-              vue.createElementVNode(
-                "view",
-                { class: "up-number" },
-                vue.toDisplayString($data.userInfo.like),
-                1
-                /* TEXT */
-              ),
-              vue.createElementVNode("view", { class: "down-zi" }, " 赞 ")
-            ])
-          ]),
-          vue.createElementVNode("view", { class: "tabs-style" }, [
-            vue.createVNode(_component_tui_tabs, {
-              tabs: $data.tabs,
-              currentTab: $data.currentTab,
-              onChange: _ctx.change,
-              sliderBgColor: "#488C88",
-              selectedColor: "#488C88",
-              itemWidth: "50%",
-              size: "35",
-              scale: "1.1"
-            }, null, 8, ["tabs", "currentTab", "onChange"])
-          ])
-        ])
-      ]),
-      vue.createElementVNode("view", { class: "zhuti" }, [
-        $data.userInfo ? (vue.openBlock(), vue.createElementBlock("view", { key: 0 }, [
-          $data.currentTab == 0 ? (vue.openBlock(), vue.createBlock(_component_Trend, {
-            key: 0,
-            uid: $data.uid,
-            onCancelUp: _ctx.cancelUp,
-            seed: $data.seed
-          }, null, 8, ["uid", "onCancelUp", "seed"])) : vue.createCommentVNode("v-if", true),
-          $data.currentTab == 1 ? (vue.openBlock(), vue.createBlock(_component_Album, {
-            key: 1,
-            seed: $data.seed,
-            uid: $data.uid
-          }, null, 8, ["seed", "uid"])) : vue.createCommentVNode("v-if", true),
-          $data.currentTab == 2 ? (vue.openBlock(), vue.createBlock(_component_Collection, {
-            key: 2,
-            uid: $data.uid,
-            seed: $data.seed
-          }, null, 8, ["uid", "seed"])) : vue.createCommentVNode("v-if", true)
-        ])) : vue.createCommentVNode("v-if", true)
-      ]),
-      vue.createVNode(_component_tui_modal, {
-        show: $data.show,
-        onClick: _ctx.confirm,
-        onCancel: _ctx.hide,
-        content: "取消上传",
-        button: $data.radio,
-        width: "50%",
-        padding: "15rpx 40rpx",
-        fadeIn: true
-      }, null, 8, ["show", "onClick", "onCancel", "button"])
-    ]);
-  }
-  const PagesUserMe = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$g], ["__scopeId", "data-v-4dafeecb"], ["__file", "D:/软工实践/EmoSphere/pages/user/me.vue"]]);
-  const _sfc_main$f = {
     name: "YSteps",
     props: {
       infoList: {
@@ -2669,8 +2511,8 @@ if (uni.restoreGlobal) {
       /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
     );
   }
-  const YSteps = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$f], ["__scopeId", "data-v-3d3a9ebb"], ["__file", "D:/软工实践/EmoSphere/components/Y-Steps/Y-Steps.vue"]]);
-  const _sfc_main$e = {
+  const YSteps = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$f], ["__scopeId", "data-v-3d3a9ebb"], ["__file", "D:/软工实践/EmoSphere/components/Y-Steps/Y-Steps.vue"]]);
+  const _sfc_main$f = {
     components: {
       YSteps
     },
@@ -2738,7 +2580,124 @@ if (uni.restoreGlobal) {
       /* STABLE_FRAGMENT */
     );
   }
-  const PagesRecordRecord = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$e], ["__file", "D:/软工实践/EmoSphere/pages/record/record.vue"]]);
+  const PagesRecordRecord = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$e], ["__file", "D:/软工实践/EmoSphere/pages/record/record.vue"]]);
+  const _sfc_main$e = {
+    data() {
+      return {};
+    },
+    props: {
+      modelValue: {
+        type: Boolean,
+        require: true
+      },
+      title: {
+        type: String,
+        require: false
+      },
+      duration: {
+        type: Number,
+        require: false,
+        default: 300
+      },
+      fromPoi: {
+        type: Array,
+        require: false,
+        default: ["0%", "0%"]
+      },
+      backgroundColor: {
+        type: String,
+        require: false,
+        default: "#f5f5f5"
+      },
+      startStyle: {
+        type: Object,
+        require: false
+      },
+      endStyle: {
+        type: Object,
+        require: false
+      }
+    },
+    onLoad() {
+    },
+    methods: {
+      close() {
+        this.$emit("closed");
+        this.$emit("update:modelValue", false);
+      }
+    },
+    computed: {
+      getToPoi: function() {
+        return [(100 - this.getEndStyle.height) / 2 + "%", (100 - this.getEndStyle.width) / 2 + "%"];
+      },
+      getEndStyle: function() {
+        return Object.assign({
+          width: 80,
+          height: 80,
+          borderRadius: "8px"
+        }, this.endStyle);
+      },
+      getStartStyle: function() {
+        return Object.assign({
+          width: 0,
+          height: 0,
+          borderRadius: "0px"
+        }, this.startStyle);
+      }
+    },
+    watch: {
+      modelValue() {
+        formatAppLog("log", "at uni_modules/gscosmos-dialog/components/gscosmos-dialog/gscosmos-dialog.vue:92", this.modelValue);
+      }
+    }
+  };
+  function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
+    return vue.openBlock(), vue.createElementBlock(
+      "view",
+      {
+        class: "dialog",
+        style: vue.normalizeStyle({
+          width: $props.modelValue ? $options.getEndStyle.width + "%" : $options.getStartStyle.width + "%",
+          height: $props.modelValue ? "calc(" + $options.getEndStyle.height + "% - var(--status-bar-height))" : $options.getStartStyle.height + "%",
+          borderRadius: $props.modelValue ? $options.getEndStyle.borderRadius : $options.getStartStyle.borderRadius,
+          top: $props.modelValue ? "calc(" + $options.getToPoi[0] + " + var(--status-bar-height))" : $props.fromPoi[0],
+          left: $props.modelValue ? $options.getToPoi[1] : $props.fromPoi[1],
+          opacity: $props.modelValue ? 1 : 0,
+          backgroundColor: $props.backgroundColor,
+          transitionDuration: $props.duration + "ms"
+        })
+      },
+      [
+        vue.withDirectives(vue.createElementVNode(
+          "view",
+          { class: "content" },
+          [
+            vue.createElementVNode("view", { class: "title" }, [
+              vue.createElementVNode(
+                "h3",
+                null,
+                vue.toDisplayString($props.title),
+                1
+                /* TEXT */
+              ),
+              vue.createElementVNode("span", {
+                class: "close",
+                onClick: _cache[0] || (_cache[0] = vue.withModifiers(($event) => $options.close(), ["stop"]))
+              }, "×")
+            ]),
+            vue.renderSlot(_ctx.$slots, "default", {}, void 0, true)
+          ],
+          512
+          /* NEED_PATCH */
+        ), [
+          [vue.vShow, $props.modelValue]
+        ])
+      ],
+      4
+      /* STYLE */
+    );
+  }
+  const __easycom_0$2 = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$d], ["__scopeId", "data-v-42d6f2a0"], ["__file", "D:/软工实践/EmoSphere/uni_modules/gscosmos-dialog/components/gscosmos-dialog/gscosmos-dialog.vue"]]);
   const _sfc_main$d = {
     data() {
       return {
@@ -2839,7 +2798,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "imt-audio" }, [
       vue.createElementVNode("view", { class: "audio-wrapper" }, [
         vue.createElementVNode(
@@ -2914,35 +2873,81 @@ if (uni.restoreGlobal) {
       )
     ]);
   }
-  const __easycom_0$2 = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$d], ["__scopeId", "data-v-8a21190d"], ["__file", "D:/软工实践/EmoSphere/components/imt-audio/imt-audio.vue"]]);
-  const _sfc_main$c = {
+  const __easycom_1 = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$c], ["__scopeId", "data-v-8a21190d"], ["__file", "D:/软工实践/EmoSphere/components/imt-audio/imt-audio.vue"]]);
+  const __default__ = {
     data() {
       return {
         like: 0,
         play: 0,
         TabCur: 0,
         scrollLeft: 0,
-        audio: [
-          "/static/songs/xue.mp3",
-          "/static/songs/kexi.mp3"
-        ],
-        song: [
-          "认真的雪 薛之谦",
-          "可惜没如果 林俊杰"
-        ],
-        songname: [
-          "认真的雪",
-          "可惜没如果"
-        ],
-        singername: [
-          "薛之谦",
-          "林俊杰"
-        ],
-        songimage: [
-          "/static/images/design07.png",
-          "/static/images/design10.jpg"
-        ],
-        now: 0
+        playWay: 1,
+        now: 0,
+        audioData: [
+          {
+            file: "/static/songs/01.mp3",
+            longth: "04:21",
+            music_id: 1,
+            name: "认真的雪",
+            singername: "薛之谦",
+            like: 0,
+            song_image: "/static/images/design07.png"
+          },
+          {
+            file: "/static/songs/02.mp3",
+            longth: "04:58",
+            music_id: 2,
+            name: "可惜没如果",
+            singername: "林俊杰",
+            like: 0,
+            song_image: "/static/images/design10.jpg"
+          },
+          {
+            file: "/static/songs/03.mp3",
+            longth: "04:29",
+            music_id: 3,
+            name: "晴天",
+            singername: "周杰伦",
+            like: 0,
+            song_image: "/static/images/design12.webp"
+          },
+          {
+            file: "/static/songs/04.mp3",
+            longth: "04:32",
+            music_id: 4,
+            name: "爱如潮水",
+            singername: "张信哲",
+            like: 0,
+            song_image: "/static/images/design11.jpg"
+          },
+          {
+            file: "/static/songs/05.mp3",
+            longth: "02:50",
+            music_id: 5,
+            name: "会魔法的老人",
+            singername: "法老、KKECHO",
+            like: 0,
+            song_image: "/static/images/design14.jpg"
+          },
+          {
+            file: "/static/songs/06.mp3",
+            longth: "04:18",
+            music_id: 6,
+            name: "飘向北方 (Live)",
+            singername: "尤长靖、那吾克热-NW",
+            like: 0,
+            song_image: "/static/images/design13.jpg"
+          },
+          {
+            file: "/static/songs/07.mp3",
+            longth: "04:19",
+            music_id: 7,
+            name: "奢香夫人",
+            singername: "凤凰传奇",
+            like: 0,
+            song_image: "/static/images/design15.jpg"
+          }
+        ]
       };
     },
     methods: {
@@ -2950,11 +2955,11 @@ if (uni.restoreGlobal) {
         this.TabCur = e.currentTarget.dataset.id;
         this.scrollLeft = (e.currentTarget.dataset.id - 1) * 60;
       },
-      like_ornot() {
-        if (this.like == 0) {
-          this.like = 1;
+      like_ornot(now) {
+        if (this.audioData[now].like == 0) {
+          this.$set(this.audioData[now], "like", 1);
         } else {
-          this.like = 0;
+          this.$set(this.audioData[now], "like", 0);
         }
       },
       play_ornot() {
@@ -2963,165 +2968,221 @@ if (uni.restoreGlobal) {
         } else {
           this.play = 0;
         }
+      },
+      updateWay() {
+        var that = this;
+        if (that.playWay == 2) {
+          that.playWay = 0;
+        } else {
+          that.playWay = that.playWay + 1;
+        }
       }
     }
   };
-  function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_router_link = vue.resolveComponent("router-link");
-    const _component_a_button = vue.resolveComponent("a-button");
-    const _component_imt_audio = resolveEasycom(vue.resolveDynamicComponent("imt-audio"), __easycom_0$2);
-    return vue.openBlock(), vue.createElementBlock("view", { class: "scrollPage margin-xs bg-oc-gray-9" }, [
-      vue.createElementVNode("view", { class: "header" }, [
-        vue.createVNode(_component_router_link, { to: "/pages/main/main" }, {
-          default: vue.withCtx(() => [
-            vue.createElementVNode("img", { src: "/static/images/fanhui.png" })
-          ]),
-          _: 1
-          /* STABLE */
-        }),
-        vue.createVNode(_component_router_link, { to: "" }, {
-          default: vue.withCtx(() => [
-            vue.createElementVNode("img", {
-              class: "choose",
-              src: "/static/images/mm.png"
-            })
-          ]),
-          _: 1
-          /* STABLE */
-        }),
-        vue.createVNode(_component_router_link, { to: "/pages/relax/relax" }, {
-          default: vue.withCtx(() => [
-            vue.createElementVNode("img", { src: "/static/images/fenche.png" })
-          ]),
-          _: 1
-          /* STABLE */
-        }),
-        vue.createVNode(_component_router_link, { to: "" }, {
-          default: vue.withCtx(() => [
-            vue.createElementVNode("img", { src: "/static/images/recode.png" })
-          ]),
-          _: 1
-          /* STABLE */
-        })
-      ]),
-      vue.createElementVNode("view", { class: "radius-lg" }, [
-        vue.createElementVNode("view", {
-          class: "bg-white padding-bottom radius-xl",
-          style: { "text-align": "center" }
-        }, [
-          vue.createElementVNode("view", {
-            class: "padding-lr margin-xxl",
-            style: { "height": "14rem", "margin-bottom": "40px" }
-          }, [
-            vue.createElementVNode("image", {
-              class: "shadow-blur bg-img radius-lg",
-              src: $data.songimage[$data.now]
-            }, null, 8, ["src"])
-          ]),
-          vue.createElementVNode(
-            "view",
-            {
-              class: "text-xl text-black text-center",
-              style: { "font-size": "24px" }
-            },
-            vue.toDisplayString($data.songname[$data.now]),
-            1
-            /* TEXT */
-          ),
-          vue.createElementVNode("view", { class: "text-center padding-top-sm" }, [
-            vue.createElementVNode(
-              "text",
-              {
-                class: "text-sm text-gray text-center",
-                style: { "font-size": "20px" }
-              },
-              vue.toDisplayString($data.singername[$data.now]),
-              1
-              /* TEXT */
-            )
-          ]),
-          vue.createElementVNode("view", { class: "margin-top-xl text-center text-xxxl text-black padding-top-lg" }, [
-            vue.createElementVNode("text", { class: "cuIcon-refresh padding-right-xl" }),
-            vue.createVNode(_component_a_button, {
-              type: "link",
-              ghost: "",
-              onClick: $options.like_ornot
-            }, {
+  const _sfc_main$c = /* @__PURE__ */ vue.defineComponent({
+    ...__default__,
+    __name: "music",
+    setup(__props) {
+      const dialogData = vue.reactive({
+        visiable: false,
+        fromPoi: ["0", "0"],
+        endStyle: {
+          height: 50
+        }
+      });
+      const closed = () => {
+        formatAppLog("log", "at pages/music/music.vue:83", "关闭弹窗后的回调函数");
+      };
+      return (_ctx, _cache) => {
+        const _component_router_link = vue.resolveComponent("router-link");
+        const _component_a_button = vue.resolveComponent("a-button");
+        const _component_gscosmos_dialog = resolveEasycom(vue.resolveDynamicComponent("gscosmos-dialog"), __easycom_0$2);
+        const _component_imt_audio = resolveEasycom(vue.resolveDynamicComponent("imt-audio"), __easycom_1);
+        return vue.openBlock(), vue.createElementBlock("view", { class: "scrollPage" }, [
+          vue.createElementVNode("view", { class: "header" }, [
+            vue.createVNode(_component_router_link, { to: "/pages/main/main" }, {
               default: vue.withCtx(() => [
-                $data.like ? (vue.openBlock(), vue.createElementBlock("text", {
-                  key: 0,
-                  class: "cuIcon-likefill text-red padding-lr-xl",
-                  alt: ""
-                })) : (vue.openBlock(), vue.createElementBlock("text", {
-                  key: 1,
-                  class: "cuIcon-like padding-lr-xl",
-                  alt: ""
-                }))
+                vue.createElementVNode("img", { src: "/static/images/fanhui.png" })
               ]),
               _: 1
               /* STABLE */
-            }, 8, ["onClick"]),
-            vue.createElementVNode("text", { class: "cuIcon-sort padding-left-xl" })
+            }),
+            vue.createVNode(_component_router_link, { to: "" }, {
+              default: vue.withCtx(() => [
+                vue.createElementVNode("img", {
+                  class: "choose",
+                  src: "/static/images/mm.png"
+                })
+              ]),
+              _: 1
+              /* STABLE */
+            }),
+            vue.createVNode(_component_router_link, { to: "/pages/relax/relax" }, {
+              default: vue.withCtx(() => [
+                vue.createElementVNode("img", { src: "/static/images/fenche.png" })
+              ]),
+              _: 1
+              /* STABLE */
+            }),
+            vue.createVNode(_component_router_link, { to: "" }, {
+              default: vue.withCtx(() => [
+                vue.createElementVNode("img", { src: "/static/images/recode.png" })
+              ]),
+              _: 1
+              /* STABLE */
+            })
           ]),
-          vue.createElementVNode("view", { class: "content" }, [
-            vue.createVNode(_component_imt_audio, {
-              autoplay: "true",
-              continue: "false",
-              src: $data.audio[$data.now],
-              duration: $data.audio[$data.now].duration,
-              onPrev: _cache[0] || (_cache[0] = ($event) => $data.now = $data.now === 0 ? $data.audio.length - 1 : $data.now - 1),
-              onNext: _cache[1] || (_cache[1] = ($event) => $data.now = $data.now === $data.audio.length - 1 ? 0 : $data.now + 1)
-            }, null, 8, ["src", "duration"]),
-            (vue.openBlock(true), vue.createElementBlock(
-              vue.Fragment,
-              null,
-              vue.renderList($data.song, (item, key) => {
-                return vue.openBlock(), vue.createElementBlock("view", {
-                  class: vue.normalizeClass(["list", { active: key === $data.now }]),
-                  key,
-                  onClick: ($event) => $data.now = key
-                }, vue.toDisplayString(key + 1) + " . " + vue.toDisplayString(item), 11, ["onClick"]);
-              }),
-              128
-              /* KEYED_FRAGMENT */
-            ))
-          ])
-        ]),
-        vue.createElementVNode("view", { class: "padding-tb" }, [
-          vue.createElementVNode("view", { class: "flex justify-between" }, [
-            vue.createElementVNode("view", { class: "flex" }, [
+          vue.createElementVNode("view", { class: "radius-lg" }, [
+            vue.createElementVNode("view", {
+              class: "bg-white padding-bottom radius-xl",
+              style: { "text-align": "center" }
+            }, [
               vue.createElementVNode("view", {
-                class: "cu-avatar round margin-left-sm",
-                style: { "background-image": "url(/static/images/design05.png)" }
-              }),
-              vue.createElementVNode("view", {
-                class: "cu-avatar round margin-left-sm",
-                style: { "background-image": "url(/static/images/design01.png)" }
-              }),
-              vue.createElementVNode("view", {
-                class: "cu-avatar round margin-left-sm",
-                style: { "background-image": "url(/static/images/design02.png)" }
-              }),
-              vue.createElementVNode("view", { class: "cu-avatar round margin-left bg-oc-gray-7" }, [
-                vue.createElementVNode("text", { class: "cuIcon-more" })
+                class: "padding-lr margin-xxl",
+                style: { "height": "15rem", "margin-bottom": "40px" }
+              }, [
+                vue.createElementVNode("image", {
+                  class: "shadow-blur bg-img radius-lg",
+                  style: {},
+                  src: _ctx.audioData[_ctx.now].song_image
+                }, null, 8, ["src"])
+              ]),
+              vue.createElementVNode(
+                "view",
+                {
+                  class: "text-xl text-black text-center",
+                  style: { "font-size": "24px" }
+                },
+                vue.toDisplayString(_ctx.audioData[_ctx.now].name),
+                1
+                /* TEXT */
+              ),
+              vue.createElementVNode("view", { class: "text-center padding-top-sm" }, [
+                vue.createElementVNode(
+                  "text",
+                  {
+                    class: "text-sm text-gray text-center",
+                    style: { "font-size": "20px" }
+                  },
+                  vue.toDisplayString(_ctx.audioData[_ctx.now].singername),
+                  1
+                  /* TEXT */
+                )
+              ]),
+              vue.createElementVNode("view", { class: "margin-top-xl text-center text-xxxl text-black padding-top-lg" }, [
+                vue.createVNode(_component_a_button, {
+                  type: "link",
+                  ghost: "",
+                  onClick: _cache[0] || (_cache[0] = ($event) => _ctx.updateWay())
+                }, {
+                  default: vue.withCtx(() => [
+                    _ctx.playWay == 2 ? (vue.openBlock(), vue.createElementBlock("image", {
+                      key: 0,
+                      class: "iconbtn",
+                      src: "/static/images/suijibofang.png"
+                    })) : vue.createCommentVNode("v-if", true),
+                    _ctx.playWay == 1 ? (vue.openBlock(), vue.createElementBlock("image", {
+                      key: 1,
+                      class: "iconbtn",
+                      src: "/static/images/xunhuanbofang.png"
+                    })) : vue.createCommentVNode("v-if", true),
+                    _ctx.playWay == 0 ? (vue.openBlock(), vue.createElementBlock("image", {
+                      key: 2,
+                      class: "iconbtn",
+                      src: "/static/images/danquxunhuan.png"
+                    })) : vue.createCommentVNode("v-if", true)
+                  ]),
+                  _: 1
+                  /* STABLE */
+                }),
+                vue.createVNode(_component_a_button, {
+                  type: "link",
+                  ghost: "",
+                  onClick: _cache[1] || (_cache[1] = ($event) => _ctx.like_ornot(_ctx.now))
+                }, {
+                  default: vue.withCtx(() => [
+                    _ctx.audioData[_ctx.now].like == 1 ? (vue.openBlock(), vue.createElementBlock("text", {
+                      key: 0,
+                      class: "cuIcon-likefill text-red padding-lr-xl iconbtn",
+                      alt: ""
+                    })) : vue.createCommentVNode("v-if", true),
+                    _ctx.audioData[_ctx.now].like == 0 ? (vue.openBlock(), vue.createElementBlock("text", {
+                      key: 1,
+                      class: "cuIcon-like padding-lr-xl iconbtn",
+                      alt: ""
+                    })) : vue.createCommentVNode("v-if", true)
+                  ]),
+                  _: 1
+                  /* STABLE */
+                }),
+                vue.createVNode(_component_gscosmos_dialog, {
+                  modelValue: dialogData.visiable,
+                  "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => dialogData.visiable = $event),
+                  endStyle: dialogData.endStyle,
+                  fromPoi: dialogData.fromPoi,
+                  title: "播放列表",
+                  onClosed: closed
+                }, {
+                  default: vue.withCtx(() => [
+                    vue.createElementVNode("view", { class: "content" }, [
+                      (vue.openBlock(true), vue.createElementBlock(
+                        vue.Fragment,
+                        null,
+                        vue.renderList(_ctx.audioData, (item, key) => {
+                          return vue.openBlock(), vue.createElementBlock("view", {
+                            class: vue.normalizeClass(["list", { active: key === _ctx.now }]),
+                            key,
+                            onClick: ($event) => _ctx.now = key
+                          }, vue.toDisplayString(key + 1) + " . " + vue.toDisplayString(_ctx.audioData[key].name), 11, ["onClick"]);
+                        }),
+                        128
+                        /* KEYED_FRAGMENT */
+                      ))
+                    ])
+                  ]),
+                  _: 1
+                  /* STABLE */
+                }, 8, ["modelValue", "endStyle", "fromPoi"]),
+                vue.createElementVNode("image", {
+                  class: "iconbtn",
+                  onClick: _cache[3] || (_cache[3] = ($event) => dialogData.visiable = true),
+                  src: "/static/images/bofangliebiao.png"
+                })
+              ]),
+              vue.createElementVNode("view", { class: "content" }, [
+                vue.createVNode(_component_imt_audio, {
+                  autoplay: "true",
+                  continue: "true",
+                  playWay: _ctx.playWay,
+                  src: _ctx.audioData[_ctx.now].file,
+                  duration: _ctx.audioData[_ctx.now].file.duration,
+                  onPrev: _cache[4] || (_cache[4] = ($event) => _ctx.now = _ctx.now === 0 ? _ctx.audioData.length - 1 : _ctx.now - 1),
+                  onNext: _cache[5] || (_cache[5] = ($event) => _ctx.now = _ctx.now === _ctx.audioData.length - 1 ? 0 : _ctx.now + 1)
+                }, null, 8, ["playWay", "src", "duration"])
               ])
             ]),
             vue.createElementVNode("view", { class: "flex" }, [
-              vue.createElementVNode("view", { class: "padding-right-sm" }, [
+              vue.createElementVNode("view", {
+                class: "padding-right-sm",
+                style: { "padding": "35rpx 15rpx" }
+              }, [
                 vue.createElementVNode("navigator", {
                   url: "/pages/record/record",
                   "open-type": "navigate"
                 }, [
-                  vue.createElementVNode("button", { class: "cu-btn round" }, "听歌心情")
+                  vue.createElementVNode("button", {
+                    class: "cu-btn round",
+                    style: { "font-size": "40rpx", "height": "92rpx" }
+                  }, "听歌心情")
                 ])
               ])
             ])
           ])
-        ])
-      ])
-    ]);
-  }
-  const PagesMusicMusic = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$c], ["__file", "D:/软工实践/EmoSphere/pages/music/music.vue"]]);
+        ]);
+      };
+    }
+  });
+  const PagesMusicMusic = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__file", "D:/软工实践/EmoSphere/pages/music/music.vue"]]);
   const _sfc_main$b = {
     data() {
       const router = useRouter();
@@ -3448,8 +3509,6 @@ if (uni.restoreGlobal) {
         router.push("/pages/questions/questions");
       };
       return {
-        bgColor: "#BAD0CE",
-        // 设置背景色为绿色 
         imageUrl1: "../../static/back.png",
         imageUrl2: "../../static/if-quote-left.png",
         imageUrl3: "../../static/if-quote-right.png",
@@ -3458,62 +3517,58 @@ if (uni.restoreGlobal) {
     }
   };
   function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
-    return vue.openBlock(), vue.createElementBlock(
-      "view",
-      {
-        class: "background",
-        style: vue.normalizeStyle({ backgroundColor: $data.bgColor })
-      },
-      [
-        vue.createElementVNode("div", { class: "image-container" }, [
-          vue.createElementVNode("img", {
-            src: $data.imageUrl1,
-            class: "image"
-          }, null, 8, ["src"])
+    const _component_router_link = vue.resolveComponent("router-link");
+    return vue.openBlock(), vue.createElementBlock("view", { class: "backarea" }, [
+      vue.createVNode(_component_router_link, { to: { path: "/pages/main/main" } }, {
+        default: vue.withCtx(() => [
+          vue.createElementVNode("view", { class: "head-left" }, [
+            vue.createElementVNode("img", { src: "/static/images/fanhui.jpg" }),
+            vue.createElementVNode("text", null, "返回")
+          ])
         ]),
-        vue.createElementVNode("div", null, [
-          vue.createElementVNode("p", { class: "text-output1" }, "EmoSphere"),
-          vue.createElementVNode("p", { class: "text-output2" }, "心理测试"),
-          vue.createElementVNode("p", { class: "text-output3" }, '"发现你的可能"'),
-          vue.createElementVNode("p", { class: "text-output4" }, "本测试预计需要15分钟"),
-          vue.createElementVNode("button", {
-            class: "button",
-            onClick: _cache[0] || (_cache[0] = (...args) => $data.goToQ1 && $data.goToQ1(...args))
-          }, "开始测试")
-        ]),
-        vue.createElementVNode("div", { class: "circle-box" }, [
-          vue.createElementVNode("img", {
-            src: $data.imageUrl2,
-            style: { "position": "absolute", "top": "50px", "left": "20px", "width": "8%" }
-          }, null, 8, ["src"]),
-          vue.createElementVNode("img", {
-            src: $data.imageUrl3,
-            style: { "position": "absolute", "top": "200px", "right": "20px", "width": "8%" }
-          }, null, 8, ["src"]),
-          vue.createElementVNode("div", {
-            class: "gray-bar",
-            style: { "position": "absolute", "top": "1px", "left": "135px" }
-          }),
-          vue.createElementVNode("p", { class: "text-output5" }, "什么是心理测试?"),
-          vue.createElementVNode("p", { class: "text-output6" }, "心理测验（mental test）是根据一定的法则和心理学原理，使用一定的操作程序给 人的认知、行为、情感的心理活动予以量化。心理测验是心理测量的工具，心理测量在心理咨询中能帮助当事 人了解自己的情绪、行为模式和人格特点。")
-        ])
-      ],
-      4
-      /* STYLE */
-    );
+        _: 1
+        /* STABLE */
+      }),
+      vue.createElementVNode("div", { class: "image-container" }, [
+        vue.createElementVNode("img", {
+          src: $data.imageUrl1,
+          class: "image"
+        }, null, 8, ["src"]),
+        vue.createElementVNode("text", { class: "text-output1" }, "EmoSphere"),
+        vue.createElementVNode("text", { class: "text-output2" }, "心理测试"),
+        vue.createElementVNode("text", { class: "text-output3" }, '"发现你的可能"'),
+        vue.createElementVNode("text", { class: "text-output4" }, "本测试预计需要15分钟"),
+        vue.createElementVNode("button", {
+          class: "btn",
+          onClick: _cache[0] || (_cache[0] = (...args) => $data.goToQ1 && $data.goToQ1(...args))
+        }, "开始测试")
+      ]),
+      vue.createElementVNode("div", { class: "circle-box" }, [
+        vue.createElementVNode("img", {
+          src: $data.imageUrl2,
+          style: { "position": "absolute", "top": "50px", "left": "20px", "width": "8%" }
+        }, null, 8, ["src"]),
+        vue.createElementVNode("img", {
+          src: $data.imageUrl3,
+          style: { "position": "absolute", "top": "200px", "right": "20px", "width": "8%" }
+        }, null, 8, ["src"]),
+        vue.createElementVNode("div", {
+          class: "gray-bar",
+          style: { "position": "absolute", "top": "1px", "left": "135px" }
+        }),
+        vue.createElementVNode("p", { class: "text-output5" }, "什么是心理测试?"),
+        vue.createElementVNode("p", { class: "text-output6" }, "心理测验（mental test）是根据一定的法则和心理学原理，使用一定的操作程序给 人的认知、行为、情感的心理活动予以量化。心理测验是心理测量的工具，心理测量在心理咨询中能帮助当事 人了解自己的情绪、行为模式和人格特点。")
+      ])
+    ]);
   }
   const PagesHomeHome = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$9], ["__file", "D:/软工实践/EmoSphere/pages/home/home.vue"]]);
   const _sfc_main$8 = {
     data() {
       return {
-        //键盘高度
         keyboardHeight: 0,
-        //底部消息发送高度
         bottomHeight: 0,
-        //滚动距离
         scrollTop: 0,
         userId: "",
-        //发送的消息
         chatMsg: "",
         msgList: [
           {
@@ -3540,7 +3595,6 @@ if (uni.restoreGlobal) {
       windowHeight() {
         return this.rpxTopx(uni.getSystemInfoSync().windowHeight);
       },
-      // 键盘弹起来的高度+发送框高度
       inputHeight() {
         return this.bottomHeight + this.keyboardHeight;
       }
@@ -3562,13 +3616,11 @@ if (uni.restoreGlobal) {
       blur() {
         this.scrollToBottom();
       },
-      // px转换成rpx
       rpxTopx(px) {
         let deviceWidth = wx.getSystemInfoSync().windowWidth;
         let rpx = 750 / deviceWidth * Number(px);
         return Math.floor(rpx);
       },
-      // 监视聊天发送栏高度
       sendHeight() {
         setTimeout(() => {
           let query = uni.createSelectorQuery();
@@ -3578,7 +3630,6 @@ if (uni.restoreGlobal) {
           });
         }, 10);
       },
-      // 滚动至聊天底部
       scrollToBottom(e) {
         setTimeout(() => {
           let query = uni.createSelectorQuery().in(this);
@@ -3591,7 +3642,6 @@ if (uni.restoreGlobal) {
           });
         }, 15);
       },
-      // 发送消息
       handleSend() {
         if (!this.chatMsg || !/^\s+$/.test(this.chatMsg)) {
           let obj = {
@@ -3611,115 +3661,151 @@ if (uni.restoreGlobal) {
     }
   };
   function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
-    return vue.openBlock(), vue.createElementBlock("view", { class: "chat" }, [
-      vue.createElementVNode("scroll-view", {
-        style: vue.normalizeStyle({ height: `${$options.windowHeight - $options.inputHeight}rpx` }),
-        id: "scrollview",
-        "scroll-y": "true",
-        "scroll-top": $data.scrollTop,
-        class: "scroll-view"
-      }, [
-        vue.createCommentVNode(" 聊天主体 "),
-        vue.createElementVNode("view", {
-          id: "msglistview",
-          class: "chat-body"
-        }, [
-          vue.createCommentVNode(" 聊天记录 "),
-          (vue.openBlock(true), vue.createElementBlock(
-            vue.Fragment,
-            null,
-            vue.renderList($data.msgList, (item, index) => {
-              return vue.openBlock(), vue.createElementBlock("view", { key: index }, [
-                vue.createCommentVNode(" 自己发的消息 "),
-                item.userContent != "" ? (vue.openBlock(), vue.createElementBlock("view", {
-                  key: 0,
-                  class: "item self"
-                }, [
-                  vue.createCommentVNode(" 文字内容 "),
-                  vue.createElementVNode(
-                    "view",
-                    { class: "content right" },
-                    vue.toDisplayString(item.userContent),
-                    1
-                    /* TEXT */
-                  ),
-                  vue.createCommentVNode(" 头像 "),
-                  vue.createElementVNode("view", { class: "avatar" })
-                ])) : vue.createCommentVNode("v-if", true),
-                vue.createCommentVNode(" 机器人发的消息 "),
-                item.botContent != "" ? (vue.openBlock(), vue.createElementBlock("view", {
-                  key: 1,
-                  class: "item Ai"
-                }, [
-                  vue.createCommentVNode(" 头像 "),
-                  vue.createElementVNode("view", { class: "avatar" }),
-                  vue.createCommentVNode(" 文字内容 "),
-                  vue.createElementVNode(
-                    "view",
-                    { class: "content left" },
-                    vue.toDisplayString(item.botContent),
-                    1
-                    /* TEXT */
-                  )
-                ])) : vue.createCommentVNode("v-if", true)
-              ]);
-            }),
-            128
-            /* KEYED_FRAGMENT */
-          ))
-        ])
-      ], 12, ["scroll-top"]),
-      vue.createCommentVNode(" 底部消息发送栏 "),
-      vue.createCommentVNode(" 用来占位，防止聊天消息被发送框遮挡 "),
-      vue.createElementVNode(
-        "view",
-        {
-          class: "chat-bottom",
-          style: vue.normalizeStyle({ height: `${$options.inputHeight}rpx` })
-        },
-        [
+    const _component_router_link = vue.resolveComponent("router-link");
+    return vue.openBlock(), vue.createElementBlock(
+      vue.Fragment,
+      null,
+      [
+        vue.createElementVNode("view", { class: "header" }, [
+          vue.createVNode(_component_router_link, { to: { path: "/pages/main/main" } }, {
+            default: vue.withCtx(() => [
+              vue.createElementVNode("view", { class: "head-left" }, [
+                vue.createElementVNode("img", { src: "/static/images/fanhui.jpg" }),
+                vue.createElementVNode("text", null, "返回")
+              ])
+            ]),
+            _: 1
+            /* STABLE */
+          }),
+          vue.createVNode(_component_router_link, { to: { path: "/pages/home/home" } }, {
+            default: vue.withCtx(() => [
+              vue.createElementVNode("view", {
+                class: "head-right",
+                onClick: _cache[0] || (_cache[0] = (...args) => _ctx.savadata && _ctx.savadata(...args))
+              }, [
+                vue.createElementVNode("img", { src: "/static/images/test.png" }),
+                vue.createElementVNode("text", null, "测试")
+              ])
+            ]),
+            _: 1
+            /* STABLE */
+          })
+        ]),
+        vue.createElementVNode("view", { class: "chat" }, [
+          vue.createElementVNode("scroll-view", {
+            style: vue.normalizeStyle({ height: `${$options.windowHeight - $options.inputHeight}rpx` }),
+            id: "scrollview",
+            "scroll-y": "true",
+            "scroll-top": $data.scrollTop,
+            class: "scroll-view"
+          }, [
+            vue.createCommentVNode(" 聊天主体 "),
+            vue.createElementVNode("view", {
+              id: "msglistview",
+              class: "chat-body"
+            }, [
+              vue.createCommentVNode(" 聊天记录 "),
+              (vue.openBlock(true), vue.createElementBlock(
+                vue.Fragment,
+                null,
+                vue.renderList($data.msgList, (item, index) => {
+                  return vue.openBlock(), vue.createElementBlock("view", { key: index }, [
+                    vue.createCommentVNode(" 自己发的消息 "),
+                    item.userContent != "" ? (vue.openBlock(), vue.createElementBlock("view", {
+                      key: 0,
+                      class: "item self"
+                    }, [
+                      vue.createCommentVNode(" 文字内容 "),
+                      vue.createElementVNode(
+                        "view",
+                        { class: "content right" },
+                        vue.toDisplayString(item.userContent),
+                        1
+                        /* TEXT */
+                      ),
+                      vue.createCommentVNode(" 头像 "),
+                      vue.createElementVNode("view", { class: "avatar" }, [
+                        vue.createElementVNode("img", { src: "/static/images/logo.png" })
+                      ])
+                    ])) : vue.createCommentVNode("v-if", true),
+                    vue.createCommentVNode(" 机器人发的消息 "),
+                    item.botContent != "" ? (vue.openBlock(), vue.createElementBlock("view", {
+                      key: 1,
+                      class: "item Ai"
+                    }, [
+                      vue.createCommentVNode(" 头像 "),
+                      vue.createElementVNode("view", { class: "avatar" }, [
+                        vue.createElementVNode("img", { src: "/static/ai.png" })
+                      ]),
+                      vue.createCommentVNode(" 文字内容 "),
+                      vue.createElementVNode(
+                        "view",
+                        { class: "content left" },
+                        vue.toDisplayString(item.botContent),
+                        1
+                        /* TEXT */
+                      )
+                    ])) : vue.createCommentVNode("v-if", true)
+                  ]);
+                }),
+                128
+                /* KEYED_FRAGMENT */
+              ))
+            ])
+          ], 12, ["scroll-top"]),
           vue.createElementVNode(
             "view",
             {
-              class: "send-msg",
-              style: vue.normalizeStyle({ bottom: `${$data.keyboardHeight}rpx` })
+              class: "chat-bottom",
+              style: vue.normalizeStyle({ height: `${$options.inputHeight}rpx` })
             },
             [
-              vue.createElementVNode("view", { class: "uni-textarea" }, [
-                vue.withDirectives(vue.createElementVNode(
-                  "textarea",
-                  {
-                    "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => $data.chatMsg = $event),
-                    maxlength: "300",
-                    "confirm-type": "send",
-                    onConfirm: _cache[1] || (_cache[1] = (...args) => $options.handleSend && $options.handleSend(...args)),
-                    "show-confirm-bar": false,
-                    "adjust-position": false,
-                    onLinechange: _cache[2] || (_cache[2] = (...args) => $options.sendHeight && $options.sendHeight(...args)),
-                    onFocus: _cache[3] || (_cache[3] = (...args) => $options.focus && $options.focus(...args)),
-                    onBlur: _cache[4] || (_cache[4] = (...args) => $options.blur && $options.blur(...args)),
-                    "auto-height": ""
-                  },
-                  null,
-                  544
-                  /* HYDRATE_EVENTS, NEED_PATCH */
-                ), [
-                  [vue.vModelText, $data.chatMsg]
-                ])
-              ]),
-              vue.createElementVNode("button", {
-                onClick: _cache[5] || (_cache[5] = (...args) => $options.handleSend && $options.handleSend(...args)),
-                class: "send-btn"
-              }, "发送")
+              vue.createElementVNode(
+                "view",
+                {
+                  class: "send-msg",
+                  style: vue.normalizeStyle({ bottom: `${$data.keyboardHeight}rpx` })
+                },
+                [
+                  vue.createElementVNode("view", { class: "uni-textarea" }, [
+                    vue.withDirectives(vue.createElementVNode(
+                      "textarea",
+                      {
+                        "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => $data.chatMsg = $event),
+                        maxlength: "300",
+                        "confirm-type": "send",
+                        onConfirm: _cache[2] || (_cache[2] = (...args) => $options.handleSend && $options.handleSend(...args)),
+                        "show-confirm-bar": false,
+                        "adjust-position": false,
+                        onLinechange: _cache[3] || (_cache[3] = (...args) => $options.sendHeight && $options.sendHeight(...args)),
+                        onFocus: _cache[4] || (_cache[4] = (...args) => $options.focus && $options.focus(...args)),
+                        onBlur: _cache[5] || (_cache[5] = (...args) => $options.blur && $options.blur(...args)),
+                        "auto-height": ""
+                      },
+                      null,
+                      544
+                      /* HYDRATE_EVENTS, NEED_PATCH */
+                    ), [
+                      [vue.vModelText, $data.chatMsg]
+                    ])
+                  ]),
+                  vue.createElementVNode("button", {
+                    onClick: _cache[6] || (_cache[6] = (...args) => $options.handleSend && $options.handleSend(...args)),
+                    class: "send-btn"
+                  }, "发送")
+                ],
+                4
+                /* STYLE */
+              )
             ],
             4
             /* STYLE */
           )
-        ],
-        4
-        /* STYLE */
-      )
-    ]);
+        ])
+      ],
+      64
+      /* STABLE_FRAGMENT */
+    );
   }
   const PagesChatChat = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$8], ["__scopeId", "data-v-0a633310"], ["__file", "D:/软工实践/EmoSphere/pages/chat/chat.vue"]]);
   const icons = {
@@ -8522,17 +8608,7 @@ if (uni.restoreGlobal) {
             formatAppLog("log", "at pages/test/test.vue:33", res);
             if (res.tempFilePaths.length != 0) {
               this.imgList.push(res.tempFilePaths[0]);
-              var tempFilePaths = res.tempFilePaths;
-              uni.uploadFile({
-                url: "http://douzhuoqianshouba.xieenguoji.com/api/ajax/upload",
-                filePath: tempFilePaths[0],
-                name: "file",
-                success: (uploadFileRes) => {
-                },
-                fail: (err) => {
-                  formatAppLog("log", "at pages/test/test.vue:44", err);
-                }
-              });
+              res.tempFilePaths;
             }
           }
         });
@@ -8598,7 +8674,6 @@ if (uni.restoreGlobal) {
   __definePage("pages/myScreen/myScreen", PagesMyScreenMyScreen);
   __definePage("pages/relax/relax", PagesRelaxRelax);
   __definePage("pages/share/share", PagesShareShare);
-  __definePage("pages/user/me", PagesUserMe);
   __definePage("pages/record/record", PagesRecordRecord);
   __definePage("pages/music/music", PagesMusicMusic);
   __definePage("pages/questions/questions", PagesQuestionsQuestions);

@@ -1,4 +1,18 @@
 <template>
+	<view class="header">
+		<router-link :to="{ path: '/pages/main/main' }">
+			<view class="head-left">
+				<img src="/static/images/fanhui.jpg" />
+				<text>返回</text>
+			</view>
+		</router-link>
+		<router-link :to="{ path: '/pages/home/home' }">
+		<view class="head-right" @click="savadata">
+			<img src="/static/images/test.png" />
+			<text>测试</text>
+		</view>
+		</router-link>
+	</view>
 	<view class="chat">
 		<scroll-view :style="{height: `${windowHeight-inputHeight}rpx`}" id="scrollview" scroll-y="true"
 			:scroll-top="scrollTop" class="scroll-view">
@@ -14,12 +28,14 @@
 						</view>
 						<!-- 头像 -->
 						<view class="avatar">
+							<img src="/static/images/logo.png" />
 						</view>
 					</view>
 					<!-- 机器人发的消息 -->
 					<view class="item Ai" v-if="item.botContent != ''">
 						<!-- 头像 -->
 						<view class="avatar">
+							<img src="/static/ai.png" />
 						</view>
 						<!-- 文字内容 -->
 						<view class="content left">
@@ -29,8 +45,6 @@
 				</view>
 			</view>
 		</scroll-view>
-		<!-- 底部消息发送栏 -->
-		<!-- 用来占位，防止聊天消息被发送框遮挡 -->
 		<view class="chat-bottom" :style="{height: `${inputHeight}rpx`}">
 			<view class="send-msg" :style="{bottom:`${keyboardHeight}rpx`}">
 				<view class="uni-textarea">
@@ -47,14 +61,11 @@
 	export default {
 		data() {
 			return {
-				//键盘高度
 				keyboardHeight: 0,
-				//底部消息发送高度
+
 				bottomHeight: 0,
-				//滚动距离
 				scrollTop: 0,
 				userId: '',
-				//发送的消息
 				chatMsg: "",
 				msgList: [{
 						botContent: "hello，请问我有什么可以帮助你的吗？",
@@ -74,23 +85,19 @@
 			}
 		},
 		updated() {
-			//页面更新时调用聊天消息定位到最底部
+	
 			this.scrollToBottom();
 		},
 		computed: {
 			windowHeight() {
 				return this.rpxTopx(uni.getSystemInfoSync().windowHeight)
 			},
-			// 键盘弹起来的高度+发送框高度
 			inputHeight() {
 				return this.bottomHeight + this.keyboardHeight
 			}
 		},
 		onLoad() {
 			uni.onKeyboardHeightChange(res => {
-				//这里正常来讲代码直接写
-				//this.keyboardHeight=this.rpxTopx(res.height)就行了
-				//但是之前界面ui设计聊天框的高度有点高,为了不让键盘和聊天输入框之间距离差太大所以我改动了一下。
 				this.keyboardHeight = this.rpxTopx(res.height - 30)
 				if (this.keyboardHeight < 0) this.keyboardHeight = 0;
 			})
@@ -105,13 +112,11 @@
 			blur() {
 				this.scrollToBottom()
 			},
-			// px转换成rpx
 			rpxTopx(px) {
 				let deviceWidth = wx.getSystemInfoSync().windowWidth
 				let rpx = (750 / deviceWidth) * Number(px)
 				return Math.floor(rpx)
 			},
-			// 监视聊天发送栏高度
 			sendHeight() {
 				setTimeout(() => {
 					let query = uni.createSelectorQuery();
@@ -121,7 +126,6 @@
 					})
 				}, 10)
 			},
-			// 滚动至聊天底部
 			scrollToBottom(e) {
 				setTimeout(() => {
 					let query = uni.createSelectorQuery().in(this);
@@ -134,9 +138,7 @@
 					})
 				}, 15)
 			},
-			// 发送消息
 			handleSend() {
-				//如果消息不为空
 				if (!this.chatMsg || !/^\s+$/.test(this.chatMsg)) {
 					let obj = {
 						botContent: "",
@@ -158,17 +160,34 @@
 <style lang="scss" scoped>
 	$chatContentbgc: #C2DCFF;
 	$sendBtnbgc: #4F7DF5;
-
-	view,
-	button,
-	text,
-	input,
-	textarea {
-		margin: 0;
-		padding: 0;
-		box-sizing: border-box;
+	a {
+	  text-decoration: none;
+	  color: inherit; 
 	}
-
+	.header {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		position: relative;
+		padding: 10px;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	
+	
+	}
+	.header img{
+		height: 2rem;
+		margin-right: 10px ;
+	}
+	.header text {
+		color: black;
+		font-size: 1rem;
+		font-weight: 550;
+	}
+	
+	.head-left ,.head-right{
+		display: flex;
+		align-items: center;
+	}
 	/* 聊天消息 */
 	.chat {
 		.scroll-view {
@@ -252,10 +271,9 @@
 						justify-content: center;
 						width: 78rpx;
 						height: 78rpx;
-						background: $sendBtnbgc;
 						border-radius: 8rpx;
 						overflow: hidden;
-
+						
 						image {
 							align-self: center;
 						}

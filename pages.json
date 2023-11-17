@@ -74,16 +74,6 @@
 				"navigationStyle": "custom" // 隐藏系统导航栏
 			}
 		},
-
-		{
-			"path" : "pages/user/me",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle": "custom" // 隐藏系统导航栏
-			}
-		},
 		{
 			"path" : "pages/record/record",
 			"style" : 

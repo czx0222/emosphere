@@ -33,9 +33,9 @@
 	}
 
 	/* #endif */
-	.example-info {
-		font-size: 14px;
-		color: #333;
-		padding: 10px;
-	}
+	// .example-info {
+	// 	font-size: 14px;
+	// 	color: #333;
+	// 	padding: 10px;
+	// }
 </style>

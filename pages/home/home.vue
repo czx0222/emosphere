@@ -1,17 +1,19 @@
 <template>
-	<view class="background" :style="{ backgroundColor: bgColor }">
+	<view class="backarea">
+		<router-link :to="{ path: '/pages/main/main' }">
+			<view class="head-left">
+				<img src="/static/images/fanhui.jpg" />
+				<text>返回</text>
+			</view>
+		</router-link>
 		<div class="image-container">
 			<img :src="imageUrl1" class="image">
+			<text class="text-output1">EmoSphere</text>
+			<text class="text-output2">心理测试</text>
+			<text class="text-output3">"发现你的可能"</text>
+			<text class="text-output4">本测试预计需要15分钟</text>
+			<button class="btn" @click="goToQ1">开始测试</button>
 		</div>
-
-		<div>
-			<p class="text-output1">EmoSphere</p>
-			<p class="text-output2">心理测试</p>
-			<p class="text-output3">"发现你的可能"</p>
-			<p class="text-output4">本测试预计需要15分钟</p>
-			<button class="button" @click="goToQ1">开始测试</button>
-		</div>
-
 		<div class="circle-box">
 			<img :src="imageUrl2" style="position: absolute;top: 50px;left: 20px;width: 8%; ">
 			<img :src="imageUrl3" style="position: absolute;top: 200px;right: 20px;width: 8%;">
@@ -26,8 +28,9 @@
 </template>
 
 <script>
-	import { defineComponent } from 'vue';
-	import { useRouter } from 'vue-router';
+	import {
+		useRouter
+	} from 'vue-router';
 	export default {
 		data() {
 			const router = useRouter();
@@ -35,12 +38,10 @@
 				router.push('/pages/questions/questions');
 			};
 			return {
-				bgColor: "#BAD0CE", // 设置背景色为绿色 
-
 				imageUrl1: "../../static/back.png",
 				imageUrl2: "../../static/if-quote-left.png",
 				imageUrl3: "../../static/if-quote-right.png",
-				
+
 				goToQ1
 			}
 		}
@@ -48,99 +49,104 @@
 </script>
 
 <style>
-	.button {
+	a {
+		text-decoration: none;
+		color: inherit;
+		/* 保留链接的默认文字颜色 */
+	}
+
+	.head-left img {
+		height: 2rem;
+		margin-right: 10px;
+	}
+
+	.head-left text {
+		color: black;
+		font-size: 1rem;
+		font-weight: 550;
+	}
+
+	.head-left {
+		display: flex;
+		align-items: center;
 		position: relative;
-		top: 410px;
-		left: 0px;
-		color: darkcyan;
-		width: 150px;
-		height: 45px;
-		border: 0;
-		font-size: 25px;
-		font-weight: bold;
-		box-sizing: border-box;
-		text-align: center;
-		border-radius: 13px;
-		display: flex;  
-		justify-content: center; /* 水平居中 */  
-		align-items: center; /* 垂直居中 */  
-		/* 设置按钮边框圆角 */
-		background-color: #faeedf;
+		top: 1rem;
+		left: 1rem;
 	}
-	
-	.button:hover {
-		background: #fddeb8;
-	}
-		
-	/* 设置背景的大小 */
-	.background {
-		height: 844px;
-		width: 390;
+
+	.backarea {
+		background-color: #BAD0CE;
+		width: 100%;
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
 	}
 
 	.image-container {
 		position: relative;
+		top: 2rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 
 	.image {
-		border: 5px black;
-		outline-style: hidden;
-		/* 设置边框 */
 		border-radius: 35px;
-		/* 设置边框圆角 */
 		opacity: 0.85;
-		/* // 设置透明度，范围从0（完全透明）到1（完全不透明） */
-		position: absolute;
-		top: 80px;
-		left: 30px;
 		width: 330px;
-		height: 420px;
+		height: 450px;
 	}
 
+
 	.text-output1 {
+		position: relative;
 		font-size: 50px;
 		font-weight: bold;
 		color: #087860;
-		text-align: left;
-		position: absolute;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		top: 130px;
-		left: 55px;
+		top: -23rem;
+		text-decoration: none;
 	}
 
 	.text-output2 {
+		position: relative;
 		font-size: 40px;
 		font-weight: bold;
 		color: #087860;
-		text-align: left;
-		position: absolute;
-		top: 200px;
-		left: 104px;
+		top: -21rem;
+
 	}
 
 	.text-output3 {
+		position: relative;
 		font-size: 37px;
 		font-weight: 900;
 		font-family: fangsong;
 		color: white;
-		text-align: left;
-		position: absolute;
-		top: 280px;
-		left: 70px;
+		top: -19rem;
 	}
 
 	.text-output4 {
+		position: relative;
 		font-size: 22px;
 		font-weight: 500;
 		font-family: fangsong;
 		color: white;
-		text-align: left;
-		position: absolute;
-		top: 350px;
-		left: 90px;
-		border: 3px outset #0ed4a9;
+		top: -17rem;
+	}
+
+	.btn {
+		position: relative;
+		color: darkcyan;
+		width: 150px;
+		height: 45px;
+		font-size: 25px;
+		font-weight: bold;
+		border-radius: 13px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: #faeedf;
+		top: -15rem;
 	}
 
 	.text-output5 {
@@ -148,36 +154,26 @@
 		font-weight: bold;
 		display: flex;
 		align-items: center;
-		/* 垂直对齐 */
 		justify-content: center;
-		/* 水平对齐 */
 		height: 58px;
-		/* 视口的高度 */
 		color: #808080;
 	}
-	
+
 	.text-output6 {
 		font-size: 19px;
 		position: absolute;
 		font-family: fangsong;
-		/* 水平对齐 */
 		height: 250px;
 		left: 60px;
-		/* 视口的高度 */
 		color: black;
 		width: 280px;
 	}
 
 	.circle-box {
 		width: 390px;
-		/* 设置圆框的宽度 */
 		height: 400px;
-		/* 设置圆框的高度 */
 		background-color: #f5f5f5f5;
-		/* 设置圆框的背景颜色为白色 */
 		border-radius: 15%;
-		/* 设置圆框的边框为圆形 */
-
 		position: absolute;
 		top: 550px;
 		left: 0px;
@@ -185,16 +181,15 @@
 
 	.gray-bar {
 		width: 120px;
-		/* 设置长条的宽度 */
+
 		height: 8px;
-		/* 设置长条的高度 */
+
 		background-color: #808080;
-		/* 设置灰色背景色 */
+
 		border-radius: 13%;
-		/* 设置圆框的边框为圆形 */
 		display: flex;
 		align-items: center;
-		/* 垂直对齐 */
 		justify-content: center;
 	}
 </style>
+

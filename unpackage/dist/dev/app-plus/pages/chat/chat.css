@@ -1,13 +1,29 @@
 /* 水平间距 */
 /* 水平间距 */
-uni-view[data-v-0a633310],
-uni-button[data-v-0a633310],
-uni-text[data-v-0a633310],
-uni-input[data-v-0a633310],
-uni-textarea[data-v-0a633310] {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+a[data-v-0a633310] {
+  text-decoration: none;
+  color: inherit;
+}
+.header[data-v-0a633310] {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.header img[data-v-0a633310] {
+  height: 2rem;
+  margin-right: 10px;
+}
+.header uni-text[data-v-0a633310] {
+  color: black;
+  font-size: 1rem;
+  font-weight: 550;
+}
+.head-left[data-v-0a633310], .head-right[data-v-0a633310] {
+  display: flex;
+  align-items: center;
 }
 
 /* 聊天消息 */
@@ -84,7 +100,6 @@ uni-textarea[data-v-0a633310] {
   justify-content: center;
   width: 2.4375rem;
   height: 2.4375rem;
-  background: #4F7DF5;
   border-radius: 0.25rem;
   overflow: hidden;
 }
