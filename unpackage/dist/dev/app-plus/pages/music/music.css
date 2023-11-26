@@ -127,8 +127,8 @@ to {
 		justify-content: space-between;
 		width: 80%;
 }
-.header img {
-		width: auto;
+.header uni-image {
+		width: 40px;
 		height: 40px;
 }
 .scrollPage {
@@ -144,6 +144,9 @@ to {
 .choose {
 		background-color: rgb(131, 166, 100, 0.7);
 		border-radius: 5px;
+}
+.choose uni-image {
+		width: 90px;
 }
 .content {
 		padding: 5px;
@@ -161,9 +164,9 @@ to {
 		background: #169af3;
 		color: #fff;
 }
-.iconbtn{
+.iconbtn {
 		width: 1.71875rem;
-		height: 1.71875rem;	
+		height: 1.71875rem;
 		margin-left: 1.03125rem;
 		margin-right: 1.03125rem;
 }

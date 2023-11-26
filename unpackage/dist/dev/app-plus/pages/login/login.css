@@ -1,94 +1,119 @@
 
-.login{
+.bottom-message {
 		display: flex;
-		flex-direction: column; 
-		background-image: url('../../static/images/back.jpg'); 
-		background-size: cover; 
-		background-repeat: no-repeat; 
-		width: 100%; 
-		height: 100vh;
+		align-items: center;
+		/* 让子元素在垂直方向上居中对齐 */
+}
+.checkbox {
+		position: relative;
+		width: 1.5rem;
+		height: 1.5rem;
+		border: 2px solid #969898;
+		/* 设置边框颜色 */
+		border-radius: 50%;
+		background-color: transparent;
+		margin-right: 0.5rem;
+}
+.checkmark {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		color: #000;
+		/* 设置勾的颜色 */
+}
+.login {
+		display: flex;
+		flex-direction: column;
+		background-image: url('../../static/images/back.jpg');
+		background-size: cover;
+		background-repeat: no-repeat;
+		width: 100%;
+		height: 110vh;
 }
 .account-input,
-		  .code-input {
-			position: relative;
-			top: 7rem;
-		    width: 270px;
-		    height: 60px;
-		    border: none;
-		    border-radius: 20px;
-		    background-color: rgba(255, 255, 255, 0.3);
-		    margin-top: 1.5rem;
-			padding-left: 0.5rem;
-		    font-size: 1rem;
-		    color: #ffffff;
-			z-index: 5;
+	.code-input {
+		position: relative;
+		top: 7rem;
+		width: 270px;
+		height: 60px;
+		border: none;
+		border-radius: 20px;
+		background-color: rgba(255, 255, 255, 0.3);
+		margin-top: 1.5rem;
+		padding-left: 0.5rem;
+		font-size: 1rem;
+		color: #ffffff;
+		z-index: 5;
 }
 .login-area {
-		    display: flex;
-		    flex-direction: column;
-		    justify-content: center;
-		    align-items: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 }
 .logo {
-		  	position: relative;
-		  	top: 5rem;
-		  	height: 94px;
-		  	width: 94px;
-		  	-webkit-clip-path: circle(50% at center);
-		  	        clip-path: circle(50% at center);
-		  	z-index: 1;
+		position: relative;
+		top: 5rem;
+		height: 94px;
+		width: 94px;
+		-webkit-clip-path: circle(50% at center);
+		        clip-path: circle(50% at center);
+		z-index: 1;
 }
 .otherlogin {
-		  	position: relative;
-		  	top:10.5rem;
-		    display: flex;
-		    flex-direction: column;
-		    align-items: center;
-		    margin-top: 20px;
-		    color: white;
+		position: relative;
+		top: 10.5rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 20px;
+		color: white;
 }
 .otherlogin uni-text {
-		    margin-bottom: 10px;
-		  		color: #000;
+		margin-bottom: 10px;
+		color: #000;
 }
 .icon-list {
-		    display: flex;
-		    justify-content: space-between;
-		    width: 200px; /* 调整宽度适配图标大小 */
+		display: flex;
+		justify-content: space-between;
+		width: 200px;
+		/* 调整宽度适配图标大小 */
 }
 .icon-list li {
-		    list-style-type:none ;
-		    font-size: 3rem;
+		list-style-type: none;
+		font-size: 3rem;
 }
-.login-card-loginIn-btn{
-		  	top:7.5rem;
-		  	margin-top: 1rem;
-		  	position: relative;
-		  	  display: flex;
-		  	  justify-content: center;
-		  	 align-items: center;
-		    background-color: #F9BD69;
-		    width: 240px;
-		    font-size: 20px;
-		    height: 50px;
-		    border-radius: 40px;
-		    color: white;
+.login-card-loginIn-btn {
+		top: 7.5rem;
+		margin-top: 1rem;
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: #F9BD69;
+		width: 240px;
+		font-size: 20px;
+		height: 50px;
+		border-radius: 40px;
+		color: white;
 }
 .bottom-message {
-		  	position: absolute;
-		  	height: 20px;
-		  	font-size: 1rem;
-		  	color: #969898;
-		  	bottom: 1rem;
+		position: absolute;
+		height: 20px;
+		font-size: 1rem;
+		color: #484949;
+		font-weight: 900;
+		bottom: 5rem;
 }
 @media (max-width: 884px) {
 .title {
-		       font-size: 2.5rem;
+			font-size: 2.5rem;
 }
 .slogan {
-		       font-size: 1rem;
+			font-size: 1rem;
 }
 .navigator {
-		       font-size: 1rem;
+			font-size: 1rem;
 }
 }

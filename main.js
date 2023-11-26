@@ -2,7 +2,10 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router';
-import store from './stores';
+import store from './store';
+import tui from './common/httpRequest'
+import propsConfig from './components/thorui/tui-config/index.js'
+
 //Vue.use(uView) 
 import './uni.promisify.adaptor'
 Vue.config.productionTip = false

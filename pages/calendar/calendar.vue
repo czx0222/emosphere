@@ -1,10 +1,11 @@
 <template>
 
 	<view class="backarea">
+		<view class="box" style="width: 100%;height: 5%;"></view>
 		<view class="header">
 			<router-link :to="{ path: '/pages/main/main' }">
 				<view class="head-left">
-					<img src="/static/images/fanhui.png" />
+					<image src="/static/images/fanhui.png" ></image>
 					<text>返回</text>
 				</view>
 			</router-link>
@@ -19,7 +20,7 @@
 				<view class="v">
 					<view class="left">
 						<text class="time">{{ formatDate(record.createDate) }}</text>
-						<img :src="'/static/images/qingxu-' + record.mood + '.png'" alt="" />
+						<image :src="'/static/images/qingxu-' + record.mood + '.png'" alt="" ></image>
 					</view>
 					<view class="right">
 						<text class="title">{{ record.title }}</text>
@@ -80,7 +81,7 @@
 		background-size: cover;
 		background-repeat: no-repeat;
 		width: 100%;
-		height: 100vh;
+		height: 110vh;
 		align-items: center;
 		/* 水平居中 */
 
@@ -107,7 +108,11 @@
 		align-items: center;
 		float: left;
 	}
-
+	.head-left image{
+		width: 30px;
+		height: 30px;
+	}
+	
 	.head-right {
 		display: flex;
 		align-items: center;
@@ -133,7 +138,7 @@
 		background-color: rgb(255, 255, 255, 0.9);
 	}
 
-	.calendar-content view img {
+	.calendar-content view image {
 		height: 50px;
 		width: 50px;
 	}

@@ -1,0 +1,206 @@
+ul {
+	padding: 0rpx;
+}
+
+li {
+	list-style: none;
+}
+
+.container {
+	background-color: #fff;
+}
+
+.page {
+	height: 90vh;
+}
+
+
+.item {
+	background-color: #fff;
+}
+
+li:not(:first-child) {
+	margin-top: 5px;
+}
+
+
+
+.avatar-user {
+	display: flex;
+	align-items: center;
+	margin-left: 20px;
+	padding-top: 20px;
+
+}
+
+.avatar-user image {
+	width: 100rpx;
+	height: 100rpx;
+	border-radius: 50%;
+}
+
+.name {
+	font-size: 40rpx;
+	margin-left: 10rpx;
+	font-weight: bold;
+}
+
+.time {
+	color: #9c9c9c;
+	font-size: 24rpx;
+	margin-left: 10rpx;
+	margin-top: 10rpx;
+}
+
+.main {
+	padding-top: 10px;
+}
+
+
+.img-list {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left:20rpx;
+}
+
+.img-list image {
+	width: 230rpx;
+	height: 240rpx;
+	border-radius: 8px;
+	margin-left:10rpx;
+}
+
+.collection-album {
+	display: flex;
+	height: 60rpx;
+	align-items: center;
+	margin-left: 10px;
+	margin-right: 10px;
+	justify-content: space-between;
+}
+
+.collection-album .left {
+	display: flex;
+	align-items: center;
+	font-size: 24rpx;
+}
+
+.content1 {
+	margin: 0 5rpx;
+}
+
+.content2 {
+	color: #fd6d49;
+}
+
+.fotter {
+	width: 94%;
+	height: 100rpx;
+	margin: auto;
+	display: flex;
+	align-items: center;
+	border-bottom: 5px solid #DDDDDD;
+}
+
+.content {
+	margin-top: 10px;
+	margin-left: 20px;
+	font-size: 32rpx;
+	clear: both;
+	/* 清除左右浮动 */
+	word-break: break-word;
+	/* 文本行的任意字内断开，就算是一个单词也会分开 */
+
+	word-wrap: break-word;
+	/* IE */
+
+	white-space: -moz-pre-wrap;
+	/* Mozilla */
+
+	white-space: -hp-pre-wrap;
+	/* HP printers */
+
+	white-space: -o-pre-wrap;
+	/* Opera 7 */
+
+	white-space: -pre-wrap;
+	/* Opera 4-6 */
+
+	white-space: pre;
+	/* CSS2 */
+
+	white-space: pre-wrap;
+	/* CSS 2.1 */
+
+	white-space: pre-line;
+	/* CSS 3 (and 2.1 as well, actually) */
+}
+
+.icon {
+	display: flex;
+	align-items: center;
+	margin-left: 20rpx;
+}
+
+.icon1 {
+	display: flex;
+	align-items: center;
+	margin-left: 50rpx;
+}
+.count {
+	color: #5c5c5c;
+	font-size: 30rpx;
+	margin-left: 10rpx;
+}
+
+.loadStyle {
+	margin-top: 20rpx;
+	width: 100%;
+	height: 60rpx;
+	text-align: center;
+	color: #bfbfbf;
+}
+
+/* 图片淡入淡出 */
+.fadeImg {
+width: 100px;
+height: 100px;
+background: #fff;
+-webkit-animation: fadeinout 2s linear forwards;
+animation: fadeinout 2s linear forwards;
+}
+
+@-webkit-keyframes fadeinout {
+0%{ opacity: 1; }
+50% { opacity: 0.5; }
+100% { opacity: 0; }
+}
+
+@keyframes fadeinout {
+0%{ opacity: 1; }
+50% { opacity: 0.5; }
+100% { opacity: 0; }
+}
+
+
+@-webkit-keyframes fadeinout {
+0%{ opacity: 0; }
+50% { opacity: 0.5; }
+100% { opacity: 1; }
+}
+
+@keyframes fadeinout {
+0%{ opacity:0; }
+50% { opacity: 0.5; }
+100% { opacity: 1; }
+}
+
+@-webkit-keyframes fadeinout {
+0%{ opacity: 0; }
+50% { opacity:1; }
+}
+
+@keyframes fadeinout {
+0%{ opacity: 0; }
+50% { opacity:1; }
+}

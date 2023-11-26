@@ -6,12 +6,12 @@
 		</div>
 		
 		<div class="rounded-circle" style="position: absolute;left: 35%;top: 19%;height: 20%;width: 30%;">
-			<image src="../../static/result_1.png" style="left: 20%;top: 50%;;height: 40%;width: 60%;"></image>
+			<image src="../../static/images/result_1.png" style="left: 20%;top: 50%;;height: 40%;width: 60%;"></image>
 		</div>
 		
 		
 		<div>
-			<image src="../../static/leaf.png" style="position: absolute;left: 5%;top: 42%;width: 33px;height: 33px;"></image>
+			<image src="../../static/images/leaf.png" style="position: absolute;left: 5%;top: 42%;width: 33px;height: 33px;"></image>
 			<p class="text-output" style="position: absolute;left: 15%;top: 42%;">我对您的建议为:</p>
 		</div>
 		

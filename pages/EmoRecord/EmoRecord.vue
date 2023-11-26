@@ -1,12 +1,13 @@
 <template>
 	<view class="backarea">
+		<view class="box" style="width: 100%;height: 5%;"></view>
 		<view class="header">
 			<view class="left" @click="getback">
-				<img src="/static/images/fanhui.png" />
+				<image src="/static/images/fanhui.png"></image>
 				<text>返回</text>
 			</view>
 			<view class="right" @click="savadata">
-				<img src="/static/images/gou.png" />
+				<image src="/static/images/gou.png"></image>
 				<text>保存</text>
 			</view>
 		</view>
@@ -14,7 +15,7 @@
 			<text>今日情绪记录</text>
 			<div class="icon-list">
 				<li v-for="(iconName, index) in emotionIcons" :key="index" @click="selectIcon(iconName)">
-					<img :src="`/static/images/qingxu-${iconName}.png`" :class="{ 'selected': isSelected(iconName) }" />
+					<image :src="`/static/images/qingxu-${iconName}.png`" :class="{ 'selected': isSelected(iconName) }" ></image>
 				</li>
 			</div>
 		</view>
@@ -22,43 +23,43 @@
 			<text>今日事件记录</text>
 			<div class="thing-list">
 				<li>
-					<div class="circle"><img src='/static/things/加号.png'></div>
+					<div class="circle"><image src='/static/images/jiahao.png'></image></div>
 					<span>添加</span>
 				</li>
 				<li>
-					<div class="circle"><img src='/static/things/lvhang.png'></div>
+					<div class="circle"><image src='/static/images/lvhang.png'></image></div>
 					<span>添加</span>
 				</li>
 				<li>
-					<div class="circle"><img src='/static/things/bangqiu.png'></div>
+					<div class="circle"><image src='/static/images/bangqiu.png'></image></div>
 					<span>添加</span>
 				</li>
 				<li>
-					<div class="circle"><img src='/static/things/meishi1.png'></div>
+					<div class="circle"><image src='/static/images/meishi1.png'></image></div>
 					<span>添加</span>
 				</li>
 				<li>
-					<div class="circle"><img src='/static/things/shuijue.png'></div>
+					<div class="circle"><image src='/static/images/shuijue.png'></image></div>
 					<span>添加</span>
 				</li>
 				<li>
-					<div class="circle"><img src='/static/things/xingquaihao1.png'></div>
+					<div class="circle"><image src='/static/images/xingquaihao1.png'></image></div>
 					<span>添加</span>
 				</li>
 				<li>
-					<div class="circle"><img src='/static/things/xinsui.png'></div>
+					<div class="circle"><image src='/static/images/xinsui.png'></image></div>
 					<span>添加</span>
 				</li>
 				<li>
-					<div class="circle"><img src='/static/things/xuexi.png'></div>
+					<div class="circle"><image src='/static/images/xuexi.png'></image></div>
 					<span>添加</span>
 				</li>
 				<li>
-					<div class="circle"><img src='/static/things/jinianri3.png'></div>
+					<div class="circle"><image src='/static/images/jinianri3.png'></image></div>
 					<span>添加</span>
 				</li>
 				<li>
-					<div class="circle"><img src='/static/things/yueduliang.png'></div>
+					<div class="circle"><image src='/static/images/yueduliang.png'></image></div>
 					<span>添加</span>
 				</li>
 			</div>
@@ -72,14 +73,14 @@
 				<input type="text" placeholder="请具体描述" v-model="Content">
 			</view>
 
-			<view class="uPImg">
+			<view class="uPimage">
 				<view class="shangchuan">
-					<view class="sc2" v-for="(item, index) in imgList" :key="index">
-						<image class="del" @click="del(index)" src="/static/things/删除.png" mode=""></image>
-						<image class="Img3" :src="item" mode=""></image>
+					<view class="sc2" v-for="(item, index) in imageList" :key="index">
+						<image class="del" @click="del(index)" src="/static/images/shanchu.png" mode=""></image>
+						<image class="image3" :src="item" mode=""></image>
 					</view>
-					<view class="sc2" v-if="imgList.length < 1" @click="upload">
-						<image class="sc3" src="/static/things/加号.png" mode=""></image>
+					<view class="sc2" v-if="imageList.length < 1" @click="upload">
+						<image class="sc3" src="/static/images/jiahao.png" mode=""></image>
 					</view>
 				</view>
 			</view>
@@ -141,7 +142,7 @@
 		});
 	};
 
-	const imgList = ref([]);
+	const imageList = ref([]);
 	const upload = () => {
 		uni.chooseImage({
 			count: 3,
@@ -151,7 +152,7 @@
 			success: (res) => {
 				console.log(res);
 				if (res.tempFilePaths.length !== 0) {
-					imgList.value.push(res.tempFilePaths[0]);
+					imageList.value.push(res.tempFilePaths[0]);
 					var tempFilePaths = res.tempFilePaths;
 					// uni.uploadFile({
 					//   url: 'http://douzhuoqianshouba.xieenguoji.com/api/ajax/upload',
@@ -169,14 +170,14 @@
 
 	// 删除图片
 	const del = (index) => {
-		imgList.value.splice(index, 1);
-		console.log(imgList);
+		imageList.value.splice(index, 1);
+		console.log(imageList);
 	};
 </script>
 
 
 <style>
-	
+
 
 
 	.shangchuan {
@@ -201,7 +202,7 @@
 		border-radius: 10px;
 	}
 
-	.Img3 {
+	.image3 {
 		border-radius: 10px;
 		width: 100%;
 		height: 100%;
@@ -249,6 +250,11 @@
 		font-weight: 550;
 
 	}
+	.header image {
+		width: 30px;
+		height: 30px;
+	
+	}
 
 	.left {
 		display: flex;
@@ -289,7 +295,7 @@
 		list-style-type: none;
 	}
 
-	.icon-list li img {
+	.icon-list li image {
 		cursor: pointer;
 		width: 50px;
 		height: 50px;
@@ -332,7 +338,7 @@
 
 	}
 
-	.circle img {
+	.circle image {
 		width: 40px;
 		height: 40px;
 	}

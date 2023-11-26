@@ -1,6 +1,7 @@
 <template>
 	<view class="content">
 		<image src="/static/back.png" class="tui-header-img"></image>
+			
 		
 		<view class="main">
 			<view class="top">
@@ -14,9 +15,7 @@
 						</view>
 					</view>
 					<view class="user-right">
-						
-						<tui-button type="green" shape="circle" @click="editUserInfo" height="60rpx" width="140rpx"
-							:size="28">编辑</tui-button>
+
 					</view>
 				</view>
 				
@@ -51,67 +50,47 @@
 					<tui-tabs :tabs="tabs" :currentTab="currentTab" @change="change" sliderBgColor="#488C88"
 						selectedColor="#488C88" itemWidth="50%" size=35 scale=1.1></tui-tabs>
 				</view>
+				<my v-if="currentTab == 0"></my>
+				<zan v-if="currentTab == 1"></zan>
 			</view>
 		</view>
 		
-		<view class="zhuti">
-			<view v-if="userInfo">
-				<Trend v-if="currentTab == 0" :uid='uid' @cancelUp='cancelUp' :seed='seed'> </Trend>
-				<Album v-if="currentTab == 1" :seed='seed' :uid='uid'></Album>
-				<Collection v-if="currentTab == 2" :uid='uid' :seed='seed'></Collection>
-			</view>
-		</view>
-		
-		<tui-modal :show="show" @click="confirm" @cancel="hide" content="取消上传" :button="radio" width="50%"
-			padding="15rpx 40rpx" :fadeIn='true'></tui-modal>
 	</view>
 	
 	
 </template>
 
-<script>
-	
-	export default {
-	
-		data() {
-			return {
-				top:10,
-				current: 0,
-				currentTab: 0,
-				tabs: [{
-					name: "我的"
-				}, {
-					name: "赞过"
-				},
-				],
-				userInfo: {
-					avatar: "/static/xiaodiao.png",
-					username: "Xiaodiao",
-					id:"The sun will shion on us again.",
-					followCount: 25,
-					fanCount: 25,
-					like: 25
-				},
-				seed: 0,
-				uid: '',
-				show: false,
-				radio: [{
-						text: '取消',
-						type: 'white',
-					},
-					{
-						text: '确定',
-						type: 'red',
-					}
-				],
-				mid: '',
-				screenHeight: 0,
-				top_show: false,
-				vHeight: 0,
-			}
-		
-			},
-		}
+<script setup>
+	import {ref} from 'vue';
+	let currentTab = ref(0);
+	const change = (e) =>{
+		currentTab.value = e.index;
+	};
+	const top = ref(10);
+	const current = ref(0);
+	const tabs = ref([
+	  { name: "我的" },
+	  { name: "赞过" },
+	]);
+	const userInfo = ref({
+	  avatar: "/static/xiaodiao.png",
+	  username: "Xiaodiao",
+	  id: "The sun will shine on us again.",
+	  followCount: 25,
+	  fanCount: 25,
+	  like: 25,
+	});
+	const seed = ref(0);
+	const uid = ref('');
+	const show = ref(false);
+	const radio = ref([
+	  { text: '取消', type: 'white' },
+	  { text: '确定', type: 'red' },
+	]);
+	const mid = ref('');
+	const screenHeight = ref(0);
+	const top_show = ref(false);
+	const vHeight = ref(0);
 </script>
 
 <style lang="scss" scoped>
@@ -210,5 +189,17 @@
 		flex-shrink: 0;
 		font-size: 44rpx;
 		color: #fff;
+	}
+	
+	.image-container {
+	  position: relative;
+	  display: inline-block;
+	}
+	
+	.arrow-icon {
+	  position: absolute;
+	  top: 10px;
+	  left: 10px;
+	  color: white; // 设置箭头颜色为白色
 	}
 </style>

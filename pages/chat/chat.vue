@@ -1,14 +1,16 @@
 <template>
 	<view class="header">
+		
 		<router-link :to="{ path: '/pages/main/main' }">
 			<view class="head-left">
-				<img src="/static/images/fanhui.jpg" />
+				
+				<image src="/static/images/fanhui.jpg" ></image>
 				<text>返回</text>
 			</view>
 		</router-link>
 		<router-link :to="{ path: '/pages/home/home' }">
 		<view class="head-right" @click="savadata">
-			<img src="/static/images/test.png" />
+			<image src="/static/images/test.png" ></image>
 			<text>测试</text>
 		</view>
 		</router-link>
@@ -28,14 +30,14 @@
 						</view>
 						<!-- 头像 -->
 						<view class="avatar">
-							<img src="/static/images/logo.png" />
+							<image src="/static/images/logo.png" ></image>
 						</view>
 					</view>
 					<!-- 机器人发的消息 -->
 					<view class="item Ai" v-if="item.botContent != ''">
 						<!-- 头像 -->
 						<view class="avatar">
-							<img src="/static/ai.png" />
+							<image src="/static/images/ai.png" ></image>
 						</view>
 						<!-- 文字内容 -->
 						<view class="content left">
@@ -194,9 +196,10 @@
 	
 	
 	}
-	.header img{
-		height: 2rem;
+	.header image{
+		height: 30px;
 		margin-right: 10px ;
+		width: 30px;
 	}
 	.header text {
 		color: black;
@@ -303,7 +306,6 @@
 			}
 		}
 
-		/* 底部聊天发送栏 */
 		.chat-bottom {
 			width: 100%;
 			height: 177rpx;

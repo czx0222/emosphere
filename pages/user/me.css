@@ -65,7 +65,7 @@
 }
 
 .content .main {
-	position: relative;
+	position: fixed;
 
 	width: 100%;
 	z-index: 22;
@@ -126,7 +126,7 @@
 .content .main .top .info {
 
 	display: flex;
-	height: 100rpx;
+	height: 60rpx;
 	margin-left: 80rpx;
 	margin-right: 80rpx;
 	justify-content: space-between;
@@ -167,5 +167,5 @@
 }
 
 .tabs-style{
-	margin-top:100rpx;
+	margin-top:80rpx;
 }

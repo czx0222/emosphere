@@ -12,9 +12,10 @@ a[data-v-0a633310] {
   padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-.header img[data-v-0a633310] {
-  height: 2rem;
+.header uni-image[data-v-0a633310] {
+  height: 30px;
   margin-right: 10px;
+  width: 30px;
 }
 .header uni-text[data-v-0a633310] {
   color: black;
@@ -27,9 +28,6 @@ a[data-v-0a633310] {
 }
 
 /* 聊天消息 */
-.chat[data-v-0a633310] {
-  /* 底部聊天发送栏 */
-}
 .chat .scroll-view[data-v-0a633310] {
   background-color: #F6F6F6;
 }

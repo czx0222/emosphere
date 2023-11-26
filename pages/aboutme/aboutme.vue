@@ -1,8 +1,9 @@
 <template>
 	<view class="my-page">
+		<view class="box" style="width: 100%;height: 5%;"></view>
 		<view class="header">
 			<router-link :to="{ path: '/pages/myScreen/myScreen' }">
-				<img src="/static/images/fan.png">
+				<image src="/static/images/fan.png"></image>
 			</router-link>
 			<span>个人资料</span>
 		</view>
@@ -10,34 +11,34 @@
 		<view class="content">
 			<view class="menu-item1">
 				<!-- <image class="user-avatar" src="/static/uni.png" /> -->
-				<image class="user-avatar" />
+				<image class="user-avatar" ></image>
 				<text class="user-avatar-text" @click="uploadImage">修改头像</text>
 			</view>
 
 			<view class="menu-item">
 				<text class="menu-text">用户昵称</text>
 				<text class="menu-text1">{{username}}</text>
-				<img src="/static/images/yuanjiantou.png" alt="" />
+				<image src="/static/images/yuanjiantou.png" alt="" ></image>
 			</view>
 
 			<view class="menu-item">
 				<text class="menu-text">性别</text>
 				<text class="menu-text1">{{usergender}} </text>
-				<img src="/static/images/yuanjiantou.png" alt="" />
+				<image src="/static/images/yuanjiantou.png" alt="" ></image>
 			</view>
 
 			<!-- 个人资料 -->
 			<view class="menu-item" @click="goToProfile">
 				<text class="menu-text">常驻地</text>
 				<text class="menu-text1">{{userstatus}}</text>
-				<img src="/static/images/yuanjiantou.png" alt="" />
+				<image src="/static/images/yuanjiantou.png" alt="" ></image>
 			</view>
 
 			<!-- 个人资料 -->
 			<view class="menu-item" @click="goToProfile">
 				<text class="menu-text">生日</text>
 				<text class="menu-text1">{{userbirthday}}</text>
-				<img src="/static/images/yuanjiantou.png" alt="" />
+				<image src="/static/images/yuanjiantou.png" mode=""></image>
 			</view>
 
 
@@ -45,7 +46,7 @@
 			<view class="menu-item" @click="goToProfile">
 				<text class="menu-text">二维码</text>
 				<text class="menu-text1 look">点击查看</text>
-				<img src="/static/images/yuanjiantou.png" alt="" />
+				<image src="/static/images/yuanjiantou.png" mode=""></image>
 			</view>
 		</view>
 
@@ -80,7 +81,7 @@
 		padding-left: 28px;
 	}
 
-	.header img {
+	.header image {
 		width: 25px;
 		height: 25px;
 		margin-right: 90px;
@@ -106,9 +107,9 @@
 	}
 
 	.edit {
-		position: absolute;
-		left: 20px;
-		top: 3.5rem;
+		position: relative;
+		left: -8rem;
+		top: 1rem;
 		color: #ffffff;
 		font-size: 1rem;
 		font-weight: bold;
@@ -157,7 +158,7 @@
 		justify-content: space-between;
 	}
 
-	.menu-item img {
+	.menu-item image {
 		width: 50px;
 		height: 50px;
 		margin-right: 20px;

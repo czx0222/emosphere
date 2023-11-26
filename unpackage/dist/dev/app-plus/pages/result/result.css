@@ -1,7 +1,7 @@
 
 	/* 设置背景的大小 */
 .background {
-		background-image: url("../../static/images/back2.png");
+		background-image: url("../../static/back.png");
 		height: 844px;
 		width: 390;
 }

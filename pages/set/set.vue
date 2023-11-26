@@ -49,7 +49,30 @@ export default {
     const usernameInput = ref('小吴');
     const statusInput = ref('福州');
 	const selectedGender = ref('男');
-
+	const upload = () => {
+		uni.chooseImage({
+			count: 1,
+			sizeType: ['original', 'compressed'],
+			sourceType: ['album'],
+			loop: true,
+			success: (res) => {
+				console.log(res);
+				if (res.tempFilePaths.length !== 0) {
+					imgList.value.push(res.tempFilePaths[0]);
+					var tempFilePaths = res.tempFilePaths;
+					// uni.uploadFile({
+					//   url: 'http://douzhuoqianshouba.xieenguoji.com/api/ajax/upload',
+					//   filePath: tempFilePaths[0],
+					//   name: 'file',
+					//   success: (uploadFileRes) => {},
+					//   fail: (err) => {
+					//     console.log(err);
+					//   },
+					// });
+				}
+			},
+		});
+	};
 
     const tomain = () => {
 

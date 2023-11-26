@@ -1,26 +1,27 @@
 <template>
 	<view class="page">
+		<view class="box" style="width: 100%;height: 5%;"></view>
 		<view class="header">
 			<router-link to="/pages/main/main">
-				<img src="/static/f1.png" @click="incrementCount('f1', 5)">
+				<img src="/static/images/f1.png" @click="incrementCount('f1', 5)">
 			</router-link>
 			<router-link to="/pages/music/music">
-				<img src="/static/f2.png" @click="incrementCount('f2', 5)">
+				<img src="/static/images/f2.png" @click="incrementCount('f2', 5)">
 			</router-link>
-			<img class="choose" src="/static/f3.png" >
+			<img class="choose" src="/static/images/f3.png" >
 			<router-link to="">
-				<img src="/static/f4.png" @click="incrementCount('f4', 5)">
+				<img src="/static/images/f4.png" @click="incrementCount('f4', 5)">
 			</router-link>
 		</view>
 		<view class="title">
 			<text>Relax</text>
 		</view>
-		<img alt="图片f6" src="/static/f6.png" style="position: absolute; top: 58%; left: 65%; transform: translate(-50%, -50%);">
+		<img alt="图片f6" src="/static/images/f6.png" style="position: absolute; top: 54%; left: 65%; transform: translate(-50%, -50%);">
 		<view class="method" >
-			<img alt="图片f7" src="/static/f7.png" @click="startRelaxation('f7')" style="margin-bottom: 10px;">
-			<img alt="图片f8" src="/static/f8.png" @click="startRelaxation('f8')" style="margin-bottom: 10px;">
-			<img alt="图片f9" src="/static/f9.png" @click="startRelaxation('f9')" style="margin-bottom: 10px;">
-			<img alt="图片f10" src="/static/f10.png" @click="startRelaxation('f10')" style="margin-bottom: 10px;">
+			<img alt="图片f7" src="/static/images/f7.png" @click="startRelaxation('f7')" style="margin-bottom: 10px;">
+			<img alt="图片f8" src="/static/images/f8.png" @click="startRelaxation('f8')" style="margin-bottom: 10px;">
+			<img alt="图片f9" src="/static/images/f9.png" @click="startRelaxation('f9')" style="margin-bottom: 10px;">
+			<img alt="图片f10" src="/static/images/f10.png" @click="startRelaxation('f10')" style="margin-bottom: 10px;">
 		</view>
 	</view>
 
@@ -187,7 +188,7 @@
 	.page {
 		display: flex;
 		flex-direction: column;
-		background-image: url('/static/relaxback.png');
+		background-image: url('/static/images/relaxback.png');
 		background-size: cover;
 		background-repeat: no-repeat;
 		width: 100%;

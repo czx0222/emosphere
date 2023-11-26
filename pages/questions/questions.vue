@@ -121,10 +121,6 @@
 				router.push('../home/home');
 			};
 
-			const goToQ2 = () => {
-				router.push('../Q2/Q2');
-			};
-
 			return {
 				bgColor: "#BAD0CE", // 设置背景色为绿色 
 				// 设置圆形标题的相关参数
@@ -142,7 +138,6 @@
 </script>
 
 <style>
-	/* 设置背景的大小 */
 	.background {
 		height: 4844px;
 		width: 390;

@@ -1,5 +1,6 @@
 
 <template>
+	
 	<view class="flex padding-sm justify-between">
 		<view class="flex padding-top-xs text-xxxl text-black">
 			<navigator url="/pages/index/index" open-type="navigateBack">
@@ -8,9 +9,6 @@
 				</a-button>
 			</navigator>
 		</view>
-		<!-- <view class="flex padding-top-xs text-xxxl text-black">
-			<text class="cuIcon-close text-white"></text>
-		</view> -->
 		<view class="text-xxxl">
 			<view class="flex justify-center cuIcon-more text-blace"></view>
 		</view>

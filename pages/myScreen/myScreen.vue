@@ -1,5 +1,6 @@
 <template>
 	<view class="my-page">
+		<view class="box" style="width: 100%;height: 5%;"></view>
 		<view class="header">
 			<view class="head-left" @click="goBack">
 				<img src="/static/images/fanhui.png" />
