@@ -15,6 +15,8 @@
     "sass-loader": "^13.3.2",
     "sentry": "^0.1.2",
     "thorui-uni": "^2.9.5",
+    "uni-mini-router": "^0.1.5",
+    "uni-parse-pages": "^0.0.1",
     "uniapp-axios-adapter": "^0.3.2",
     "vue-router": "^4.2.5",
     "vuex": "^4.1.0"

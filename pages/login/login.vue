@@ -35,11 +35,10 @@
 	import {
 		ref
 	} from 'vue';
-	import {
-		useRouter
-	} from 'vue-router';
+	import { useRouter } from 'uni-mini-router'
+	import { getCurrentInstance } from 'vue'
 	import store from '@/store';
-	const router = useRouter();
+	let router = useRouter()
 	const phoneNumber = ref('15159606435');
 	const password = ref('123456');
 	const agreementChecked = ref(false);
@@ -59,18 +58,26 @@
 				pwd: password.value
 			},
 			success: (response) => {
+				let formattedBirthday 
 				const user = response.data['user'];
+				if(user.birthday == null){
+					formattedBirthday='2000-01-01'
+				}else{
+					 formattedBirthday = user.birthday.substring(0, 10);
+				}
+				
 				console.log(response.data);
 				store.commit('setUserData', {
 					id: user.id,
 					username: user.username,
+					userBirthday:formattedBirthday,
+					userGender:user.gender,				
 				});
-				console.log('User data stored in Vuex:', store.state.userId, store.state.username);
+				console.log('User data stored in Vuex:', store.state.userId, store.state.username,store.state.ImagePath);
 
-				router.push('/pages/set/set');
+				router.replace('/pages/main/main');
 			},
 			fail: (error) => {
-				// 登录请求失败的处理逻辑
 				console.error(error);
 			}
 		});

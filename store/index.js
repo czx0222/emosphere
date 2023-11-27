@@ -9,23 +9,45 @@ export default createStore({
 		username: null,
 		userbirthday: null,
 		usergender: null,
-		usertatus: null,
+		userstatus: null,
+		ImagePath: null,
 		emotionIcons: ['xiyue', 'beiai', 'danyou', 'yane', 'jingqi', 'fennu'],
 	},
 	mutations: {
 		setUserData(state, {
 			id,
-			username
+			username,
+			userBirthday,
+			userGender,
+			imagepath
 		}) {
 			state.userId = id;
 			state.username = username;
+			state.userbirthday = userBirthday;
+			state.usergender = userGender;
+			state.ImagePath = imagepath
 		},
-		UserData(state, { username, userBirthday, userGender, userStatus }) {
-		      state.username = username;
-		      state.userBirthday = userBirthday;
-		      state.userGender = userGender;
-		      state.userStatus = userStatus;
+		upData(state, {
+			username,
+			userBirthday,
+			userGender,
+			userstatus
+		}) {
+			state.username = username;
+			state.userBirthday = userBirthday;
+			state.userGender = userGender;
+			state.userstatus = userstatus
+		},
+		  setPath(state, path) {
+		      state.ImagePath = path;
 		    },
+		clearUserData(state) {
+			state.userId = null;
+			state.username = null;
+			state.userbirthday = null;
+			state.usergender = null;
+			state.usertatus = null;
+		},
 	},
 	actions: {},
 	getters: {
@@ -34,7 +56,7 @@ export default createStore({
 		getEmotionIcons: (state) => state.emotionIcons,
 		getUserBirthday: (state) => state.userbirthday,
 		getUserGender: (state) => state.usergender,
-		getUserStatus: (state) => state.usertatus,
+		getUserStatus: (state) => state.userstatus,
 		getEmotionIcons: (state) => state.emotionIcons,
 	},
 });

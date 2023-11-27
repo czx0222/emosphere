@@ -3,12 +3,10 @@
 	<view class="backarea">
 		<view class="box" style="width: 100%;height: 5%;"></view>
 		<view class="header">
-			<router-link :to="{ path: '/pages/main/main' }">
-				<view class="head-left">
+				<view class="head-left" @click="fan">
 					<image src="/static/images/fanhui.png" ></image>
 					<text>返回</text>
 				</view>
-			</router-link>
 		</view>
 		<view class="calendar">
 			<view>
@@ -38,17 +36,20 @@
 		ref,
 		onMounted
 	} from 'vue';
-
-	const emotionIcons = store.getters.getEmotionIcons;
+	import { useRouter } from 'uni-mini-router'
+	let router = useRouter()
 	const records = ref([]);
+	const emotionIcons = store.getters.getEmotionIcons;
 
 	const formatDate = (dateString) => {
 		const originalDate = new Date(dateString);
-		const month = originalDate.getMonth() + 1; // 注意月份是从0开始计数，需要加1
+		const month = originalDate.getMonth() + 1; 
 		const day = originalDate.getDate();
 		return `${month}月${day}日`;
 	};
-
+	const fan = () =>{
+		router.replace('/pages/main/main')
+	}
 	const getemo = () => {
 		uni.request({
 			url: 'http://8.136.81.197:8080/mood_record',

@@ -28,39 +28,39 @@
 				</li>
 				<li>
 					<div class="circle"><image src='/static/images/lvhang.png'></image></div>
-					<span>添加</span>
+					<span>旅行</span>
 				</li>
 				<li>
 					<div class="circle"><image src='/static/images/bangqiu.png'></image></div>
-					<span>添加</span>
+					<span>运动</span>
 				</li>
 				<li>
 					<div class="circle"><image src='/static/images/meishi1.png'></image></div>
-					<span>添加</span>
+					<span>美食</span>
 				</li>
 				<li>
 					<div class="circle"><image src='/static/images/shuijue.png'></image></div>
-					<span>添加</span>
+					<span>睡觉</span>
 				</li>
 				<li>
 					<div class="circle"><image src='/static/images/xingquaihao1.png'></image></div>
-					<span>添加</span>
+					<span>爱好</span>
 				</li>
 				<li>
 					<div class="circle"><image src='/static/images/xinsui.png'></image></div>
-					<span>添加</span>
+					<span>失恋</span>
 				</li>
 				<li>
 					<div class="circle"><image src='/static/images/xuexi.png'></image></div>
-					<span>添加</span>
+					<span>学习</span>
 				</li>
 				<li>
 					<div class="circle"><image src='/static/images/jinianri3.png'></image></div>
-					<span>添加</span>
+					<span>纪念日</span>
 				</li>
 				<li>
 					<div class="circle"><image src='/static/images/yueduliang.png'></image></div>
-					<span>添加</span>
+					<span>阅读</span>
 				</li>
 			</div>
 		</view>
@@ -73,7 +73,7 @@
 				<input type="text" placeholder="请具体描述" v-model="Content">
 			</view>
 
-			<view class="uPimage">
+			<view >
 				<view class="shangchuan">
 					<view class="sc2" v-for="(item, index) in imageList" :key="index">
 						<image class="del" @click="del(index)" src="/static/images/shanchu.png" mode=""></image>
@@ -84,31 +84,22 @@
 					</view>
 				</view>
 			</view>
-
-
-
-
-
 		</view>
 	</view>
 </template>
 
 <script setup>
 	import {ref} from 'vue';
-	import {
-		
-		useRouter
-	} from 'vue-router';
+	import { useRouter } from 'uni-mini-router'
+	let router = useRouter()
 	import store from '@/store';
 
 	const emotionIcons = store.getters.getEmotionIcons;
 	let Icon = null;
-	const router = useRouter();
 
 	const getback = () => {
-		router.push('/pages/main/main');
+		router.replace('/pages/main/main');
 	};
-
 	const selectIcon = (iconName) => {
 		Icon = Icon === iconName ? null : iconName;
 		console.log('选中的图标：', Icon);
@@ -135,6 +126,7 @@
 			data: data,
 			success: (response) => {
 				console.log(response.data);
+				router.replace('/pages/calendar/calendar');
 			},
 			fail: (error) => {
 				console.error('保存失败', error);

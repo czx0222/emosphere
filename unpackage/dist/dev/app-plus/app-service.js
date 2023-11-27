@@ -31,31 +31,257 @@ if (uni.restoreGlobal) {
 }
 (function(vue, shared) {
   "use strict";
-  /*!
-    * vue-router v4.1.6
-    * (c) 2022 Eduardo San Martin Morote
-    * @license MIT
-    */
-  var NavigationType;
-  (function(NavigationType2) {
-    NavigationType2["pop"] = "pop";
-    NavigationType2["push"] = "push";
-  })(NavigationType || (NavigationType = {}));
-  var NavigationDirection;
-  (function(NavigationDirection2) {
-    NavigationDirection2["back"] = "back";
-    NavigationDirection2["forward"] = "forward";
-    NavigationDirection2["unknown"] = "";
-  })(NavigationDirection || (NavigationDirection = {}));
-  var NavigationFailureType;
-  (function(NavigationFailureType2) {
-    NavigationFailureType2[NavigationFailureType2["aborted"] = 4] = "aborted";
-    NavigationFailureType2[NavigationFailureType2["cancelled"] = 8] = "cancelled";
-    NavigationFailureType2[NavigationFailureType2["duplicated"] = 16] = "duplicated";
-  })(NavigationFailureType || (NavigationFailureType = {}));
-  const routerKey = Symbol("router");
-  function useRouter() {
-    return vue.inject(routerKey);
+  function formatAppLog(type, filename, ...args) {
+    if (uni.__log__) {
+      uni.__log__(type, filename, ...args);
+    } else {
+      console[type].apply(console, [...args, filename]);
+    }
+  }
+  function resolveEasycom(component, easycom2) {
+    return shared.isString(component) ? easycom2 : component;
+  }
+  function a$1(e2) {
+    return a$1 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e3) {
+      return typeof e3;
+    } : function(e3) {
+      return e3 && "function" == typeof Symbol && e3.constructor === Symbol && e3 !== Symbol.prototype ? "symbol" : typeof e3;
+    }, a$1(e2);
+  }
+  function i(e2) {
+    var r2 = function(e3, r3) {
+      if ("object" !== a$1(e3) || null === e3)
+        return e3;
+      var t2 = e3[Symbol.toPrimitive];
+      if (void 0 !== t2) {
+        var n2 = t2.call(e3, r3 || "default");
+        if ("object" !== a$1(n2))
+          return n2;
+        throw new TypeError("@@toPrimitive must return a primitive value.");
+      }
+      return ("string" === r3 ? String : Number)(e3);
+    }(e2, "string");
+    return "symbol" === a$1(r2) ? r2 : r2 + "";
+  }
+  function u(e2, r2, t2) {
+    return (r2 = i(r2)) in e2 ? Object.defineProperty(e2, r2, { value: t2, enumerable: true, configurable: true, writable: true }) : e2[r2] = t2, e2;
+  }
+  var c, l = Symbol("__ROUTER__"), f = Symbol("__ROUTE__");
+  !function(e2) {
+    e2.push = "navigateTo", e2.replace = "redirectTo", e2.replaceAll = "reLaunch", e2.pushTab = "switchTab", e2.back = "navigateBack";
+  }(c || (c = {}));
+  var s = ["navigateTo", "redirectTo", "reLaunch", "switchTab", "navigateBack"];
+  function p(e2) {
+    var r2 = {}, t2 = e2.split("?"), n2 = "", o = [];
+    t2.length > 1 && (n2 = t2[1]), o = n2.split("&");
+    for (var a2 = 0; o.length > a2; a2++)
+      2 === o[a2].split("=").length && (r2[o[a2].split("=")[0]] = o[a2].split("=")[1]);
+    return r2;
+  }
+  function v(e2, r2, t2) {
+    return e2.replace(RegExp(r2, "g"), t2);
+  }
+  function h(e2) {
+    return null == e2 || 0 === Object.keys(e2).length;
+  }
+  function b(e2, r2) {
+    var t2 = Object.keys(e2);
+    if (Object.getOwnPropertySymbols) {
+      var n2 = Object.getOwnPropertySymbols(e2);
+      r2 && (n2 = n2.filter(function(r3) {
+        return Object.getOwnPropertyDescriptor(e2, r3).enumerable;
+      })), t2.push.apply(t2, n2);
+    }
+    return t2;
+  }
+  function g(e2) {
+    for (var r2 = 1; arguments.length > r2; r2++) {
+      var t2 = null != arguments[r2] ? arguments[r2] : {};
+      r2 % 2 ? b(Object(t2), true).forEach(function(r3) {
+        u(e2, r3, t2[r3]);
+      }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e2, Object.getOwnPropertyDescriptors(t2)) : b(Object(t2)).forEach(function(r3) {
+        Object.defineProperty(e2, r3, Object.getOwnPropertyDescriptor(t2, r3));
+      });
+    }
+    return e2;
+  }
+  var y = { navigateTo: uni.navigateTo, redirectTo: uni.redirectTo, reLaunch: uni.reLaunch, switchTab: uni.switchTab, navigateBack: uni.navigateBack };
+  function d(e2, r2, t2) {
+    var n2 = m(e2, r2);
+    switch (t2) {
+      case "push":
+        y.navigateTo({ url: n2 });
+        break;
+      case "replace":
+        y.redirectTo({ url: n2 });
+        break;
+      case "pushTab":
+        y.switchTab({ url: n2 });
+        break;
+      case "replaceAll":
+        y.reLaunch({ url: n2 });
+        break;
+      default:
+        throw Error("无效的路由类型，请确保提供正确的路由类型");
+    }
+  }
+  function m(e2, r2) {
+    var t2 = "", n2 = {};
+    if ("string" == typeof e2)
+      t2 = e2;
+    else {
+      if (e2.name) {
+        var o = r2.routes.find(function(r3) {
+          return r3.name === e2.name;
+        });
+        if (!o || !o.path)
+          throw Error("您正在尝试访问的路由未在路由表中定义。请检查您的路由配置。");
+        t2 = o.path, n2 = e2.params;
+      } else
+        e2.path && (t2 = function(e3) {
+          return e3 = v(e3, "//", "/"), e3 = v(e3, "https:/", "https://"), v(e3, "http:/", "http://");
+        }("/".concat(e2.path.split("?")[0])), n2 = g(g({}, p(e2.path)), e2.query || {}));
+      n2 && (t2 = function(e3, r3) {
+        for (var t3 in r3)
+          e3.indexOf("?") > -1 ? e3 += "&".concat(t3, "=").concat(r3[t3]) : e3 += "?".concat(t3, "=").concat(r3[t3]);
+        return e3;
+      }(t2, n2 = function(e3) {
+        var r3 = {};
+        if (e3)
+          for (var t3 in e3) {
+            var n3 = e3[t3];
+            void 0 === n3 && (n3 = ""), r3[t3] = n3;
+          }
+        return r3;
+      }(n2)));
+    }
+    return t2;
+  }
+  function O(e2) {
+    var r2, t2 = (r2 = getCurrentPages()).length > 0 ? r2[r2.length - 1] : void 0;
+    if (t2 && t2.route && e2.routes) {
+      var n2 = k("/".concat(t2.route), e2);
+      return t2.$page && (n2.fullPath = t2.$page.fullPath ? t2.$page.fullPath : "", n2.query = t2.$page.fullPath ? p(t2.$page.fullPath) : {}, n2.params = t2.$page.fullPath ? p(t2.$page.fullPath) : {}), n2;
+    }
+  }
+  function k(e2, r2) {
+    e2 = e2.split("?")[0];
+    var t2 = r2.routes.find(function(r3) {
+      return r3.path === e2 || r3.aliasPath === e2;
+    });
+    return JSON.parse(JSON.stringify(t2));
+  }
+  function P(e2, r2, t2) {
+    e2.guardHooks[r2] = [t2];
+  }
+  var T = { navigateTo: uni.navigateTo, redirectTo: uni.redirectTo, reLaunch: uni.reLaunch, switchTab: uni.switchTab, navigateBack: uni.navigateBack };
+  function w(e2) {
+    s.forEach(function(r2) {
+      y[r2] = function(t2) {
+        if ("navigateBack" === r2)
+          T[r2](t2);
+        else if (e2.guardHooks.beforeHooks && e2.guardHooks.beforeHooks[0]) {
+          var n2 = k(t2.url, e2);
+          (function(e3, r3, t3) {
+            return new Promise(function(n3, o) {
+              var i2 = function e4(r4) {
+                e4._called = true, false === r4 ? o({}) : n3(void 0 === r4 || true === r4 || r4);
+              }, u2 = e3.call(void 0, r3, t3, i2), c2 = Promise.resolve(u2);
+              if (3 > e3.length && (c2 = c2.then(i2)), e3.length > 2) {
+                var l2 = 'The "next" callback was never called inside of '.concat(e3.name ? '"' + e3.name + '"' : "", ":\n").concat("" + e3, '\n. If you are returning a value instead of calling "next", make sure to remove the "next" parameter from your function.');
+                if (null !== u2 && "object" === a$1(u2) && "then" in u2)
+                  c2 = c2.then(function(e4) {
+                    return i2._called ? e4 : (formatAppLog("warn", "at node_modules/uni-mini-router/lib/index.js:5", l2), Promise.reject(Error("Invalid navigation guard")));
+                  });
+                else if (!i2._called)
+                  return formatAppLog("warn", "at node_modules/uni-mini-router/lib/index.js:5", l2), void o(Error("Invalid navigation guard"));
+              }
+              c2.catch(function(e4) {
+                return o(e4);
+              });
+            });
+          })(e2.guardHooks.beforeHooks[0], n2, e2.route.value).then(function(n3) {
+            if (true === n3)
+              T[r2](t2);
+            else if ("string" == typeof n3) {
+              var o = m(n3, e2);
+              T[r2]({ url: o });
+            } else if ("back" === n3.navType)
+              T.navigateBack(n3);
+            else {
+              var a2 = m(n3, e2);
+              T[n3.navType ? c[n3.navType] : r2]({ url: a2 });
+            }
+          }).catch(function(e3) {
+            throw e3;
+          });
+        } else
+          T[r2](t2);
+      };
+    });
+  }
+  function j() {
+    var r2 = vue.inject(l);
+    if (r2)
+      return r2;
+    throw Error('useRouter 只可以在 Vue 上下文中使用，请确保你已经正确地注册了 "uni-mini-router" 并且当前正处于 Vue 上下文中');
+  }
+  function E(e2, r2) {
+    var t2 = Object.keys(e2);
+    if (Object.getOwnPropertySymbols) {
+      var n2 = Object.getOwnPropertySymbols(e2);
+      r2 && (n2 = n2.filter(function(r3) {
+        return Object.getOwnPropertyDescriptor(e2, r3).enumerable;
+      })), t2.push.apply(t2, n2);
+    }
+    return t2;
+  }
+  function S(e2) {
+    for (var r2 = 1; arguments.length > r2; r2++) {
+      var t2 = null != arguments[r2] ? arguments[r2] : {};
+      r2 % 2 ? E(Object(t2), true).forEach(function(r3) {
+        u(e2, r3, t2[r3]);
+      }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e2, Object.getOwnPropertyDescriptors(t2)) : E(Object(t2)).forEach(function(r3) {
+        Object.defineProperty(e2, r3, Object.getOwnPropertyDescriptor(t2, r3));
+      });
+    }
+    return e2;
+  }
+  function $(e2) {
+    var r2 = { routes: e2.routes, guardHooks: { beforeHooks: null, afterHooks: null }, push: function(e3) {
+      return d(e3, this, "push");
+    }, replace: function(e3) {
+      return d(e3, this, "replace");
+    }, replaceAll: function(e3) {
+      return d(e3, this, "replaceAll");
+    }, pushTab: function(e3) {
+      return d(e3, this, "pushTab");
+    }, back: function(e3) {
+      return uni.navigateBack(e3);
+    }, beforeEach: function(e3) {
+      P(r2, "beforeHooks", e3);
+    }, afterEach: function(e3) {
+      P(r2, "afterHooks", e3);
+    }, install: function(e3) {
+      var r3 = this, t2 = this;
+      e3.provide(l, this), e3.provide(f, this.route), w(t2), e3.mixin({ beforeCreate: function() {
+        if ("page" === this.$mpType && t2.guardHooks.afterHooks && t2.guardHooks.afterHooks[0]) {
+          var e4 = t2.route.value, r4 = O(t2);
+          t2.guardHooks.afterHooks[0].call(null, r4, e4);
+        }
+      }, onLoad: function(e4) {
+        !h(e4) && h(t2.route.value.query) && h(t2.route.value.params) && (t2.route.value = S(S({}, t2.route.value), {}, { query: e4 }));
+      }, onShow: function() {
+        "page" === this.$mpType && function(e4) {
+          e4.route.value = O(e4);
+        }(t2);
+      } }), Object.defineProperty(e3.config.globalProperties, "$Router", { get: function() {
+        return t2;
+      } }), Object.defineProperty(e3.config.globalProperties, "$Route", { enumerable: true, get: function() {
+        return vue.unref(r3.route);
+      } });
+    }, route: vue.shallowRef({ path: "/" }) };
+    return r2;
   }
   const _export_sfc = (sfc, props) => {
     const target = sfc.__vccOpts || sfc;
@@ -64,12 +290,12 @@ if (uni.restoreGlobal) {
     }
     return target;
   };
-  const _sfc_main$B = {
+  const _sfc_main$C = {
     __name: "enter",
     setup(__props) {
-      const router = useRouter();
+      let router2 = j();
       const tiao = () => {
-        router.push("/pages/login/login");
+        router2.push("/pages/login/login");
       };
       const title = "EmoSphere";
       const slogan1 = "欢迎来到 EmoSphere";
@@ -98,17 +324,7 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesEnterEnter = /* @__PURE__ */ _export_sfc(_sfc_main$B, [["__file", "D:/ruangong/emosphere-master1/pages/enter/enter.vue"]]);
-  function formatAppLog(type, filename, ...args) {
-    if (uni.__log__) {
-      uni.__log__(type, filename, ...args);
-    } else {
-      console[type].apply(console, [...args, filename]);
-    }
-  }
-  function resolveEasycom(component, easycom) {
-    return shared.isString(component) ? easycom : component;
-  }
+  const PagesEnterEnter = /* @__PURE__ */ _export_sfc(_sfc_main$C, [["__file", "D:/ruangong/emosphere/pages/enter/enter.vue"]]);
   function getDevtoolsGlobalHook() {
     return getTarget().__VUE_DEVTOOLS_GLOBAL_HOOK__;
   }
@@ -138,7 +354,7 @@ if (uni.restoreGlobal) {
         const raw = localStorage.getItem(localSettingsSaveId);
         const data = JSON.parse(raw);
         Object.assign(currentSettings, data);
-      } catch (e) {
+      } catch (e2) {
       }
       this.fallbacks = {
         getSettings() {
@@ -147,7 +363,7 @@ if (uni.restoreGlobal) {
         setSettings(value) {
           try {
             localStorage.setItem(localSettingsSaveId, JSON.stringify(value));
-          } catch (e) {
+          } catch (e2) {
           }
           currentSettings = value;
         }
@@ -246,8 +462,8 @@ if (uni.restoreGlobal) {
   function isPromise(val) {
     return val && typeof val.then === "function";
   }
-  function assert(condition, msg) {
-    if (!condition) {
+  function assert(condition2, msg) {
+    if (!condition2) {
       throw new Error("[vuex] " + msg);
     }
   }
@@ -261,9 +477,9 @@ if (uni.restoreGlobal) {
       options && options.prepend ? subs.unshift(fn) : subs.push(fn);
     }
     return function() {
-      var i = subs.indexOf(fn);
-      if (i > -1) {
-        subs.splice(i, 1);
+      var i2 = subs.indexOf(fn);
+      if (i2 > -1) {
+        subs.splice(i2, 1);
       }
     };
   }
@@ -713,18 +929,18 @@ if (uni.restoreGlobal) {
       if (path.length > 1) {
         var target = result;
         var leafKey = path.pop();
-        path.forEach(function(p) {
-          if (!target[p]) {
-            target[p] = {
+        path.forEach(function(p2) {
+          if (!target[p2]) {
+            target[p2] = {
               _custom: {
                 value: {},
-                display: p,
+                display: p2,
                 tooltip: "Module",
                 abstract: true
               }
             };
           }
-          target = target[p]._custom.value;
+          target = target[p2]._custom.value;
         });
         target[leafKey] = canThrow(function() {
           return getters[key];
@@ -738,16 +954,16 @@ if (uni.restoreGlobal) {
     return result;
   }
   function getStoreModule(moduleMap, path) {
-    var names = path.split("/").filter(function(n) {
-      return n;
+    var names = path.split("/").filter(function(n2) {
+      return n2;
     });
     return names.reduce(
-      function(module, moduleName, i) {
+      function(module, moduleName, i2) {
         var child = module[moduleName];
         if (!child) {
           throw new Error('Missing module "' + moduleName + '" for path "' + path + '".');
         }
-        return i === names.length - 1 ? child : child._children;
+        return i2 === names.length - 1 ? child : child._children;
       },
       path === "root" ? moduleMap : moduleMap.root._children
     );
@@ -755,8 +971,8 @@ if (uni.restoreGlobal) {
   function canThrow(cb) {
     try {
       return cb();
-    } catch (e) {
-      return e;
+    } catch (e2) {
+      return e2;
     }
   }
   var Module = function Module2(rawModule, runtime) {
@@ -997,7 +1213,7 @@ if (uni.restoreGlobal) {
   prototypeAccessors.state.get = function() {
     return this._state.data;
   };
-  prototypeAccessors.state.set = function(v) {
+  prototypeAccessors.state.set = function(v2) {
     {
       assert(false, "use store.replaceState() to explicit replace store state.");
     }
@@ -1049,10 +1265,10 @@ if (uni.restoreGlobal) {
       }).forEach(function(sub) {
         return sub.before(action, this$1$1.state);
       });
-    } catch (e) {
+    } catch (e2) {
       {
         console.warn("[vuex] error in before action subscribers: ");
-        console.error(e);
+        console.error(e2);
       }
     }
     var result = entry.length > 1 ? Promise.all(entry.map(function(handler) {
@@ -1066,10 +1282,10 @@ if (uni.restoreGlobal) {
           }).forEach(function(sub) {
             return sub.after(action, this$1$1.state);
           });
-        } catch (e) {
+        } catch (e2) {
           {
             console.warn("[vuex] error in after action subscribers: ");
-            console.error(e);
+            console.error(e2);
           }
         }
         resolve(res);
@@ -1080,10 +1296,10 @@ if (uni.restoreGlobal) {
           }).forEach(function(sub) {
             return sub.error(action, this$1$1.state, error);
           });
-        } catch (e) {
+        } catch (e2) {
           {
             console.warn("[vuex] error in error action subscribers: ");
-            console.error(e);
+            console.error(e2);
           }
         }
         reject(error);
@@ -1167,22 +1383,44 @@ if (uni.restoreGlobal) {
       username: null,
       userbirthday: null,
       usergender: null,
-      usertatus: null,
+      userstatus: null,
+      ImagePath: null,
       emotionIcons: ["xiyue", "beiai", "danyou", "yane", "jingqi", "fennu"]
     },
     mutations: {
       setUserData(state, {
         id,
-        username
+        username,
+        userBirthday,
+        userGender,
+        imagepath
       }) {
         state.userId = id;
         state.username = username;
+        state.userbirthday = userBirthday;
+        state.usergender = userGender;
+        state.ImagePath = imagepath;
       },
-      UserData(state, { username, userBirthday, userGender, userStatus }) {
+      upData(state, {
+        username,
+        userBirthday,
+        userGender,
+        userstatus
+      }) {
         state.username = username;
         state.userBirthday = userBirthday;
         state.userGender = userGender;
-        state.userStatus = userStatus;
+        state.userstatus = userstatus;
+      },
+      setPath(state, path) {
+        state.ImagePath = path;
+      },
+      clearUserData(state) {
+        state.userId = null;
+        state.username = null;
+        state.userbirthday = null;
+        state.usergender = null;
+        state.usertatus = null;
       }
     },
     actions: {},
@@ -1192,14 +1430,14 @@ if (uni.restoreGlobal) {
       getEmotionIcons: (state) => state.emotionIcons,
       getUserBirthday: (state) => state.userbirthday,
       getUserGender: (state) => state.usergender,
-      getUserStatus: (state) => state.usertatus,
+      getUserStatus: (state) => state.userstatus,
       getEmotionIcons: (state) => state.emotionIcons
     }
   });
-  const _sfc_main$A = {
+  const _sfc_main$B = {
     __name: "login",
     setup(__props) {
-      const router = useRouter();
+      let router2 = j();
       const phoneNumber = vue.ref("15159606435");
       const password = vue.ref("123456");
       const agreementChecked = vue.ref(false);
@@ -1219,17 +1457,25 @@ if (uni.restoreGlobal) {
             pwd: password.value
           },
           success: (response) => {
+            let formattedBirthday;
             const user = response.data["user"];
-            formatAppLog("log", "at pages/login/login.vue:63", response.data);
+            if (user.birthday == null) {
+              formattedBirthday = "2000-01-01";
+            } else {
+              formattedBirthday = user.birthday.substring(0, 10);
+            }
+            formatAppLog("log", "at pages/login/login.vue:69", response.data);
             store.commit("setUserData", {
               id: user.id,
-              username: user.username
+              username: user.username,
+              userBirthday: formattedBirthday,
+              userGender: user.gender
             });
-            formatAppLog("log", "at pages/login/login.vue:68", "User data stored in Vuex:", store.state.userId, store.state.username);
-            router.push("/pages/set/set");
+            formatAppLog("log", "at pages/login/login.vue:76", "User data stored in Vuex:", store.state.userId, store.state.username, store.state.ImagePath);
+            router2.replace("/pages/main/main");
           },
           fail: (error) => {
-            formatAppLog("error", "at pages/login/login.vue:74", error);
+            formatAppLog("error", "at pages/login/login.vue:81", error);
           }
         });
       };
@@ -1310,7 +1556,7 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesLoginLogin = /* @__PURE__ */ _export_sfc(_sfc_main$A, [["__file", "D:/ruangong/emosphere-master1/pages/login/login.vue"]]);
+  const PagesLoginLogin = /* @__PURE__ */ _export_sfc(_sfc_main$B, [["__file", "D:/ruangong/emosphere/pages/login/login.vue"]]);
   var calendar = {
     /**
         * 农历1900-2100的润大小信息表
@@ -1810,13 +2056,13 @@ if (uni.restoreGlobal) {
         * @return Number
         * @eg:var count = calendar.lYearDays(1987) ;//count=387
         */
-    lYearDays: function(y) {
-      var i;
+    lYearDays: function(y2) {
+      var i2;
       var sum = 348;
-      for (i = 32768; i > 8; i >>= 1) {
-        sum += this.lunarInfo[y - 1900] & i ? 1 : 0;
+      for (i2 = 32768; i2 > 8; i2 >>= 1) {
+        sum += this.lunarInfo[y2 - 1900] & i2 ? 1 : 0;
       }
-      return sum + this.leapDays(y);
+      return sum + this.leapDays(y2);
     },
     /**
         * 返回农历y年闰月是哪个月；若y年没有闰月 则返回0
@@ -1824,8 +2070,8 @@ if (uni.restoreGlobal) {
         * @return Number (0-12)
         * @eg:var leapMonth = calendar.leapMonth(1987) ;//leapMonth=6
         */
-    leapMonth: function(y) {
-      return this.lunarInfo[y - 1900] & 15;
+    leapMonth: function(y2) {
+      return this.lunarInfo[y2 - 1900] & 15;
     },
     /**
         * 返回农历y年闰月的天数 若该年没有闰月则返回0
@@ -1833,9 +2079,9 @@ if (uni.restoreGlobal) {
         * @return Number (0、29、30)
         * @eg:var leapMonthDay = calendar.leapDays(1987) ;//leapMonthDay=29
         */
-    leapDays: function(y) {
-      if (this.leapMonth(y)) {
-        return this.lunarInfo[y - 1900] & 65536 ? 30 : 29;
+    leapDays: function(y2) {
+      if (this.leapMonth(y2)) {
+        return this.lunarInfo[y2 - 1900] & 65536 ? 30 : 29;
       }
       return 0;
     },
@@ -1845,11 +2091,11 @@ if (uni.restoreGlobal) {
         * @return Number (-1、29、30)
         * @eg:var MonthDay = calendar.monthDays(1987,9) ;//MonthDay=29
         */
-    monthDays: function(y, m) {
-      if (m > 12 || m < 1) {
+    monthDays: function(y2, m2) {
+      if (m2 > 12 || m2 < 1) {
         return -1;
       }
-      return this.lunarInfo[y - 1900] & 65536 >> m ? 30 : 29;
+      return this.lunarInfo[y2 - 1900] & 65536 >> m2 ? 30 : 29;
     },
     /**
         * 返回公历(!)y年m月的天数
@@ -1857,13 +2103,13 @@ if (uni.restoreGlobal) {
         * @return Number (-1、28、29、30、31)
         * @eg:var solarMonthDay = calendar.leapDays(1987) ;//solarMonthDay=30
         */
-    solarDays: function(y, m) {
-      if (m > 12 || m < 1) {
+    solarDays: function(y2, m2) {
+      if (m2 > 12 || m2 < 1) {
         return -1;
       }
-      var ms = m - 1;
+      var ms = m2 - 1;
       if (ms == 1) {
-        return y % 4 == 0 && y % 100 != 0 || y % 400 == 0 ? 29 : 28;
+        return y2 % 4 == 0 && y2 % 100 != 0 || y2 % 400 == 0 ? 29 : 28;
       } else {
         return this.solarMonth[ms];
       }
@@ -1889,9 +2135,9 @@ if (uni.restoreGlobal) {
        * @return Cn string
        */
     toAstro: function(cMonth, cDay) {
-      var s = "魔羯水瓶双鱼白羊金牛双子巨蟹狮子处女天秤天蝎射手魔羯";
+      var s2 = "魔羯水瓶双鱼白羊金牛双子巨蟹狮子处女天秤天蝎射手魔羯";
       var arr = [20, 19, 21, 21, 21, 22, 23, 23, 23, 23, 22, 22];
-      return s.substr(cMonth * 2 - (cDay < arr[cMonth - 1] ? 2 : 0), 2) + "座";
+      return s2.substr(cMonth * 2 - (cDay < arr[cMonth - 1] ? 2 : 0), 2) + "座";
     },
     /**
         * 传入offset偏移量返回干支
@@ -1907,14 +2153,14 @@ if (uni.restoreGlobal) {
         * @return day Number
         * @eg:var _24 = calendar.getTerm(1987,3) ;//_24=4;意即1987年2月4日立春
         */
-    getTerm: function(y, n) {
-      if (y < 1900 || y > 2100) {
+    getTerm: function(y2, n2) {
+      if (y2 < 1900 || y2 > 2100) {
         return -1;
       }
-      if (n < 1 || n > 24) {
+      if (n2 < 1 || n2 > 24) {
         return -1;
       }
-      var _table = this.sTermInfo[y - 1900];
+      var _table = this.sTermInfo[y2 - 1900];
       var _info = [
         parseInt("0x" + _table.substr(0, 5)).toString(),
         parseInt("0x" + _table.substr(5, 5)).toString(),
@@ -1949,7 +2195,7 @@ if (uni.restoreGlobal) {
         _info[5].substr(3, 1),
         _info[5].substr(4, 2)
       ];
-      return parseInt(_calday[n - 1]);
+      return parseInt(_calday[n2 - 1]);
     },
     /**
         * 传入农历数字月份返回汉语通俗表示法
@@ -1957,13 +2203,13 @@ if (uni.restoreGlobal) {
         * @return Cn string
         * @eg:var cnMonth = calendar.toChinaMonth(12) ;//cnMonth='腊月'
         */
-    toChinaMonth: function(m) {
-      if (m > 12 || m < 1) {
+    toChinaMonth: function(m2) {
+      if (m2 > 12 || m2 < 1) {
         return -1;
       }
-      var s = this.nStr3[m - 1];
-      s += "月";
-      return s;
+      var s2 = this.nStr3[m2 - 1];
+      s2 += "月";
+      return s2;
     },
     /**
         * 传入农历日期数字返回汉字表示法
@@ -1971,23 +2217,23 @@ if (uni.restoreGlobal) {
         * @return Cn string
         * @eg:var cnDay = calendar.toChinaDay(21) ;//cnMonth='廿一'
         */
-    toChinaDay: function(d) {
-      var s;
-      switch (d) {
+    toChinaDay: function(d2) {
+      var s2;
+      switch (d2) {
         case 10:
-          s = "初十";
+          s2 = "初十";
           break;
         case 20:
-          s = "二十";
+          s2 = "二十";
           break;
         case 30:
-          s = "三十";
+          s2 = "三十";
           break;
         default:
-          s = this.nStr2[Math.floor(d / 10)];
-          s += this.nStr1[d % 10];
+          s2 = this.nStr2[Math.floor(d2 / 10)];
+          s2 += this.nStr1[d2 % 10];
       }
-      return s;
+      return s2;
     },
     /**
         * 年份转生肖[!仅能大致转换] => 精确划分生肖分界线是“立春”
@@ -1995,8 +2241,8 @@ if (uni.restoreGlobal) {
         * @return Cn string
         * @eg:var animal = calendar.getAnimal(1987) ;//animal='兔'
         */
-    getAnimal: function(y) {
-      return this.Animals[(y - 4) % 12];
+    getAnimal: function(y2) {
+      return this.Animals[(y2 - 4) % 12];
     },
     /**
         * 传入阳历年月日获得详细的公历、农历object信息 <=>JSON
@@ -2006,36 +2252,36 @@ if (uni.restoreGlobal) {
         * @return JSON object
         * @eg:__f__('log','at uni_modules/uni-calendar/components/uni-calendar/calendar.js:381',calendar.solar2lunar(1987,11,01));
         */
-    solar2lunar: function(y, m, d) {
-      if (y < 1900 || y > 2100) {
+    solar2lunar: function(y2, m2, d2) {
+      if (y2 < 1900 || y2 > 2100) {
         return -1;
       }
-      if (y == 1900 && m == 1 && d < 31) {
+      if (y2 == 1900 && m2 == 1 && d2 < 31) {
         return -1;
       }
-      if (!y) {
+      if (!y2) {
         var objDate = /* @__PURE__ */ new Date();
       } else {
-        var objDate = new Date(y, parseInt(m) - 1, d);
+        var objDate = new Date(y2, parseInt(m2) - 1, d2);
       }
-      var i;
+      var i2;
       var leap = 0;
       var temp = 0;
-      var y = objDate.getFullYear();
-      var m = objDate.getMonth() + 1;
-      var d = objDate.getDate();
+      var y2 = objDate.getFullYear();
+      var m2 = objDate.getMonth() + 1;
+      var d2 = objDate.getDate();
       var offset = (Date.UTC(objDate.getFullYear(), objDate.getMonth(), objDate.getDate()) - Date.UTC(1900, 0, 31)) / 864e5;
-      for (i = 1900; i < 2101 && offset > 0; i++) {
-        temp = this.lYearDays(i);
+      for (i2 = 1900; i2 < 2101 && offset > 0; i2++) {
+        temp = this.lYearDays(i2);
         offset -= temp;
       }
       if (offset < 0) {
         offset += temp;
-        i--;
+        i2--;
       }
       var isTodayObj = /* @__PURE__ */ new Date();
       var isToday = false;
-      if (isTodayObj.getFullYear() == y && isTodayObj.getMonth() + 1 == m && isTodayObj.getDate() == d) {
+      if (isTodayObj.getFullYear() == y2 && isTodayObj.getMonth() + 1 == m2 && isTodayObj.getDate() == d2) {
         isToday = true;
       }
       var nWeek = objDate.getDay();
@@ -2043,58 +2289,58 @@ if (uni.restoreGlobal) {
       if (nWeek == 0) {
         nWeek = 7;
       }
-      var year = i;
-      var leap = this.leapMonth(i);
+      var year = i2;
+      var leap = this.leapMonth(i2);
       var isLeap = false;
-      for (i = 1; i < 13 && offset > 0; i++) {
-        if (leap > 0 && i == leap + 1 && isLeap == false) {
-          --i;
+      for (i2 = 1; i2 < 13 && offset > 0; i2++) {
+        if (leap > 0 && i2 == leap + 1 && isLeap == false) {
+          --i2;
           isLeap = true;
           temp = this.leapDays(year);
         } else {
-          temp = this.monthDays(year, i);
+          temp = this.monthDays(year, i2);
         }
-        if (isLeap == true && i == leap + 1) {
+        if (isLeap == true && i2 == leap + 1) {
           isLeap = false;
         }
         offset -= temp;
       }
-      if (offset == 0 && leap > 0 && i == leap + 1) {
+      if (offset == 0 && leap > 0 && i2 == leap + 1) {
         if (isLeap) {
           isLeap = false;
         } else {
           isLeap = true;
-          --i;
+          --i2;
         }
       }
       if (offset < 0) {
         offset += temp;
-        --i;
+        --i2;
       }
-      var month = i;
+      var month = i2;
       var day = offset + 1;
-      var sm = m - 1;
+      var sm = m2 - 1;
       var gzY = this.toGanZhiYear(year);
-      var firstNode = this.getTerm(y, m * 2 - 1);
-      var secondNode = this.getTerm(y, m * 2);
-      var gzM = this.toGanZhi((y - 1900) * 12 + m + 11);
-      if (d >= firstNode) {
-        gzM = this.toGanZhi((y - 1900) * 12 + m + 12);
+      var firstNode = this.getTerm(y2, m2 * 2 - 1);
+      var secondNode = this.getTerm(y2, m2 * 2);
+      var gzM = this.toGanZhi((y2 - 1900) * 12 + m2 + 11);
+      if (d2 >= firstNode) {
+        gzM = this.toGanZhi((y2 - 1900) * 12 + m2 + 12);
       }
       var isTerm = false;
       var Term = null;
-      if (firstNode == d) {
+      if (firstNode == d2) {
         isTerm = true;
-        Term = this.solarTerm[m * 2 - 2];
+        Term = this.solarTerm[m2 * 2 - 2];
       }
-      if (secondNode == d) {
+      if (secondNode == d2) {
         isTerm = true;
-        Term = this.solarTerm[m * 2 - 1];
+        Term = this.solarTerm[m2 * 2 - 1];
       }
-      var dayCyclical = Date.UTC(y, sm, 1, 0, 0, 0, 0) / 864e5 + 25567 + 10;
-      var gzD = this.toGanZhi(dayCyclical + d - 1);
-      var astro = this.toAstro(m, d);
-      return { "lYear": year, "lMonth": month, "lDay": day, "Animal": this.getAnimal(year), "IMonthCn": (isLeap ? "闰" : "") + this.toChinaMonth(month), "IDayCn": this.toChinaDay(day), "cYear": y, "cMonth": m, "cDay": d, "gzYear": gzY, "gzMonth": gzM, "gzDay": gzD, "isToday": isToday, "isLeap": isLeap, "nWeek": nWeek, "ncWeek": "星期" + cWeek, "isTerm": isTerm, "Term": Term, "astro": astro };
+      var dayCyclical = Date.UTC(y2, sm, 1, 0, 0, 0, 0) / 864e5 + 25567 + 10;
+      var gzD = this.toGanZhi(dayCyclical + d2 - 1);
+      var astro = this.toAstro(m2, d2);
+      return { "lYear": year, "lMonth": month, "lDay": day, "Animal": this.getAnimal(year), "IMonthCn": (isLeap ? "闰" : "") + this.toChinaMonth(month), "IDayCn": this.toChinaDay(day), "cYear": y2, "cMonth": m2, "cDay": d2, "gzYear": gzY, "gzMonth": gzM, "gzDay": gzD, "isToday": isToday, "isLeap": isLeap, "nWeek": nWeek, "ncWeek": "星期" + cWeek, "isTerm": isTerm, "Term": Term, "astro": astro };
     },
     /**
         * 传入农历年月日以及传入的月份是否闰月获得详细的公历、农历object信息 <=>JSON
@@ -2105,45 +2351,45 @@ if (uni.restoreGlobal) {
         * @return JSON object
         * @eg:__f__('log','at uni_modules/uni-calendar/components/uni-calendar/calendar.js:500',calendar.lunar2solar(1987,9,10));
         */
-    lunar2solar: function(y, m, d, isLeapMonth) {
+    lunar2solar: function(y2, m2, d2, isLeapMonth) {
       var isLeapMonth = !!isLeapMonth;
-      var leapMonth = this.leapMonth(y);
-      this.leapDays(y);
-      if (isLeapMonth && leapMonth != m) {
+      var leapMonth = this.leapMonth(y2);
+      this.leapDays(y2);
+      if (isLeapMonth && leapMonth != m2) {
         return -1;
       }
-      if (y == 2100 && m == 12 && d > 1 || y == 1900 && m == 1 && d < 31) {
+      if (y2 == 2100 && m2 == 12 && d2 > 1 || y2 == 1900 && m2 == 1 && d2 < 31) {
         return -1;
       }
-      var day = this.monthDays(y, m);
+      var day = this.monthDays(y2, m2);
       var _day = day;
       if (isLeapMonth) {
-        _day = this.leapDays(y, m);
+        _day = this.leapDays(y2, m2);
       }
-      if (y < 1900 || y > 2100 || d > _day) {
+      if (y2 < 1900 || y2 > 2100 || d2 > _day) {
         return -1;
       }
       var offset = 0;
-      for (var i = 1900; i < y; i++) {
-        offset += this.lYearDays(i);
+      for (var i2 = 1900; i2 < y2; i2++) {
+        offset += this.lYearDays(i2);
       }
       var leap = 0;
       var isAdd = false;
-      for (var i = 1; i < m; i++) {
-        leap = this.leapMonth(y);
+      for (var i2 = 1; i2 < m2; i2++) {
+        leap = this.leapMonth(y2);
         if (!isAdd) {
-          if (leap <= i && leap > 0) {
-            offset += this.leapDays(y);
+          if (leap <= i2 && leap > 0) {
+            offset += this.leapDays(y2);
             isAdd = true;
           }
         }
-        offset += this.monthDays(y, i);
+        offset += this.monthDays(y2, i2);
       }
       if (isLeapMonth) {
         offset += day;
       }
       var stmap = Date.UTC(1900, 1, 30, 0, 0, 0);
-      var calObj = new Date((offset + d - 31) * 864e5 + stmap);
+      var calObj = new Date((offset + d2 - 31) * 864e5 + stmap);
       var cY = calObj.getUTCFullYear();
       var cM = calObj.getUTCMonth() + 1;
       var cD = calObj.getUTCDate();
@@ -2230,14 +2476,14 @@ if (uni.restoreGlobal) {
           dd.setFullYear(dd.getFullYear() + AddDayCount);
           break;
       }
-      const y = dd.getFullYear();
-      const m = dd.getMonth() + 1 < 10 ? "0" + (dd.getMonth() + 1) : dd.getMonth() + 1;
-      const d = dd.getDate() < 10 ? "0" + dd.getDate() : dd.getDate();
+      const y2 = dd.getFullYear();
+      const m2 = dd.getMonth() + 1 < 10 ? "0" + (dd.getMonth() + 1) : dd.getMonth() + 1;
+      const d2 = dd.getDate() < 10 ? "0" + dd.getDate() : dd.getDate();
       return {
-        fullDate: y + "-" + m + "-" + d,
-        year: y,
-        month: m,
-        date: d,
+        fullDate: y2 + "-" + m2 + "-" + d2,
+        year: y2,
+        month: m2,
+        date: d2,
         day: dd.getDay()
       };
     }
@@ -2246,8 +2492,8 @@ if (uni.restoreGlobal) {
      */
     _getLastMonthDays(firstDay, full) {
       let dateArr = [];
-      for (let i = firstDay; i > 0; i--) {
-        const beforeDate = new Date(full.year, full.month - 1, -i + 1).getDate();
+      for (let i2 = firstDay; i2 > 0; i2--) {
+        const beforeDate = new Date(full.year, full.month - 1, -i2 + 1).getDate();
         dateArr.push({
           date: beforeDate,
           month: full.month - 1,
@@ -2263,8 +2509,8 @@ if (uni.restoreGlobal) {
     _currentMonthDys(dateData, full) {
       let dateArr = [];
       let fullDate = this.date.fullDate;
-      for (let i = 1; i <= dateData; i++) {
-        let nowDate = full.year + "-" + (full.month < 10 ? full.month : full.month) + "-" + (i < 10 ? "0" + i : i);
+      for (let i2 = 1; i2 <= dateData; i2++) {
+        let nowDate = full.year + "-" + (full.month < 10 ? full.month : full.month) + "-" + (i2 < 10 ? "0" + i2 : i2);
         let isDay = fullDate === nowDate;
         let info = this.selected && this.selected.find((item) => {
           if (this.dateEqual(nowDate, item.date)) {
@@ -2295,12 +2541,12 @@ if (uni.restoreGlobal) {
         let data = {
           fullDate: nowDate,
           year: full.year,
-          date: i,
+          date: i2,
           multiple: this.range ? checked : false,
           beforeMultiple: this.dateEqual(this.multipleStatus.before, nowDate),
           afterMultiple: this.dateEqual(this.multipleStatus.after, nowDate),
           month: full.month,
-          lunar: this.getlunar(full.year, full.month, i),
+          lunar: this.getlunar(full.year, full.month, i2),
           disable: !(disableBefore && disableAfter),
           isDay
         };
@@ -2316,11 +2562,11 @@ if (uni.restoreGlobal) {
      */
     _getNextMonthDays(surplus, full) {
       let dateArr = [];
-      for (let i = 1; i < surplus + 1; i++) {
+      for (let i2 = 1; i2 < surplus + 1; i2++) {
         dateArr.push({
-          date: i,
+          date: i2,
           month: Number(full.month) + 1,
-          lunar: this.getlunar(full.year, Number(full.month) + 1, i),
+          lunar: this.getlunar(full.year, Number(full.month) + 1, i2),
           disable: true
         });
       }
@@ -2376,9 +2622,9 @@ if (uni.restoreGlobal) {
       de.setFullYear(ae[0], ae[1] - 1, ae[2]);
       var unixDb = db.getTime() - 24 * 60 * 60 * 1e3;
       var unixDe = de.getTime() - 24 * 60 * 60 * 1e3;
-      for (var k = unixDb; k <= unixDe; ) {
-        k = k + 24 * 60 * 60 * 1e3;
-        arr.push(this.getDate(new Date(parseInt(k))).fullDate);
+      for (var k2 = unixDb; k2 <= unixDe; ) {
+        k2 = k2 + 24 * 60 * 60 * 1e3;
+        arr.push(this.getDate(new Date(parseInt(k2))).fullDate);
       }
       return arr;
     }
@@ -2448,11 +2694,11 @@ if (uni.restoreGlobal) {
       dates.nextMonthDays = this._getNextMonthDays(surplus, this.getDate(dateData));
       canlender = canlender.concat(dates.lastMonthDays, dates.currentMonthDys, dates.nextMonthDays);
       let weeks = {};
-      for (let i = 0; i < canlender.length; i++) {
-        if (i % 7 === 0) {
-          weeks[parseInt(i / 7)] = new Array(7);
+      for (let i2 = 0; i2 < canlender.length; i2++) {
+        if (i2 % 7 === 0) {
+          weeks[parseInt(i2 / 7)] = new Array(7);
         }
-        weeks[parseInt(i / 7)][i % 7] = canlender[i];
+        weeks[parseInt(i2 / 7)][i2 % 7] = canlender[i2];
       }
       this.canlender = canlender;
       this.weeks = weeks;
@@ -2790,8 +3036,8 @@ if (uni.restoreGlobal) {
     "zh-Hans": zhHans$1,
     "zh-Hant": zhHant$1
   };
-  const { t: t$3 } = initVueI18n(i18nMessages$1);
-  const _sfc_main$z = {
+  const { t: t$4 } = initVueI18n(i18nMessages$1);
+  const _sfc_main$A = {
     emits: ["change"],
     props: {
       weeks: {
@@ -2819,7 +3065,7 @@ if (uni.restoreGlobal) {
     },
     computed: {
       todayText() {
-        return t$3("uni-calender.today");
+        return t$4("uni-calender.today");
       }
     },
     methods: {
@@ -2828,7 +3074,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -2925,9 +3171,9 @@ if (uni.restoreGlobal) {
       /* CLASS */
     );
   }
-  const CalendarItem = /* @__PURE__ */ _export_sfc(_sfc_main$z, [["render", _sfc_render$l], ["__scopeId", "data-v-65626c58"], ["__file", "D:/ruangong/emosphere-master1/uni_modules/uni-calendar/components/uni-calendar/uni-calendar-item.vue"]]);
-  const { t: t$2 } = initVueI18n(i18nMessages$1);
-  const _sfc_main$y = {
+  const CalendarItem = /* @__PURE__ */ _export_sfc(_sfc_main$A, [["render", _sfc_render$m], ["__scopeId", "data-v-65626c58"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-calendar/components/uni-calendar/uni-calendar-item.vue"]]);
+  const { t: t$3 } = initVueI18n(i18nMessages$1);
+  const _sfc_main$z = {
     components: {
       CalendarItem
     },
@@ -2986,34 +3232,34 @@ if (uni.restoreGlobal) {
        * for i18n
        */
       okText() {
-        return t$2("uni-calender.ok");
+        return t$3("uni-calender.ok");
       },
       cancelText() {
-        return t$2("uni-calender.cancel");
+        return t$3("uni-calender.cancel");
       },
       todayText() {
-        return t$2("uni-calender.today");
+        return t$3("uni-calender.today");
       },
       monText() {
-        return t$2("uni-calender.MON");
+        return t$3("uni-calender.MON");
       },
       TUEText() {
-        return t$2("uni-calender.TUE");
+        return t$3("uni-calender.TUE");
       },
       WEDText() {
-        return t$2("uni-calender.WED");
+        return t$3("uni-calender.WED");
       },
       THUText() {
-        return t$2("uni-calender.THU");
+        return t$3("uni-calender.THU");
       },
       FRIText() {
-        return t$2("uni-calender.FRI");
+        return t$3("uni-calender.FRI");
       },
       SATText() {
-        return t$2("uni-calender.SAT");
+        return t$3("uni-calender.SAT");
       },
       SUNText() {
-        return t$2("uni-calender.SUN");
+        return t$3("uni-calender.SUN");
       }
     },
     watch: {
@@ -3048,8 +3294,8 @@ if (uni.restoreGlobal) {
       // 取消穿透
       clean() {
       },
-      bindDateChange(e) {
-        const value = e.detail.value + "-1";
+      bindDateChange(e2) {
+        const value = e2.detail.value + "-1";
         this.setDate(value);
         const { year, month } = this.cale.getDate(value);
         this.$emit("monthSwitch", {
@@ -3196,7 +3442,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_calendar_item = vue.resolveComponent("calendar-item");
     return vue.openBlock(), vue.createElementBlock("view", { class: "uni-calendar" }, [
       !$props.insert && $data.show ? (vue.openBlock(), vue.createElementBlock(
@@ -3403,17 +3649,21 @@ if (uni.restoreGlobal) {
       )) : vue.createCommentVNode("v-if", true)
     ]);
   }
-  const __easycom_0$5 = /* @__PURE__ */ _export_sfc(_sfc_main$y, [["render", _sfc_render$k], ["__scopeId", "data-v-b6ab2cfb"], ["__file", "D:/ruangong/emosphere-master1/uni_modules/uni-calendar/components/uni-calendar/uni-calendar.vue"]]);
-  const _sfc_main$x = {
+  const __easycom_0$5 = /* @__PURE__ */ _export_sfc(_sfc_main$z, [["render", _sfc_render$l], ["__scopeId", "data-v-b6ab2cfb"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-calendar/components/uni-calendar/uni-calendar.vue"]]);
+  const _sfc_main$y = {
     __name: "calendar",
     setup(__props) {
-      store.getters.getEmotionIcons;
+      let router2 = j();
       const records = vue.ref([]);
+      store.getters.getEmotionIcons;
       const formatDate = (dateString) => {
         const originalDate = new Date(dateString);
         const month = originalDate.getMonth() + 1;
         const day = originalDate.getDate();
         return `${month}月${day}日`;
+      };
+      const fan = () => {
+        router2.replace("/pages/main/main");
       };
       const getemo = () => {
         uni.request({
@@ -3424,11 +3674,11 @@ if (uni.restoreGlobal) {
             nums: 2
           },
           success: (response) => {
-            formatAppLog("log", "at pages/calendar/calendar.vue:61", response.data);
+            formatAppLog("log", "at pages/calendar/calendar.vue:62", response.data);
             records.value = response.data["records"];
           },
           fail: (error) => {
-            formatAppLog("error", "at pages/calendar/calendar.vue:65", error);
+            formatAppLog("error", "at pages/calendar/calendar.vue:66", error);
           }
         });
       };
@@ -3436,7 +3686,6 @@ if (uni.restoreGlobal) {
         getemo();
       });
       return (_ctx, _cache) => {
-        const _component_router_link = vue.resolveComponent("router-link");
         const _component_uni_calendar = resolveEasycom(vue.resolveDynamicComponent("uni-calendar"), __easycom_0$5);
         return vue.openBlock(), vue.createElementBlock("view", { class: "backarea" }, [
           vue.createElementVNode("view", {
@@ -3444,16 +3693,13 @@ if (uni.restoreGlobal) {
             style: { "width": "100%", "height": "5%" }
           }),
           vue.createElementVNode("view", { class: "header" }, [
-            vue.createVNode(_component_router_link, { to: { path: "/pages/main/main" } }, {
-              default: vue.withCtx(() => [
-                vue.createElementVNode("view", { class: "head-left" }, [
-                  vue.createElementVNode("image", { src: "/static/images/fanhui.png" }),
-                  vue.createElementVNode("text", null, "返回")
-                ])
-              ]),
-              _: 1
-              /* STABLE */
-            })
+            vue.createElementVNode("view", {
+              class: "head-left",
+              onClick: fan
+            }, [
+              vue.createElementVNode("image", { src: "/static/images/fanhui.png" }),
+              vue.createElementVNode("text", null, "返回")
+            ])
           ]),
           vue.createElementVNode("view", { class: "calendar" }, [
             vue.createElementVNode("view", null, [
@@ -3511,13 +3757,23 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesCalendarCalendar = /* @__PURE__ */ _export_sfc(_sfc_main$x, [["__file", "D:/ruangong/emosphere-master1/pages/calendar/calendar.vue"]]);
-  const _sfc_main$w = {
+  const PagesCalendarCalendar = /* @__PURE__ */ _export_sfc(_sfc_main$y, [["__file", "D:/ruangong/emosphere/pages/calendar/calendar.vue"]]);
+  const _sfc_main$x = {
     __name: "main",
     setup(__props) {
-      const router = useRouter();
-      const ToRecord = () => {
-        router.push("/pages/EmoRecord/EmoRecord");
+      let router2 = j();
+      const navigateTo = (route) => {
+        const routesMap = {
+          space: "/pages/space/space",
+          calendar: "/pages/calendar/calendar",
+          chat: "/pages/chat/chat",
+          relax: "/pages/relax/relax",
+          myScreen: "/pages/myScreen/myScreen",
+          torecord: "/pages/EmoRecord/EmoRecord"
+        };
+        if (routesMap[route]) {
+          router2.replace(routesMap[route]);
+        }
       };
       const pictures = [
         {
@@ -3534,29 +3790,26 @@ if (uni.restoreGlobal) {
         }
       ];
       const onPreviewImage = (url) => {
-        formatAppLog("log", "at pages/main/main.vue:77", url);
+        formatAppLog("log", "at pages/main/main.vue:79", url);
         uni.previewImage({
-          urls: pictures.map((v) => v.url),
+          urls: pictures.map((v2) => v2.url),
           current: url
         });
       };
       return (_ctx, _cache) => {
-        const _component_router_link = vue.resolveComponent("router-link");
         return vue.openBlock(), vue.createElementBlock("view", { class: "backarea" }, [
           vue.createElementVNode("view", {
             class: "box",
             style: { "width": "100%", "height": "5%" }
           }),
-          vue.createVNode(_component_router_link, { to: { path: "/pages/myScreen/myScreen" } }, {
-            default: vue.withCtx(() => [
-              vue.createElementVNode("image", {
-                src: "/static/images/geren.png",
-                style: { "position": "relative", "top": "1rem", "left": "-9rem", "width": "50px", "height": "50px" }
-              })
-            ]),
-            _: 1
-            /* STABLE */
-          }),
+          vue.createElementVNode("view", {
+            onClick: _cache[0] || (_cache[0] = ($event) => navigateTo("myScreen"))
+          }, [
+            vue.createElementVNode("image", {
+              src: "/static/images/geren.png",
+              style: { "position": "relative", "top": "1rem", "left": "-9rem", "width": "50px", "height": "50px" }
+            })
+          ]),
           vue.createElementVNode("swiper", {
             class: "banner",
             "indicator-dots": true,
@@ -3585,47 +3838,37 @@ if (uni.restoreGlobal) {
             ))
           ]),
           vue.createElementVNode("view", { class: "to" }, [
-            vue.createElementVNode("view", null, [
+            vue.createElementVNode("view", {
+              onClick: _cache[1] || (_cache[1] = ($event) => navigateTo("space"))
+            }, [
               vue.createElementVNode("div", { class: "circle" }, [
                 vue.createElementVNode("image", { src: "/static/images/z3.png" })
               ])
             ]),
-            vue.createElementVNode("view", null, [
-              vue.createVNode(_component_router_link, { to: { path: "/pages/calendar/calendar" } }, {
-                default: vue.withCtx(() => [
-                  vue.createElementVNode("div", { class: "circle" }, [
-                    vue.createElementVNode("image", { src: "/static/images/z4.png" })
-                  ])
-                ]),
-                _: 1
-                /* STABLE */
-              })
+            vue.createElementVNode("view", {
+              onClick: _cache[2] || (_cache[2] = ($event) => navigateTo("calendar"))
+            }, [
+              vue.createElementVNode("div", { class: "circle" }, [
+                vue.createElementVNode("image", { src: "/static/images/z4.png" })
+              ])
             ]),
-            vue.createElementVNode("view", null, [
-              vue.createVNode(_component_router_link, { to: { path: "/pages/chat/chat" } }, {
-                default: vue.withCtx(() => [
-                  vue.createElementVNode("div", { class: "circle" }, [
-                    vue.createElementVNode("image", { src: "/static/images/z5.png" })
-                  ])
-                ]),
-                _: 1
-                /* STABLE */
-              })
+            vue.createElementVNode("view", {
+              onClick: _cache[3] || (_cache[3] = ($event) => navigateTo("chat"))
+            }, [
+              vue.createElementVNode("div", { class: "circle" }, [
+                vue.createElementVNode("image", { src: "/static/images/z5.png" })
+              ])
             ]),
-            vue.createElementVNode("view", null, [
-              vue.createVNode(_component_router_link, { to: { path: "/pages/relax/relax" } }, {
-                default: vue.withCtx(() => [
-                  vue.createElementVNode("div", { class: "circle" }, [
-                    vue.createElementVNode("image", { src: "/static/images/z6.png" })
-                  ])
-                ]),
-                _: 1
-                /* STABLE */
-              })
+            vue.createElementVNode("view", {
+              onClick: _cache[4] || (_cache[4] = ($event) => navigateTo("relax"))
+            }, [
+              vue.createElementVNode("div", { class: "circle" }, [
+                vue.createElementVNode("image", { src: "/static/images/z6.png" })
+              ])
             ])
           ]),
           vue.createElementVNode("div", {
-            onClick: ToRecord,
+            onClick: _cache[5] || (_cache[5] = ($event) => navigateTo("torecord")),
             class: "bottom"
           }, [
             vue.createElementVNode("image", {
@@ -3641,19 +3884,19 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesMainMain = /* @__PURE__ */ _export_sfc(_sfc_main$w, [["__file", "D:/ruangong/emosphere-master1/pages/main/main.vue"]]);
-  const _sfc_main$v = {
+  const PagesMainMain = /* @__PURE__ */ _export_sfc(_sfc_main$x, [["__file", "D:/ruangong/emosphere/pages/main/main.vue"]]);
+  const _sfc_main$w = {
     __name: "EmoRecord",
     setup(__props) {
+      let router2 = j();
       const emotionIcons = store.getters.getEmotionIcons;
       let Icon = null;
-      const router = useRouter();
       const getback = () => {
-        router.push("/pages/main/main");
+        router2.replace("/pages/main/main");
       };
       const selectIcon = (iconName) => {
         Icon = Icon === iconName ? null : iconName;
-        formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:114", "选中的图标：", Icon);
+        formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:105", "选中的图标：", Icon);
       };
       const isSelected = (iconName) => {
         return Icon === iconName;
@@ -3668,16 +3911,17 @@ if (uni.restoreGlobal) {
           title: Title,
           content: Content
         };
-        formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:131", data);
+        formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:122", data);
         uni.request({
           url: "http://8.136.81.197:8080/mood_record",
           method: "POST",
           data,
           success: (response) => {
-            formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:137", response.data);
+            formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:128", response.data);
+            router2.replace("/pages/calendar/calendar");
           },
           fail: (error) => {
-            formatAppLog("error", "at pages/EmoRecord/EmoRecord.vue:140", "保存失败", error);
+            formatAppLog("error", "at pages/EmoRecord/EmoRecord.vue:132", "保存失败", error);
           }
         });
       };
@@ -3689,7 +3933,7 @@ if (uni.restoreGlobal) {
           sourceType: ["album"],
           loop: true,
           success: (res) => {
-            formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:153", res);
+            formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:145", res);
             if (res.tempFilePaths.length !== 0) {
               imageList.value.push(res.tempFilePaths[0]);
               res.tempFilePaths;
@@ -3699,7 +3943,7 @@ if (uni.restoreGlobal) {
       };
       const del = (index) => {
         imageList.value.splice(index, 1);
-        formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:174", imageList);
+        formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:166", imageList);
       };
       return (_ctx, _cache) => {
         return vue.openBlock(), vue.createElementBlock("view", { class: "backarea" }, [
@@ -3758,55 +4002,55 @@ if (uni.restoreGlobal) {
                 vue.createElementVNode("div", { class: "circle" }, [
                   vue.createElementVNode("image", { src: "/static/images/lvhang.png" })
                 ]),
-                vue.createElementVNode("span", null, "添加")
+                vue.createElementVNode("span", null, "旅行")
               ]),
               vue.createElementVNode("li", null, [
                 vue.createElementVNode("div", { class: "circle" }, [
                   vue.createElementVNode("image", { src: "/static/images/bangqiu.png" })
                 ]),
-                vue.createElementVNode("span", null, "添加")
+                vue.createElementVNode("span", null, "运动")
               ]),
               vue.createElementVNode("li", null, [
                 vue.createElementVNode("div", { class: "circle" }, [
                   vue.createElementVNode("image", { src: "/static/images/meishi1.png" })
                 ]),
-                vue.createElementVNode("span", null, "添加")
+                vue.createElementVNode("span", null, "美食")
               ]),
               vue.createElementVNode("li", null, [
                 vue.createElementVNode("div", { class: "circle" }, [
                   vue.createElementVNode("image", { src: "/static/images/shuijue.png" })
                 ]),
-                vue.createElementVNode("span", null, "添加")
+                vue.createElementVNode("span", null, "睡觉")
               ]),
               vue.createElementVNode("li", null, [
                 vue.createElementVNode("div", { class: "circle" }, [
                   vue.createElementVNode("image", { src: "/static/images/xingquaihao1.png" })
                 ]),
-                vue.createElementVNode("span", null, "添加")
+                vue.createElementVNode("span", null, "爱好")
               ]),
               vue.createElementVNode("li", null, [
                 vue.createElementVNode("div", { class: "circle" }, [
                   vue.createElementVNode("image", { src: "/static/images/xinsui.png" })
                 ]),
-                vue.createElementVNode("span", null, "添加")
+                vue.createElementVNode("span", null, "失恋")
               ]),
               vue.createElementVNode("li", null, [
                 vue.createElementVNode("div", { class: "circle" }, [
                   vue.createElementVNode("image", { src: "/static/images/xuexi.png" })
                 ]),
-                vue.createElementVNode("span", null, "添加")
+                vue.createElementVNode("span", null, "学习")
               ]),
               vue.createElementVNode("li", null, [
                 vue.createElementVNode("div", { class: "circle" }, [
                   vue.createElementVNode("image", { src: "/static/images/jinianri3.png" })
                 ]),
-                vue.createElementVNode("span", null, "添加")
+                vue.createElementVNode("span", null, "纪念日")
               ]),
               vue.createElementVNode("li", null, [
                 vue.createElementVNode("div", { class: "circle" }, [
                   vue.createElementVNode("image", { src: "/static/images/yueduliang.png" })
                 ]),
-                vue.createElementVNode("span", null, "添加")
+                vue.createElementVNode("span", null, "阅读")
               ])
             ])
           ]),
@@ -3841,7 +4085,7 @@ if (uni.restoreGlobal) {
                 [vue.vModelText, vue.unref(Content)]
               ])
             ]),
-            vue.createElementVNode("view", { class: "uPimage" }, [
+            vue.createElementVNode("view", null, [
               vue.createElementVNode("view", { class: "shangchuan" }, [
                 (vue.openBlock(true), vue.createElementBlock(
                   vue.Fragment,
@@ -3885,8 +4129,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesEmoRecordEmoRecord = /* @__PURE__ */ _export_sfc(_sfc_main$v, [["__file", "D:/ruangong/emosphere-master1/pages/EmoRecord/EmoRecord.vue"]]);
-  const _sfc_main$u = {
+  const PagesEmoRecordEmoRecord = /* @__PURE__ */ _export_sfc(_sfc_main$w, [["__file", "D:/ruangong/emosphere/pages/EmoRecord/EmoRecord.vue"]]);
+  const _sfc_main$v = {
     data() {
       return {
         showPopup: false,
@@ -3906,7 +4150,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_router_link = vue.resolveComponent("router-link");
     return vue.openBlock(), vue.createElementBlock("view", { class: "about" }, [
       vue.createElementVNode("view", {
@@ -4008,51 +4252,54 @@ if (uni.restoreGlobal) {
       )) : vue.createCommentVNode("v-if", true)
     ]);
   }
-  const PagesAboutAbout = /* @__PURE__ */ _export_sfc(_sfc_main$u, [["render", _sfc_render$j], ["__scopeId", "data-v-13a78ac6"], ["__file", "D:/ruangong/emosphere-master1/pages/about/about.vue"]]);
-  const _sfc_main$t = {
+  const PagesAboutAbout = /* @__PURE__ */ _export_sfc(_sfc_main$v, [["render", _sfc_render$k], ["__scopeId", "data-v-13a78ac6"], ["__file", "D:/ruangong/emosphere/pages/about/about.vue"]]);
+  const _sfc_main$u = {
     __name: "aboutme",
     setup(__props) {
-      useRouter();
-      const username = vue.ref(store.state.username);
-      const userbirthday = vue.ref(store.state.userBirthday);
-      const usergender = vue.ref(store.state.userGender);
-      const userstatus = vue.ref(store.state.userStatus);
+      let router2 = j();
+      let username = vue.ref(store.state.username);
+      let userbirthday = vue.ref(store.state.userbirthday);
+      let usergender = vue.ref(store.state.usergender);
+      let userstatus = vue.ref(store.state.userstatus);
+      const userAvatar = vue.ref(store.state.ImagePath);
+      const edit = () => {
+        router2.push("/pages/set/set");
+      };
+      const fan = () => {
+        router2.replace("/pages/myScreen/myScreen");
+      };
       return (_ctx, _cache) => {
-        const _component_router_link = vue.resolveComponent("router-link");
         return vue.openBlock(), vue.createElementBlock("view", { class: "my-page" }, [
           vue.createElementVNode("view", {
             class: "box",
             style: { "width": "100%", "height": "5%" }
           }),
-          vue.createElementVNode("view", { class: "header" }, [
-            vue.createVNode(_component_router_link, { to: { path: "/pages/myScreen/myScreen" } }, {
-              default: vue.withCtx(() => [
-                vue.createElementVNode("image", { src: "/static/images/fan.png" })
-              ]),
-              _: 1
-              /* STABLE */
-            }),
+          vue.createElementVNode("view", {
+            class: "header",
+            onClick: fan
+          }, [
+            vue.createElementVNode("image", { src: "/static/images/fan.png" }),
             vue.createElementVNode("span", null, "个人资料")
           ]),
           vue.createElementVNode("text", {
             class: "edit",
-            onClick: _cache[0] || (_cache[0] = (...args) => _ctx.edit && _ctx.edit(...args))
+            onClick: edit
           }, "编辑资料"),
           vue.createElementVNode("view", { class: "content" }, [
             vue.createElementVNode("view", { class: "menu-item1" }, [
               vue.createCommentVNode(' <image class="user-avatar" src="/static/uni.png" /> '),
-              vue.createElementVNode("image", { class: "user-avatar" }),
-              vue.createElementVNode("text", {
-                class: "user-avatar-text",
-                onClick: _cache[1] || (_cache[1] = (...args) => _ctx.uploadImage && _ctx.uploadImage(...args))
-              }, "修改头像")
+              vue.createElementVNode("image", {
+                class: "user-avatar",
+                src: userAvatar.value
+              }, null, 8, ["src"]),
+              vue.createElementVNode("text", { class: "user-avatar-text" }, "头像")
             ]),
             vue.createElementVNode("view", { class: "menu-item" }, [
               vue.createElementVNode("text", { class: "menu-text" }, "用户昵称"),
               vue.createElementVNode(
                 "text",
                 { class: "menu-text1" },
-                vue.toDisplayString(username.value),
+                vue.toDisplayString(vue.unref(username)),
                 1
                 /* TEXT */
               ),
@@ -4066,7 +4313,7 @@ if (uni.restoreGlobal) {
               vue.createElementVNode(
                 "text",
                 { class: "menu-text1" },
-                vue.toDisplayString(usergender.value),
+                vue.toDisplayString(vue.unref(usergender)),
                 1
                 /* TEXT */
               ),
@@ -4078,13 +4325,13 @@ if (uni.restoreGlobal) {
             vue.createCommentVNode(" 个人资料 "),
             vue.createElementVNode("view", {
               class: "menu-item",
-              onClick: _cache[2] || (_cache[2] = (...args) => _ctx.goToProfile && _ctx.goToProfile(...args))
+              onClick: _cache[0] || (_cache[0] = (...args) => _ctx.goToProfile && _ctx.goToProfile(...args))
             }, [
               vue.createElementVNode("text", { class: "menu-text" }, "常驻地"),
               vue.createElementVNode(
                 "text",
                 { class: "menu-text1" },
-                vue.toDisplayString(userstatus.value),
+                vue.toDisplayString(vue.unref(userstatus)),
                 1
                 /* TEXT */
               ),
@@ -4096,13 +4343,13 @@ if (uni.restoreGlobal) {
             vue.createCommentVNode(" 个人资料 "),
             vue.createElementVNode("view", {
               class: "menu-item",
-              onClick: _cache[3] || (_cache[3] = (...args) => _ctx.goToProfile && _ctx.goToProfile(...args))
+              onClick: _cache[1] || (_cache[1] = (...args) => _ctx.goToProfile && _ctx.goToProfile(...args))
             }, [
               vue.createElementVNode("text", { class: "menu-text" }, "生日"),
               vue.createElementVNode(
                 "text",
                 { class: "menu-text1" },
-                vue.toDisplayString(userbirthday.value),
+                vue.toDisplayString(vue.unref(userbirthday)),
                 1
                 /* TEXT */
               ),
@@ -4114,7 +4361,7 @@ if (uni.restoreGlobal) {
             vue.createCommentVNode(" 个人资料 "),
             vue.createElementVNode("view", {
               class: "menu-item",
-              onClick: _cache[4] || (_cache[4] = (...args) => _ctx.goToProfile && _ctx.goToProfile(...args))
+              onClick: _cache[2] || (_cache[2] = (...args) => _ctx.goToProfile && _ctx.goToProfile(...args))
             }, [
               vue.createElementVNode("text", { class: "menu-text" }, "二维码"),
               vue.createElementVNode("text", { class: "menu-text1 look" }, "点击查看"),
@@ -4128,39 +4375,79 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesAboutmeAboutme = /* @__PURE__ */ _export_sfc(_sfc_main$t, [["__file", "D:/ruangong/emosphere-master1/pages/aboutme/aboutme.vue"]]);
+  const PagesAboutmeAboutme = /* @__PURE__ */ _export_sfc(_sfc_main$u, [["__file", "D:/ruangong/emosphere/pages/aboutme/aboutme.vue"]]);
+  const _sfc_main$t = {
+    props: {
+      message: String
+    },
+    methods: {
+      handleCancel() {
+        this.$emit("onCancel");
+      },
+      handleConfirm() {
+        this.$emit("onConfirm");
+      }
+    }
+  };
+  function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
+    return vue.openBlock(), vue.createElementBlock("div", { class: "confirm-dialog" }, [
+      vue.createElementVNode(
+        "div",
+        { class: "message" },
+        vue.toDisplayString($props.message),
+        1
+        /* TEXT */
+      ),
+      vue.createElementVNode("div", { class: "buttons" }, [
+        vue.createElementVNode("button", {
+          onClick: _cache[0] || (_cache[0] = (...args) => $options.handleCancel && $options.handleCancel(...args))
+        }, "取消"),
+        vue.createElementVNode("button", {
+          onClick: _cache[1] || (_cache[1] = (...args) => $options.handleConfirm && $options.handleConfirm(...args))
+        }, "确认")
+      ])
+    ]);
+  }
+  const ConfirmDialog = /* @__PURE__ */ _export_sfc(_sfc_main$t, [["render", _sfc_render$j], ["__scopeId", "data-v-76a5aa76"], ["__file", "D:/ruangong/emosphere/components/ConfirmDialog/ConfirmDialog.vue"]]);
   const _sfc_main$s = {
     __name: "myScreen",
     setup(__props) {
+      let router2 = j();
       const calculateAge = (birthdate) => {
         const today = /* @__PURE__ */ new Date();
         const birthDate = new Date(birthdate);
         let age2 = today.getFullYear() - birthDate.getFullYear();
         return age2;
       };
-      const userbirthday = vue.ref(store.state.userBirthday);
+      const userbirthday = vue.ref(store.getters.getUserBirthday);
       const age = vue.ref(calculateAge(userbirthday.value));
-      const router = useRouter();
       const username = vue.ref(store.getters.getUsername);
       const userid = vue.ref(store.getters.getUserId);
+      const userAvatar = vue.ref(store.state.ImagePath);
+      const isConfirmDialogVisible = vue.ref(false);
+      const confirmMessage = vue.ref("确定要退出登录吗？");
       const goBack = () => {
-        router.push("/pages/main/main");
+        router2.replace("/pages/main/main");
       };
       const goToProfile = () => {
-        formatAppLog("log", "at pages/myScreen/myScreen.vue:75", "aboutme");
-        router.push("/pages/aboutMe/aboutMe");
+        router2.push("/pages/aboutme/aboutme");
       };
       const goToFavorites = () => {
-        formatAppLog("log", "at pages/myScreen/myScreen.vue:80", "like");
+        formatAppLog("log", "at pages/myScreen/myScreen.vue:90", "like");
       };
       const goToAbout = () => {
-        router.push("/pages/about/about");
+        router2.push("/pages/about/about");
       };
-      const logout = () => {
-        if (confirm("确定要退出登录吗？")) {
-          formatAppLog("log", "at pages/myScreen/myScreen.vue:89", "logout");
-          router.push("/pages/login/login");
-        }
+      const showConfirmDialog = () => {
+        isConfirmDialogVisible.value = true;
+      };
+      const handleConfirm = () => {
+        isConfirmDialogVisible.value = false;
+        store.commit("clearUserData");
+        router2.push("/pages/login/login");
+      };
+      const handleCancel = () => {
+        isConfirmDialogVisible.value = false;
       };
       return (_ctx, _cache) => {
         return vue.openBlock(), vue.createElementBlock("view", { class: "my-page" }, [
@@ -4173,16 +4460,16 @@ if (uni.restoreGlobal) {
               class: "head-left",
               onClick: goBack
             }, [
-              vue.createElementVNode("img", { src: "/static/images/fanhui.png" }),
+              vue.createElementVNode("image", { src: "/static/images/fanhui.png" }),
               vue.createElementVNode("text", null, "返回")
             ])
           ]),
           vue.createElementVNode("view", { class: "form" }, [
             vue.createElementVNode("view", { class: "role" }, [
-              vue.createElementVNode("img", {
-                src: "/static/images/logo.png",
-                alt: ""
-              })
+              vue.createElementVNode("image", {
+                class: "user-avatar",
+                src: userAvatar.value
+              }, null, 8, ["src"])
             ]),
             vue.createElementVNode("view", { class: "info" }, [
               vue.createElementVNode(
@@ -4215,7 +4502,7 @@ if (uni.restoreGlobal) {
               onClick: goToProfile
             }, [
               vue.createElementVNode("text", { class: "menu-text" }, "个人资料"),
-              vue.createElementVNode("img", {
+              vue.createElementVNode("image", {
                 src: "/static/images/heijiantou.png",
                 alt: ""
               })
@@ -4226,7 +4513,7 @@ if (uni.restoreGlobal) {
               onClick: goToFavorites
             }, [
               vue.createElementVNode("text", { class: "menu-text" }, "收藏内容"),
-              vue.createElementVNode("img", {
+              vue.createElementVNode("image", {
                 src: "/static/images/heijiantou.png",
                 alt: ""
               })
@@ -4237,21 +4524,26 @@ if (uni.restoreGlobal) {
               onClick: goToAbout
             }, [
               vue.createElementVNode("text", { class: "menu-text" }, "关于EmoSphere"),
-              vue.createElementVNode("img", {
+              vue.createElementVNode("image", {
                 src: "/static/images/heijiantou.png",
                 alt: ""
               })
             ])
           ]),
-          vue.createElementVNode("button", {
-            class: "logout-button",
-            onClick: logout
-          }, "退出登录")
+          vue.createElementVNode("view", { class: "logout-button" }, [
+            vue.createElementVNode("button", { onClick: showConfirmDialog }, "退出登录")
+          ]),
+          isConfirmDialogVisible.value ? (vue.openBlock(), vue.createBlock(ConfirmDialog, {
+            key: 0,
+            message: confirmMessage.value,
+            onOnConfirm: handleConfirm,
+            onOnCancel: handleCancel
+          }, null, 8, ["message"])) : vue.createCommentVNode("v-if", true)
         ]);
       };
     }
   };
-  const PagesMyScreenMyScreen = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["__file", "D:/ruangong/emosphere-master1/pages/myScreen/myScreen.vue"]]);
+  const PagesMyScreenMyScreen = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["__file", "D:/ruangong/emosphere/pages/myScreen/myScreen.vue"]]);
   const _sfc_main$r = {
     data() {
       return {
@@ -4508,7 +4800,7 @@ if (uni.restoreGlobal) {
       /* STABLE_FRAGMENT */
     );
   }
-  const PagesRelaxRelax = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["render", _sfc_render$i], ["__scopeId", "data-v-3a9d0990"], ["__file", "D:/ruangong/emosphere-master1/pages/relax/relax.vue"]]);
+  const PagesRelaxRelax = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["render", _sfc_render$i], ["__scopeId", "data-v-3a9d0990"], ["__file", "D:/ruangong/emosphere/pages/relax/relax.vue"]]);
   const icons$1 = {
     "about": "",
     "about-fill": "",
@@ -4773,13 +5065,39 @@ if (uni.restoreGlobal) {
       /* TEXT, CLASS, STYLE */
     );
   }
-  const __easycom_0$4 = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["render", _sfc_render$h], ["__scopeId", "data-v-bfc5f459"], ["__file", "D:/ruangong/emosphere-master1/node_modules/thorui-uni/lib/thorui/tui-icon/tui-icon.vue"]]);
+  const __easycom_0$4 = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["render", _sfc_render$h], ["__scopeId", "data-v-bfc5f459"], ["__file", "D:/ruangong/emosphere/node_modules/thorui-uni/lib/thorui/tui-icon/tui-icon.vue"]]);
+  /*!
+    * vue-router v4.1.6
+    * (c) 2022 Eduardo San Martin Morote
+    * @license MIT
+    */
+  var NavigationType;
+  (function(NavigationType2) {
+    NavigationType2["pop"] = "pop";
+    NavigationType2["push"] = "push";
+  })(NavigationType || (NavigationType = {}));
+  var NavigationDirection;
+  (function(NavigationDirection2) {
+    NavigationDirection2["back"] = "back";
+    NavigationDirection2["forward"] = "forward";
+    NavigationDirection2["unknown"] = "";
+  })(NavigationDirection || (NavigationDirection = {}));
+  var NavigationFailureType;
+  (function(NavigationFailureType2) {
+    NavigationFailureType2[NavigationFailureType2["aborted"] = 4] = "aborted";
+    NavigationFailureType2[NavigationFailureType2["cancelled"] = 8] = "cancelled";
+    NavigationFailureType2[NavigationFailureType2["duplicated"] = 16] = "duplicated";
+  })(NavigationFailureType || (NavigationFailureType = {}));
+  const routerKey = Symbol("router");
+  function useRouter() {
+    return vue.inject(routerKey);
+  }
   const _sfc_main$p = {
     __name: "share",
     setup(__props) {
-      const router = useRouter();
+      const router2 = useRouter();
       const getback = () => {
-        router.push("/pages/space/space");
+        router2.push("/pages/space/space");
       };
       const userid = vue.ref(store.getters.getUserId).value;
       const Content = vue.ref("");
@@ -4864,7 +5182,7 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesShareShare = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["__scopeId", "data-v-ceb22cc9"], ["__file", "D:/ruangong/emosphere-master1/pages/share/share.vue"]]);
+  const PagesShareShare = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["__scopeId", "data-v-ceb22cc9"], ["__file", "D:/ruangong/emosphere/pages/share/share.vue"]]);
   const _sfc_main$o = {
     name: "YSteps",
     props: {
@@ -4888,11 +5206,11 @@ if (uni.restoreGlobal) {
     data() {
       return {};
     },
-    onLoad(e) {
+    onLoad(e2) {
     },
     methods: {
-      topage(e) {
-        this.$emit("click", e);
+      topage(e2) {
+        this.$emit("click", e2);
       }
     }
   };
@@ -4908,7 +5226,7 @@ if (uni.restoreGlobal) {
             (vue.openBlock(true), vue.createElementBlock(
               vue.Fragment,
               null,
-              vue.renderList($props.infoList, (i, index) => {
+              vue.renderList($props.infoList, (i2, index) => {
                 return vue.openBlock(), vue.createElementBlock("view", { class: "steps_item" }, [
                   vue.createElementVNode("view", { class: "s_r" }, [
                     vue.createElementVNode(
@@ -4950,7 +5268,7 @@ if (uni.restoreGlobal) {
                       vue.createElementVNode(
                         "text",
                         null,
-                        vue.toDisplayString(i.date),
+                        vue.toDisplayString(i2.date),
                         1
                         /* TEXT */
                       ),
@@ -4959,7 +5277,7 @@ if (uni.restoreGlobal) {
                         {
                           style: vue.normalizeStyle({ WebkitLineClamp: $props.lineNum != 0 ? $props.lineNum : "" })
                         },
-                        vue.toDisplayString(i.info),
+                        vue.toDisplayString(i2.info),
                         5
                         /* TEXT, STYLE */
                       )
@@ -4977,7 +5295,7 @@ if (uni.restoreGlobal) {
       /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
     );
   }
-  const YSteps = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["render", _sfc_render$g], ["__scopeId", "data-v-3d3a9ebb"], ["__file", "D:/ruangong/emosphere-master1/components/Y-Steps/Y-Steps.vue"]]);
+  const YSteps = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["render", _sfc_render$g], ["__scopeId", "data-v-3d3a9ebb"], ["__file", "D:/ruangong/emosphere/components/Y-Steps/Y-Steps.vue"]]);
   const _sfc_main$n = {
     components: {
       YSteps
@@ -5045,7 +5363,7 @@ if (uni.restoreGlobal) {
       /* STABLE_FRAGMENT */
     );
   }
-  const PagesRecordRecord = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["render", _sfc_render$f], ["__file", "D:/ruangong/emosphere-master1/pages/record/record.vue"]]);
+  const PagesRecordRecord = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["render", _sfc_render$f], ["__file", "D:/ruangong/emosphere/pages/record/record.vue"]]);
   const _sfc_main$m = {
     data() {
       return {};
@@ -5162,7 +5480,7 @@ if (uni.restoreGlobal) {
       /* STYLE */
     );
   }
-  const __easycom_0$3 = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["render", _sfc_render$e], ["__scopeId", "data-v-42d6f2a0"], ["__file", "D:/ruangong/emosphere-master1/uni_modules/gscosmos-dialog/components/gscosmos-dialog/gscosmos-dialog.vue"]]);
+  const __easycom_0$3 = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["render", _sfc_render$e], ["__scopeId", "data-v-42d6f2a0"], ["__file", "D:/ruangong/emosphere/uni_modules/gscosmos-dialog/components/gscosmos-dialog/gscosmos-dialog.vue"]]);
   const _sfc_main$l = {
     data() {
       return {
@@ -5338,7 +5656,7 @@ if (uni.restoreGlobal) {
       )
     ]);
   }
-  const __easycom_1$1 = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$d], ["__scopeId", "data-v-8a21190d"], ["__file", "D:/ruangong/emosphere-master1/components/imt-audio/imt-audio.vue"]]);
+  const __easycom_1$1 = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$d], ["__scopeId", "data-v-8a21190d"], ["__file", "D:/ruangong/emosphere/components/imt-audio/imt-audio.vue"]]);
   const __default__ = {
     data() {
       return {
@@ -5416,9 +5734,9 @@ if (uni.restoreGlobal) {
       };
     },
     methods: {
-      tabSelect(e) {
-        this.TabCur = e.currentTarget.dataset.id;
-        this.scrollLeft = (e.currentTarget.dataset.id - 1) * 60;
+      tabSelect(e2) {
+        this.TabCur = e2.currentTarget.dataset.id;
+        this.scrollLeft = (e2.currentTarget.dataset.id - 1) * 60;
       },
       like_ornot(now) {
         if (this.audioData[now].like == 0) {
@@ -5651,12 +5969,12 @@ if (uni.restoreGlobal) {
       };
     }
   });
-  const PagesMusicMusic = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["__file", "D:/ruangong/emosphere-master1/pages/music/music.vue"]]);
+  const PagesMusicMusic = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["__file", "D:/ruangong/emosphere/pages/music/music.vue"]]);
   const _sfc_main$j = {
     data() {
-      const router = useRouter();
+      const router2 = useRouter();
       const goToHome = () => {
-        router.push("../home/home");
+        router2.push("../home/home");
       };
       return {
         bgColor: "#BAD0CE",
@@ -5885,7 +6203,7 @@ if (uni.restoreGlobal) {
       /* STYLE */
     );
   }
-  const PagesQuestionsQuestions = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$c], ["__file", "D:/ruangong/emosphere-master1/pages/questions/questions.vue"]]);
+  const PagesQuestionsQuestions = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$c], ["__file", "D:/ruangong/emosphere/pages/questions/questions.vue"]]);
   const _sfc_main$i = {
     data() {
       return {
@@ -5967,12 +6285,12 @@ if (uni.restoreGlobal) {
       ])
     ]);
   }
-  const PagesResultResult = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$b], ["__file", "D:/ruangong/emosphere-master1/pages/result/result.vue"]]);
+  const PagesResultResult = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$b], ["__file", "D:/ruangong/emosphere/pages/result/result.vue"]]);
   const _sfc_main$h = {
     data() {
-      const router = useRouter();
+      const router2 = useRouter();
       const goToQ1 = () => {
-        router.push("/pages/questions/questions");
+        router2.push("/pages/questions/questions");
       };
       return {
         imageUrl1: "../../static/images/back2.png",
@@ -6028,7 +6346,7 @@ if (uni.restoreGlobal) {
       ])
     ]);
   }
-  const PagesHomeHome = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["render", _sfc_render$a], ["__file", "D:/ruangong/emosphere-master1/pages/home/home.vue"]]);
+  const PagesHomeHome = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["render", _sfc_render$a], ["__file", "D:/ruangong/emosphere/pages/home/home.vue"]]);
   const _sfc_main$g = {
     data() {
       return {
@@ -6097,7 +6415,7 @@ if (uni.restoreGlobal) {
           });
         }, 10);
       },
-      scrollToBottom(e) {
+      scrollToBottom(e2) {
         setTimeout(() => {
           let query = uni.createSelectorQuery().in(this);
           query.select("#scrollview").boundingClientRect();
@@ -6118,7 +6436,7 @@ if (uni.restoreGlobal) {
             userContent: this.chatMsg,
             userId: 0
           };
-          formatAppLog("log", "at pages/chat/chat.vue:152", this.chatMsg);
+          formatAppLog("log", "at pages/chat/chat.vue:154", this.chatMsg);
           try {
             const response = await uni.request({
               url: "http://localhost:8080/api/",
@@ -6135,9 +6453,9 @@ if (uni.restoreGlobal) {
             this.msgList.push(obj);
             this.chatMsg = "";
             this.scrollToBottom();
-            formatAppLog("log", "at pages/chat/chat.vue:170", "发送成功:", serverResponse);
+            formatAppLog("log", "at pages/chat/chat.vue:172", "发送成功:", serverResponse);
           } catch (error) {
-            formatAppLog("error", "at pages/chat/chat.vue:172", "发送消息失败:", error);
+            formatAppLog("error", "at pages/chat/chat.vue:174", "发送消息失败:", error);
             this.$modal.showToast("发送消息失败");
           }
         } else {
@@ -6147,153 +6465,138 @@ if (uni.restoreGlobal) {
     }
   };
   function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_router_link = vue.resolveComponent("router-link");
-    return vue.openBlock(), vue.createElementBlock(
-      vue.Fragment,
-      null,
-      [
-        vue.createElementVNode("view", { class: "header" }, [
-          vue.createVNode(_component_router_link, { to: { path: "/pages/main/main" } }, {
-            default: vue.withCtx(() => [
-              vue.createElementVNode("view", { class: "head-left" }, [
-                vue.createElementVNode("image", { src: "/static/images/fanhui.jpg" }),
-                vue.createElementVNode("text", null, "返回")
-              ])
-            ]),
-            _: 1
-            /* STABLE */
-          }),
-          vue.createVNode(_component_router_link, { to: { path: "/pages/home/home" } }, {
-            default: vue.withCtx(() => [
-              vue.createElementVNode("view", {
-                class: "head-right",
-                onClick: _cache[0] || (_cache[0] = (...args) => _ctx.savadata && _ctx.savadata(...args))
-              }, [
-                vue.createElementVNode("image", { src: "/static/images/test.png" }),
-                vue.createElementVNode("text", null, "测试")
-              ])
-            ]),
-            _: 1
-            /* STABLE */
-          })
+    return vue.openBlock(), vue.createElementBlock("view", { class: "backarea" }, [
+      vue.createElementVNode("view", { style: { "width": "100%", "height": "5%" } }),
+      vue.createElementVNode("view", { class: "header" }, [
+        vue.createElementVNode("view", {
+          class: "head-left",
+          onClick: _cache[0] || (_cache[0] = (...args) => _ctx.fan && _ctx.fan(...args))
+        }, [
+          vue.createElementVNode("image", { src: "/static/images/fanhui.jpg" }),
+          vue.createElementVNode("text", null, "返回")
         ]),
-        vue.createElementVNode("view", { class: "chat" }, [
-          vue.createElementVNode("scroll-view", {
-            style: vue.normalizeStyle({ height: `${$options.windowHeight - $options.inputHeight}rpx` }),
-            id: "scrollview",
-            "scroll-y": "true",
-            "scroll-top": $data.scrollTop,
-            class: "scroll-view"
-          }, [
-            vue.createCommentVNode(" 聊天主体 "),
-            vue.createElementVNode("view", {
-              id: "msglistview",
-              class: "chat-body"
-            }, [
-              vue.createCommentVNode(" 聊天记录 "),
-              (vue.openBlock(true), vue.createElementBlock(
-                vue.Fragment,
-                null,
-                vue.renderList($data.msgList, (item, index) => {
-                  return vue.openBlock(), vue.createElementBlock("view", { key: index }, [
-                    vue.createCommentVNode(" 自己发的消息 "),
-                    item.userContent != "" ? (vue.openBlock(), vue.createElementBlock("view", {
-                      key: 0,
-                      class: "item self"
-                    }, [
-                      vue.createCommentVNode(" 文字内容 "),
-                      vue.createElementVNode(
-                        "view",
-                        { class: "content right" },
-                        vue.toDisplayString(item.userContent),
-                        1
-                        /* TEXT */
-                      ),
-                      vue.createCommentVNode(" 头像 "),
-                      vue.createElementVNode("view", { class: "avatar" }, [
-                        vue.createElementVNode("image", { src: "/static/images/logo.png" })
-                      ])
-                    ])) : vue.createCommentVNode("v-if", true),
-                    vue.createCommentVNode(" 机器人发的消息 "),
-                    item.botContent != "" ? (vue.openBlock(), vue.createElementBlock("view", {
-                      key: 1,
-                      class: "item Ai"
-                    }, [
-                      vue.createCommentVNode(" 头像 "),
-                      vue.createElementVNode("view", { class: "avatar" }, [
-                        vue.createElementVNode("image", { src: "/static/images/ai.png" })
-                      ]),
-                      vue.createCommentVNode(" 文字内容 "),
-                      vue.createElementVNode(
-                        "view",
-                        { class: "content left" },
-                        vue.toDisplayString(item.botContent),
-                        1
-                        /* TEXT */
-                      )
-                    ])) : vue.createCommentVNode("v-if", true)
-                  ]);
-                }),
-                128
-                /* KEYED_FRAGMENT */
-              ))
-            ])
-          ], 12, ["scroll-top"]),
-          vue.createElementVNode(
-            "view",
-            {
-              class: "chat-bottom",
-              style: vue.normalizeStyle({ height: `${$options.inputHeight}rpx` })
-            },
-            [
-              vue.createElementVNode(
-                "view",
-                {
-                  class: "send-msg",
-                  style: vue.normalizeStyle({ bottom: `${$data.keyboardHeight}rpx` })
-                },
-                [
-                  vue.createElementVNode("view", { class: "uni-textarea" }, [
-                    vue.withDirectives(vue.createElementVNode(
-                      "textarea",
-                      {
-                        "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => $data.chatMsg = $event),
-                        maxlength: "300",
-                        "confirm-type": "send",
-                        onConfirm: _cache[2] || (_cache[2] = (...args) => $options.handleSend && $options.handleSend(...args)),
-                        "show-confirm-bar": false,
-                        "adjust-position": false,
-                        onLinechange: _cache[3] || (_cache[3] = (...args) => $options.sendHeight && $options.sendHeight(...args)),
-                        onFocus: _cache[4] || (_cache[4] = (...args) => $options.focus && $options.focus(...args)),
-                        onBlur: _cache[5] || (_cache[5] = (...args) => $options.blur && $options.blur(...args)),
-                        "auto-height": ""
-                      },
-                      null,
-                      544
-                      /* HYDRATE_EVENTS, NEED_PATCH */
-                    ), [
-                      [vue.vModelText, $data.chatMsg]
-                    ])
-                  ]),
-                  vue.createElementVNode("button", {
-                    onClick: _cache[6] || (_cache[6] = (...args) => $options.handleSend && $options.handleSend(...args)),
-                    class: "send-btn"
-                  }, "发送")
-                ],
-                4
-                /* STYLE */
-              )
-            ],
-            4
-            /* STYLE */
-          )
+        vue.createElementVNode("view", {
+          class: "head-right",
+          onClick: _cache[1] || (_cache[1] = (...args) => _ctx.test && _ctx.test(...args))
+        }, [
+          vue.createElementVNode("image", { src: "/static/images/test.png" }),
+          vue.createElementVNode("text", null, "测试")
         ])
-      ],
-      64
-      /* STABLE_FRAGMENT */
-    );
+      ]),
+      vue.createElementVNode("view", { class: "chat" }, [
+        vue.createElementVNode("scroll-view", {
+          style: vue.normalizeStyle({ height: `${$options.windowHeight - $options.inputHeight}rpx` }),
+          id: "scrollview",
+          "scroll-y": "true",
+          "scroll-top": $data.scrollTop,
+          class: "scroll-view"
+        }, [
+          vue.createCommentVNode(" 聊天主体 "),
+          vue.createElementVNode("view", {
+            id: "msglistview",
+            class: "chat-body"
+          }, [
+            vue.createCommentVNode(" 聊天记录 "),
+            (vue.openBlock(true), vue.createElementBlock(
+              vue.Fragment,
+              null,
+              vue.renderList($data.msgList, (item, index) => {
+                return vue.openBlock(), vue.createElementBlock("view", { key: index }, [
+                  vue.createCommentVNode(" 自己发的消息 "),
+                  item.userContent != "" ? (vue.openBlock(), vue.createElementBlock("view", {
+                    key: 0,
+                    class: "item self"
+                  }, [
+                    vue.createCommentVNode(" 文字内容 "),
+                    vue.createElementVNode(
+                      "view",
+                      { class: "content right" },
+                      vue.toDisplayString(item.userContent),
+                      1
+                      /* TEXT */
+                    ),
+                    vue.createCommentVNode(" 头像 "),
+                    vue.createElementVNode("view", { class: "avatar" }, [
+                      vue.createElementVNode("image", { src: "/static/images/logo.png" })
+                    ])
+                  ])) : vue.createCommentVNode("v-if", true),
+                  vue.createCommentVNode(" 机器人发的消息 "),
+                  item.botContent != "" ? (vue.openBlock(), vue.createElementBlock("view", {
+                    key: 1,
+                    class: "item Ai"
+                  }, [
+                    vue.createCommentVNode(" 头像 "),
+                    vue.createElementVNode("view", { class: "avatar" }, [
+                      vue.createElementVNode("image", { src: "/static/images/ai.png" })
+                    ]),
+                    vue.createCommentVNode(" 文字内容 "),
+                    vue.createElementVNode(
+                      "view",
+                      { class: "content left" },
+                      vue.toDisplayString(item.botContent),
+                      1
+                      /* TEXT */
+                    )
+                  ])) : vue.createCommentVNode("v-if", true)
+                ]);
+              }),
+              128
+              /* KEYED_FRAGMENT */
+            ))
+          ])
+        ], 12, ["scroll-top"]),
+        vue.createElementVNode(
+          "view",
+          {
+            class: "chat-bottom",
+            style: vue.normalizeStyle({ height: `${$options.inputHeight}rpx` })
+          },
+          [
+            vue.createElementVNode(
+              "view",
+              {
+                class: "send-msg",
+                style: vue.normalizeStyle({ bottom: `${$data.keyboardHeight}rpx` })
+              },
+              [
+                vue.createElementVNode("view", { class: "uni-textarea" }, [
+                  vue.withDirectives(vue.createElementVNode(
+                    "textarea",
+                    {
+                      "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => $data.chatMsg = $event),
+                      maxlength: "300",
+                      "confirm-type": "send",
+                      onConfirm: _cache[3] || (_cache[3] = (...args) => $options.handleSend && $options.handleSend(...args)),
+                      "show-confirm-bar": false,
+                      "adjust-position": false,
+                      onLinechange: _cache[4] || (_cache[4] = (...args) => $options.sendHeight && $options.sendHeight(...args)),
+                      onFocus: _cache[5] || (_cache[5] = (...args) => $options.focus && $options.focus(...args)),
+                      onBlur: _cache[6] || (_cache[6] = (...args) => $options.blur && $options.blur(...args)),
+                      "auto-height": ""
+                    },
+                    null,
+                    544
+                    /* HYDRATE_EVENTS, NEED_PATCH */
+                  ), [
+                    [vue.vModelText, $data.chatMsg]
+                  ])
+                ]),
+                vue.createElementVNode("button", {
+                  onClick: _cache[7] || (_cache[7] = (...args) => $options.handleSend && $options.handleSend(...args)),
+                  class: "send-btn"
+                }, "发送")
+              ],
+              4
+              /* STYLE */
+            )
+          ],
+          4
+          /* STYLE */
+        )
+      ])
+    ]);
   }
-  const PagesChatChat = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$9], ["__scopeId", "data-v-0a633310"], ["__file", "D:/ruangong/emosphere-master1/pages/chat/chat.vue"]]);
+  const PagesChatChat = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$9], ["__scopeId", "data-v-0a633310"], ["__file", "D:/ruangong/emosphere/pages/chat/chat.vue"]]);
   const icons = {
     "id": "2852637",
     "name": "uniui图标库",
@@ -7497,7 +7800,7 @@ if (uni.restoreGlobal) {
     },
     computed: {
       unicode() {
-        let code = this.icons.find((v) => v.font_class === this.type);
+        let code = this.icons.find((v2) => v2.font_class === this.type);
         if (code) {
           return unescape(`%u${code.unicode}`);
         }
@@ -7526,7 +7829,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const __easycom_0$2 = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$8], ["__scopeId", "data-v-d31e1c47"], ["__file", "D:/ruangong/emosphere-master1/uni_modules/uni-icons/components/uni-icons/uni-icons.vue"]]);
+  const __easycom_0$2 = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$8], ["__scopeId", "data-v-d31e1c47"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-icons/components/uni-icons/uni-icons.vue"]]);
   let Calendar$1 = class Calendar {
     constructor({
       selected,
@@ -7608,10 +7911,10 @@ if (uni.restoreGlobal) {
      */
     getPreMonthDays(amount, dateObj) {
       const result = [];
-      for (let i = amount - 1; i >= 0; i--) {
+      for (let i2 = amount - 1; i2 >= 0; i2--) {
         const month = dateObj.month - 1;
         result.push({
-          date: new Date(dateObj.year, month, -i).getDate(),
+          date: new Date(dateObj.year, month, -i2).getDate(),
           month,
           disable: true
         });
@@ -7624,8 +7927,8 @@ if (uni.restoreGlobal) {
     getCurrentMonthDays(amount, dateObj) {
       const result = [];
       const fullDate = this.date.fullDate;
-      for (let i = 1; i <= amount; i++) {
-        const currentDate = `${dateObj.year}-${dateObj.month}-${addZero(i)}`;
+      for (let i2 = 1; i2 <= amount; i2++) {
+        const currentDate = `${dateObj.year}-${dateObj.month}-${addZero(i2)}`;
         const isToday = fullDate === currentDate;
         const info = this.selected && this.selected.find((item) => {
           if (this.dateEqual(currentDate, item.date)) {
@@ -7649,7 +7952,7 @@ if (uni.restoreGlobal) {
         result.push({
           fullDate: currentDate,
           year: dateObj.year,
-          date: i,
+          date: i2,
           multiple: this.range ? checked : false,
           beforeMultiple: this.isLogicBefore(currentDate, this.multipleStatus.before, this.multipleStatus.after),
           afterMultiple: this.isLogicAfter(currentDate, this.multipleStatus.before, this.multipleStatus.after),
@@ -7668,9 +7971,9 @@ if (uni.restoreGlobal) {
     _getNextMonthDays(amount, dateObj) {
       const result = [];
       const month = dateObj.month + 1;
-      for (let i = 1; i <= amount; i++) {
+      for (let i2 = 1; i2 <= amount; i2++) {
         result.push({
-          date: i,
+          date: i2,
           month,
           disable: true
         });
@@ -7727,9 +8030,9 @@ if (uni.restoreGlobal) {
       de.setFullYear(ae[0], ae[1] - 1, ae[2]);
       var unixDb = db.getTime() - 24 * 60 * 60 * 1e3;
       var unixDe = de.getTime() - 24 * 60 * 60 * 1e3;
-      for (var k = unixDb; k <= unixDe; ) {
-        k = k + 24 * 60 * 60 * 1e3;
-        arr.push(this.getDateObj(new Date(parseInt(k))).fullDate);
+      for (var k2 = unixDb; k2 <= unixDe; ) {
+        k2 = k2 + 24 * 60 * 60 * 1e3;
+        arr.push(this.getDateObj(new Date(parseInt(k2))).fullDate);
       }
       return arr;
     }
@@ -7821,12 +8124,12 @@ if (uni.restoreGlobal) {
       const nextMonthDays = this._getNextMonthDays(nextMonthDayAmount, this.getDateObj(dateData));
       const calendarDays = [...preMonthDays, ...currentMonthDays, ...nextMonthDays];
       const weeks = new Array(6);
-      for (let i = 0; i < calendarDays.length; i++) {
-        const index = Math.floor(i / 7);
+      for (let i2 = 0; i2 < calendarDays.length; i2++) {
+        const index = Math.floor(i2 / 7);
         if (!weeks[index]) {
           weeks[index] = new Array(7);
         }
-        weeks[index][i % 7] = calendarDays[i];
+        weeks[index][i2 % 7] = calendarDays[i2];
       }
       this.calendar = calendarDays;
       this.weeks = weeks;
@@ -7966,7 +8269,7 @@ if (uni.restoreGlobal) {
       /* CLASS, HYDRATE_EVENTS */
     );
   }
-  const calendarItem = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$7], ["__scopeId", "data-v-3c762a01"], ["__file", "D:/ruangong/emosphere-master1/uni_modules/uni-datetime-picker/components/uni-datetime-picker/calendar-item.vue"]]);
+  const calendarItem = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$7], ["__scopeId", "data-v-3c762a01"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-datetime-picker/components/uni-datetime-picker/calendar-item.vue"]]);
   const en = {
     "uni-datetime-picker.selectDate": "select date",
     "uni-datetime-picker.selectTime": "select time",
@@ -8038,7 +8341,7 @@ if (uni.restoreGlobal) {
     "zh-Hans": zhHans,
     "zh-Hant": zhHant
   };
-  const { t: t$1 } = initVueI18n(i18nMessages);
+  const { t: t$2 } = initVueI18n(i18nMessages);
   const _sfc_main$d = {
     name: "UniDatetimePicker",
     data() {
@@ -8334,16 +8637,16 @@ if (uni.restoreGlobal) {
        * for i18n
        */
       selectTimeText() {
-        return t$1("uni-datetime-picker.selectTime");
+        return t$2("uni-datetime-picker.selectTime");
       },
       okText() {
-        return t$1("uni-datetime-picker.ok");
+        return t$2("uni-datetime-picker.ok");
       },
       clearText() {
-        return t$1("uni-datetime-picker.clear");
+        return t$2("uni-datetime-picker.clear");
       },
       cancelText() {
-        return t$1("uni-datetime-picker.cancel");
+        return t$2("uni-datetime-picker.cancel");
       }
     },
     mounted() {
@@ -8519,8 +8822,8 @@ if (uni.restoreGlobal) {
       // 获取 年、月、日、时、分、秒 当前可选范围
       getCurrentRange(value) {
         const range = [];
-        for (let i = this["min" + this.capitalize(value)]; i <= this["max" + this.capitalize(value)]; i++) {
-          range.push(i);
+        for (let i2 = this["min" + this.capitalize(value)]; i2 <= this["max" + this.capitalize(value)]; i2++) {
+          range.push(i2);
         }
         return range;
       },
@@ -8600,14 +8903,14 @@ if (uni.restoreGlobal) {
        * 用户选择日期或时间更新 data
        * @param {Object} e
        */
-      bindDateChange(e) {
-        const val = e.detail.value;
+      bindDateChange(e2) {
+        const val = e2.detail.value;
         this.year = this.years[val[0]];
         this.month = this.months[val[1]];
         this.day = this.days[val[2]];
       },
-      bindTimeChange(e) {
-        const val = e.detail.value;
+      bindTimeChange(e2) {
+        const val = e2.detail.value;
         this.hour = this.hours[val[0]];
         this.minute = this.minutes[val[1]];
         this.second = this.seconds[val[2]];
@@ -8625,7 +8928,7 @@ if (uni.restoreGlobal) {
       /**
        * 触发或关闭弹框
        */
-      tiggerTimePicker(e) {
+      tiggerTimePicker(e2) {
         this.visible = !this.visible;
       },
       /**
@@ -8924,8 +9227,8 @@ if (uni.restoreGlobal) {
       )) : vue.createCommentVNode("v-if", true)
     ]);
   }
-  const TimePicker = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$6], ["__scopeId", "data-v-1d532b70"], ["__file", "D:/ruangong/emosphere-master1/uni_modules/uni-datetime-picker/components/uni-datetime-picker/time-picker.vue"]]);
-  const { t } = initVueI18n(i18nMessages);
+  const TimePicker = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$6], ["__scopeId", "data-v-1d532b70"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-datetime-picker/components/uni-datetime-picker/time-picker.vue"]]);
+  const { t: t$1 } = initVueI18n(i18nMessages);
   const _sfc_main$c = {
     components: {
       calendarItem,
@@ -9134,46 +9437,46 @@ if (uni.restoreGlobal) {
        * for i18n
        */
       selectDateText() {
-        return t("uni-datetime-picker.selectDate");
+        return t$1("uni-datetime-picker.selectDate");
       },
       startDateText() {
-        return this.startPlaceholder || t("uni-datetime-picker.startDate");
+        return this.startPlaceholder || t$1("uni-datetime-picker.startDate");
       },
       endDateText() {
-        return this.endPlaceholder || t("uni-datetime-picker.endDate");
+        return this.endPlaceholder || t$1("uni-datetime-picker.endDate");
       },
       okText() {
-        return t("uni-datetime-picker.ok");
+        return t$1("uni-datetime-picker.ok");
       },
       yearText() {
-        return t("uni-datetime-picker.year");
+        return t$1("uni-datetime-picker.year");
       },
       monthText() {
-        return t("uni-datetime-picker.month");
+        return t$1("uni-datetime-picker.month");
       },
       MONText() {
-        return t("uni-calender.MON");
+        return t$1("uni-calender.MON");
       },
       TUEText() {
-        return t("uni-calender.TUE");
+        return t$1("uni-calender.TUE");
       },
       WEDText() {
-        return t("uni-calender.WED");
+        return t$1("uni-calender.WED");
       },
       THUText() {
-        return t("uni-calender.THU");
+        return t$1("uni-calender.THU");
       },
       FRIText() {
-        return t("uni-calender.FRI");
+        return t$1("uni-calender.FRI");
       },
       SATText() {
-        return t("uni-calender.SAT");
+        return t$1("uni-calender.SAT");
       },
       SUNText() {
-        return t("uni-calender.SUN");
+        return t$1("uni-calender.SUN");
       },
       confirmText() {
-        return t("uni-calender.confirm");
+        return t$1("uni-calender.confirm");
       }
     },
     created() {
@@ -9235,8 +9538,8 @@ if (uni.restoreGlobal) {
         this.calendar.fullDate = "";
         this.setDate(/* @__PURE__ */ new Date());
       },
-      bindDateChange(e) {
-        const value = e.detail.value + "-1";
+      bindDateChange(e2) {
+        const value = e2.detail.value + "-1";
         this.setDate(value);
       },
       /**
@@ -9695,7 +9998,7 @@ if (uni.restoreGlobal) {
       /* HYDRATE_EVENTS */
     );
   }
-  const Calendar = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$5], ["__scopeId", "data-v-1d379219"], ["__file", "D:/ruangong/emosphere-master1/uni_modules/uni-datetime-picker/components/uni-datetime-picker/calendar.vue"]]);
+  const Calendar = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$5], ["__scopeId", "data-v-1d379219"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-datetime-picker/components/uni-datetime-picker/calendar.vue"]]);
   const _sfc_main$b = {
     name: "UniDatetimePicker",
     options: {
@@ -9981,14 +10284,14 @@ if (uni.restoreGlobal) {
           });
         }
       },
-      updateLeftCale(e) {
+      updateLeftCale(e2) {
         const left = this.$refs.left;
-        left.cale.setHoverMultiple(e.after);
+        left.cale.setHoverMultiple(e2.after);
         left.setDate(this.$refs.left.nowDate.fullDate);
       },
-      updateRightCale(e) {
+      updateRightCale(e2) {
         const right = this.$refs.right;
-        right.cale.setHoverMultiple(e.after);
+        right.cale.setHoverMultiple(e2.after);
         right.setDate(this.$refs.right.nowDate.fullDate);
       },
       platform() {
@@ -10072,8 +10375,8 @@ if (uni.restoreGlobal) {
         date = fixIosDateFormat(date);
         return Date.parse(new Date(date));
       },
-      singleChange(e) {
-        this.calendarDate = this.inputDate = e.fulldate;
+      singleChange(e2) {
+        this.calendarDate = this.inputDate = e2.fulldate;
         if (this.hasTime)
           return;
         this.confirmSingleChange();
@@ -10127,37 +10430,37 @@ if (uni.restoreGlobal) {
         this.setEmit(this.displayValue);
         this.pickerVisible = false;
       },
-      leftChange(e) {
+      leftChange(e2) {
         const {
           before,
           after
-        } = e.range;
+        } = e2.range;
         this.rangeChange(before, after);
         const obj = {
-          before: e.range.before,
-          after: e.range.after,
-          data: e.range.data,
-          fulldate: e.fulldate
+          before: e2.range.before,
+          after: e2.range.after,
+          data: e2.range.data,
+          fulldate: e2.fulldate
         };
         this.startMultipleStatus = Object.assign({}, this.startMultipleStatus, obj);
       },
-      rightChange(e) {
+      rightChange(e2) {
         const {
           before,
           after
-        } = e.range;
+        } = e2.range;
         this.rangeChange(before, after);
         const obj = {
-          before: e.range.before,
-          after: e.range.after,
-          data: e.range.data,
-          fulldate: e.fulldate
+          before: e2.range.before,
+          after: e2.range.after,
+          data: e2.range.data,
+          fulldate: e2.fulldate
         };
         this.endMultipleStatus = Object.assign({}, this.endMultipleStatus, obj);
       },
-      mobileChange(e) {
+      mobileChange(e2) {
         if (this.isRange) {
-          const { before, after } = e.range;
+          const { before, after } = e2.range;
           if (!before || !after) {
             return;
           }
@@ -10166,16 +10469,16 @@ if (uni.restoreGlobal) {
             const {
               startTime,
               endTime
-            } = e.timeRange;
+            } = e2.timeRange;
             this.tempRange.startTime = startTime;
             this.tempRange.endTime = endTime;
           }
           this.confirmRangeChange();
         } else {
           if (this.hasTime) {
-            this.displayValue = e.fulldate + " " + e.time;
+            this.displayValue = e2.fulldate + " " + e2.time;
           } else {
-            this.displayValue = e.fulldate;
+            this.displayValue = e2.fulldate;
           }
           this.setEmit(this.displayValue);
         }
@@ -10675,53 +10978,142 @@ if (uni.restoreGlobal) {
       }, null, 8, ["date", "defTime", "start-date", "end-date", "selectableTimes", "startPlaceholder", "endPlaceholder", "default-value", "pleStatus", "range", "hasTime", "hideSecond", "onConfirm", "onMaskClose"])) : vue.createCommentVNode("v-if", true)
     ]);
   }
-  const __easycom_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$4], ["__scopeId", "data-v-9802168a"], ["__file", "D:/ruangong/emosphere-master1/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue"]]);
+  const __easycom_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$4], ["__scopeId", "data-v-9802168a"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue"]]);
   const _sfc_main$a = {
     setup() {
-      const router = useRouter();
+      let router2 = j();
       const single = vue.ref("");
-      const usernameInput = vue.ref("小吴");
-      const statusInput = vue.ref("福州");
-      const selectedGender = vue.ref("男");
-      const tomain = () => {
-        const username = usernameInput.value;
-        const userBirthday = single.value;
-        const userGender = selectedGender.value;
-        const userStatus = statusInput.value;
-        store.commit("UserData", {
-          username,
-          userBirthday,
-          userGender,
-          userStatus
+      let usernameInput = vue.ref("");
+      let statusInput = vue.ref("");
+      let selectedGender = vue.ref("");
+      let imageList = vue.ref([]);
+      const upload = () => {
+        uni.chooseImage({
+          count: 1,
+          sizeType: ["original", "compressed"],
+          sourceType: ["album"],
+          loop: true,
+          success: (res) => {
+            formatAppLog("log", "at pages/set/set.vue:65", res);
+            if (res.tempFilePaths.length !== 0) {
+              imageList.value.push(res.tempFilePaths[0]);
+              store.commit("setPath", res.tempFilePaths[0]);
+              var tempFilePaths = res.tempFilePaths;
+              formatAppLog("log", "at pages/set/set.vue:70", tempFilePaths[0]);
+            }
+          }
         });
-        formatAppLog("log", "at pages/set/set.vue:89", store.state.username, store.state.userBirthday, store.state.userGender, store.state.userStatus);
-        router.push("/pages/main/main");
       };
-      return { single, tomain, usernameInput, statusInput, selectedGender };
+      const tiao = () => {
+        router2.back();
+      };
+      const del = (index) => {
+        imageList.value.splice(index, 1);
+        formatAppLog("log", "at pages/set/set.vue:89", imageList);
+      };
+      const tomain = () => {
+        let userName = usernameInput.value;
+        let userBirthday = single.value;
+        let userGender = selectedGender.value;
+        let userStatus = statusInput.value;
+        store.state.userId;
+        let imagepath = store.state.ImagePath;
+        formatAppLog("log", "at pages/set/set.vue:99", imagepath);
+        uni.request({
+          url: "http://8.136.81.197:8080/user/update",
+          method: "POST",
+          data: {
+            id: store.state.userId,
+            birthday: userBirthday,
+            gender: userGender,
+            username: userName,
+            avatar: imagepath
+          },
+          success: (response) => {
+            const user = response.data["user"];
+            formatAppLog("log", "at pages/set/set.vue:112", response.data);
+            let formattedBirthday = user.birthday.substring(0, 10);
+            store.commit("upData", {
+              username: user.username,
+              userBirthday: formattedBirthday,
+              userGender: user.gender,
+              userstatus: userStatus,
+              imagepath: user.avatar
+            });
+            formatAppLog("log", "at pages/set/set.vue:122", store.state.username, store.state.userBirthday, store.state.userGender, store.state.userstatus);
+            router2.replace("/pages/aboutme/aboutme");
+          },
+          fail: (error) => {
+            formatAppLog("error", "at pages/set/set.vue:126", error);
+          }
+        });
+      };
+      return {
+        single,
+        tomain,
+        usernameInput,
+        statusInput,
+        selectedGender,
+        tiao,
+        imageList,
+        upload,
+        del
+      };
     }
   };
   function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_router_link = vue.resolveComponent("router-link");
     const _component_uni_datetime_picker = resolveEasycom(vue.resolveDynamicComponent("uni-datetime-picker"), __easycom_0$1);
     return vue.openBlock(), vue.createElementBlock("view", { class: "backarea" }, [
-      vue.createElementVNode("view", { class: "header" }, [
-        vue.createVNode(_component_router_link, { to: { path: "/pages/login/login" } }, {
-          default: vue.withCtx(() => [
-            vue.createElementVNode("view", { class: "head-left" }, [
-              vue.createElementVNode("img", { src: "/static/images/fanhui.png" }),
-              vue.createElementVNode("text", null, "返回")
-            ])
-          ]),
-          _: 1
-          /* STABLE */
-        })
+      vue.createElementVNode("view", {
+        class: "box",
+        style: { "width": "100%", "height": "5%" }
+      }),
+      vue.createElementVNode("view", {
+        class: "header",
+        onClick: _cache[0] || (_cache[0] = (...args) => $setup.tiao && $setup.tiao(...args))
+      }, [
+        vue.createElementVNode("view", { class: "head-left" }, [
+          vue.createElementVNode("image", { src: "/static/images/fanhui.png" }),
+          vue.createElementVNode("text", null, "返回")
+        ])
       ]),
       vue.createElementVNode("view", { class: "info" }, [
         vue.createElementVNode("div", { class: "circle" }, [
-          vue.createElementVNode("img", {
-            src: "/static/images/touxiang.png",
-            alt: ""
-          })
+          (vue.openBlock(true), vue.createElementBlock(
+            vue.Fragment,
+            null,
+            vue.renderList($setup.imageList, (item, index) => {
+              return vue.openBlock(), vue.createElementBlock("view", {
+                class: "sc2",
+                key: index
+              }, [
+                vue.createElementVNode("image", {
+                  class: "del",
+                  onClick: ($event) => $setup.del(index),
+                  src: "/static/images/shanchu.png",
+                  mode: ""
+                }, null, 8, ["onClick"]),
+                vue.createElementVNode("image", {
+                  class: "image3",
+                  src: item,
+                  mode: ""
+                }, null, 8, ["src"])
+              ]);
+            }),
+            128
+            /* KEYED_FRAGMENT */
+          )),
+          $setup.imageList.length < 1 ? (vue.openBlock(), vue.createElementBlock("view", {
+            key: 0,
+            class: "sc2",
+            onClick: _cache[1] || (_cache[1] = (...args) => $setup.upload && $setup.upload(...args))
+          }, [
+            vue.createElementVNode("image", {
+              class: "sc3",
+              src: "/static/images/touxiang.png",
+              mode: ""
+            })
+          ])) : vue.createCommentVNode("v-if", true)
         ]),
         vue.createElementVNode("view", { class: "info-item" }, [
           vue.createElementVNode("text", { class: "label" }, "昵称:"),
@@ -10731,7 +11123,7 @@ if (uni.restoreGlobal) {
               class: "left",
               type: "text",
               placeholder: "请填写",
-              "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => $setup.usernameInput = $event)
+              "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => $setup.usernameInput = $event)
             },
             null,
             512
@@ -10748,7 +11140,7 @@ if (uni.restoreGlobal) {
               class: "left",
               type: "text",
               placeholder: "请填写",
-              "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => $setup.selectedGender = $event)
+              "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => $setup.selectedGender = $event)
             },
             null,
             512
@@ -10764,7 +11156,7 @@ if (uni.restoreGlobal) {
             type: "date",
             "clear-icon": true,
             modelValue: $setup.single,
-            "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => $setup.single = $event)
+            "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => $setup.single = $event)
           }, null, 8, ["modelValue"])
         ]),
         vue.createElementVNode("view", { class: "info-item" }, [
@@ -10775,7 +11167,7 @@ if (uni.restoreGlobal) {
               class: "left",
               type: "text",
               placeholder: "请填写",
-              "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => $setup.statusInput = $event)
+              "onUpdate:modelValue": _cache[5] || (_cache[5] = ($event) => $setup.statusInput = $event)
             },
             null,
             512
@@ -10786,86 +11178,276 @@ if (uni.restoreGlobal) {
         ]),
         vue.createElementVNode("view", {
           class: "login-card-loginIn-btn",
-          onClick: _cache[4] || (_cache[4] = (...args) => $setup.tomain && $setup.tomain(...args))
+          onClick: _cache[6] || (_cache[6] = (...args) => $setup.tomain && $setup.tomain(...args))
         }, " 设置完成 ")
       ])
     ]);
   }
-  const PagesSetSet = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$3], ["__file", "D:/ruangong/emosphere-master1/pages/set/set.vue"]]);
+  const PagesSetSet = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$3], ["__file", "D:/ruangong/emosphere/pages/set/set.vue"]]);
   const _sfc_main$9 = {
-    data() {
-      return {
-        imgList: []
+    setup() {
+      const keyboardHeight = vue.ref(0);
+      const bottomHeight = vue.ref(0);
+      const scrollTop = vue.ref(0);
+      const userId = vue.ref("");
+      const chatMsg = vue.ref("");
+      const msgList = vue.ref([
+        {
+          botContent: "hello，请问我有什么可以帮助你的吗？",
+          recordId: 0,
+          titleId: 0,
+          userContent: "",
+          userId: 0
+        },
+        {
+          botContent: "",
+          recordId: 0,
+          titleId: 0,
+          userContent: "",
+          userId: 0
+        }
+      ]);
+      const router2 = j();
+      const fan = () => {
+        router2.replace("/pages/main/main");
       };
-    },
-    methods: {
-      // 点击上传图片
-      upload() {
-        uni.chooseImage({
-          count: 3,
-          sizeType: ["original", "compressed"],
-          sourceType: ["album"],
-          loop: true,
-          success: (res) => {
-            formatAppLog("log", "at pages/test/test.vue:33", res);
-            if (res.tempFilePaths.length != 0) {
-              this.imgList.push(res.tempFilePaths[0]);
-              res.tempFilePaths;
+      const test = () => {
+        router2.replace("/pages/questions/questions");
+      };
+      const focus = () => {
+        scrollToBottom();
+      };
+      const blur = () => {
+        scrollToBottom();
+      };
+      const rpxTopx = (px) => {
+        const deviceWidth = wx.getSystemInfoSync().windowWidth;
+        return Math.floor(750 / deviceWidth * Number(px));
+      };
+      const sendHeight = () => {
+        setTimeout(() => {
+          const query = uni.createSelectorQuery();
+          query.select(".send-msg").boundingClientRect();
+          query.exec((res) => {
+            bottomHeight.value = rpxTopx(res[0].height);
+          });
+        }, 10);
+      };
+      const scrollToBottom = () => {
+        setTimeout(() => {
+          const query = uni.createSelectorQuery().in(this);
+          query.select("#scrollview").boundingClientRect();
+          query.select("#msglistview").boundingClientRect();
+          query.exec((res) => {
+            if (res[1].height > res[0].height) {
+              scrollTop.value = rpxTopx(res[1].height - res[0].height);
             }
+          });
+        }, 15);
+      };
+      const handleSend = async () => {
+        if (!chatMsg.value || !/^\s+$/.test(chatMsg.value)) {
+          let obj = {
+            botContent: "",
+            recordId: 0,
+            titleId: 0,
+            userContent: chatMsg.value,
+            userId: 0
+          };
+          try {
+            const response = await uni.request({
+              url: "http://localhost:8080/api/",
+              method: "POST",
+              data: {
+                message: chatMsg.value
+              },
+              header: {
+                "content-type": "application/json"
+              }
+            });
+            const serverResponse = response.data;
+            obj.botContent = serverResponse.message;
+            msgList.value.push(obj);
+            chatMsg.value = "";
+            scrollToBottom();
+            formatAppLog("log", "at pages/test/test.vue:163", "发送成功:", serverResponse);
+          } catch (error) {
+            formatAppLog("error", "at pages/test/test.vue:165", "发送消息失败:", error);
+            uni.showToast({
+              title: "发送消息失败",
+              icon: "none"
+            });
           }
+        } else {
+          uni.showToast({
+            title: "不能发送空白消息",
+            icon: "none"
+          });
+        }
+      };
+      vue.onMounted(() => {
+        uni.onKeyboardHeightChange((res) => {
+          keyboardHeight.value = rpxTopx(res.height - 30);
+          if (keyboardHeight.value < 0)
+            keyboardHeight.value = 0;
         });
-      },
-      // 删除图片
-      del(index) {
-        this.imgList.splice(index, 1);
-        formatAppLog("log", "at pages/test/test.vue:54", this.imgList);
-      }
+      });
+      vue.onUnmounted(() => {
+        uni.offKeyboardHeightChange();
+      });
+      vue.onMounted(() => {
+        scrollToBottom();
+      });
+      return {
+        keyboardHeight,
+        bottomHeight,
+        scrollTop,
+        userId,
+        chatMsg,
+        msgList,
+        fan,
+        test,
+        focus,
+        blur,
+        sendHeight,
+        rpxTopx,
+        handleSend
+      };
     }
   };
   function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
-    return vue.openBlock(), vue.createElementBlock("view", { class: "uPImg" }, [
-      vue.createElementVNode("view", { class: "Img" }, "上传照片 :"),
-      vue.createCommentVNode(" 上传图片 "),
-      vue.createElementVNode("view", { class: "shangchuan" }, [
-        (vue.openBlock(true), vue.createElementBlock(
-          vue.Fragment,
-          null,
-          vue.renderList($data.imgList, (item, index) => {
-            return vue.openBlock(), vue.createElementBlock("view", {
-              class: "sc2",
-              key: index
-            }, [
-              vue.createElementVNode("image", {
-                class: "del",
-                onClick: ($event) => $options.del(index),
-                src: "/static/things/删除.png",
-                mode: ""
-              }, null, 8, ["onClick"]),
-              vue.createElementVNode("image", {
-                class: "Img3",
-                src: item,
-                mode: ""
-              }, null, 8, ["src"])
-            ]);
-          }),
-          128
-          /* KEYED_FRAGMENT */
-        )),
-        $data.imgList.length < 1 ? (vue.openBlock(), vue.createElementBlock("view", {
-          key: 0,
-          class: "sc2",
-          onClick: _cache[0] || (_cache[0] = (...args) => $options.upload && $options.upload(...args))
+    return vue.openBlock(), vue.createElementBlock("view", { class: "backarea" }, [
+      vue.createElementVNode("view", { style: { "width": "100%", "height": "5%" } }),
+      vue.createElementVNode("view", { class: "header" }, [
+        vue.createElementVNode("view", {
+          class: "head-left",
+          onClick: _cache[0] || (_cache[0] = (...args) => $setup.fan && $setup.fan(...args))
         }, [
-          vue.createElementVNode("image", {
-            class: "sc3",
-            src: "/static/things/加号.png",
-            mode: ""
-          })
-        ])) : vue.createCommentVNode("v-if", true)
+          vue.createElementVNode("image", { src: "/static/images/fanhui.jpg" }),
+          vue.createElementVNode("text", null, "返回")
+        ]),
+        vue.createElementVNode("view", {
+          class: "head-right",
+          onClick: _cache[1] || (_cache[1] = (...args) => $setup.test && $setup.test(...args))
+        }, [
+          vue.createElementVNode("image", { src: "/static/images/test.png" }),
+          vue.createElementVNode("text", null, "测试")
+        ])
+      ]),
+      vue.createElementVNode("view", { class: "chat" }, [
+        vue.createElementVNode("scroll-view", {
+          style: vue.normalizeStyle({ height: `${_ctx.windowHeight - _ctx.inputHeight}rpx` }),
+          id: "scrollview",
+          "scroll-y": "true",
+          "scroll-top": $setup.scrollTop,
+          class: "scroll-view"
+        }, [
+          vue.createCommentVNode(" 聊天主体 "),
+          vue.createElementVNode("view", {
+            id: "msglistview",
+            class: "chat-body"
+          }, [
+            vue.createCommentVNode(" 聊天记录 "),
+            (vue.openBlock(true), vue.createElementBlock(
+              vue.Fragment,
+              null,
+              vue.renderList($setup.msgList, (item, index) => {
+                return vue.openBlock(), vue.createElementBlock("view", { key: index }, [
+                  vue.createCommentVNode(" 自己发的消息 "),
+                  item.userContent != "" ? (vue.openBlock(), vue.createElementBlock("view", {
+                    key: 0,
+                    class: "item self"
+                  }, [
+                    vue.createCommentVNode(" 文字内容 "),
+                    vue.createElementVNode(
+                      "view",
+                      { class: "content right" },
+                      vue.toDisplayString(item.userContent),
+                      1
+                      /* TEXT */
+                    ),
+                    vue.createCommentVNode(" 头像 "),
+                    vue.createElementVNode("view", { class: "avatar" }, [
+                      vue.createElementVNode("image", { src: "/static/images/logo.png" })
+                    ])
+                  ])) : vue.createCommentVNode("v-if", true),
+                  vue.createCommentVNode(" 机器人发的消息 "),
+                  item.botContent != "" ? (vue.openBlock(), vue.createElementBlock("view", {
+                    key: 1,
+                    class: "item Ai"
+                  }, [
+                    vue.createCommentVNode(" 头像 "),
+                    vue.createElementVNode("view", { class: "avatar" }, [
+                      vue.createElementVNode("image", { src: "/static/images/ai.png" })
+                    ]),
+                    vue.createCommentVNode(" 文字内容 "),
+                    vue.createElementVNode(
+                      "view",
+                      { class: "content left" },
+                      vue.toDisplayString(item.botContent),
+                      1
+                      /* TEXT */
+                    )
+                  ])) : vue.createCommentVNode("v-if", true)
+                ]);
+              }),
+              128
+              /* KEYED_FRAGMENT */
+            ))
+          ])
+        ], 12, ["scroll-top"]),
+        vue.createElementVNode(
+          "view",
+          {
+            class: "chat-bottom",
+            style: vue.normalizeStyle({ height: `${_ctx.inputHeight}rpx` })
+          },
+          [
+            vue.createElementVNode(
+              "view",
+              {
+                class: "send-msg",
+                style: vue.normalizeStyle({ bottom: `${$setup.keyboardHeight}rpx` })
+              },
+              [
+                vue.createElementVNode("view", { class: "uni-textarea" }, [
+                  vue.withDirectives(vue.createElementVNode(
+                    "textarea",
+                    {
+                      "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => $setup.chatMsg = $event),
+                      maxlength: "300",
+                      "confirm-type": "send",
+                      onConfirm: _cache[3] || (_cache[3] = (...args) => $setup.handleSend && $setup.handleSend(...args)),
+                      "show-confirm-bar": false,
+                      "adjust-position": false,
+                      onLinechange: _cache[4] || (_cache[4] = (...args) => $setup.sendHeight && $setup.sendHeight(...args)),
+                      onFocus: _cache[5] || (_cache[5] = (...args) => $setup.focus && $setup.focus(...args)),
+                      onBlur: _cache[6] || (_cache[6] = (...args) => $setup.blur && $setup.blur(...args)),
+                      "auto-height": ""
+                    },
+                    null,
+                    544
+                    /* HYDRATE_EVENTS, NEED_PATCH */
+                  ), [
+                    [vue.vModelText, $setup.chatMsg]
+                  ])
+                ]),
+                vue.createElementVNode("button", {
+                  onClick: _cache[7] || (_cache[7] = (...args) => $setup.handleSend && $setup.handleSend(...args)),
+                  class: "send-btn"
+                }, "发送")
+              ],
+              4
+              /* STYLE */
+            )
+          ],
+          4
+          /* STYLE */
+        )
       ])
     ]);
   }
-  const PagesTestTest = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$2], ["__file", "D:/ruangong/emosphere-master1/pages/test/test.vue"]]);
+  const PagesTestTest = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$2], ["__scopeId", "data-v-727d09f0"], ["__file", "D:/ruangong/emosphere/pages/test/test.vue"]]);
   const _sfc_main$8 = {
     name: "tuiTabs",
     emits: ["change"],
@@ -11149,7 +11731,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     )) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_0 = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$1], ["__scopeId", "data-v-aff741f1"], ["__file", "D:/ruangong/emosphere-master1/node_modules/thorui-uni/lib/thorui/tui-tabs/tui-tabs.vue"]]);
+  const __easycom_0 = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$1], ["__scopeId", "data-v-aff741f1"], ["__file", "D:/ruangong/emosphere/node_modules/thorui-uni/lib/thorui/tui-tabs/tui-tabs.vue"]]);
   const _sfc_main$7 = {
     __name: "interest",
     setup(__props) {
@@ -11186,15 +11768,15 @@ if (uni.restoreGlobal) {
       const old = vue.ref({
         scrollTop: 0
       });
-      const upper = (e) => {
-        formatAppLog("log", "at components/interest/interest.vue:106", e);
+      const upper = (e2) => {
+        formatAppLog("log", "at components/interest/interest.vue:106", e2);
       };
-      const lower = (e) => {
-        formatAppLog("log", "at components/interest/interest.vue:110", e);
+      const lower = (e2) => {
+        formatAppLog("log", "at components/interest/interest.vue:110", e2);
       };
-      const scroll = (e) => {
-        formatAppLog("log", "at components/interest/interest.vue:114", e);
-        old.value.scrollTop = e.detail.scrollTop;
+      const scroll = (e2) => {
+        formatAppLog("log", "at components/interest/interest.vue:114", e2);
+        old.value.scrollTop = e2.detail.scrollTop;
       };
       const agreeImg = (item, index) => {
         item.agreeCount = item.agreeCount * 1 + 1;
@@ -11371,7 +11953,7 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const __easycom_2$1 = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__scopeId", "data-v-bc3d731e"], ["__file", "D:/ruangong/emosphere-master1/components/interest/interest.vue"]]);
+  const __easycom_2$1 = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__scopeId", "data-v-bc3d731e"], ["__file", "D:/ruangong/emosphere/components/interest/interest.vue"]]);
   const _sfc_main$6 = {
     __name: "tuijian",
     setup(__props) {
@@ -11399,15 +11981,15 @@ if (uni.restoreGlobal) {
       const old = vue.ref({
         scrollTop: 0
       });
-      const upper = (e) => {
-        formatAppLog("log", "at components/tuijian/tuijian.vue:92", e);
+      const upper = (e2) => {
+        formatAppLog("log", "at components/tuijian/tuijian.vue:92", e2);
       };
-      const lower = (e) => {
-        formatAppLog("log", "at components/tuijian/tuijian.vue:96", e);
+      const lower = (e2) => {
+        formatAppLog("log", "at components/tuijian/tuijian.vue:96", e2);
       };
-      const scroll = (e) => {
-        formatAppLog("log", "at components/tuijian/tuijian.vue:100", e);
-        old.value.scrollTop = e.detail.scrollTop;
+      const scroll = (e2) => {
+        formatAppLog("log", "at components/tuijian/tuijian.vue:100", e2);
+        old.value.scrollTop = e2.detail.scrollTop;
       };
       const agreeImg = (item, index) => {
         item.agreeCount = item.agreeCount * 1 + 1;
@@ -11558,24 +12140,28 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const __easycom_3 = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-089fc835"], ["__file", "D:/ruangong/emosphere-master1/components/tuijian/tuijian.vue"]]);
+  const __easycom_3 = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-089fc835"], ["__file", "D:/ruangong/emosphere/components/tuijian/tuijian.vue"]]);
   const _sfc_main$5 = {
     __name: "space",
     setup(__props) {
-      const router = useRouter();
+      let router2 = j();
       const goshare = () => {
-        router.push("/pages/share/share");
+        router2.replace("/pages/share/share");
       };
       const getback = () => {
-        router.push("/pages/main/main");
+        router2.replace("/pages/main/main");
       };
       const list1 = vue.ref([
-        { name: "最新" },
-        { name: "推荐" }
+        {
+          name: "最新"
+        },
+        {
+          name: "推荐"
+        }
       ]);
       let currentTab = vue.ref(0);
-      const change = (e) => {
-        currentTab.value = e.index;
+      const change = (e2) => {
+        currentTab.value = e2.index;
       };
       vue.ref("");
       vue.ref("loadmore");
@@ -11585,6 +12171,7 @@ if (uni.restoreGlobal) {
         const _component_interest = resolveEasycom(vue.resolveDynamicComponent("interest"), __easycom_2$1);
         const _component_tuijian = resolveEasycom(vue.resolveDynamicComponent("tuijian"), __easycom_3);
         return vue.openBlock(), vue.createElementBlock("view", { class: "container" }, [
+          vue.createElementVNode("view", { style: { "width": "100%", "height": "5%" } }),
           vue.createElementVNode("view", { class: "tui-content-box" }, [
             vue.createElementVNode("view", {
               class: "tui-arrow",
@@ -11630,7 +12217,7 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesSpaceSpace = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-53d9de98"], ["__file", "D:/ruangong/emosphere-master1/pages/space/space.vue"]]);
+  const PagesSpaceSpace = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__file", "D:/ruangong/emosphere/pages/space/space.vue"]]);
   const _sfc_main$4 = {
     __name: "my",
     setup(__props) {
@@ -11658,15 +12245,15 @@ if (uni.restoreGlobal) {
       const old = vue.ref({
         scrollTop: 0
       });
-      const upper = (e) => {
-        formatAppLog("log", "at components/my/my.vue:92", e);
+      const upper = (e2) => {
+        formatAppLog("log", "at components/my/my.vue:92", e2);
       };
-      const lower = (e) => {
-        formatAppLog("log", "at components/my/my.vue:96", e);
+      const lower = (e2) => {
+        formatAppLog("log", "at components/my/my.vue:96", e2);
       };
-      const scroll = (e) => {
-        formatAppLog("log", "at components/my/my.vue:100", e);
-        old.value.scrollTop = e.detail.scrollTop;
+      const scroll = (e2) => {
+        formatAppLog("log", "at components/my/my.vue:100", e2);
+        old.value.scrollTop = e2.detail.scrollTop;
       };
       const agreeImg = (item, index) => {
         item.agreeCount = item.agreeCount * 1 + 1;
@@ -11817,7 +12404,7 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const __easycom_1 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-ea4ef091"], ["__file", "D:/ruangong/emosphere-master1/components/my/my.vue"]]);
+  const __easycom_1 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-ea4ef091"], ["__file", "D:/ruangong/emosphere/components/my/my.vue"]]);
   const _sfc_main$3 = {
     __name: "zan",
     setup(__props) {
@@ -11845,15 +12432,15 @@ if (uni.restoreGlobal) {
       const old = vue.ref({
         scrollTop: 0
       });
-      const upper = (e) => {
-        formatAppLog("log", "at components/zan/zan.vue:92", e);
+      const upper = (e2) => {
+        formatAppLog("log", "at components/zan/zan.vue:92", e2);
       };
-      const lower = (e) => {
-        formatAppLog("log", "at components/zan/zan.vue:96", e);
+      const lower = (e2) => {
+        formatAppLog("log", "at components/zan/zan.vue:96", e2);
       };
-      const scroll = (e) => {
-        formatAppLog("log", "at components/zan/zan.vue:100", e);
-        old.value.scrollTop = e.detail.scrollTop;
+      const scroll = (e2) => {
+        formatAppLog("log", "at components/zan/zan.vue:100", e2);
+        old.value.scrollTop = e2.detail.scrollTop;
       };
       const agreeImg = (item, index) => {
         item.agreeCount = item.agreeCount * 1 + 1;
@@ -12004,13 +12591,13 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const __easycom_2 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-d4284ccd"], ["__file", "D:/ruangong/emosphere-master1/components/zan/zan.vue"]]);
+  const __easycom_2 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-d4284ccd"], ["__file", "D:/ruangong/emosphere/components/zan/zan.vue"]]);
   const _sfc_main$2 = {
     __name: "me",
     setup(__props) {
       let currentTab = vue.ref(0);
-      const change = (e) => {
-        currentTab.value = e.index;
+      const change = (e2) => {
+        currentTab.value = e2.index;
       };
       vue.ref(10);
       vue.ref(0);
@@ -12133,13 +12720,13 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesUserMe = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-4dafeecb"], ["__file", "D:/ruangong/emosphere-master1/pages/user/me.vue"]]);
+  const PagesUserMe = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-4dafeecb"], ["__file", "D:/ruangong/emosphere/pages/user/me.vue"]]);
   const _sfc_main$1 = {
     __name: "history",
     setup(__props) {
-      const router = useRouter();
+      const router2 = useRouter();
       const getback = () => {
-        router.push("/pages/relax/relax");
+        router2.push("/pages/relax/relax");
       };
       return (_ctx, _cache) => {
         const _component_uni_datetime_picker = resolveEasycom(vue.resolveDynamicComponent("uni-datetime-picker"), __easycom_0$1);
@@ -12194,7 +12781,7 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesHistoryHistory = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__file", "D:/ruangong/emosphere-master1/pages/history/history.vue"]]);
+  const PagesHistoryHistory = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__file", "D:/ruangong/emosphere/pages/history/history.vue"]]);
   __definePage("pages/enter/enter", PagesEnterEnter);
   __definePage("pages/login/login", PagesLoginLogin);
   __definePage("pages/calendar/calendar", PagesCalendarCalendar);
@@ -12233,9 +12820,277 @@ if (uni.restoreGlobal) {
       vue.createVNode(_component_router_view)
     ]);
   }
-  const App = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "D:/ruangong/emosphere-master1/App.vue"]]);
+  const App = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "D:/ruangong/emosphere/App.vue"]]);
+  const easycom = {
+    autoscan: true,
+    custom: {
+      "tui-(.*)": "thorui-uni/lib/thorui/tui-$1/tui-$1.vue"
+    }
+  };
+  const pages = [
+    {
+      path: "pages/enter/enter",
+      name: "index",
+      style: {
+        navigationBarTitleText: "EmoSphere",
+        navigationStyle: "custom"
+      }
+    },
+    {
+      path: "pages/login/login",
+      style: {
+        navigationBarTitleText: "",
+        enablePullDownRefresh: false,
+        navigationStyle: "custom"
+      }
+    },
+    {
+      path: "pages/calendar/calendar",
+      style: {
+        navigationBarTitleText: "",
+        enablePullDownRefresh: false,
+        navigationStyle: "custom"
+      }
+    },
+    {
+      path: "pages/main/main",
+      style: {
+        navigationBarTitleText: "",
+        enablePullDownRefresh: false,
+        navigationStyle: "custom"
+      }
+    },
+    {
+      path: "pages/EmoRecord/EmoRecord",
+      style: {
+        navigationBarTitleText: "",
+        enablePullDownRefresh: false,
+        navigationStyle: "custom"
+      }
+    },
+    {
+      path: "pages/about/about",
+      style: {
+        navigationBarTitleText: "",
+        enablePullDownRefresh: false,
+        navigationStyle: "custom"
+      }
+    },
+    {
+      path: "pages/aboutme/aboutme",
+      style: {
+        navigationBarTitleText: "",
+        enablePullDownRefresh: false,
+        navigationStyle: "custom"
+      }
+    },
+    {
+      path: "pages/myScreen/myScreen",
+      style: {
+        navigationBarTitleText: "",
+        enablePullDownRefresh: false,
+        navigationStyle: "custom"
+      }
+    },
+    {
+      path: "pages/relax/relax",
+      style: {
+        navigationBarTitleText: "",
+        enablePullDownRefresh: false,
+        navigationStyle: "custom"
+      }
+    },
+    {
+      path: "pages/share/share",
+      style: {
+        navigationBarTitleText: "",
+        enablePullDownRefresh: false,
+        navigationStyle: "custom"
+      }
+    },
+    {
+      path: "pages/record/record",
+      style: {
+        navigationBarTitleText: "",
+        enablePullDownRefresh: false,
+        navigationStyle: "custom"
+      }
+    },
+    {
+      path: "pages/music/music",
+      style: {
+        navigationBarTitleText: "",
+        enablePullDownRefresh: false,
+        navigationStyle: "custom"
+      }
+    },
+    {
+      path: "pages/questions/questions",
+      style: {
+        navigationBarTitleText: "",
+        enablePullDownRefresh: false,
+        navigationStyle: "custom"
+      }
+    },
+    {
+      path: "pages/result/result",
+      style: {
+        navigationBarTitleText: "",
+        enablePullDownRefresh: false,
+        navigationStyle: "custom"
+      }
+    },
+    {
+      path: "pages/home/home",
+      style: {
+        navigationBarTitleText: "",
+        enablePullDownRefresh: false,
+        navigationStyle: "custom"
+      }
+    },
+    {
+      path: "pages/chat/chat",
+      style: {
+        navigationBarTitleText: "",
+        enablePullDownRefresh: false,
+        navigationStyle: "custom"
+      }
+    },
+    {
+      path: "pages/set/set",
+      style: {
+        navigationBarTitleText: "",
+        enablePullDownRefresh: false,
+        navigationStyle: "custom"
+      }
+    },
+    {
+      path: "pages/test/test",
+      style: {
+        navigationBarTitleText: "",
+        enablePullDownRefresh: false,
+        navigationStyle: "custom"
+      }
+    },
+    {
+      path: "pages/space/space",
+      style: {
+        navigationBarTitleText: "",
+        enablePullDownRefresh: false,
+        navigationStyle: "custom"
+      }
+    },
+    {
+      path: "pages/user/me",
+      style: {
+        navigationBarTitleText: "",
+        enablePullDownRefresh: false,
+        navigationStyle: "custom"
+      }
+    },
+    {
+      path: "pages/history/history",
+      style: {
+        navigationBarTitleText: "",
+        enablePullDownRefresh: false,
+        navigationStyle: "custom"
+      }
+    }
+  ];
+  const globalStyle = {
+    navigationBarTextStyle: "black",
+    navigationBarTitleText: "uni-app",
+    navigationBarBackgroundColor: "#F8F8F8",
+    backgroundColor: "#F8F8F8",
+    "app-plus": {
+      background: "#efeff4"
+    }
+  };
+  const uniIdRouter = {};
+  const tabBar = {
+    color: "#AAAAAA",
+    selectedColor: "#488C88",
+    borderStyle: "black",
+    backgroundColor: "#ffffff",
+    fontSize: "18px",
+    height: "60",
+    iconWidth: "40px"
+  };
+  const condition = {
+    current: 0,
+    list: [
+      {
+        name: "",
+        path: "",
+        query: ""
+      }
+    ]
+  };
+  const pagesJson = {
+    easycom,
+    pages,
+    globalStyle,
+    uniIdRouter,
+    tabBar,
+    condition
+  };
+  /*!
+   * uni-reade-pages-vite v0.0.1
+   * 2023 weisheng
+   */
+  function t(t2, n2) {
+    (null == n2 || n2 > t2.length) && (n2 = t2.length);
+    for (var r2 = 0, e2 = Array(n2); n2 > r2; r2++)
+      e2[r2] = t2[r2];
+    return e2;
+  }
+  function n(n2) {
+    return function(n3) {
+      if (Array.isArray(n3))
+        return t(n3);
+    }(n2) || function(t2) {
+      if ("undefined" != typeof Symbol && null != t2[Symbol.iterator] || null != t2["@@iterator"])
+        return Array.from(t2);
+    }(n2) || function(n3, r2) {
+      if (n3) {
+        if ("string" == typeof n3)
+          return t(n3, r2);
+        var e2 = Object.prototype.toString.call(n3).slice(8, -1);
+        return "Object" === e2 && n3.constructor && (e2 = n3.constructor.name), "Map" === e2 || "Set" === e2 ? Array.from(n3) : "Arguments" === e2 || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(e2) ? t(n3, r2) : void 0;
+      }
+    }(n2) || function() {
+      throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+    }();
+  }
+  var r = { includes: ["meta", "path", "aliasPath", "name"] };
+  function e(t2, e2) {
+    return e2 && e2.includes && (r.includes = Array.from(new Set([].concat(n(r.includes), n(e2.includes))))), a(t2.pages).concat(function(t3) {
+      var n2, r2 = [];
+      if (null == t3 || 0 == t3.length)
+        return [];
+      return t3.forEach(function(t4) {
+        n2 = a(t4.pages, t4.root), r2 = r2.concat(n2);
+      }), r2;
+    }(t2.subPackages));
+  }
+  function a(t2) {
+    for (var n2 = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : null, e2 = [], a2 = 0; t2.length > a2; a2++) {
+      for (var o = t2[a2], c2 = {}, u2 = 0; r.includes.length > u2; u2++) {
+        var i2 = r.includes[u2], l2 = o[i2];
+        "path" === i2 && (l2 = n2 ? "/".concat(n2, "/").concat(l2) : "/".concat(l2)), "aliasPath" === i2 && 0 == a2 && null == n2 ? c2[i2] = c2[i2] || "/" : void 0 !== l2 && (c2[i2] = l2);
+      }
+      e2.push(c2);
+    }
+    return e2;
+  }
+  const routes = e(pagesJson);
+  const router = $({
+    routes: [...routes]
+    // 路由表信息
+  });
   function createApp() {
     const app = vue.createVueApp(App);
+    app.use(router);
     return {
       app
     };

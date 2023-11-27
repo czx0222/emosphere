@@ -1110,77 +1110,99 @@
   border-bottom-color: #fff;
 }
 
-.backarea {
-    display: flex;
-    flex-direction: column;
-    background-image: url('../../static/images/back2.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-	background-position: center;
-    width: 100%;
-    height: 100vh;
-    align-items: center;
+.del{
+		width: 1.5625rem;
+		height: 1.5625rem;
+		z-index: 100;
+		position: absolute;
 }
-.header {
-    width: 90%;
-    margin: 20px;
+.image3 {
+		border-radius: 50%;
+		width: 100%;
+		height: 100%;
 }
-.header uni-text {
-    color: #ffffff;
-    font-size: 1rem;
-    font-weight: 550;
+.sc2{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+		width: 100%;
+		height: 100%;
+		position: relative;
 }
-.head-left {
-    display: flex;
-    align-items: center;
-    float: left;
-}
-.info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    top: 2rem;
-	width: 90%;
-}
-.info-item {
-    display: flex;
-    margin: 20px;
-    align-items: center; 
-	width: 70%;
-}
-.info-item .label {
-    font-size: 20px;
-    font-weight: bold;
-    margin-right: 10px;
-	width: 35%;
-}
-.info-item .left{
-	  width: 65%;
+.sc3 {
+		width: 3.125rem;
+		height: 3.125rem;
 }
 .circle {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+		width: 120px;
+		height: 120px;
+		border-radius: 50%;
+		background-color: rgba(0, 0, 0, 0.2);
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
 }
-.circle img {
-    width: 70px;
-    height: 70px;
+.backarea {
+		display: flex;
+		flex-direction: column;
+		background-image: url('../../static/images/back2.png');
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center;
+		width: 100%;
+		height: 100vh;
+		align-items: center;
 }
-.login-card-loginIn-btn{
-  	top:3rem;
-  	position: relative;
-  	display: flex;
-  	justify-content: center;
-  	align-items: center;
-    background-color:rgba(0, 0, 0, 0.5);
-    width: 200px;
-    font-size: 20px;
-    height: 50px;
-    border-radius: 40px;
-    color: white;
+.header {
+		width: 90%;
+		margin: 20px;
+}
+.header uni-image{
+		width: 40px;
+		height: 40px;
+}
+.header uni-text {
+		color: #ffffff;
+		font-size: 1rem;
+		font-weight: 550;
+}
+.head-left {
+		display: flex;
+		align-items: center;
+		float: left;
+}
+.info {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		position: relative;
+		top: 2rem;
+		width: 90%;
+}
+.info-item {
+		display: flex;
+		margin: 20px;
+		align-items: center;
+		width: 70%;
+}
+.info-item .label {
+		font-size: 20px;
+		font-weight: bold;
+		margin-right: 10px;
+		width: 35%;
+}
+.info-item .left {
+		width: 65%;
+}
+.login-card-loginIn-btn {
+		top: 3rem;
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: rgba(0, 0, 0, 0.5);
+		width: 200px;
+		font-size: 20px;
+		height: 50px;
+		border-radius: 40px;
+		color: white;
 }

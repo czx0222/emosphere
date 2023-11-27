@@ -24,9 +24,10 @@ app.$mount()
 // #ifdef VUE3
 import { createSSRApp } from 'vue'
 import App from './App.vue'
-import { createRouter } from 'vue-router';
+import router from './router'
 export function createApp() {
   const app = createSSRApp(App)
+   app.use(router)
   return {
     app
   }

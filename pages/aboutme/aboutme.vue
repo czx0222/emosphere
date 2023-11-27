@@ -1,18 +1,16 @@
 <template>
 	<view class="my-page">
 		<view class="box" style="width: 100%;height: 5%;"></view>
-		<view class="header">
-			<router-link :to="{ path: '/pages/myScreen/myScreen' }">
+		<view class="header" @click="fan">
 				<image src="/static/images/fan.png"></image>
-			</router-link>
 			<span>个人资料</span>
 		</view>
 		<text class="edit" @click="edit">编辑资料</text>
 		<view class="content">
 			<view class="menu-item1">
 				<!-- <image class="user-avatar" src="/static/uni.png" /> -->
-				<image class="user-avatar" ></image>
-				<text class="user-avatar-text" @click="uploadImage">修改头像</text>
+				<image class="user-avatar" :src="userAvatar"></image>
+				<text class="user-avatar-text" >头像</text>
 			</view>
 
 			<view class="menu-item">
@@ -57,17 +55,24 @@
 	import {
 		ref
 	} from 'vue';
-	import {
-		useRouter
-	} from 'vue-router';
 	import store from '@/store';
-
-	const router = useRouter();
-	const username = ref(store.state.username);
-	const userbirthday = ref(store.state.userBirthday);
-	const usergender = ref(store.state.userGender);
-	const userstatus = ref(store.state.userStatus);
-	
+	import { useRouter } from 'uni-mini-router'
+	let router = useRouter()
+	// const username = ref(store.state.username);
+	// const userbirthday = ref(store.state.userBirthday);
+	// const usergender = ref(store.state.userGender);
+	// const userstatus = ref(store.state.userStatus);
+	let username = ref(store.state.username);
+	let userbirthday = ref(store.state.userbirthday);
+	let usergender = ref(store.state.usergender);
+	let userstatus = ref(store.state.userstatus);
+	const userAvatar = ref(store.state.ImagePath);
+	const edit = () => {
+			router.push('/pages/set/set')
+		}
+	const fan = () =>{
+		router.replace('/pages/myScreen/myScreen')
+	}
 </script>
 
 <style lang="scss">
@@ -166,8 +171,7 @@
 
 	.menu-text {
 		font-size: 15px;
-		padding-left: 20px;
-		/* 添加左边距 */
+		padding-left: 10px;
 		color: #4c5049;
 		font-weight: 700;
 
@@ -175,7 +179,7 @@
 
 	.menu-text1 {
 		position: absolute;
-		margin-left: 110px;
+		margin-left: 80px;
 		font-size: 17px;
 		display: flex;
 		font-weight: bold;

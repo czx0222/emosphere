@@ -1,5 +1,10 @@
 /* 水平间距 */
 /* 水平间距 */
+.backarea[data-v-0a633310] {
+  position: relative;
+  width: 100%;
+  height: 110vh;
+}
 a[data-v-0a633310] {
   text-decoration: none;
   color: inherit;
@@ -7,6 +12,7 @@ a[data-v-0a633310] {
 .header[data-v-0a633310] {
   display: flex;
   justify-content: space-between;
+  position: fixed;
   width: 100%;
   position: relative;
   padding: 10px;
@@ -22,7 +28,8 @@ a[data-v-0a633310] {
   font-size: 1rem;
   font-weight: 550;
 }
-.head-left[data-v-0a633310], .head-right[data-v-0a633310] {
+.head-left[data-v-0a633310],
+.head-right[data-v-0a633310] {
   display: flex;
   align-items: center;
 }

@@ -82,14 +82,13 @@
 }
 .menu-text {
   font-size: 15px;
-  padding-left: 20px;
-  /* 添加左边距 */
+  padding-left: 10px;
   color: #4c5049;
   font-weight: 700;
 }
 .menu-text1 {
   position: absolute;
-  margin-left: 110px;
+  margin-left: 80px;
   font-size: 17px;
   display: flex;
   font-weight: bold;

@@ -3,14 +3,14 @@
 		<view class="box" style="width: 100%;height: 5%;"></view>
 		<view class="header">
 			<view class="head-left" @click="goBack">
-				<img src="/static/images/fanhui.png" />
+				<image src="/static/images/fanhui.png"></image>
 				<text>返回</text>
 			</view>
 		</view>
 		<view class="form">
 
 			<view class="role">
-				<img src="/static/images/logo.png" alt="">
+				<image class="user-avatar" :src="userAvatar"></image>
 			</view>
 			<view class="info">
 				<text class="user-name">{{username}}</text>
@@ -22,24 +22,32 @@
 		<view class="content">
 			<view class="menu-item" @click="goToProfile">
 				<text class="menu-text">个人资料</text>
-				<img src="/static/images/heijiantou.png" alt="" />
+				<image src="/static/images/heijiantou.png" alt=""></image>
 			</view>
 
 			<!-- 收藏内容 -->
 			<view class="menu-item" @click="goToFavorites">
 				<text class="menu-text">收藏内容</text>
-				<img src="/static/images/heijiantou.png" alt="" />
+				<image src="/static/images/heijiantou.png" alt=""></image>
 			</view>
 
 			<!-- 关于 -->
 			<view class="menu-item" @click="goToAbout">
 				<text class="menu-text">关于EmoSphere</text>
-				<img src="/static/images/heijiantou.png" alt="" />
+				<image src="/static/images/heijiantou.png" alt=""></image>
 			</view>
 		</view>
 
+		<view class="logout-button">
+			<button  @click="showConfirmDialog">退出登录</button>
 
-		<button class="logout-button" @click="logout">退出登录</button>
+		</view>
+		    <confirm-dialog
+		      v-if="isConfirmDialogVisible"
+		      :message="confirmMessage"
+		      @onConfirm="handleConfirm"
+		      @onCancel="handleCancel"
+		    />
 	</view>
 </template>
 
@@ -50,8 +58,9 @@
 	import store from '@/store';
 	import {
 		useRouter
-	} from 'vue-router';
-
+	} from 'uni-mini-router'
+	import ConfirmDialog from "@/components/ConfirmDialog/ConfirmDialog.vue";
+	let router = useRouter();
 	const calculateAge = (birthdate) => {
 		const today = new Date();
 		const birthDate = new Date(birthdate);
@@ -59,21 +68,22 @@
 		return age;
 	};
 
-	const userbirthday = ref(store.state.userBirthday);
+	const userbirthday = ref(store.getters.getUserBirthday);
 	const age = ref(calculateAge(userbirthday.value));
-	const router = useRouter();
 	const username = ref(store.getters.getUsername);
 	const userid = ref(store.getters.getUserId);
-
+	const userAvatar = ref(store.state.ImagePath);
+	
+	const isConfirmDialogVisible = ref(false);
+	const confirmMessage = ref("确定要退出登录吗？");
 
 
 	const goBack = () => {
-		router.push('/pages/main/main');
+		router.replace('/pages/main/main');
 	};
 
 	const goToProfile = () => {
-		console.log('aboutme');
-		router.push('/pages/aboutMe/aboutMe');
+		router.push('/pages/aboutme/aboutme');
 	};
 
 	const goToFavorites = () => {
@@ -84,11 +94,18 @@
 		router.push('/pages/about/about');
 	};
 
-	const logout = () => {
-		if (confirm('确定要退出登录吗？')) {
-			console.log('logout');
-			router.push('/pages/login/login');
-		} else {}
+	const showConfirmDialog = () => {
+	  isConfirmDialogVisible.value = true;
+	};
+	
+	const handleConfirm = () => {
+	  isConfirmDialogVisible.value = false;
+	  store.commit("clearUserData");
+	  router.push("/pages/login/login");
+	};
+	
+	const handleCancel = () => {
+	  isConfirmDialogVisible.value = false;
 	};
 </script>
 
@@ -101,7 +118,7 @@
 		background-repeat: no-repeat;
 		background-position: center;
 		width: 100%;
-		height: 100vh;
+		height: 110vh;
 		align-items: center;
 	}
 
@@ -138,10 +155,16 @@
 		float: left;
 	}
 
+	.head-left image {
+		width: 40px;
+		height: 40px;
+	}
+
 	.form {
+		border: 5px black solid;
 		width: 80%;
-		top: 6rem;
-		min-height: 200rpx;
+		top: 7rem;
+		min-height: 190rpx;
 		position: relative;
 		border-radius: 60rpx;
 		padding: 10px;
@@ -159,7 +182,7 @@
 		top: -150rpx;
 	}
 
-	.role img {
+	.role image {
 		width: 80%;
 		height: 80%;
 		object-fit: cover;
@@ -212,7 +235,7 @@
 		padding-right: 10px;
 	}
 
-	.menu-item img {
+	.menu-item image {
 		width: 40px;
 		height: 40px;
 		margin-right: 20px;

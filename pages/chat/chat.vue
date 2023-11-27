@@ -1,64 +1,66 @@
 <template>
-	<view class="header">
-		
-		<router-link :to="{ path: '/pages/main/main' }">
-			<view class="head-left">
-				
-				<image src="/static/images/fanhui.jpg" ></image>
+	<view class="backarea">
+		<view style=" width: 100%;height: 5%; "></view>
+		<view class="header">
+			<view class="head-left" @click="fan">
+				<image src="/static/images/fanhui.jpg"></image>
 				<text>返回</text>
 			</view>
-		</router-link>
-		<router-link :to="{ path: '/pages/home/home' }">
-		<view class="head-right" @click="savadata">
-			<image src="/static/images/test.png" ></image>
-			<text>测试</text>
+			<view class="head-right" @click="test">
+				<image src="/static/images/test.png"></image>
+				<text>测试</text>
+			</view>
 		</view>
-		</router-link>
-	</view>
-	<view class="chat">
-		<scroll-view :style="{height: `${windowHeight-inputHeight}rpx`}" id="scrollview" scroll-y="true"
-			:scroll-top="scrollTop" class="scroll-view">
-			<!-- 聊天主体 -->
-			<view id="msglistview" class="chat-body">
-				<!-- 聊天记录 -->
-				<view v-for="(item,index) in msgList" :key="index">
-					<!-- 自己发的消息 -->
-					<view class="item self" v-if="item.userContent != ''">
-						<!-- 文字内容 -->
-						<view class="content right">
-							{{item.userContent}}
-						</view>
-						<!-- 头像 -->
-						<view class="avatar">
-							<image src="/static/images/logo.png" ></image>
+			<view class="chat">
+				<scroll-view :style="{height: `${windowHeight-inputHeight}rpx`}" id="scrollview" scroll-y="true"
+					:scroll-top="scrollTop" class="scroll-view">
+					<!-- 聊天主体 -->
+					<view id="msglistview" class="chat-body">
+						<!-- 聊天记录 -->
+						<view v-for="(item,index) in msgList" :key="index">
+							<!-- 自己发的消息 -->
+							<view class="item self" v-if="item.userContent != ''">
+								<!-- 文字内容 -->
+								<view class="content right">
+									{{item.userContent}}
+								</view>
+								<!-- 头像 -->
+								<view class="avatar">
+									<image src="/static/images/logo.png" ></image>
+								</view>
+							</view>
+							<!-- 机器人发的消息 -->
+							<view class="item Ai" v-if="item.botContent != ''">
+								<!-- 头像 -->
+								<view class="avatar">
+									<image src="/static/images/ai.png" ></image>
+								</view>
+								<!-- 文字内容 -->
+								<view class="content left">
+									{{item.botContent}}
+								</view>
+							</view>
 						</view>
 					</view>
-					<!-- 机器人发的消息 -->
-					<view class="item Ai" v-if="item.botContent != ''">
-						<!-- 头像 -->
-						<view class="avatar">
-							<image src="/static/images/ai.png" ></image>
+				</scroll-view>
+				<view class="chat-bottom" :style="{height: `${inputHeight}rpx`}">
+					<view class="send-msg" :style="{bottom:`${keyboardHeight}rpx`}">
+						<view class="uni-textarea">
+							<textarea v-model="chatMsg" maxlength="300" confirm-type="send" @confirm="handleSend"
+								:show-confirm-bar="false" :adjust-position="false" @linechange="sendHeight" @focus="focus"
+								@blur="blur" auto-height></textarea>
 						</view>
-						<!-- 文字内容 -->
-						<view class="content left">
-							{{item.botContent}}
-						</view>
+						<button @click="handleSend" class="send-btn">发送</button>
 					</view>
 				</view>
 			</view>
-		</scroll-view>
-		<view class="chat-bottom" :style="{height: `${inputHeight}rpx`}">
-			<view class="send-msg" :style="{bottom:`${keyboardHeight}rpx`}">
-				<view class="uni-textarea">
-					<textarea v-model="chatMsg" maxlength="300" confirm-type="send" @confirm="handleSend"
-						:show-confirm-bar="false" :adjust-position="false" @linechange="sendHeight" @focus="focus"
-						@blur="blur" auto-height></textarea>
-				</view>
-				<button @click="handleSend" class="send-btn">发送</button>
-			</view>
-		</view>
 	</view>
+	
+
+
+
 </template>
+
 <script>
 	export default {
 		data() {
@@ -179,38 +181,53 @@
 		}
 	}
 </script>
+
 <style lang="scss" scoped>
 	$chatContentbgc: #C2DCFF;
 	$sendBtnbgc: #4F7DF5;
-	a {
-	  text-decoration: none;
-	  color: inherit; 
+	
+	.backarea{
+		position: relative;
+		width: 100%;
+		height: 110vh;
+		
 	}
+
+	a {
+		text-decoration: none;
+		color: inherit;
+	}
+
 	.header {
 		display: flex;
 		justify-content: space-between;
+		position: fixed;
 		width: 100%;
 		position: relative;
 		padding: 10px;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	
-	
+
+
 	}
-	.header image{
+
+	.header image {
 		height: 30px;
-		margin-right: 10px ;
+		margin-right: 10px;
 		width: 30px;
 	}
+
 	.header text {
 		color: black;
 		font-size: 1rem;
 		font-weight: 550;
 	}
-	
-	.head-left ,.head-right{
+
+	.head-left,
+	.head-right {
 		display: flex;
 		align-items: center;
 	}
+
 	/* 聊天消息 */
 	.chat {
 		.scroll-view {
@@ -296,7 +313,7 @@
 						height: 78rpx;
 						border-radius: 8rpx;
 						overflow: hidden;
-						
+
 						image {
 							align-self: center;
 						}
