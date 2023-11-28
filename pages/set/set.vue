@@ -64,25 +64,29 @@
 					success: (res) => {
 						console.log(res);
 						if (res.tempFilePaths.length !== 0) {
-							imageList.value.push(res.tempFilePaths[0]);
-							store.commit('setPath', res.tempFilePaths[0]);
+							imageList.value.push(res.tempFilePaths[0]); 
 							var tempFilePaths = res.tempFilePaths;
 							console.log(tempFilePaths[0])
-							// uni.uploadFile({
-							//   url: 'http://douzhuoqianshouba.xieenguoji.com/api/ajax/upload',
-							//   filePath: tempFilePaths[0],
-							//   name: 'file',
-							//   success: (uploadFileRes) => {},
-							//   fail: (err) => {
-							//     console.log(err);
-							//   },
-							// });
+							uni.uploadFile({
+							  url: 'http://8.136.81.197:8080/qiniu/file',
+							  filePath: tempFilePaths[0],
+							  name: 'file',
+							success:function(res){
+								console.log(res.data)
+								const responseData = JSON.parse(res.data); 
+								store.commit('setPath', responseData.url);
+								console.log(store.state.ImagePath)
+							},
+							fail:function(res){
+								console.log(res.errMsg)
+							}
+							});
 						}
 					},
 				});
 			};
 			const tiao = () => {
-					router.back()
+					router.replace('/pages/myScreen/myScreen')
 			}
 			const del = (index) => {
 				imageList.value.splice(index, 1);
@@ -96,7 +100,6 @@
 				let userStatus = statusInput.value;
 				let userid = store.state.userId
 				let imagepath = store.state.ImagePath
-				console.log(imagepath)
 				uni.request({
 					url:'http://8.136.81.197:8080/user/update',
 					method: 'POST',
@@ -119,7 +122,7 @@
 							imagepath:user.avatar
 							
 						});
-						console.log(store.state.username, store.state.userBirthday, store.state.userGender, store.state.userstatus);
+						console.log(store.state.username, store.state.userBirthday, store.state.userGender, store.state.ImagePath);
 						router.replace('/pages/aboutme/aboutme');
 					},
 					fail: (error) => {

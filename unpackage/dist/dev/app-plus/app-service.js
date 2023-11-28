@@ -1395,22 +1395,24 @@ if (uni.restoreGlobal) {
         userGender,
         imagepath
       }) {
+        state.ImagePath = imagepath;
         state.userId = id;
         state.username = username;
         state.userbirthday = userBirthday;
         state.usergender = userGender;
-        state.ImagePath = imagepath;
       },
       upData(state, {
         username,
         userBirthday,
         userGender,
-        userstatus
+        userstatus,
+        imagepath
       }) {
         state.username = username;
         state.userBirthday = userBirthday;
         state.userGender = userGender;
         state.userstatus = userstatus;
+        state.ImagePath = imagepath;
       },
       setPath(state, path) {
         state.ImagePath = path;
@@ -1464,18 +1466,19 @@ if (uni.restoreGlobal) {
             } else {
               formattedBirthday = user.birthday.substring(0, 10);
             }
-            formatAppLog("log", "at pages/login/login.vue:69", response.data);
+            formatAppLog("log", "at pages/login/login.vue:69", formattedBirthday);
             store.commit("setUserData", {
               id: user.id,
               username: user.username,
               userBirthday: formattedBirthday,
-              userGender: user.gender
+              userGender: user.gender,
+              imagepath: user.avatar
             });
-            formatAppLog("log", "at pages/login/login.vue:76", "User data stored in Vuex:", store.state.userId, store.state.username, store.state.ImagePath);
+            formatAppLog("log", "at pages/login/login.vue:77", store.state.username, store.state.userBirthday, store.state.userGender, store.state.ImagePath);
             router2.replace("/pages/main/main");
           },
           fail: (error) => {
-            formatAppLog("error", "at pages/login/login.vue:81", error);
+            formatAppLog("error", "at pages/login/login.vue:82", error);
           }
         });
       };
@@ -3074,7 +3077,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -3171,7 +3174,7 @@ if (uni.restoreGlobal) {
       /* CLASS */
     );
   }
-  const CalendarItem = /* @__PURE__ */ _export_sfc(_sfc_main$A, [["render", _sfc_render$m], ["__scopeId", "data-v-65626c58"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-calendar/components/uni-calendar/uni-calendar-item.vue"]]);
+  const CalendarItem = /* @__PURE__ */ _export_sfc(_sfc_main$A, [["render", _sfc_render$l], ["__scopeId", "data-v-65626c58"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-calendar/components/uni-calendar/uni-calendar-item.vue"]]);
   const { t: t$3 } = initVueI18n(i18nMessages$1);
   const _sfc_main$z = {
     components: {
@@ -3442,7 +3445,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_calendar_item = vue.resolveComponent("calendar-item");
     return vue.openBlock(), vue.createElementBlock("view", { class: "uni-calendar" }, [
       !$props.insert && $data.show ? (vue.openBlock(), vue.createElementBlock(
@@ -3649,7 +3652,7 @@ if (uni.restoreGlobal) {
       )) : vue.createCommentVNode("v-if", true)
     ]);
   }
-  const __easycom_0$5 = /* @__PURE__ */ _export_sfc(_sfc_main$z, [["render", _sfc_render$l], ["__scopeId", "data-v-b6ab2cfb"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-calendar/components/uni-calendar/uni-calendar.vue"]]);
+  const __easycom_0$5 = /* @__PURE__ */ _export_sfc(_sfc_main$z, [["render", _sfc_render$k], ["__scopeId", "data-v-b6ab2cfb"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-calendar/components/uni-calendar/uni-calendar.vue"]]);
   const _sfc_main$y = {
     __name: "calendar",
     setup(__props) {
@@ -4150,7 +4153,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_router_link = vue.resolveComponent("router-link");
     return vue.openBlock(), vue.createElementBlock("view", { class: "about" }, [
       vue.createElementVNode("view", {
@@ -4252,16 +4255,23 @@ if (uni.restoreGlobal) {
       )) : vue.createCommentVNode("v-if", true)
     ]);
   }
-  const PagesAboutAbout = /* @__PURE__ */ _export_sfc(_sfc_main$v, [["render", _sfc_render$k], ["__scopeId", "data-v-13a78ac6"], ["__file", "D:/ruangong/emosphere/pages/about/about.vue"]]);
+  const PagesAboutAbout = /* @__PURE__ */ _export_sfc(_sfc_main$v, [["render", _sfc_render$j], ["__scopeId", "data-v-13a78ac6"], ["__file", "D:/ruangong/emosphere/pages/about/about.vue"]]);
   const _sfc_main$u = {
     __name: "aboutme",
     setup(__props) {
       let router2 = j();
-      let username = vue.ref(store.state.username);
-      let userbirthday = vue.ref(store.state.userbirthday);
-      let usergender = vue.ref(store.state.usergender);
-      let userstatus = vue.ref(store.state.userstatus);
-      const userAvatar = vue.ref(store.state.ImagePath);
+      let username = vue.ref("");
+      let userbirthday = vue.ref("");
+      let usergender = vue.ref("");
+      let userstatus = vue.ref("");
+      let userAvatar = vue.ref("");
+      vue.onMounted(() => {
+        username.value = store.state.username;
+        userbirthday.value = store.state.userbirthday;
+        usergender.value = store.state.usergender;
+        userstatus.value = store.state.userstatus;
+        userAvatar.value = store.state.ImagePath;
+      });
       const edit = () => {
         router2.push("/pages/set/set");
       };
@@ -4290,7 +4300,7 @@ if (uni.restoreGlobal) {
               vue.createCommentVNode(' <image class="user-avatar" src="/static/uni.png" /> '),
               vue.createElementVNode("image", {
                 class: "user-avatar",
-                src: userAvatar.value
+                src: vue.unref(userAvatar)
               }, null, 8, ["src"]),
               vue.createElementVNode("text", { class: "user-avatar-text" }, "头像")
             ]),
@@ -4389,7 +4399,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("div", { class: "confirm-dialog" }, [
       vue.createElementVNode(
         "div",
@@ -4408,7 +4418,7 @@ if (uni.restoreGlobal) {
       ])
     ]);
   }
-  const ConfirmDialog = /* @__PURE__ */ _export_sfc(_sfc_main$t, [["render", _sfc_render$j], ["__scopeId", "data-v-76a5aa76"], ["__file", "D:/ruangong/emosphere/components/ConfirmDialog/ConfirmDialog.vue"]]);
+  const ConfirmDialog = /* @__PURE__ */ _export_sfc(_sfc_main$t, [["render", _sfc_render$i], ["__scopeId", "data-v-76a5aa76"], ["__file", "D:/ruangong/emosphere/components/ConfirmDialog/ConfirmDialog.vue"]]);
   const _sfc_main$s = {
     __name: "myScreen",
     setup(__props) {
@@ -4419,11 +4429,18 @@ if (uni.restoreGlobal) {
         let age2 = today.getFullYear() - birthDate.getFullYear();
         return age2;
       };
-      const userbirthday = vue.ref(store.getters.getUserBirthday);
-      const age = vue.ref(calculateAge(userbirthday.value));
-      const username = vue.ref(store.getters.getUsername);
-      const userid = vue.ref(store.getters.getUserId);
-      const userAvatar = vue.ref(store.state.ImagePath);
+      let userbirthday = vue.ref("");
+      let age = vue.ref("");
+      let username = vue.ref("");
+      let userid = vue.ref("");
+      let userAvatar = vue.ref("");
+      vue.onMounted(() => {
+        userbirthday.value = store.getters.getUserBirthday;
+        age.value = calculateAge(userbirthday.value);
+        username.value = store.getters.getUsername;
+        userid.value = store.getters.getUserId;
+        userAvatar.value = store.state.ImagePath;
+      });
       const isConfirmDialogVisible = vue.ref(false);
       const confirmMessage = vue.ref("确定要退出登录吗？");
       const goBack = () => {
@@ -4431,9 +4448,6 @@ if (uni.restoreGlobal) {
       };
       const goToProfile = () => {
         router2.push("/pages/aboutme/aboutme");
-      };
-      const goToFavorites = () => {
-        formatAppLog("log", "at pages/myScreen/myScreen.vue:90", "like");
       };
       const goToAbout = () => {
         router2.push("/pages/about/about");
@@ -4468,28 +4482,28 @@ if (uni.restoreGlobal) {
             vue.createElementVNode("view", { class: "role" }, [
               vue.createElementVNode("image", {
                 class: "user-avatar",
-                src: userAvatar.value
+                src: vue.unref(userAvatar)
               }, null, 8, ["src"])
             ]),
             vue.createElementVNode("view", { class: "info" }, [
               vue.createElementVNode(
                 "text",
                 { class: "user-name" },
-                vue.toDisplayString(username.value),
+                vue.toDisplayString(vue.unref(username)),
                 1
                 /* TEXT */
               ),
               vue.createElementVNode(
                 "text",
                 { class: "user-info" },
-                vue.toDisplayString(age.value),
+                vue.toDisplayString(vue.unref(age)),
                 1
                 /* TEXT */
               ),
               vue.createElementVNode(
                 "text",
                 { class: "user-id" },
-                "UserID:" + vue.toDisplayString(userid.value),
+                "UserID:" + vue.toDisplayString(vue.unref(userid)),
                 1
                 /* TEXT */
               )
@@ -4508,10 +4522,7 @@ if (uni.restoreGlobal) {
               })
             ]),
             vue.createCommentVNode(" 收藏内容 "),
-            vue.createElementVNode("view", {
-              class: "menu-item",
-              onClick: goToFavorites
-            }, [
+            vue.createElementVNode("view", { class: "menu-item" }, [
               vue.createElementVNode("text", { class: "menu-text" }, "收藏内容"),
               vue.createElementVNode("image", {
                 src: "/static/images/heijiantou.png",
@@ -4660,7 +4671,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_router_link = vue.resolveComponent("router-link");
     return vue.openBlock(), vue.createElementBlock(
       vue.Fragment,
@@ -4800,7 +4811,7 @@ if (uni.restoreGlobal) {
       /* STABLE_FRAGMENT */
     );
   }
-  const PagesRelaxRelax = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["render", _sfc_render$i], ["__scopeId", "data-v-3a9d0990"], ["__file", "D:/ruangong/emosphere/pages/relax/relax.vue"]]);
+  const PagesRelaxRelax = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["render", _sfc_render$h], ["__scopeId", "data-v-3a9d0990"], ["__file", "D:/ruangong/emosphere/pages/relax/relax.vue"]]);
   const icons$1 = {
     "about": "",
     "about-fill": "",
@@ -5052,7 +5063,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "text",
       {
@@ -5065,7 +5076,7 @@ if (uni.restoreGlobal) {
       /* TEXT, CLASS, STYLE */
     );
   }
-  const __easycom_0$4 = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["render", _sfc_render$h], ["__scopeId", "data-v-bfc5f459"], ["__file", "D:/ruangong/emosphere/node_modules/thorui-uni/lib/thorui/tui-icon/tui-icon.vue"]]);
+  const __easycom_0$4 = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["render", _sfc_render$g], ["__scopeId", "data-v-bfc5f459"], ["__file", "D:/ruangong/emosphere/node_modules/thorui-uni/lib/thorui/tui-icon/tui-icon.vue"]]);
   /*!
     * vue-router v4.1.6
     * (c) 2022 Eduardo San Martin Morote
@@ -5214,7 +5225,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       vue.Fragment,
       null,
@@ -5295,7 +5306,7 @@ if (uni.restoreGlobal) {
       /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
     );
   }
-  const YSteps = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["render", _sfc_render$g], ["__scopeId", "data-v-3d3a9ebb"], ["__file", "D:/ruangong/emosphere/components/Y-Steps/Y-Steps.vue"]]);
+  const YSteps = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["render", _sfc_render$f], ["__scopeId", "data-v-3d3a9ebb"], ["__file", "D:/ruangong/emosphere/components/Y-Steps/Y-Steps.vue"]]);
   const _sfc_main$n = {
     components: {
       YSteps
@@ -5320,7 +5331,7 @@ if (uni.restoreGlobal) {
     },
     methods: {}
   };
-  function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_a_button = vue.resolveComponent("a-button");
     const _component_YSteps = vue.resolveComponent("YSteps");
     return vue.openBlock(), vue.createElementBlock(
@@ -5363,7 +5374,7 @@ if (uni.restoreGlobal) {
       /* STABLE_FRAGMENT */
     );
   }
-  const PagesRecordRecord = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["render", _sfc_render$f], ["__file", "D:/ruangong/emosphere/pages/record/record.vue"]]);
+  const PagesRecordRecord = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["render", _sfc_render$e], ["__file", "D:/ruangong/emosphere/pages/record/record.vue"]]);
   const _sfc_main$m = {
     data() {
       return {};
@@ -5434,7 +5445,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -5480,7 +5491,7 @@ if (uni.restoreGlobal) {
       /* STYLE */
     );
   }
-  const __easycom_0$3 = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["render", _sfc_render$e], ["__scopeId", "data-v-42d6f2a0"], ["__file", "D:/ruangong/emosphere/uni_modules/gscosmos-dialog/components/gscosmos-dialog/gscosmos-dialog.vue"]]);
+  const __easycom_0$3 = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["render", _sfc_render$d], ["__scopeId", "data-v-42d6f2a0"], ["__file", "D:/ruangong/emosphere/uni_modules/gscosmos-dialog/components/gscosmos-dialog/gscosmos-dialog.vue"]]);
   const _sfc_main$l = {
     data() {
       return {
@@ -5581,7 +5592,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "imt-audio" }, [
       vue.createElementVNode("view", { class: "audio-wrapper" }, [
         vue.createElementVNode(
@@ -5656,7 +5667,7 @@ if (uni.restoreGlobal) {
       )
     ]);
   }
-  const __easycom_1$1 = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$d], ["__scopeId", "data-v-8a21190d"], ["__file", "D:/ruangong/emosphere/components/imt-audio/imt-audio.vue"]]);
+  const __easycom_1$1 = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$c], ["__scopeId", "data-v-8a21190d"], ["__file", "D:/ruangong/emosphere/components/imt-audio/imt-audio.vue"]]);
   const __default__ = {
     data() {
       return {
@@ -5971,239 +5982,26 @@ if (uni.restoreGlobal) {
   });
   const PagesMusicMusic = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["__file", "D:/ruangong/emosphere/pages/music/music.vue"]]);
   const _sfc_main$j = {
-    data() {
-      const router2 = useRouter();
-      const goToHome = () => {
-        router2.push("../home/home");
+    __name: "questions",
+    setup(__props) {
+      let router2 = j();
+      const fan = () => {
+        router2.replace("/pages/home/home");
       };
-      return {
-        bgColor: "#BAD0CE",
-        // 设置背景色为绿色 
-        // 设置圆形标题的相关参数
-        circleTop: 140,
-        // 调整为适当的顶部偏移量  
-        circleLeft: 20,
-        // 调整为适当的左侧偏移量 
-        text: "",
-        goToHome,
-        goToQ2
+      return (_ctx, _cache) => {
+        return vue.openBlock(), vue.createElementBlock("view", {
+          class: "",
+          onClick: fan
+        }, [
+          vue.createElementVNode("image", {
+            src: "/static/images/fan.png",
+            mode: ""
+          })
+        ]);
       };
     }
   };
-  function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
-    return vue.openBlock(), vue.createElementBlock(
-      "view",
-      {
-        class: "background",
-        style: vue.normalizeStyle({ backgroundColor: $data.bgColor })
-      },
-      [
-        vue.createCommentVNode(" 最上方的标题QUESTIONS板块 "),
-        vue.createElementVNode("div", {
-          id: "title",
-          style: { "margin-left": "0%", "margin-top": "0px", "height": "80px", "background-color": "white" }
-        }, [
-          vue.createElementVNode("p", { id: "title1" }, "Q U E S T I O N S")
-        ]),
-        vue.createElementVNode("div", { class: "green-circle" }, [
-          vue.createElementVNode("div", {
-            class: "circle-container",
-            style: { "margin-left": "5%", "margin-top": "60px" }
-          }, [
-            vue.createElementVNode("span", { class: "circle-number" }, "1")
-          ])
-        ]),
-        vue.createElementVNode("div", null, [
-          vue.createElementVNode("p", {
-            class: "text-output",
-            style: { "margin-left": "20%", "margin-top": "-780px" }
-          }, "你是否经常感到神经过敏,心中不踏实？")
-        ]),
-        vue.createElementVNode("div", null, [
-          vue.createElementVNode("button", {
-            class: "button",
-            style: { "margin-left": "10%", "margin-top": "50px" }
-          }, "没有"),
-          vue.createElementVNode("button", {
-            class: "button",
-            style: { "margin-left": "10%", "margin-top": "25px" }
-          }, "很轻"),
-          vue.createElementVNode("button", {
-            class: "button",
-            style: { "margin-left": "10%", "margin-top": "25px" }
-          }, "中等"),
-          vue.createElementVNode("button", {
-            class: "button",
-            style: { "margin-left": "10%", "margin-top": "25px" }
-          }, "偏重"),
-          vue.createElementVNode("button", {
-            class: "button",
-            style: { "margin-left": "10%", "margin-top": "25px" }
-          }, "严重"),
-          vue.createTextVNode("。。 ")
-        ]),
-        vue.createElementVNode("div", { class: "green-circle" }, [
-          vue.createElementVNode("div", {
-            class: "circle-container",
-            style: { "margin-left": "5%", "margin-top": "60px" }
-          }, [
-            vue.createElementVNode("span", { class: "circle-number" }, "2")
-          ])
-        ]),
-        vue.createElementVNode("div", null, [
-          vue.createElementVNode("p", {
-            class: "text-output",
-            style: { "margin-left": "20%", "margin-top": "-780px" }
-          }, "问题2描述")
-        ]),
-        vue.createElementVNode("div", null, [
-          vue.createElementVNode("button", {
-            class: "button",
-            style: { "margin-left": "10%", "margin-top": "50px" }
-          }, "A"),
-          vue.createElementVNode("button", {
-            class: "button",
-            style: { "margin-left": "10%", "margin-top": "25px" }
-          }, "B"),
-          vue.createElementVNode("button", {
-            class: "button",
-            style: { "margin-left": "10%", "margin-top": "25px" }
-          }, "C"),
-          vue.createElementVNode("button", {
-            class: "button",
-            style: { "margin-left": "10%", "margin-top": "25px" }
-          }, "D"),
-          vue.createElementVNode("button", {
-            class: "button",
-            style: { "margin-left": "10%", "margin-top": "25px" }
-          }, "E")
-        ]),
-        vue.createElementVNode("div", { class: "green-circle" }, [
-          vue.createElementVNode("div", {
-            class: "circle-container",
-            style: { "margin-left": "5%", "margin-top": "60px" }
-          }, [
-            vue.createElementVNode("span", { class: "circle-number" }, "3")
-          ])
-        ]),
-        vue.createElementVNode("div", null, [
-          vue.createElementVNode("p", {
-            class: "text-output",
-            style: { "margin-left": "20%", "margin-top": "-780px" }
-          }, "问题3描述")
-        ]),
-        vue.createElementVNode("div", null, [
-          vue.createElementVNode("button", {
-            class: "button",
-            style: { "margin-left": "10%", "margin-top": "50px" }
-          }, "A"),
-          vue.createElementVNode("button", {
-            class: "button",
-            style: { "margin-left": "10%", "margin-top": "25px" }
-          }, "B"),
-          vue.createElementVNode("button", {
-            class: "button",
-            style: { "margin-left": "10%", "margin-top": "25px" }
-          }, "C"),
-          vue.createElementVNode("button", {
-            class: "button",
-            style: { "margin-left": "10%", "margin-top": "25px" }
-          }, "D"),
-          vue.createElementVNode("button", {
-            class: "button",
-            style: { "margin-left": "10%", "margin-top": "25px" }
-          }, "E")
-        ]),
-        vue.createElementVNode("div", { class: "green-circle" }, [
-          vue.createElementVNode("div", {
-            class: "circle-container",
-            style: { "margin-left": "5%", "margin-top": "60px" }
-          }, [
-            vue.createElementVNode("span", { class: "circle-number" }, "4")
-          ])
-        ]),
-        vue.createElementVNode("div", null, [
-          vue.createElementVNode("p", {
-            class: "text-output",
-            style: { "margin-left": "20%", "margin-top": "-780px" }
-          }, "问题4描述")
-        ]),
-        vue.createElementVNode("div", null, [
-          vue.createElementVNode("button", {
-            class: "button",
-            style: { "margin-left": "10%", "margin-top": "50px" }
-          }, "A"),
-          vue.createElementVNode("button", {
-            class: "button",
-            style: { "margin-left": "10%", "margin-top": "25px" }
-          }, "B"),
-          vue.createElementVNode("button", {
-            class: "button",
-            style: { "margin-left": "10%", "margin-top": "25px" }
-          }, "C"),
-          vue.createElementVNode("button", {
-            class: "button",
-            style: { "margin-left": "10%", "margin-top": "25px" }
-          }, "D"),
-          vue.createElementVNode("button", {
-            class: "button",
-            style: { "margin-left": "10%", "margin-top": "25px" }
-          }, "E")
-        ]),
-        vue.createElementVNode("div", { class: "green-circle" }, [
-          vue.createElementVNode("div", {
-            class: "circle-container",
-            style: { "margin-left": "5%", "margin-top": "60px" }
-          }, [
-            vue.createElementVNode("span", { class: "circle-number" }, "5")
-          ])
-        ]),
-        vue.createElementVNode("div", null, [
-          vue.createElementVNode("p", {
-            class: "text-output",
-            style: { "margin-left": "20%", "margin-top": "-780px" }
-          }, "问题5描述")
-        ]),
-        vue.createElementVNode("div", null, [
-          vue.createElementVNode("button", {
-            class: "button",
-            style: { "margin-left": "10%", "margin-top": "50px" }
-          }, "A"),
-          vue.createElementVNode("button", {
-            class: "button",
-            style: { "margin-left": "10%", "margin-top": "25px" }
-          }, "B"),
-          vue.createElementVNode("button", {
-            class: "button",
-            style: { "margin-left": "10%", "margin-top": "25px" }
-          }, "C"),
-          vue.createElementVNode("button", {
-            class: "button",
-            style: { "margin-left": "10%", "margin-top": "25px" }
-          }, "D"),
-          vue.createElementVNode("button", {
-            class: "button",
-            style: { "margin-left": "10%", "margin-top": "25px" }
-          }, "E")
-        ]),
-        vue.createElementVNode("div", null, [
-          vue.createElementVNode("button", {
-            class: "three-d",
-            style: { "margin-left": "10%", "margin-buttom": "0px" },
-            onClick: _cache[0] || (_cache[0] = (...args) => $data.goToHome && $data.goToHome(...args))
-          }, "Home"),
-          vue.createElementVNode("button", {
-            class: "three-d",
-            style: { "margin-left": "10%", "margin-buttom": "0px" },
-            onClick: _cache[1] || (_cache[1] = (...args) => $data.goToQ2 && $data.goToQ2(...args))
-          }, "下一题")
-        ])
-      ],
-      4
-      /* STYLE */
-    );
-  }
-  const PagesQuestionsQuestions = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$c], ["__file", "D:/ruangong/emosphere/pages/questions/questions.vue"]]);
+  const PagesQuestionsQuestions = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__file", "D:/ruangong/emosphere/pages/questions/questions.vue"]]);
   const _sfc_main$i = {
     data() {
       return {
@@ -6288,35 +6086,35 @@ if (uni.restoreGlobal) {
   const PagesResultResult = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$b], ["__file", "D:/ruangong/emosphere/pages/result/result.vue"]]);
   const _sfc_main$h = {
     data() {
-      const router2 = useRouter();
+      let router2 = j();
       const goToQ1 = () => {
-        router2.push("/pages/questions/questions");
+        router2.replace("/pages/questions/questions");
+      };
+      const fan = () => {
+        router2.replace("/pages/chat/chat");
       };
       return {
         imageUrl1: "../../static/images/back2.png",
         imageUrl2: "../../static/images/if-quote-left.png",
         imageUrl3: "../../static/images/if-quote-right.png",
+        fan,
         goToQ1
       };
     }
   };
   function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_router_link = vue.resolveComponent("router-link");
     return vue.openBlock(), vue.createElementBlock("view", { class: "backarea" }, [
       vue.createElementVNode("view", {
         class: "box",
         style: { "width": "100%", "height": "5%" }
       }),
-      vue.createVNode(_component_router_link, { to: { path: "/pages/main/main" } }, {
-        default: vue.withCtx(() => [
-          vue.createElementVNode("view", { class: "head-left" }, [
-            vue.createElementVNode("image", { src: "/static/images/fanhui.png" }),
-            vue.createElementVNode("text", null, "返回")
-          ])
-        ]),
-        _: 1
-        /* STABLE */
-      }),
+      vue.createElementVNode("view", {
+        class: "head-left",
+        onClick: _cache[0] || (_cache[0] = (...args) => $data.fan && $data.fan(...args))
+      }, [
+        vue.createElementVNode("image", { src: "/static/images/fanhui.png" }),
+        vue.createElementVNode("text", null, "返回")
+      ]),
       vue.createElementVNode("div", { class: "image-container" }, [
         vue.createElementVNode("image", {
           src: $data.imageUrl1,
@@ -6328,7 +6126,7 @@ if (uni.restoreGlobal) {
         vue.createElementVNode("text", { class: "text-output4" }, "本测试预计需要15分钟"),
         vue.createElementVNode("button", {
           class: "btn",
-          onClick: _cache[0] || (_cache[0] = (...args) => $data.goToQ1 && $data.goToQ1(...args))
+          onClick: _cache[1] || (_cache[1] = (...args) => $data.goToQ1 && $data.goToQ1(...args))
         }, "开始测试")
       ]),
       vue.createElementVNode("div", { class: "circle-box" }, [
@@ -6436,7 +6234,7 @@ if (uni.restoreGlobal) {
             userContent: this.chatMsg,
             userId: 0
           };
-          formatAppLog("log", "at pages/chat/chat.vue:154", this.chatMsg);
+          formatAppLog("log", "at pages/chat/chat.vue:160", this.chatMsg);
           try {
             const response = await uni.request({
               url: "http://localhost:8080/api/",
@@ -6453,9 +6251,9 @@ if (uni.restoreGlobal) {
             this.msgList.push(obj);
             this.chatMsg = "";
             this.scrollToBottom();
-            formatAppLog("log", "at pages/chat/chat.vue:172", "发送成功:", serverResponse);
+            formatAppLog("log", "at pages/chat/chat.vue:178", "发送成功:", serverResponse);
           } catch (error) {
-            formatAppLog("error", "at pages/chat/chat.vue:174", "发送消息失败:", error);
+            formatAppLog("error", "at pages/chat/chat.vue:180", "发送消息失败:", error);
             this.$modal.showToast("发送消息失败");
           }
         } else {
@@ -6468,19 +6266,17 @@ if (uni.restoreGlobal) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "backarea" }, [
       vue.createElementVNode("view", { style: { "width": "100%", "height": "5%" } }),
       vue.createElementVNode("view", { class: "header" }, [
-        vue.createElementVNode("view", {
-          class: "head-left",
-          onClick: _cache[0] || (_cache[0] = (...args) => _ctx.fan && _ctx.fan(...args))
-        }, [
-          vue.createElementVNode("image", { src: "/static/images/fanhui.jpg" }),
-          vue.createElementVNode("text", null, "返回")
+        vue.createElementVNode("navigator", { url: "/pages/main/main" }, [
+          vue.createElementVNode("view", { class: "head-left" }, [
+            vue.createElementVNode("image", { src: "/static/images/fanhui.jpg" }),
+            vue.createElementVNode("text", null, "返回")
+          ])
         ]),
-        vue.createElementVNode("view", {
-          class: "head-right",
-          onClick: _cache[1] || (_cache[1] = (...args) => _ctx.test && _ctx.test(...args))
-        }, [
-          vue.createElementVNode("image", { src: "/static/images/test.png" }),
-          vue.createElementVNode("text", null, "测试")
+        vue.createElementVNode("navigator", { url: "/pages/home/home" }, [
+          vue.createElementVNode("view", { class: "head-right" }, [
+            vue.createElementVNode("image", { src: "/static/images/test.png" }),
+            vue.createElementVNode("text", null, "测试")
+          ])
         ])
       ]),
       vue.createElementVNode("view", { class: "chat" }, [
@@ -6563,15 +6359,15 @@ if (uni.restoreGlobal) {
                   vue.withDirectives(vue.createElementVNode(
                     "textarea",
                     {
-                      "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => $data.chatMsg = $event),
+                      "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => $data.chatMsg = $event),
                       maxlength: "300",
                       "confirm-type": "send",
-                      onConfirm: _cache[3] || (_cache[3] = (...args) => $options.handleSend && $options.handleSend(...args)),
+                      onConfirm: _cache[1] || (_cache[1] = (...args) => $options.handleSend && $options.handleSend(...args)),
                       "show-confirm-bar": false,
                       "adjust-position": false,
-                      onLinechange: _cache[4] || (_cache[4] = (...args) => $options.sendHeight && $options.sendHeight(...args)),
-                      onFocus: _cache[5] || (_cache[5] = (...args) => $options.focus && $options.focus(...args)),
-                      onBlur: _cache[6] || (_cache[6] = (...args) => $options.blur && $options.blur(...args)),
+                      onLinechange: _cache[2] || (_cache[2] = (...args) => $options.sendHeight && $options.sendHeight(...args)),
+                      onFocus: _cache[3] || (_cache[3] = (...args) => $options.focus && $options.focus(...args)),
+                      onBlur: _cache[4] || (_cache[4] = (...args) => $options.blur && $options.blur(...args)),
                       "auto-height": ""
                     },
                     null,
@@ -6582,7 +6378,7 @@ if (uni.restoreGlobal) {
                   ])
                 ]),
                 vue.createElementVNode("button", {
-                  onClick: _cache[7] || (_cache[7] = (...args) => $options.handleSend && $options.handleSend(...args)),
+                  onClick: _cache[5] || (_cache[5] = (...args) => $options.handleSend && $options.handleSend(...args)),
                   class: "send-btn"
                 }, "发送")
               ],
@@ -10997,19 +10793,32 @@ if (uni.restoreGlobal) {
             formatAppLog("log", "at pages/set/set.vue:65", res);
             if (res.tempFilePaths.length !== 0) {
               imageList.value.push(res.tempFilePaths[0]);
-              store.commit("setPath", res.tempFilePaths[0]);
               var tempFilePaths = res.tempFilePaths;
-              formatAppLog("log", "at pages/set/set.vue:70", tempFilePaths[0]);
+              formatAppLog("log", "at pages/set/set.vue:69", tempFilePaths[0]);
+              uni.uploadFile({
+                url: "http://8.136.81.197:8080/qiniu/file",
+                filePath: tempFilePaths[0],
+                name: "file",
+                success: function(res2) {
+                  formatAppLog("log", "at pages/set/set.vue:75", res2.data);
+                  const responseData = JSON.parse(res2.data);
+                  store.commit("setPath", responseData.url);
+                  formatAppLog("log", "at pages/set/set.vue:78", store.state.ImagePath);
+                },
+                fail: function(res2) {
+                  formatAppLog("log", "at pages/set/set.vue:81", res2.errMsg);
+                }
+              });
             }
           }
         });
       };
       const tiao = () => {
-        router2.back();
+        router2.replace("/pages/myScreen/myScreen");
       };
       const del = (index) => {
         imageList.value.splice(index, 1);
-        formatAppLog("log", "at pages/set/set.vue:89", imageList);
+        formatAppLog("log", "at pages/set/set.vue:93", imageList);
       };
       const tomain = () => {
         let userName = usernameInput.value;
@@ -11018,7 +10827,6 @@ if (uni.restoreGlobal) {
         let userStatus = statusInput.value;
         store.state.userId;
         let imagepath = store.state.ImagePath;
-        formatAppLog("log", "at pages/set/set.vue:99", imagepath);
         uni.request({
           url: "http://8.136.81.197:8080/user/update",
           method: "POST",
@@ -11031,7 +10839,7 @@ if (uni.restoreGlobal) {
           },
           success: (response) => {
             const user = response.data["user"];
-            formatAppLog("log", "at pages/set/set.vue:112", response.data);
+            formatAppLog("log", "at pages/set/set.vue:115", response.data);
             let formattedBirthday = user.birthday.substring(0, 10);
             store.commit("upData", {
               username: user.username,
@@ -11040,11 +10848,11 @@ if (uni.restoreGlobal) {
               userstatus: userStatus,
               imagepath: user.avatar
             });
-            formatAppLog("log", "at pages/set/set.vue:122", store.state.username, store.state.userBirthday, store.state.userGender, store.state.userstatus);
+            formatAppLog("log", "at pages/set/set.vue:125", store.state.username, store.state.userBirthday, store.state.userGender, store.state.ImagePath);
             router2.replace("/pages/aboutme/aboutme");
           },
           fail: (error) => {
-            formatAppLog("error", "at pages/set/set.vue:126", error);
+            formatAppLog("error", "at pages/set/set.vue:129", error);
           }
         });
       };

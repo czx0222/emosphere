@@ -18,15 +18,15 @@
 		data() {
 			return {
 				audio: uni.createInnerAudioContext(),
-				current: 0, //当前进度(s)
-				duration: 261, //总时长(s)
-				paused: true, //是否处于暂停状态
-				loading: false, //是否处于读取状态
-				seek: false //是否处于拖动状态
+				current: 0, 
+				duration: 261, 
+				paused: true, 
+				loading: false, 
+				seek: false 
 			}
 		},
 		props: {
-			src: String, //音频链接
+			src: String, 
 			autoplay: Boolean, //是否自动播放
 			continue: Boolean, //播放完成后是否继续播放下一首，需定义@next事件
 			control: {

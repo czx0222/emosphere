@@ -1,12 +1,10 @@
 <template>
 	<view class="backarea">
 		<view class="box" style="width: 100%;height: 5%;"></view>
-		<router-link :to="{ path: '/pages/main/main' }">
-			<view class="head-left">
+			<view class="head-left" @click="fan">
 				<image src="/static/images/fanhui.png" ></image>
 				<text>返回</text>
 			</view>
-		</router-link>
 	<div class="image-container">
 			<image :src="imageUrl1" class="back"></image>
 			<text class="text-output1">EmoSphere</text>
@@ -29,20 +27,22 @@
 </template>
 
 <script>
-	import {
-		useRouter
-	} from 'vue-router';
+	import { useRouter } from 'uni-mini-router'
+
 	export default {
 		data() {
-			const router = useRouter();
+			let router = useRouter()
 			const goToQ1 = () => {
-				router.push('/pages/questions/questions');
+				router.replace('/pages/questions/questions');
 			};
+			const fan = () =>{
+				router.replace('/pages/chat/chat')
+			}
 			return {
 				imageUrl1: "../../static/images/back2.png",
 				imageUrl2: "../../static/images/if-quote-left.png",
 				imageUrl3: "../../static/images/if-quote-right.png",
-
+				fan,
 				goToQ1
 			}
 		}

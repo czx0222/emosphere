@@ -12,11 +12,11 @@ a[data-v-0a633310] {
 .header[data-v-0a633310] {
   display: flex;
   justify-content: space-between;
-  position: fixed;
   width: 100%;
   position: relative;
   padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
 }
 .header uni-image[data-v-0a633310] {
   height: 30px;
@@ -35,6 +35,11 @@ a[data-v-0a633310] {
 }
 
 /* 聊天消息 */
+.chat[data-v-0a633310] {
+  margin-top: 53px;
+  z-index: -99;
+  border: 1px rebeccapurple solid;
+}
 .chat .scroll-view[data-v-0a633310] {
   background-color: #F6F6F6;
 }
@@ -45,6 +50,7 @@ a[data-v-0a633310] {
   -webkit-appearance: none;
   background: transparent;
   color: transparent;
+  height: calc(100% - 60px);
 }
 .chat .scroll-view .chat-body[data-v-0a633310] {
   display: flex;

@@ -21,26 +21,29 @@ export default createStore({
 			userGender,
 			imagepath
 		}) {
+			state.ImagePath = imagepath;
 			state.userId = id;
 			state.username = username;
 			state.userbirthday = userBirthday;
 			state.usergender = userGender;
-			state.ImagePath = imagepath
+			
 		},
 		upData(state, {
 			username,
 			userBirthday,
 			userGender,
-			userstatus
+			userstatus,
+			imagepath
 		}) {
 			state.username = username;
 			state.userBirthday = userBirthday;
 			state.userGender = userGender;
-			state.userstatus = userstatus
+			state.userstatus = userstatus;
+			state.ImagePath = imagepath;
 		},
 		  setPath(state, path) {
 		      state.ImagePath = path;
-		    },
+		},
 		clearUserData(state) {
 			state.userId = null;
 			state.username = null;

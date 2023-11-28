@@ -60,20 +60,21 @@
 			success: (response) => {
 				let formattedBirthday 
 				const user = response.data['user'];
+
 				if(user.birthday == null){
 					formattedBirthday='2000-01-01'
 				}else{
 					 formattedBirthday = user.birthday.substring(0, 10);
 				}
-				
-				console.log(response.data);
+				console.log(formattedBirthday)
 				store.commit('setUserData', {
 					id: user.id,
 					username: user.username,
 					userBirthday:formattedBirthday,
-					userGender:user.gender,				
+					userGender:user.gender,	
+					imagepath:user.avatar
 				});
-				console.log('User data stored in Vuex:', store.state.userId, store.state.username,store.state.ImagePath);
+				console.log(store.state.username, store.state.userBirthday, store.state.userGender, store.state.ImagePath);
 
 				router.replace('/pages/main/main');
 			},

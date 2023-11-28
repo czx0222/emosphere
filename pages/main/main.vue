@@ -32,7 +32,7 @@
 						<image src='/static/images/z5.png'></image>
 					</div>
 			</view>
-			<view @click="navigateTo('relax')">
+			<view @click="navigateTo('music')">
 					<div class="circle">
 						<image src='/static/images/z6.png'></image>
 					</div>
@@ -52,7 +52,7 @@
 	      space: '/pages/space/space',
 	      calendar: '/pages/calendar/calendar',
 	      chat: '/pages/chat/chat',
-	      relax: '/pages/relax/relax',
+	     music: '/pages/music/music',
 	      myScreen: '/pages/myScreen/myScreen',
 		  torecord:'/pages/EmoRecord/EmoRecord'
 	    };

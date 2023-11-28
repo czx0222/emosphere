@@ -26,7 +26,7 @@
 			</view>
 
 			<!-- 收藏内容 -->
-			<view class="menu-item" @click="goToFavorites">
+			<view class="menu-item" >
 				<text class="menu-text">收藏内容</text>
 				<image src="/static/images/heijiantou.png" alt=""></image>
 			</view>
@@ -53,6 +53,7 @@
 
 <script setup>
 	import {
+		onMounted,
 		ref
 	} from 'vue';
 	import store from '@/store';
@@ -68,12 +69,20 @@
 		return age;
 	};
 
-	const userbirthday = ref(store.getters.getUserBirthday);
-	const age = ref(calculateAge(userbirthday.value));
-	const username = ref(store.getters.getUsername);
-	const userid = ref(store.getters.getUserId);
-	const userAvatar = ref(store.state.ImagePath);
+	let userbirthday = ref('');
+	let age = ref('');
+	let username = ref('');
+	let userid = ref('');
+	let userAvatar = ref('');
 	
+	onMounted(()=>{
+		userbirthday.value = store.getters.getUserBirthday
+		age.value = calculateAge(userbirthday.value)
+		username.value = store.getters.getUsername
+		userid.value = store.getters.getUserId
+		userAvatar.value = store.state.ImagePath
+	})
+
 	const isConfirmDialogVisible = ref(false);
 	const confirmMessage = ref("确定要退出登录吗？");
 

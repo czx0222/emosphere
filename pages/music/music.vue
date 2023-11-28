@@ -2,20 +2,13 @@
 	<view class="scrollPage">
 		<view class="box" style="width: 100%;height: 5%;"></view>
 		<view class="header">
-			<router-link to="/pages/main/main">
-				<image src="/static/images/fanhui.png"></image>
-			</router-link>
-			<router-link to="">
-				<image class="choose" src="/static/images/mm.png"></image>
-			</router-link>
-
-			<router-link to="/pages/relax/relax">
-				<image src="/static/images/fenche.png"></image>
-			</router-link>
-
-			<router-link to="">
-				<image src="/static/images/recode.png"></image>
-			</router-link>
+				<image src="/static/images/fanhui.png" @click="navigateTo('main')"></image>
+				<view class="choose">
+						<image  src="/static/images/yinyue.png"></image>
+				</view>
+			
+				<image src="/static/images/fenche.png" @click="navigateTo('relax')"></image>
+				<image src="/static/images/recode.png" @click="navigateTo('history')"></image>
 		</view>
 		<view class="radius-lg">
 			<view class="bg-white padding-bottom radius-xl" style="text-align: center;">
@@ -67,9 +60,21 @@
 </template>
 
 
-<script lang="ts" setup>
+<script  lang="ts" setup>
 	import { reactive } from "vue";
-
+	import { useRouter } from 'uni-mini-router'
+	let router = useRouter()
+	const navigateTo = (route) => {
+	  const routesMap = {
+	    main: '/pages/main/main',
+	    history: '/pages/history/history',
+	    relax: '/pages/relax/relax',
+	  };
+		
+	  if (routesMap[route]) {
+	    router.replace(routesMap[route]);
+	  }
+	};
 	const dialogData = reactive({
 		visiable: false,
 		fromPoi: ['0', '0'],
@@ -227,7 +232,7 @@
 	.scrollPage {
 		display: flex;
 		flex-direction: column;
-		background-image: url('/static/images/design09.jpg');
+		background-image: url('/static/images/back2.png');
 		background-size: cover;
 		background-repeat: no-repeat;
 		width: 100%;
@@ -236,13 +241,13 @@
 	}
 
 	.choose {
-		background-color: rgb(131, 166, 100, 0.7);
+		background-color: rgb(195,212,208, 0.5);
 		border-radius: 5px;
+		width: 80px;
+		display: flex;
+		justify-content: center;
 	}
 
-	.choose image {
-		width: 90px;
-	}
 
 	.content {
 		padding: 5px;

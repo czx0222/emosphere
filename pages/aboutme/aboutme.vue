@@ -53,20 +53,28 @@
 
 <script setup>
 	import {
-		ref
+		ref,onMounted
 	} from 'vue';
 	import store from '@/store';
 	import { useRouter } from 'uni-mini-router'
 	let router = useRouter()
-	// const username = ref(store.state.username);
-	// const userbirthday = ref(store.state.userBirthday);
-	// const usergender = ref(store.state.userGender);
-	// const userstatus = ref(store.state.userStatus);
-	let username = ref(store.state.username);
-	let userbirthday = ref(store.state.userbirthday);
-	let usergender = ref(store.state.usergender);
-	let userstatus = ref(store.state.userstatus);
-	const userAvatar = ref(store.state.ImagePath);
+	let username = ref('');
+	let userbirthday = ref('');
+	let usergender = ref('');
+	let userstatus = ref('');
+	let userAvatar = ref('');
+	
+	
+	onMounted(()=>{
+		username.value = store.state.username
+		userbirthday.value = store.state.userbirthday
+		usergender.value = store.state.usergender
+		userstatus.value = store.state.userstatus
+		userAvatar.value = store.state.ImagePath
+		
+	})
+	
+	
 	const edit = () => {
 			router.push('/pages/set/set')
 		}
