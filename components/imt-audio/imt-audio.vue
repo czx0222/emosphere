@@ -2,13 +2,18 @@
 	<view class="imt-audio">
 		<view class="audio-wrapper">
 			<view class="audio-number">{{format(current)}}</view>
-			<slider class="audio-slider" :activeColor="color" block-size="20" :value="current" :max="duration" @changing="seek=true,current=$event.detail.value" @change="audio.seek($event.detail.value)"></slider>
+			<slider class="audio-slider" :activeColor="color" block-size="25" :value="current" :max="duration"
+				@changing="seek=true,current=$event.detail.value" @change="audio.seek($event.detail.value)"></slider>
 			<view class="audio-number">{{format(duration)}}</view>
 		</view>
 		<view class="audio-control-wrapper" :style="{color}">
-			<view class="audio-control audio-control-prev" v-if="control" :style="{borderColor:color}" @click="prev">&#xe601;</view>
-			<view class="audio-control audio-control-switch" :class="{audioLoading:loading}" :style="{borderColor:color}" @click="audio.paused?play():audio.pause()">{{loading?'&#xe600;':(paused?'&#xe865;':'&#xe612;')}}</view>
-			<view class="audio-control audio-control-next" v-if="control" :style="{borderColor:color}" @click="next">&#xe601;</view>
+			<view class="audio-control audio-control-prev" v-if="control" :style="{borderColor:color}" @click="prev">
+				&#xe601;</view>
+			<view class="audio-control audio-control-switch" :class="{audioLoading:loading}"
+				:style="{borderColor:color}" @click="audio.paused?play():audio.pause()">
+				{{loading?'&#xe600;':(paused?'&#xe865;':'&#xe612;')}}</view>
+			<view class="audio-control audio-control-next" v-if="control" :style="{borderColor:color}" @click="next">
+				&#xe601;</view>
 		</view>
 	</view>
 </template>
@@ -16,19 +21,23 @@
 <script>
 	export default {
 		data() {
+
 			return {
-				audio: uni.createInnerAudioContext(),
-				current: 0, 
-				duration: 261, 
-				paused: true, 
-				loading: false, 
-				seek: false 
+				        audio: uni.createInnerAudioContext({
+				            obeyMuteSwitch: false
+				        }),
+				current: 0, //当前进度(s)
+				duration: 261, //总时长(s)
+				paused: true, //是否处于暂停状态
+				loading: false, //是否处于读取状态
+				seek: false, //是否处于拖动状态
 			}
 		},
 		props: {
 			src: String, 
-			autoplay: Boolean, //是否自动播放
-			continue: Boolean, //播放完成后是否继续播放下一首，需定义@next事件
+			toplay: Boolean, //是否自动播放
+			autocontinue: Boolean, //播放完成后是否继续播放下一首，需定义@next事件
+			playWay: Number, //播放模式，单曲循环 循环播放 随机播放
 			control: {
 				type: Boolean,
 				default: true
@@ -49,7 +58,8 @@
 			},
 			//格式化时长
 			format(num) {
-				return '0'.repeat(2 - String(Math.floor(num / 60)).length) + Math.floor(num / 60) + ':' + '0'.repeat(2 - String(Math.floor(num % 60)).length) + Math.floor(num % 60)
+				return '0'.repeat(2 - String(Math.floor(num / 60)).length) + Math.floor(num / 60) + ':' + '0'.repeat(2 -
+					String(Math.floor(num % 60)).length) + Math.floor(num % 60)
 			},
 			//点击播放按钮
 			play() {
@@ -59,10 +69,11 @@
 		},
 		created() {
 			if (this.src) {
-				this.audio.src = this.src
-				this.autoplay && this.play()
+				this.audio.src = this.src;
+				this.autoplay && this.play();
 			}
-			this.audio.obeyMuteSwitch = false
+
+
 			//音频进度更新事件
 			this.audio.onTimeUpdate(() => {
 				if (!this.seek) {
@@ -83,8 +94,13 @@
 			})
 			//音频结束事件
 			this.audio.onEnded(() => {
-				if (this.continue) {
+				if (this.continue == "true" && this.playWay === 1) {
 					this.next()
+				} else if (this.continue == "true" && this.playWay === 0) {
+					this.play()
+				} else if (this.continue == "true" && this.playWay === 2) {
+					this.paused = true
+					this.current = 0
 				} else {
 					this.paused = true
 					this.current = 0
@@ -95,7 +111,7 @@
 				this.seek = false
 			})
 		},
-		beforeDestroy(){
+		beforeDestroy() {
 			this.audio.destroy()
 		},
 		watch: {
@@ -135,13 +151,14 @@
 
 	.audio-number {
 		width: 120upx;
-		font-size: 24upx;
+		font-size: 30upx;
 		line-height: 1;
 		color: #333;
 		text-align: center;
 	}
 
 	.audio-slider {
+		margin: 50upx 0upx;
 		flex: 1;
 		margin: 0;
 	}
@@ -162,13 +179,18 @@
 		padding: 16upx;
 	}
 
+	.audio-control-prev {
+		font-size: 45upx;
+	}
+
 	.audio-control-next {
+		font-size: 45upx;
 		transform: rotate(180deg);
 	}
 
 	.audio-control-switch {
-		font-size: 40upx;
-		margin: 0 100upx;
+		font-size: 66upx;
+		margin: 36upx 100upx;
 	}
 
 	.audioLoading {

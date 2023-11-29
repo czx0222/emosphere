@@ -51,9 +51,9 @@
 		setup() {
 			let router = useRouter()
 			const single = ref('');
-			let usernameInput = ref('');
-			let statusInput = ref('');
-			let selectedGender = ref('');
+			let usernameInput = ref(store.state.username);
+			let statusInput = ref(store.state.userstatus);
+			let selectedGender = ref(store.state.usergender);
 			let imageList = ref([]);
 			const upload = () => {
 				uni.chooseImage({

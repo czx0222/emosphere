@@ -1,4 +1,3 @@
-
 <template>
 	<view class="page">
 		<view class="box" style="width: 100%;height: 5%;"></view>
@@ -10,43 +9,43 @@
 			<view class="choose">
 				<image src="/static/images/fenche.png"></image>
 			</view>
-			<image src="/static/images/recode.png"  @click="tohistory" ></image>
+			<image src="/static/images/recode.png" @click="tohistory"></image>
 		</view>
 		<view class="back">
 			<view class="back2">
-				<view class="method"  @click="startRelaxation('f7')">
+				<view class="method" @click="startRelaxation('f7')">
 					<view class="box-left">
 						<text class="circle">1</text>
 					</view>
 					<view class="box-right">呼吸放松法</view>
 
 				</view>
-				<view class="method"  @click="startRelaxation('f8')">
+				<view class="method" @click="startRelaxation('f8')">
 					<view class="box-left">
 						<text class="circle">2</text>
 					</view>
 					<view class="box-right">渐进性放松法</view>
 				</view>
-				<view class="method"  @click="startRelaxation('f9')">
+				<view class="method" @click="startRelaxation('f9')">
 					<view class="box-left">
 						<text class="circle">3</text>
 					</view>
 					<view class="box-right">正念冥想</view>
 				</view>
-				<view class="method"  @click="startRelaxation('f10')">
+				<view class="method" @click="startRelaxation('f10')">
 					<view class="box-left">
 						<text class="circle">4</text>
 					</view>
 					<view class="box-right">蝴蝶拥抱</view>
 				</view>
 				<view class="tip">
-					<image src="../../static/images/tip.png" ></image>
-					<view >
+					<image src="../../static/images/tip.png"></image>
+					<view>
 						<text>点击上方的小卡片，享受放松时刻！</text>
-						
+
 					</view>
 				</view>
-				
+
 			</view>
 			<view v-if="currentPopup" :class="`popup popup-${currentPopup}`"
 				style="width: 80%; height: 50%; text-align: center;z-index: 10;">
@@ -54,11 +53,9 @@
 				<ul style="text-align: left; margin-bottom: 20px; font-size: 22px; font-family: '华文新魏', cursive;">
 					<li v-for="step in popupContent[currentPopup].steps.slice(0, 4)" :key="step">{{ step }}</li>
 				</ul>
-
 				<div v-if="countingDown" style="color: #006400; font-size: 24px; font-family: '华文新魏', cursive;">
 					{{ Math.floor((this.popupContent[currentPopup].duration - (countdownMinutes * 60 + countdownSeconds)) / 60) }}:{{ (this.popupContent[currentPopup].duration - (countdownMinutes * 60 + countdownSeconds)) % 60 }}
 				</div>
-
 				<button @click="toggleRelaxation"
 					style="font-size: 18px; font-family: '华文新魏', cursive;">{{ countingDown ? '完成' : '进行' }}</button>
 				<button @click="closePopup" style="font-size: 18px; font-family: '华文新魏', cursive;">取消</button>
@@ -69,17 +66,20 @@
 
 
 <script>
-	import { useRouter } from 'uni-mini-router'
+	import {
+		useRouter
+	} from 'uni-mini-router'
+import store from '../../store';
 	export default {
 		data() {
 			let router = useRouter()
-			const tomain = () =>{
+			const tomain = () => {
 				router.replace('/pages/main/main')
 			}
-			const tohistory = () =>{
+			const tohistory = () => {
 				router.replace('/pages/history/history')
 			}
-			const tomusic = () =>{
+			const tomusic = () => {
 				router.replace('/pages/music/music')
 			}
 			return {
@@ -161,16 +161,57 @@
 					this.completeRelaxation();
 				}
 			},
+			// completeRelaxation() {
+			// 	if (this.currentPopup) {
+			// 		this.completedPopup = this.popupContent[this.currentPopup].title;
+			// 		this.completedCount += 1;
+			// 		this.resetCountdown();
+
+			// 		setTimeout(() => {
+			// 			this.completedPopup = '';
+			// 			this.currentPopup = '';
+			// 			this.closePopup(); 
+			// 	}
+			// },
 			completeRelaxation() {
 				if (this.currentPopup) {
-					this.completedPopup = this.popupContent[this.currentPopup].title;
+					const completedPopup = this.popupContent[this.currentPopup].title;
+					const timeSpent = this.popupContent[this.currentPopup].duration - (this.countdownMinutes * 60 + this
+						.countdownSeconds);
+
+					console.log(`完成放松方法 "${completedPopup}"，花费时间: ${Math.floor(timeSpent / 60)} 分钟 ${timeSpent % 60} 秒`);
+					
+					// let useid = store.state.userId
+					// let method = completedPopup
+					// let time = ${Math.floor(timeSpent / 60)} 分钟 ${timeSpent % 60} 秒
+					// let date = ew Date().toISOString() 
+					// console.log(useid+method+time+date)
+					// const requestData = {
+					// 	method: completedPopup,
+					// 	duration: timeSpent,
+					// 	date: new Date().toISOString() 
+					// };
+
+					
+					// uni.request({
+					// 	url: 'http://8.136.81.197:8080/relax_record',
+					// 	method: 'POST',
+					// 	data: requestData,
+					// 	success: (res) => {
+					// 		console.log('数据发送成功', res);
+					// 	},
+					// 	fail: (err) => {
+					// 		console.error('数据发送失败', err);
+					// 	}
+					// });
+					this.completedPopup = completedPopup;
 					this.completedCount += 1;
-					this.resetCountdown();
+					this.resetCountdown()
 
 					setTimeout(() => {
 						this.completedPopup = '';
 						this.currentPopup = '';
-						this.closePopup(); 
+						this.closePopup();
 					});
 				}
 			},
@@ -178,6 +219,9 @@
 				this.currentPopup = popup;
 			},
 			startCountdown(duration) {
+				// 清除旧的interval
+				clearInterval(this.countdownInterval);
+
 				this.countingDown = true;
 				const startTime = Date.now();
 
@@ -189,19 +233,27 @@
 					this.countdownSeconds = remainingTime % 60;
 
 					if (remainingTime > 0) {
-						requestAnimationFrame(updateCountdown);
+						// 更新UI的代码 (this.countdownMinutes 和 this.countdownSeconds)
 					} else {
 						this.countingDown = false;
 						this.resetCountdown();
+						clearInterval(this.countdownInterval);
 					}
 				};
 
-				requestAnimationFrame(updateCountdown);
+				updateCountdown();
+				this.countdownInterval = setInterval(updateCountdown, 1000);
 			},
+
 			resetCountdown() {
 				this.countdownMinutes = 0;
 				this.countdownSeconds = 0;
 			},
+		},
+
+		beforeDestroy() {
+			// 在组件销毁之前清除interval，以防止内存泄漏
+			clearInterval(this.countdownInterval);
 		},
 	};
 </script>
@@ -210,25 +262,28 @@
 
 
 <style>
-	.tip{
+	.tip {
 		display: flex;
 		position: relative;
 		top: 3rem;
 		left: -1rem;
 	}
-	.tip view{
+
+	.tip view {
 		padding-top: 50rpx;
 		font-size: 1rem;
 		font-weight: bold;
 		color: rgba(0, 0, 0, 0.8);
 		font-family: '华文新魏', cursive;
-		
+
 	}
-	.tip image{
+
+	.tip image {
 
 		width: 100rpx;
 		height: 120rpx;
 	}
+
 	.box-left {
 		width: 30%;
 		height: 100%;
@@ -311,7 +366,7 @@
 	}
 
 	.back2 {
-		
+
 		position: relative;
 		height: 90%;
 		width: 90%;

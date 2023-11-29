@@ -9,14 +9,23 @@ a[data-v-0a633310] {
   text-decoration: none;
   color: inherit;
 }
+.box[data-v-0a633310] {
+  width: 100%;
+  height: 5%;
+  position: fixed;
+  background-color: #F6F6F6;
+  z-index: 99;
+  top: 0;
+}
 .header[data-v-0a633310] {
+  z-index: 99;
   display: flex;
   justify-content: space-between;
+  position: fixed;
   width: 100%;
-  position: relative;
   padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: fixed;
+  background-color: #F6F6F6;
 }
 .header uni-image[data-v-0a633310] {
   height: 30px;
@@ -36,9 +45,8 @@ a[data-v-0a633310] {
 
 /* 聊天消息 */
 .chat[data-v-0a633310] {
-  margin-top: 53px;
-  z-index: -99;
-  border: 1px rebeccapurple solid;
+  padding-top: 3.125rem;
+  margin-top: 2.5rem;
 }
 .chat .scroll-view[data-v-0a633310] {
   background-color: #F6F6F6;
@@ -50,7 +58,6 @@ a[data-v-0a633310] {
   -webkit-appearance: none;
   background: transparent;
   color: transparent;
-  height: calc(100% - 60px);
 }
 .chat .scroll-view .chat-body[data-v-0a633310] {
   display: flex;
@@ -117,30 +124,24 @@ a[data-v-0a633310] {
 .chat .scroll-view .chat-body .item .avatar uni-image[data-v-0a633310] {
   align-self: center;
 }
-.chat .chat-bottom[data-v-0a633310] {
-  width: 100%;
-  height: 5.53125rem;
-  background: #F4F5F7;
-  transition: all 0.1s ease;
-}
 .chat .chat-bottom .send-msg[data-v-0a633310] {
   display: flex;
   align-items: flex-end;
   padding: 0.5rem 0.9375rem;
   width: 100%;
-  min-height: 5.53125rem;
+  min-height: 3.125rem;
   position: fixed;
   bottom: 0;
   background: #EDEDED;
   transition: all 0.1s ease;
 }
 .chat .chat-bottom .uni-textarea[data-v-0a633310] {
-  padding-bottom: 2.1875rem;
+  padding-bottom: 0.625rem;
 }
 .chat .chat-bottom .uni-textarea uni-textarea[data-v-0a633310] {
   width: 16.78125rem;
   min-height: 2.34375rem;
-  max-height: 15.625rem;
+  max-height: 9.375rem;
   background: #FFFFFF;
   border-radius: 0.25rem;
   font-size: 1rem;
@@ -153,7 +154,7 @@ a[data-v-0a633310] {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 2.1875rem;
+  margin-bottom: 0.625rem;
   margin-left: 0.78125rem;
   width: 4rem;
   height: 2.34375rem;

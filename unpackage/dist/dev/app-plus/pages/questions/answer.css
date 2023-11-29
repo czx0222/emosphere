@@ -1,0 +1,196 @@
+/* 水平间距 */
+/* 水平间距 */
+.yy-modal[data-v-9afb92b6] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  opacity: 0;
+  transform: scale(1.185);
+  pointer-events: none;
+  transition: all 0.3s ease-in-out 0s;
+  background: rgba(0, 0, 0, 0.6);
+}
+.show[data-v-9afb92b6] {
+  opacity: 1;
+  transition-duration: 0.3s;
+  transform: scale(1);
+  overflow-x: hidden;
+  overflow-y: auto;
+  pointer-events: auto;
+}
+.content[data-v-9afb92b6] {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 0.46875rem;
+  overflow: hidden;
+}
+/* 水平间距 */
+/* 水平间距 */
+body {
+  background-color: #FFFFFF;
+}
+#header, #subHeader {
+  height: 3.125rem;
+}
+.header {
+  position: relative;
+  text-align: center;
+  line-height: 3.125rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #00aa00;
+  letter-spacing: 0.3125rem;
+}
+.header-button {
+  width: 2.5rem;
+  height: 1.25rem;
+  line-height: 1.25rem;
+  position: absolute;
+  top: 0.625rem;
+  right: 1.25rem;
+  padding: 0.3125rem 0.625rem;
+  border-radius: 0.46875rem;
+  letter-spacing: 0.0625rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  background-color: #00b881;
+}
+.sub-header {
+  padding: 0.9375rem 0.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #00aa00;
+}
+.content {
+  letter-spacing: 0.09375rem;
+}
+.content-item-explain {
+  padding-bottom: 0.625rem;
+  font-size: 0.9375rem;
+  color: #8799a3;
+  letter-spacing: 0.15625rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.content-item-explain-result {
+  padding: 0.625rem 0;
+}
+.content-item-explain-result span {
+  padding-left: 0.625rem;
+  color: #00aa00;
+}
+.content-item-explain-content {
+  padding: 0.625rem 0;
+}
+.content-item {
+  padding: 0 0.625rem;
+  box-sizing: border-box;
+}
+.content-title {
+  margin-bottom: 0.9375rem;
+  font-size: 1.1875rem;
+  line-height: 1.71875rem;
+  color: #000000;
+}
+.content-solutions {
+  width: 100%;
+  padding-bottom: 0.625rem;
+}
+.content-solutions-item {
+  margin: 1.875rem 0;
+  border: 0.15625rem solid #00b881;
+  border-radius: 0.625rem;
+  display: flex;
+  align-items: center;
+  font-size: 0.9375rem;
+  background-color: #00b881;
+}
+.content-solutions-item-check-content {
+  padding: 1.09375rem 0.625rem;
+  width: 100%;
+  border-radius: 0.46875rem;
+  color: #000000;
+  background-color: #FFFFFF;
+}
+.content-solutions-item-single {
+  width: 2.5rem;
+  text-align: center;
+  color: #FFFFFF;
+}
+.content-solutions-item-content {
+  padding: 1.09375rem 0.625rem;
+  width: 19.6875rem;
+  border-top-right-radius: 0.46875rem;
+  border-bottom-right-radius: 0.46875rem;
+  color: #000000;
+  background-color: #FFFFFF;
+}
+.content-solutions-item-select {
+  color: #FFFFFF;
+  background-color: #00b881;
+}
+.footer {
+  width: 23.4375rem;
+  height: 3.125rem;
+  padding: 0.9375rem 0.625rem;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  bottom: 0;
+  font-size: 0.9375rem;
+  box-sizing: border-box;
+  color: #000000;
+  box-shadow: 0 -0.15625rem 0.15625rem #00aa00;
+}
+.footer-card {
+  padding: 0.3125rem 0.625rem;
+  border: 1px solid #00b881;
+  border-radius: 0.46875rem;
+  color: #FFFFFF;
+  background-color: #00b881;
+}
+.question-modal {
+  width: 21.875rem;
+  padding: 1.25rem;
+  background-color: #FFFFFF;
+}
+.question-modal-header {
+  height: 3.125rem;
+  text-align: center;
+  font-size: 1.09375rem;
+  line-height: 3.125rem;
+  color: #333333;
+  border-bottom: 0.03125rem solid #F0F0F0;
+}
+.question-modal-body-item {
+  width: 2.5rem;
+  margin: 0.3125rem 0.6875rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  font-size: 1.09375rem;
+  display: inline-block;
+  text-align: center;
+  border-radius: 50%;
+  color: #8799a3;
+}
+.question-modal-body-item-failed {
+  color: #FFFFFF;
+  background-color: #982121;
+}
+.question-modal-body-item-right {
+  color: #FFFFFF;
+  background-color: #000000;
+}
+.question-modal-body-item-select {
+  color: #FFFFFF;
+  background-color: #00aa00;
+}
+.right {
+  border: 0.15625rem solid #000000;
+}

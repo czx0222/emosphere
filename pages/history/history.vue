@@ -17,7 +17,7 @@
 		<view class="relax-list">
 			<view class="relax-item">
 				<span>日期：2023-11-13</span>
-				<span>放松方式：冥想</span>
+				<span>放松方式：音乐</span>
 				<span>放松时长：20分钟</span>
 			</view>
 			<view class="relax-item">

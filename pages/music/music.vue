@@ -2,13 +2,13 @@
 	<view class="scrollPage">
 		<view class="box" style="width: 100%;height: 5%;"></view>
 		<view class="header">
-				<image src="/static/images/fanhui.png" @click="navigateTo('main')"></image>
-				<view class="choose">
-						<image  src="/static/images/yinyue.png"></image>
-				</view>
-			
-				<image src="/static/images/fenche.png" @click="navigateTo('relax')"></image>
-				<image src="/static/images/recode.png" @click="navigateTo('history')"></image>
+			<image src="/static/images/fanhui.png" @click="navigateTo('main')"></image>
+			<view class="choose">
+				<image src="/static/images/yinyue.png"></image>
+			</view>
+
+			<image src="/static/images/fenche.png" @click="navigateTo('relax')"></image>
+			<image src="/static/images/recode.png" @click="navigateTo('history')"></image>
 		</view>
 		<view class="radius-lg">
 			<view class="bg-white padding-bottom radius-xl" style="text-align: center;">
@@ -42,9 +42,9 @@
 					<image class="iconbtn" @click="dialogData.visiable = true" src="/static/images/bofangliebiao.png" />
 				</view>
 				<view class="content">
-					<imt-audio autoplay="true" continue="true" :playWay="playWay" :src="audioData[now].file"
-						:duration="audioData[now].file.duration" @prev="now = now === 0?audioData.length-1:now-1"
-						@next="now = now === audioData.length-1?0:now+1">
+					<imt-audio toplay="true" :autocontinue="false" :playWay="playWay" :src="audioData[now].file"
+						:duration="audioData[now].file.duration" @prev="now = now === 0 ? audioData.length-1 : now-1"
+						@next="now = now === audioData.length-1 ? 0 : now+1">
 					</imt-audio>
 				</view>
 			</view>
@@ -60,20 +60,20 @@
 </template>
 
 
-<script  lang="ts" setup>
+<script lang="ts" setup>
 	import { reactive } from "vue";
 	import { useRouter } from 'uni-mini-router'
 	let router = useRouter()
 	const navigateTo = (route) => {
-	  const routesMap = {
-	    main: '/pages/main/main',
-	    history: '/pages/history/history',
-	    relax: '/pages/relax/relax',
-	  };
-		
-	  if (routesMap[route]) {
-	    router.replace(routesMap[route]);
-	  }
+		const routesMap = {
+			main: '/pages/main/main',
+			history: '/pages/history/history',
+			relax: '/pages/relax/relax',
+		};
+
+		if (routesMap[route]) {
+			router.replace(routesMap[route]);
+		}
 	};
 	const dialogData = reactive({
 		visiable: false,
@@ -241,7 +241,7 @@
 	}
 
 	.choose {
-		background-color: rgb(195,212,208, 0.5);
+		background-color: rgb(195, 212, 208, 0.5);
 		border-radius: 5px;
 		width: 80px;
 		display: flex;

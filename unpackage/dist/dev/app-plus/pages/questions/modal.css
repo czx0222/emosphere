@@ -1,0 +1,31 @@
+/* 水平间距 */
+/* 水平间距 */
+.yy-modal[data-v-9afb92b6] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  opacity: 0;
+  transform: scale(1.185);
+  pointer-events: none;
+  transition: all 0.3s ease-in-out 0s;
+  background: rgba(0, 0, 0, 0.6);
+}
+.show[data-v-9afb92b6] {
+  opacity: 1;
+  transition-duration: 0.3s;
+  transform: scale(1);
+  overflow-x: hidden;
+  overflow-y: auto;
+  pointer-events: auto;
+}
+.content[data-v-9afb92b6] {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 0.46875rem;
+  overflow: hidden;
+}

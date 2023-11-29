@@ -290,7 +290,7 @@ if (uni.restoreGlobal) {
     }
     return target;
   };
-  const _sfc_main$C = {
+  const _sfc_main$E = {
     __name: "enter",
     setup(__props) {
       let router2 = j();
@@ -324,7 +324,7 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesEnterEnter = /* @__PURE__ */ _export_sfc(_sfc_main$C, [["__file", "D:/ruangong/emosphere/pages/enter/enter.vue"]]);
+  const PagesEnterEnter = /* @__PURE__ */ _export_sfc(_sfc_main$E, [["__file", "D:/ruangong/emosphere/pages/enter/enter.vue"]]);
   function getDevtoolsGlobalHook() {
     return getTarget().__VUE_DEVTOOLS_GLOBAL_HOOK__;
   }
@@ -1436,7 +1436,7 @@ if (uni.restoreGlobal) {
       getEmotionIcons: (state) => state.emotionIcons
     }
   });
-  const _sfc_main$B = {
+  const _sfc_main$D = {
     __name: "login",
     setup(__props) {
       let router2 = j();
@@ -1559,7 +1559,7 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesLoginLogin = /* @__PURE__ */ _export_sfc(_sfc_main$B, [["__file", "D:/ruangong/emosphere/pages/login/login.vue"]]);
+  const PagesLoginLogin = /* @__PURE__ */ _export_sfc(_sfc_main$D, [["__file", "D:/ruangong/emosphere/pages/login/login.vue"]]);
   var calendar = {
     /**
         * 农历1900-2100的润大小信息表
@@ -3040,7 +3040,7 @@ if (uni.restoreGlobal) {
     "zh-Hant": zhHant$1
   };
   const { t: t$4 } = initVueI18n(i18nMessages$1);
-  const _sfc_main$A = {
+  const _sfc_main$C = {
     emits: ["change"],
     props: {
       weeks: {
@@ -3077,7 +3077,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -3174,9 +3174,9 @@ if (uni.restoreGlobal) {
       /* CLASS */
     );
   }
-  const CalendarItem = /* @__PURE__ */ _export_sfc(_sfc_main$A, [["render", _sfc_render$l], ["__scopeId", "data-v-65626c58"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-calendar/components/uni-calendar/uni-calendar-item.vue"]]);
+  const CalendarItem = /* @__PURE__ */ _export_sfc(_sfc_main$C, [["render", _sfc_render$n], ["__scopeId", "data-v-65626c58"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-calendar/components/uni-calendar/uni-calendar-item.vue"]]);
   const { t: t$3 } = initVueI18n(i18nMessages$1);
-  const _sfc_main$z = {
+  const _sfc_main$B = {
     components: {
       CalendarItem
     },
@@ -3445,7 +3445,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_calendar_item = vue.resolveComponent("calendar-item");
     return vue.openBlock(), vue.createElementBlock("view", { class: "uni-calendar" }, [
       !$props.insert && $data.show ? (vue.openBlock(), vue.createElementBlock(
@@ -3652,8 +3652,8 @@ if (uni.restoreGlobal) {
       )) : vue.createCommentVNode("v-if", true)
     ]);
   }
-  const __easycom_0$5 = /* @__PURE__ */ _export_sfc(_sfc_main$z, [["render", _sfc_render$k], ["__scopeId", "data-v-b6ab2cfb"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-calendar/components/uni-calendar/uni-calendar.vue"]]);
-  const _sfc_main$y = {
+  const __easycom_0$5 = /* @__PURE__ */ _export_sfc(_sfc_main$B, [["render", _sfc_render$m], ["__scopeId", "data-v-b6ab2cfb"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-calendar/components/uni-calendar/uni-calendar.vue"]]);
+  const _sfc_main$A = {
     __name: "calendar",
     setup(__props) {
       let router2 = j();
@@ -3760,8 +3760,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesCalendarCalendar = /* @__PURE__ */ _export_sfc(_sfc_main$y, [["__file", "D:/ruangong/emosphere/pages/calendar/calendar.vue"]]);
-  const _sfc_main$x = {
+  const PagesCalendarCalendar = /* @__PURE__ */ _export_sfc(_sfc_main$A, [["__file", "D:/ruangong/emosphere/pages/calendar/calendar.vue"]]);
+  const _sfc_main$z = {
     __name: "main",
     setup(__props) {
       let router2 = j();
@@ -3770,7 +3770,7 @@ if (uni.restoreGlobal) {
           space: "/pages/space/space",
           calendar: "/pages/calendar/calendar",
           chat: "/pages/chat/chat",
-          relax: "/pages/relax/relax",
+          music: "/pages/music/music",
           myScreen: "/pages/myScreen/myScreen",
           torecord: "/pages/EmoRecord/EmoRecord"
         };
@@ -3863,7 +3863,7 @@ if (uni.restoreGlobal) {
               ])
             ]),
             vue.createElementVNode("view", {
-              onClick: _cache[4] || (_cache[4] = ($event) => navigateTo("relax"))
+              onClick: _cache[4] || (_cache[4] = ($event) => navigateTo("music"))
             }, [
               vue.createElementVNode("div", { class: "circle" }, [
                 vue.createElementVNode("image", { src: "/static/images/z6.png" })
@@ -3887,8 +3887,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesMainMain = /* @__PURE__ */ _export_sfc(_sfc_main$x, [["__file", "D:/ruangong/emosphere/pages/main/main.vue"]]);
-  const _sfc_main$w = {
+  const PagesMainMain = /* @__PURE__ */ _export_sfc(_sfc_main$z, [["__file", "D:/ruangong/emosphere/pages/main/main.vue"]]);
+  const _sfc_main$y = {
     __name: "EmoRecord",
     setup(__props) {
       let router2 = j();
@@ -4132,8 +4132,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesEmoRecordEmoRecord = /* @__PURE__ */ _export_sfc(_sfc_main$w, [["__file", "D:/ruangong/emosphere/pages/EmoRecord/EmoRecord.vue"]]);
-  const _sfc_main$v = {
+  const PagesEmoRecordEmoRecord = /* @__PURE__ */ _export_sfc(_sfc_main$y, [["__file", "D:/ruangong/emosphere/pages/EmoRecord/EmoRecord.vue"]]);
+  const _sfc_main$x = {
     data() {
       return {
         showPopup: false,
@@ -4153,7 +4153,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_router_link = vue.resolveComponent("router-link");
     return vue.openBlock(), vue.createElementBlock("view", { class: "about" }, [
       vue.createElementVNode("view", {
@@ -4255,8 +4255,8 @@ if (uni.restoreGlobal) {
       )) : vue.createCommentVNode("v-if", true)
     ]);
   }
-  const PagesAboutAbout = /* @__PURE__ */ _export_sfc(_sfc_main$v, [["render", _sfc_render$j], ["__scopeId", "data-v-13a78ac6"], ["__file", "D:/ruangong/emosphere/pages/about/about.vue"]]);
-  const _sfc_main$u = {
+  const PagesAboutAbout = /* @__PURE__ */ _export_sfc(_sfc_main$x, [["render", _sfc_render$l], ["__scopeId", "data-v-13a78ac6"], ["__file", "D:/ruangong/emosphere/pages/about/about.vue"]]);
+  const _sfc_main$w = {
     __name: "aboutme",
     setup(__props) {
       let router2 = j();
@@ -4385,8 +4385,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesAboutmeAboutme = /* @__PURE__ */ _export_sfc(_sfc_main$u, [["__file", "D:/ruangong/emosphere/pages/aboutme/aboutme.vue"]]);
-  const _sfc_main$t = {
+  const PagesAboutmeAboutme = /* @__PURE__ */ _export_sfc(_sfc_main$w, [["__file", "D:/ruangong/emosphere/pages/aboutme/aboutme.vue"]]);
+  const _sfc_main$v = {
     props: {
       message: String
     },
@@ -4399,7 +4399,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("div", { class: "confirm-dialog" }, [
       vue.createElementVNode(
         "div",
@@ -4418,8 +4418,8 @@ if (uni.restoreGlobal) {
       ])
     ]);
   }
-  const ConfirmDialog = /* @__PURE__ */ _export_sfc(_sfc_main$t, [["render", _sfc_render$i], ["__scopeId", "data-v-76a5aa76"], ["__file", "D:/ruangong/emosphere/components/ConfirmDialog/ConfirmDialog.vue"]]);
-  const _sfc_main$s = {
+  const ConfirmDialog = /* @__PURE__ */ _export_sfc(_sfc_main$v, [["render", _sfc_render$k], ["__scopeId", "data-v-76a5aa76"], ["__file", "D:/ruangong/emosphere/components/ConfirmDialog/ConfirmDialog.vue"]]);
+  const _sfc_main$u = {
     __name: "myScreen",
     setup(__props) {
       let router2 = j();
@@ -4554,10 +4554,23 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesMyScreenMyScreen = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["__file", "D:/ruangong/emosphere/pages/myScreen/myScreen.vue"]]);
-  const _sfc_main$r = {
+  const PagesMyScreenMyScreen = /* @__PURE__ */ _export_sfc(_sfc_main$u, [["__file", "D:/ruangong/emosphere/pages/myScreen/myScreen.vue"]]);
+  const _sfc_main$t = {
     data() {
+      let router2 = j();
+      const tomain = () => {
+        router2.replace("/pages/main/main");
+      };
+      const tohistory = () => {
+        router2.replace("/pages/history/history");
+      };
+      const tomusic = () => {
+        router2.replace("/pages/music/music");
+      };
       return {
+        tomain,
+        tohistory,
+        tomusic,
         currentPopup: "",
         completedCount: 0,
         completedPopup: "",
@@ -4623,7 +4636,7 @@ if (uni.restoreGlobal) {
         this.resetCountdown();
       },
       startRelaxation(method) {
-        formatAppLog("log", "at pages/relax/relax.vue:113", "开始放松方式:", method);
+        formatAppLog("log", "at pages/relax/relax.vue:154", "开始放松方式:", method);
         this.currentPopup = method;
       },
       toggleRelaxation() {
@@ -4633,9 +4646,23 @@ if (uni.restoreGlobal) {
           this.completeRelaxation();
         }
       },
+      // completeRelaxation() {
+      // 	if (this.currentPopup) {
+      // 		this.completedPopup = this.popupContent[this.currentPopup].title;
+      // 		this.completedCount += 1;
+      // 		this.resetCountdown();
+      // 		setTimeout(() => {
+      // 			this.completedPopup = '';
+      // 			this.currentPopup = '';
+      // 			this.closePopup(); 
+      // 	}
+      // },
       completeRelaxation() {
         if (this.currentPopup) {
-          this.completedPopup = this.popupContent[this.currentPopup].title;
+          const completedPopup = this.popupContent[this.currentPopup].title;
+          const timeSpent = this.popupContent[this.currentPopup].duration - (this.countdownMinutes * 60 + this.countdownSeconds);
+          formatAppLog("log", "at pages/relax/relax.vue:182", `完成放松方法 "${completedPopup}"，花费时间: ${Math.floor(timeSpent / 60)} 分钟 ${timeSpent % 60} 秒`);
+          this.completedPopup = completedPopup;
           this.completedCount += 1;
           this.resetCountdown();
           setTimeout(() => {
@@ -4649,6 +4676,7 @@ if (uni.restoreGlobal) {
         this.currentPopup = popup;
       },
       startCountdown(duration) {
+        clearInterval(this.countdownInterval);
         this.countingDown = true;
         const startTime = Date.now();
         const updateCountdown = () => {
@@ -4656,101 +4684,92 @@ if (uni.restoreGlobal) {
           const remainingTime = Math.max(0, duration - Math.floor(elapsedTime / 1e3));
           this.countdownMinutes = Math.floor(remainingTime / 60);
           this.countdownSeconds = remainingTime % 60;
-          if (remainingTime > 0) {
-            requestAnimationFrame(updateCountdown);
-          } else {
+          if (remainingTime > 0)
+            ;
+          else {
             this.countingDown = false;
             this.resetCountdown();
+            clearInterval(this.countdownInterval);
           }
         };
-        requestAnimationFrame(updateCountdown);
+        updateCountdown();
+        this.countdownInterval = setInterval(updateCountdown, 1e3);
       },
       resetCountdown() {
         this.countdownMinutes = 0;
         this.countdownSeconds = 0;
       }
+    },
+    beforeDestroy() {
+      clearInterval(this.countdownInterval);
     }
   };
-  function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_router_link = vue.resolveComponent("router-link");
-    return vue.openBlock(), vue.createElementBlock(
-      vue.Fragment,
-      null,
-      [
-        vue.createElementVNode("view", { class: "page" }, [
+  function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
+    return vue.openBlock(), vue.createElementBlock("view", { class: "page" }, [
+      vue.createElementVNode("view", {
+        class: "box",
+        style: { "width": "100%", "height": "5%" }
+      }),
+      vue.createElementVNode("view", { class: "header" }, [
+        vue.createElementVNode("image", {
+          src: "/static/images/fanhui.png",
+          onClick: _cache[0] || (_cache[0] = (...args) => $data.tomain && $data.tomain(...args))
+        }),
+        vue.createElementVNode("image", {
+          src: "/static/images/yinyue.png",
+          onClick: _cache[1] || (_cache[1] = (...args) => $data.tomusic && $data.tomusic(...args))
+        }),
+        vue.createElementVNode("view", { class: "choose" }, [
+          vue.createElementVNode("image", { src: "/static/images/fenche.png" })
+        ]),
+        vue.createElementVNode("image", {
+          src: "/static/images/recode.png",
+          onClick: _cache[2] || (_cache[2] = (...args) => $data.tohistory && $data.tohistory(...args))
+        })
+      ]),
+      vue.createElementVNode("view", { class: "back" }, [
+        vue.createElementVNode("view", { class: "back2" }, [
           vue.createElementVNode("view", {
-            class: "box",
-            style: { "width": "100%", "height": "5%" }
-          }),
-          vue.createElementVNode("view", { class: "header" }, [
-            vue.createVNode(_component_router_link, { to: "/pages/main/main" }, {
-              default: vue.withCtx(() => [
-                vue.createElementVNode("img", {
-                  src: "/static/images/f1.png",
-                  onClick: _cache[0] || (_cache[0] = ($event) => $options.incrementCount("f1", 5))
-                })
-              ]),
-              _: 1
-              /* STABLE */
-            }),
-            vue.createVNode(_component_router_link, { to: "/pages/music/music" }, {
-              default: vue.withCtx(() => [
-                vue.createElementVNode("img", {
-                  src: "/static/images/f2.png",
-                  onClick: _cache[1] || (_cache[1] = ($event) => $options.incrementCount("f2", 5))
-                })
-              ]),
-              _: 1
-              /* STABLE */
-            }),
-            vue.createElementVNode("img", {
-              class: "choose",
-              src: "/static/images/f3.png"
-            }),
-            vue.createVNode(_component_router_link, { to: "" }, {
-              default: vue.withCtx(() => [
-                vue.createElementVNode("img", {
-                  src: "/static/images/f4.png",
-                  onClick: _cache[2] || (_cache[2] = ($event) => $options.incrementCount("f4", 5))
-                })
-              ]),
-              _: 1
-              /* STABLE */
-            })
+            class: "method",
+            onClick: _cache[3] || (_cache[3] = ($event) => $options.startRelaxation("f7"))
+          }, [
+            vue.createElementVNode("view", { class: "box-left" }, [
+              vue.createElementVNode("text", { class: "circle" }, "1")
+            ]),
+            vue.createElementVNode("view", { class: "box-right" }, "呼吸放松法")
           ]),
-          vue.createElementVNode("view", { class: "title" }, [
-            vue.createElementVNode("text", null, "Relax")
+          vue.createElementVNode("view", {
+            class: "method",
+            onClick: _cache[4] || (_cache[4] = ($event) => $options.startRelaxation("f8"))
+          }, [
+            vue.createElementVNode("view", { class: "box-left" }, [
+              vue.createElementVNode("text", { class: "circle" }, "2")
+            ]),
+            vue.createElementVNode("view", { class: "box-right" }, "渐进性放松法")
           ]),
-          vue.createElementVNode("img", {
-            alt: "图片f6",
-            src: "/static/images/f6.png",
-            style: { "position": "absolute", "top": "54%", "left": "65%", "transform": "translate(-50%, -50%)" }
-          }),
-          vue.createElementVNode("view", { class: "method" }, [
-            vue.createElementVNode("img", {
-              alt: "图片f7",
-              src: "/static/images/f7.png",
-              onClick: _cache[3] || (_cache[3] = ($event) => $options.startRelaxation("f7")),
-              style: { "margin-bottom": "10px" }
-            }),
-            vue.createElementVNode("img", {
-              alt: "图片f8",
-              src: "/static/images/f8.png",
-              onClick: _cache[4] || (_cache[4] = ($event) => $options.startRelaxation("f8")),
-              style: { "margin-bottom": "10px" }
-            }),
-            vue.createElementVNode("img", {
-              alt: "图片f9",
-              src: "/static/images/f9.png",
-              onClick: _cache[5] || (_cache[5] = ($event) => $options.startRelaxation("f9")),
-              style: { "margin-bottom": "10px" }
-            }),
-            vue.createElementVNode("img", {
-              alt: "图片f10",
-              src: "/static/images/f10.png",
-              onClick: _cache[6] || (_cache[6] = ($event) => $options.startRelaxation("f10")),
-              style: { "margin-bottom": "10px" }
-            })
+          vue.createElementVNode("view", {
+            class: "method",
+            onClick: _cache[5] || (_cache[5] = ($event) => $options.startRelaxation("f9"))
+          }, [
+            vue.createElementVNode("view", { class: "box-left" }, [
+              vue.createElementVNode("text", { class: "circle" }, "3")
+            ]),
+            vue.createElementVNode("view", { class: "box-right" }, "正念冥想")
+          ]),
+          vue.createElementVNode("view", {
+            class: "method",
+            onClick: _cache[6] || (_cache[6] = ($event) => $options.startRelaxation("f10"))
+          }, [
+            vue.createElementVNode("view", { class: "box-left" }, [
+              vue.createElementVNode("text", { class: "circle" }, "4")
+            ]),
+            vue.createElementVNode("view", { class: "box-right" }, "蝴蝶拥抱")
+          ]),
+          vue.createElementVNode("view", { class: "tip" }, [
+            vue.createElementVNode("image", { src: "/static/images/tip.png" }),
+            vue.createElementVNode("view", null, [
+              vue.createElementVNode("text", null, "点击上方的小卡片，享受放松时刻！")
+            ])
           ])
         ]),
         $data.currentPopup ? (vue.openBlock(), vue.createElementBlock(
@@ -4806,12 +4825,10 @@ if (uni.restoreGlobal) {
           2
           /* CLASS */
         )) : vue.createCommentVNode("v-if", true)
-      ],
-      64
-      /* STABLE_FRAGMENT */
-    );
+      ])
+    ]);
   }
-  const PagesRelaxRelax = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["render", _sfc_render$h], ["__scopeId", "data-v-3a9d0990"], ["__file", "D:/ruangong/emosphere/pages/relax/relax.vue"]]);
+  const PagesRelaxRelax = /* @__PURE__ */ _export_sfc(_sfc_main$t, [["render", _sfc_render$j], ["__file", "D:/ruangong/emosphere/pages/relax/relax.vue"]]);
   const icons$1 = {
     "about": "",
     "about-fill": "",
@@ -5002,7 +5019,7 @@ if (uni.restoreGlobal) {
     "play": "",
     "suspend": ""
   };
-  const _sfc_main$q = {
+  const _sfc_main$s = {
     name: "tuiIcon",
     emits: ["click"],
     props: {
@@ -5063,7 +5080,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "text",
       {
@@ -5076,7 +5093,7 @@ if (uni.restoreGlobal) {
       /* TEXT, CLASS, STYLE */
     );
   }
-  const __easycom_0$4 = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["render", _sfc_render$g], ["__scopeId", "data-v-bfc5f459"], ["__file", "D:/ruangong/emosphere/node_modules/thorui-uni/lib/thorui/tui-icon/tui-icon.vue"]]);
+  const __easycom_0$4 = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["render", _sfc_render$i], ["__scopeId", "data-v-bfc5f459"], ["__file", "D:/ruangong/emosphere/node_modules/thorui-uni/lib/thorui/tui-icon/tui-icon.vue"]]);
   /*!
     * vue-router v4.1.6
     * (c) 2022 Eduardo San Martin Morote
@@ -5103,7 +5120,7 @@ if (uni.restoreGlobal) {
   function useRouter() {
     return vue.inject(routerKey);
   }
-  const _sfc_main$p = {
+  const _sfc_main$r = {
     __name: "share",
     setup(__props) {
       const router2 = useRouter();
@@ -5193,8 +5210,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesShareShare = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["__scopeId", "data-v-ceb22cc9"], ["__file", "D:/ruangong/emosphere/pages/share/share.vue"]]);
-  const _sfc_main$o = {
+  const PagesShareShare = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["__scopeId", "data-v-ceb22cc9"], ["__file", "D:/ruangong/emosphere/pages/share/share.vue"]]);
+  const _sfc_main$q = {
     name: "YSteps",
     props: {
       infoList: {
@@ -5225,7 +5242,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       vue.Fragment,
       null,
@@ -5306,8 +5323,8 @@ if (uni.restoreGlobal) {
       /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
     );
   }
-  const YSteps = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["render", _sfc_render$f], ["__scopeId", "data-v-3d3a9ebb"], ["__file", "D:/ruangong/emosphere/components/Y-Steps/Y-Steps.vue"]]);
-  const _sfc_main$n = {
+  const YSteps = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["render", _sfc_render$h], ["__scopeId", "data-v-3d3a9ebb"], ["__file", "D:/ruangong/emosphere/components/Y-Steps/Y-Steps.vue"]]);
+  const _sfc_main$p = {
     components: {
       YSteps
     },
@@ -5331,7 +5348,7 @@ if (uni.restoreGlobal) {
     },
     methods: {}
   };
-  function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_a_button = vue.resolveComponent("a-button");
     const _component_YSteps = vue.resolveComponent("YSteps");
     return vue.openBlock(), vue.createElementBlock(
@@ -5374,8 +5391,8 @@ if (uni.restoreGlobal) {
       /* STABLE_FRAGMENT */
     );
   }
-  const PagesRecordRecord = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["render", _sfc_render$e], ["__file", "D:/ruangong/emosphere/pages/record/record.vue"]]);
-  const _sfc_main$m = {
+  const PagesRecordRecord = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["render", _sfc_render$g], ["__file", "D:/ruangong/emosphere/pages/record/record.vue"]]);
+  const _sfc_main$o = {
     data() {
       return {};
     },
@@ -5445,7 +5462,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -5491,11 +5508,13 @@ if (uni.restoreGlobal) {
       /* STYLE */
     );
   }
-  const __easycom_0$3 = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["render", _sfc_render$d], ["__scopeId", "data-v-42d6f2a0"], ["__file", "D:/ruangong/emosphere/uni_modules/gscosmos-dialog/components/gscosmos-dialog/gscosmos-dialog.vue"]]);
-  const _sfc_main$l = {
+  const __easycom_0$3 = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["render", _sfc_render$f], ["__scopeId", "data-v-42d6f2a0"], ["__file", "D:/ruangong/emosphere/uni_modules/gscosmos-dialog/components/gscosmos-dialog/gscosmos-dialog.vue"]]);
+  const _sfc_main$n = {
     data() {
       return {
-        audio: uni.createInnerAudioContext(),
+        audio: uni.createInnerAudioContext({
+          obeyMuteSwitch: false
+        }),
         current: 0,
         //当前进度(s)
         duration: 261,
@@ -5510,11 +5529,12 @@ if (uni.restoreGlobal) {
     },
     props: {
       src: String,
-      //音频链接
-      autoplay: Boolean,
+      toplay: Boolean,
       //是否自动播放
-      continue: Boolean,
+      autocontinue: Boolean,
       //播放完成后是否继续播放下一首，需定义@next事件
+      playWay: Number,
+      //播放模式，单曲循环 循环播放 随机播放
       control: {
         type: Boolean,
         default: true
@@ -5550,7 +5570,6 @@ if (uni.restoreGlobal) {
         this.audio.src = this.src;
         this.autoplay && this.play();
       }
-      this.audio.obeyMuteSwitch = false;
       this.audio.onTimeUpdate(() => {
         if (!this.seek) {
           this.current = this.audio.currentTime;
@@ -5567,8 +5586,13 @@ if (uni.restoreGlobal) {
         this.paused = true;
       });
       this.audio.onEnded(() => {
-        if (this.continue) {
+        if (this.continue == "true" && this.playWay === 1) {
           this.next();
+        } else if (this.continue == "true" && this.playWay === 0) {
+          this.play();
+        } else if (this.continue == "true" && this.playWay === 2) {
+          this.paused = true;
+          this.current = 0;
         } else {
           this.paused = true;
           this.current = 0;
@@ -5592,7 +5616,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "imt-audio" }, [
       vue.createElementVNode("view", { class: "audio-wrapper" }, [
         vue.createElementVNode(
@@ -5605,7 +5629,7 @@ if (uni.restoreGlobal) {
         vue.createElementVNode("slider", {
           class: "audio-slider",
           activeColor: $props.color,
-          "block-size": "20",
+          "block-size": "25",
           value: $data.current,
           max: $data.duration,
           onChanging: _cache[0] || (_cache[0] = ($event) => ($data.seek = true, $data.current = $event.detail.value)),
@@ -5634,7 +5658,7 @@ if (uni.restoreGlobal) {
               style: vue.normalizeStyle({ borderColor: $props.color }),
               onClick: _cache[2] || (_cache[2] = (...args) => $options.prev && $options.prev(...args))
             },
-            "",
+            " ",
             4
             /* STYLE */
           )) : vue.createCommentVNode("v-if", true),
@@ -5657,7 +5681,7 @@ if (uni.restoreGlobal) {
               style: vue.normalizeStyle({ borderColor: $props.color }),
               onClick: _cache[4] || (_cache[4] = (...args) => $options.next && $options.next(...args))
             },
-            "",
+            " ",
             4
             /* STYLE */
           )) : vue.createCommentVNode("v-if", true)
@@ -5667,7 +5691,7 @@ if (uni.restoreGlobal) {
       )
     ]);
   }
-  const __easycom_1$1 = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$c], ["__scopeId", "data-v-8a21190d"], ["__file", "D:/ruangong/emosphere/components/imt-audio/imt-audio.vue"]]);
+  const __easycom_1$1 = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["render", _sfc_render$e], ["__scopeId", "data-v-8a21190d"], ["__file", "D:/ruangong/emosphere/components/imt-audio/imt-audio.vue"]]);
   const __default__ = {
     data() {
       return {
@@ -5773,10 +5797,21 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  const _sfc_main$k = /* @__PURE__ */ vue.defineComponent({
+  const _sfc_main$m = /* @__PURE__ */ vue.defineComponent({
     ...__default__,
     __name: "music",
     setup(__props) {
+      let router2 = j();
+      const navigateTo = (route) => {
+        const routesMap = {
+          main: "/pages/main/main",
+          history: "/pages/history/history",
+          relax: "/pages/relax/relax"
+        };
+        if (routesMap[route]) {
+          router2.replace(routesMap[route]);
+        }
+      };
       const dialogData = vue.reactive({
         visiable: false,
         fromPoi: ["0", "0"],
@@ -5785,10 +5820,9 @@ if (uni.restoreGlobal) {
         }
       });
       const closed = () => {
-        formatAppLog("log", "at pages/music/music.vue:82", "关闭弹窗后的回调函数");
+        formatAppLog("log", "at pages/music/music.vue:87", "关闭弹窗后的回调函数");
       };
       return (_ctx, _cache) => {
-        const _component_router_link = vue.resolveComponent("router-link");
         const _component_a_button = vue.resolveComponent("a-button");
         const _component_gscosmos_dialog = resolveEasycom(vue.resolveDynamicComponent("gscosmos-dialog"), __easycom_0$3);
         const _component_imt_audio = resolveEasycom(vue.resolveDynamicComponent("imt-audio"), __easycom_1$1);
@@ -5798,36 +5832,20 @@ if (uni.restoreGlobal) {
             style: { "width": "100%", "height": "5%" }
           }),
           vue.createElementVNode("view", { class: "header" }, [
-            vue.createVNode(_component_router_link, { to: "/pages/main/main" }, {
-              default: vue.withCtx(() => [
-                vue.createElementVNode("image", { src: "/static/images/fanhui.png" })
-              ]),
-              _: 1
-              /* STABLE */
+            vue.createElementVNode("image", {
+              src: "/static/images/fanhui.png",
+              onClick: _cache[0] || (_cache[0] = ($event) => navigateTo("main"))
             }),
-            vue.createVNode(_component_router_link, { to: "" }, {
-              default: vue.withCtx(() => [
-                vue.createElementVNode("image", {
-                  class: "choose",
-                  src: "/static/images/mm.png"
-                })
-              ]),
-              _: 1
-              /* STABLE */
+            vue.createElementVNode("view", { class: "choose" }, [
+              vue.createElementVNode("image", { src: "/static/images/yinyue.png" })
+            ]),
+            vue.createElementVNode("image", {
+              src: "/static/images/fenche.png",
+              onClick: _cache[1] || (_cache[1] = ($event) => navigateTo("relax"))
             }),
-            vue.createVNode(_component_router_link, { to: "/pages/relax/relax" }, {
-              default: vue.withCtx(() => [
-                vue.createElementVNode("image", { src: "/static/images/fenche.png" })
-              ]),
-              _: 1
-              /* STABLE */
-            }),
-            vue.createVNode(_component_router_link, { to: "" }, {
-              default: vue.withCtx(() => [
-                vue.createElementVNode("image", { src: "/static/images/recode.png" })
-              ]),
-              _: 1
-              /* STABLE */
+            vue.createElementVNode("image", {
+              src: "/static/images/recode.png",
+              onClick: _cache[2] || (_cache[2] = ($event) => navigateTo("history"))
             })
           ]),
           vue.createElementVNode("view", { class: "radius-lg" }, [
@@ -5871,7 +5889,7 @@ if (uni.restoreGlobal) {
                 vue.createVNode(_component_a_button, {
                   type: "link",
                   ghost: "",
-                  onClick: _cache[0] || (_cache[0] = ($event) => _ctx.updateWay())
+                  onClick: _cache[3] || (_cache[3] = ($event) => _ctx.updateWay())
                 }, {
                   default: vue.withCtx(() => [
                     _ctx.playWay == 2 ? (vue.openBlock(), vue.createElementBlock("image", {
@@ -5896,7 +5914,7 @@ if (uni.restoreGlobal) {
                 vue.createVNode(_component_a_button, {
                   type: "link",
                   ghost: "",
-                  onClick: _cache[1] || (_cache[1] = ($event) => _ctx.like_ornot(_ctx.now))
+                  onClick: _cache[4] || (_cache[4] = ($event) => _ctx.like_ornot(_ctx.now))
                 }, {
                   default: vue.withCtx(() => [
                     _ctx.audioData[_ctx.now].like == 1 ? (vue.openBlock(), vue.createElementBlock("text", {
@@ -5915,7 +5933,7 @@ if (uni.restoreGlobal) {
                 }),
                 vue.createVNode(_component_gscosmos_dialog, {
                   modelValue: dialogData.visiable,
-                  "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => dialogData.visiable = $event),
+                  "onUpdate:modelValue": _cache[5] || (_cache[5] = ($event) => dialogData.visiable = $event),
                   endStyle: dialogData.endStyle,
                   fromPoi: dialogData.fromPoi,
                   title: "播放列表",
@@ -5943,19 +5961,19 @@ if (uni.restoreGlobal) {
                 }, 8, ["modelValue", "endStyle", "fromPoi"]),
                 vue.createElementVNode("image", {
                   class: "iconbtn",
-                  onClick: _cache[3] || (_cache[3] = ($event) => dialogData.visiable = true),
+                  onClick: _cache[6] || (_cache[6] = ($event) => dialogData.visiable = true),
                   src: "/static/images/bofangliebiao.png"
                 })
               ]),
               vue.createElementVNode("view", { class: "content" }, [
                 vue.createVNode(_component_imt_audio, {
-                  autoplay: "true",
-                  continue: "true",
+                  toplay: "true",
+                  autocontinue: false,
                   playWay: _ctx.playWay,
                   src: _ctx.audioData[_ctx.now].file,
                   duration: _ctx.audioData[_ctx.now].file.duration,
-                  onPrev: _cache[4] || (_cache[4] = ($event) => _ctx.now = _ctx.now === 0 ? _ctx.audioData.length - 1 : _ctx.now - 1),
-                  onNext: _cache[5] || (_cache[5] = ($event) => _ctx.now = _ctx.now === _ctx.audioData.length - 1 ? 0 : _ctx.now + 1)
+                  onPrev: _cache[7] || (_cache[7] = ($event) => _ctx.now = _ctx.now === 0 ? _ctx.audioData.length - 1 : _ctx.now - 1),
+                  onNext: _cache[8] || (_cache[8] = ($event) => _ctx.now = _ctx.now === _ctx.audioData.length - 1 ? 0 : _ctx.now + 1)
                 }, null, 8, ["playWay", "src", "duration"])
               ])
             ]),
@@ -5980,8 +5998,8 @@ if (uni.restoreGlobal) {
       };
     }
   });
-  const PagesMusicMusic = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["__file", "D:/ruangong/emosphere/pages/music/music.vue"]]);
-  const _sfc_main$j = {
+  const PagesMusicMusic = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["__file", "D:/ruangong/emosphere/pages/music/music.vue"]]);
+  const _sfc_main$l = {
     __name: "questions",
     setup(__props) {
       let router2 = j();
@@ -6001,8 +6019,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesQuestionsQuestions = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__file", "D:/ruangong/emosphere/pages/questions/questions.vue"]]);
-  const _sfc_main$i = {
+  const PagesQuestionsQuestions = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["__file", "D:/ruangong/emosphere/pages/questions/questions.vue"]]);
+  const _sfc_main$k = {
     data() {
       return {
         bgColor: "#BAD0CE"
@@ -6011,7 +6029,7 @@ if (uni.restoreGlobal) {
     },
     methods: {}
   };
-  function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("div", { class: "background" }, [
       vue.createElementVNode("div", {
         class: "rounded-box",
@@ -6083,8 +6101,8 @@ if (uni.restoreGlobal) {
       ])
     ]);
   }
-  const PagesResultResult = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$b], ["__file", "D:/ruangong/emosphere/pages/result/result.vue"]]);
-  const _sfc_main$h = {
+  const PagesResultResult = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["render", _sfc_render$d], ["__file", "D:/ruangong/emosphere/pages/result/result.vue"]]);
+  const _sfc_main$j = {
     data() {
       let router2 = j();
       const goToQ1 = () => {
@@ -6102,7 +6120,7 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "backarea" }, [
       vue.createElementVNode("view", {
         class: "box",
@@ -6144,8 +6162,8 @@ if (uni.restoreGlobal) {
       ])
     ]);
   }
-  const PagesHomeHome = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["render", _sfc_render$a], ["__file", "D:/ruangong/emosphere/pages/home/home.vue"]]);
-  const _sfc_main$g = {
+  const PagesHomeHome = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$c], ["__file", "D:/ruangong/emosphere/pages/home/home.vue"]]);
+  const _sfc_main$i = {
     data() {
       return {
         keyboardHeight: 0,
@@ -6234,7 +6252,7 @@ if (uni.restoreGlobal) {
             userContent: this.chatMsg,
             userId: 0
           };
-          formatAppLog("log", "at pages/chat/chat.vue:160", this.chatMsg);
+          formatAppLog("log", "at pages/chat/chat.vue:159", this.chatMsg);
           try {
             const response = await uni.request({
               url: "http://localhost:8080/api/",
@@ -6251,9 +6269,9 @@ if (uni.restoreGlobal) {
             this.msgList.push(obj);
             this.chatMsg = "";
             this.scrollToBottom();
-            formatAppLog("log", "at pages/chat/chat.vue:178", "发送成功:", serverResponse);
+            formatAppLog("log", "at pages/chat/chat.vue:177", "发送成功:", serverResponse);
           } catch (error) {
-            formatAppLog("error", "at pages/chat/chat.vue:180", "发送消息失败:", error);
+            formatAppLog("error", "at pages/chat/chat.vue:179", "发送消息失败:", error);
             this.$modal.showToast("发送消息失败");
           }
         } else {
@@ -6262,137 +6280,145 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
-    return vue.openBlock(), vue.createElementBlock("view", { class: "backarea" }, [
-      vue.createElementVNode("view", { style: { "width": "100%", "height": "5%" } }),
-      vue.createElementVNode("view", { class: "header" }, [
-        vue.createElementVNode("navigator", { url: "/pages/main/main" }, [
-          vue.createElementVNode("view", { class: "head-left" }, [
-            vue.createElementVNode("image", { src: "/static/images/fanhui.jpg" }),
-            vue.createElementVNode("text", null, "返回")
-          ])
-        ]),
-        vue.createElementVNode("navigator", { url: "/pages/home/home" }, [
-          vue.createElementVNode("view", { class: "head-right" }, [
-            vue.createElementVNode("image", { src: "/static/images/test.png" }),
-            vue.createElementVNode("text", null, "测试")
-          ])
-        ])
-      ]),
-      vue.createElementVNode("view", { class: "chat" }, [
-        vue.createElementVNode("scroll-view", {
-          style: vue.normalizeStyle({ height: `${$options.windowHeight - $options.inputHeight}rpx` }),
-          id: "scrollview",
-          "scroll-y": "true",
-          "scroll-top": $data.scrollTop,
-          class: "scroll-view"
-        }, [
-          vue.createCommentVNode(" 聊天主体 "),
-          vue.createElementVNode("view", {
-            id: "msglistview",
-            class: "chat-body"
-          }, [
-            vue.createCommentVNode(" 聊天记录 "),
-            (vue.openBlock(true), vue.createElementBlock(
-              vue.Fragment,
-              null,
-              vue.renderList($data.msgList, (item, index) => {
-                return vue.openBlock(), vue.createElementBlock("view", { key: index }, [
-                  vue.createCommentVNode(" 自己发的消息 "),
-                  item.userContent != "" ? (vue.openBlock(), vue.createElementBlock("view", {
-                    key: 0,
-                    class: "item self"
-                  }, [
-                    vue.createCommentVNode(" 文字内容 "),
-                    vue.createElementVNode(
-                      "view",
-                      { class: "content right" },
-                      vue.toDisplayString(item.userContent),
-                      1
-                      /* TEXT */
-                    ),
-                    vue.createCommentVNode(" 头像 "),
-                    vue.createElementVNode("view", { class: "avatar" }, [
-                      vue.createElementVNode("image", { src: "/static/images/logo.png" })
-                    ])
-                  ])) : vue.createCommentVNode("v-if", true),
-                  vue.createCommentVNode(" 机器人发的消息 "),
-                  item.botContent != "" ? (vue.openBlock(), vue.createElementBlock("view", {
-                    key: 1,
-                    class: "item Ai"
-                  }, [
-                    vue.createCommentVNode(" 头像 "),
-                    vue.createElementVNode("view", { class: "avatar" }, [
-                      vue.createElementVNode("image", { src: "/static/images/ai.png" })
-                    ]),
-                    vue.createCommentVNode(" 文字内容 "),
-                    vue.createElementVNode(
-                      "view",
-                      { class: "content left" },
-                      vue.toDisplayString(item.botContent),
-                      1
-                      /* TEXT */
-                    )
-                  ])) : vue.createCommentVNode("v-if", true)
-                ]);
-              }),
-              128
-              /* KEYED_FRAGMENT */
-            ))
-          ])
-        ], 12, ["scroll-top"]),
-        vue.createElementVNode(
-          "view",
-          {
-            class: "chat-bottom",
-            style: vue.normalizeStyle({ height: `${$options.inputHeight}rpx` })
-          },
-          [
+  function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
+    return vue.openBlock(), vue.createElementBlock(
+      vue.Fragment,
+      null,
+      [
+        vue.createElementVNode("view", { class: "box" }),
+        vue.createElementVNode("view", { class: "backarea" }, [
+          vue.createElementVNode("view", { class: "header" }, [
+            vue.createElementVNode("navigator", { url: "/pages/main/main" }, [
+              vue.createElementVNode("view", { class: "head-left" }, [
+                vue.createElementVNode("image", { src: "/static/images/fanhui.jpg" }),
+                vue.createElementVNode("text", null, "返回")
+              ])
+            ]),
+            vue.createElementVNode("navigator", { url: "/pages/home/home" }, [
+              vue.createElementVNode("view", { class: "head-right" }, [
+                vue.createElementVNode("image", { src: "/static/images/test.png" }),
+                vue.createElementVNode("text", null, "测试")
+              ])
+            ])
+          ]),
+          vue.createElementVNode("view", { class: "chat" }, [
+            vue.createElementVNode("scroll-view", {
+              style: vue.normalizeStyle({ height: `${$options.windowHeight - $options.inputHeight}rpx` }),
+              id: "scrollview",
+              "scroll-y": "true",
+              "scroll-top": $data.scrollTop,
+              class: "scroll-view"
+            }, [
+              vue.createCommentVNode(" 聊天主体 "),
+              vue.createElementVNode("view", {
+                id: "msglistview",
+                class: "chat-body"
+              }, [
+                vue.createCommentVNode(" 聊天记录 "),
+                (vue.openBlock(true), vue.createElementBlock(
+                  vue.Fragment,
+                  null,
+                  vue.renderList($data.msgList, (item, index) => {
+                    return vue.openBlock(), vue.createElementBlock("view", { key: index }, [
+                      vue.createCommentVNode(" 自己发的消息 "),
+                      item.userContent != "" ? (vue.openBlock(), vue.createElementBlock("view", {
+                        key: 0,
+                        class: "item self"
+                      }, [
+                        vue.createCommentVNode(" 文字内容 "),
+                        vue.createElementVNode(
+                          "view",
+                          { class: "content right" },
+                          vue.toDisplayString(item.userContent),
+                          1
+                          /* TEXT */
+                        ),
+                        vue.createCommentVNode(" 头像 "),
+                        vue.createElementVNode("view", { class: "avatar" }, [
+                          vue.createElementVNode("image", { src: "/static/images/logo.png" })
+                        ])
+                      ])) : vue.createCommentVNode("v-if", true),
+                      vue.createCommentVNode(" 机器人发的消息 "),
+                      item.botContent != "" ? (vue.openBlock(), vue.createElementBlock("view", {
+                        key: 1,
+                        class: "item Ai"
+                      }, [
+                        vue.createCommentVNode(" 头像 "),
+                        vue.createElementVNode("view", { class: "avatar" }, [
+                          vue.createElementVNode("image", { src: "/static/images/ai.png" })
+                        ]),
+                        vue.createCommentVNode(" 文字内容 "),
+                        vue.createElementVNode(
+                          "view",
+                          { class: "content left" },
+                          vue.toDisplayString(item.botContent),
+                          1
+                          /* TEXT */
+                        )
+                      ])) : vue.createCommentVNode("v-if", true)
+                    ]);
+                  }),
+                  128
+                  /* KEYED_FRAGMENT */
+                ))
+              ])
+            ], 12, ["scroll-top"]),
             vue.createElementVNode(
               "view",
               {
-                class: "send-msg",
-                style: vue.normalizeStyle({ bottom: `${$data.keyboardHeight}rpx` })
+                class: "chat-bottom",
+                style: vue.normalizeStyle({ height: `${$options.inputHeight}rpx` })
               },
               [
-                vue.createElementVNode("view", { class: "uni-textarea" }, [
-                  vue.withDirectives(vue.createElementVNode(
-                    "textarea",
-                    {
-                      "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => $data.chatMsg = $event),
-                      maxlength: "300",
-                      "confirm-type": "send",
-                      onConfirm: _cache[1] || (_cache[1] = (...args) => $options.handleSend && $options.handleSend(...args)),
-                      "show-confirm-bar": false,
-                      "adjust-position": false,
-                      onLinechange: _cache[2] || (_cache[2] = (...args) => $options.sendHeight && $options.sendHeight(...args)),
-                      onFocus: _cache[3] || (_cache[3] = (...args) => $options.focus && $options.focus(...args)),
-                      onBlur: _cache[4] || (_cache[4] = (...args) => $options.blur && $options.blur(...args)),
-                      "auto-height": ""
-                    },
-                    null,
-                    544
-                    /* HYDRATE_EVENTS, NEED_PATCH */
-                  ), [
-                    [vue.vModelText, $data.chatMsg]
-                  ])
-                ]),
-                vue.createElementVNode("button", {
-                  onClick: _cache[5] || (_cache[5] = (...args) => $options.handleSend && $options.handleSend(...args)),
-                  class: "send-btn"
-                }, "发送")
+                vue.createElementVNode(
+                  "view",
+                  {
+                    class: "send-msg",
+                    style: vue.normalizeStyle({ bottom: `${$data.keyboardHeight}rpx` })
+                  },
+                  [
+                    vue.createElementVNode("view", { class: "uni-textarea" }, [
+                      vue.withDirectives(vue.createElementVNode(
+                        "textarea",
+                        {
+                          "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => $data.chatMsg = $event),
+                          maxlength: "300",
+                          "confirm-type": "send",
+                          onConfirm: _cache[1] || (_cache[1] = (...args) => $options.handleSend && $options.handleSend(...args)),
+                          "show-confirm-bar": false,
+                          "adjust-position": false,
+                          onLinechange: _cache[2] || (_cache[2] = (...args) => $options.sendHeight && $options.sendHeight(...args)),
+                          onFocus: _cache[3] || (_cache[3] = (...args) => $options.focus && $options.focus(...args)),
+                          onBlur: _cache[4] || (_cache[4] = (...args) => $options.blur && $options.blur(...args)),
+                          "auto-height": ""
+                        },
+                        null,
+                        544
+                        /* HYDRATE_EVENTS, NEED_PATCH */
+                      ), [
+                        [vue.vModelText, $data.chatMsg]
+                      ])
+                    ]),
+                    vue.createElementVNode("button", {
+                      onClick: _cache[5] || (_cache[5] = (...args) => $options.handleSend && $options.handleSend(...args)),
+                      class: "send-btn"
+                    }, "发送")
+                  ],
+                  4
+                  /* STYLE */
+                )
               ],
               4
               /* STYLE */
             )
-          ],
-          4
-          /* STYLE */
-        )
-      ])
-    ]);
+          ])
+        ])
+      ],
+      64
+      /* STABLE_FRAGMENT */
+    );
   }
-  const PagesChatChat = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$9], ["__scopeId", "data-v-0a633310"], ["__file", "D:/ruangong/emosphere/pages/chat/chat.vue"]]);
+  const PagesChatChat = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$b], ["__scopeId", "data-v-0a633310"], ["__file", "D:/ruangong/emosphere/pages/chat/chat.vue"]]);
   const icons = {
     "id": "2852637",
     "name": "uniui图标库",
@@ -7568,7 +7594,7 @@ if (uni.restoreGlobal) {
     const reg = /^[0-9]*$/g;
     return typeof val === "number" || reg.test(val) ? val + "px" : val;
   };
-  const _sfc_main$f = {
+  const _sfc_main$h = {
     name: "UniIcons",
     emits: ["click"],
     props: {
@@ -7612,7 +7638,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "text",
       {
@@ -7625,7 +7651,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const __easycom_0$2 = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$8], ["__scopeId", "data-v-d31e1c47"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-icons/components/uni-icons/uni-icons.vue"]]);
+  const __easycom_0$2 = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["render", _sfc_render$a], ["__scopeId", "data-v-d31e1c47"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-icons/components/uni-icons/uni-icons.vue"]]);
   let Calendar$1 = class Calendar {
     constructor({
       selected,
@@ -7975,7 +8001,7 @@ if (uni.restoreGlobal) {
     }
     return value;
   }
-  const _sfc_main$e = {
+  const _sfc_main$g = {
     props: {
       weeks: {
         type: Object,
@@ -8009,7 +8035,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -8065,7 +8091,7 @@ if (uni.restoreGlobal) {
       /* CLASS, HYDRATE_EVENTS */
     );
   }
-  const calendarItem = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$7], ["__scopeId", "data-v-3c762a01"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-datetime-picker/components/uni-datetime-picker/calendar-item.vue"]]);
+  const calendarItem = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$9], ["__scopeId", "data-v-3c762a01"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-datetime-picker/components/uni-datetime-picker/calendar-item.vue"]]);
   const en = {
     "uni-datetime-picker.selectDate": "select date",
     "uni-datetime-picker.selectTime": "select time",
@@ -8138,7 +8164,7 @@ if (uni.restoreGlobal) {
     "zh-Hant": zhHant
   };
   const { t: t$2 } = initVueI18n(i18nMessages);
-  const _sfc_main$d = {
+  const _sfc_main$f = {
     name: "UniDatetimePicker",
     data() {
       return {
@@ -8746,7 +8772,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "uni-datetime-picker" }, [
       vue.createElementVNode("view", {
         onClick: _cache[0] || (_cache[0] = (...args) => $options.initTimePicker && $options.initTimePicker(...args))
@@ -9023,9 +9049,9 @@ if (uni.restoreGlobal) {
       )) : vue.createCommentVNode("v-if", true)
     ]);
   }
-  const TimePicker = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$6], ["__scopeId", "data-v-1d532b70"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-datetime-picker/components/uni-datetime-picker/time-picker.vue"]]);
+  const TimePicker = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$8], ["__scopeId", "data-v-1d532b70"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-datetime-picker/components/uni-datetime-picker/time-picker.vue"]]);
   const { t: t$1 } = initVueI18n(i18nMessages);
-  const _sfc_main$c = {
+  const _sfc_main$e = {
     components: {
       calendarItem,
       timePicker: TimePicker
@@ -9501,7 +9527,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_calendar_item = vue.resolveComponent("calendar-item");
     const _component_time_picker = vue.resolveComponent("time-picker");
     const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$2);
@@ -9794,8 +9820,8 @@ if (uni.restoreGlobal) {
       /* HYDRATE_EVENTS */
     );
   }
-  const Calendar = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$5], ["__scopeId", "data-v-1d379219"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-datetime-picker/components/uni-datetime-picker/calendar.vue"]]);
-  const _sfc_main$b = {
+  const Calendar = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$7], ["__scopeId", "data-v-1d379219"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-datetime-picker/components/uni-datetime-picker/calendar.vue"]]);
+  const _sfc_main$d = {
     name: "UniDatetimePicker",
     options: {
       virtualHost: true
@@ -10431,7 +10457,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$2);
     const _component_time_picker = vue.resolveComponent("time-picker");
     const _component_Calendar = vue.resolveComponent("Calendar");
@@ -10774,14 +10800,14 @@ if (uni.restoreGlobal) {
       }, null, 8, ["date", "defTime", "start-date", "end-date", "selectableTimes", "startPlaceholder", "endPlaceholder", "default-value", "pleStatus", "range", "hasTime", "hideSecond", "onConfirm", "onMaskClose"])) : vue.createCommentVNode("v-if", true)
     ]);
   }
-  const __easycom_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$4], ["__scopeId", "data-v-9802168a"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue"]]);
-  const _sfc_main$a = {
+  const __easycom_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$6], ["__scopeId", "data-v-9802168a"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue"]]);
+  const _sfc_main$c = {
     setup() {
       let router2 = j();
       const single = vue.ref("");
-      let usernameInput = vue.ref("");
-      let statusInput = vue.ref("");
-      let selectedGender = vue.ref("");
+      let usernameInput = vue.ref(store.state.username);
+      let statusInput = vue.ref(store.state.userstatus);
+      let selectedGender = vue.ref(store.state.usergender);
       let imageList = vue.ref([]);
       const upload = () => {
         uni.chooseImage({
@@ -10869,7 +10895,7 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_uni_datetime_picker = resolveEasycom(vue.resolveDynamicComponent("uni-datetime-picker"), __easycom_0$1);
     return vue.openBlock(), vue.createElementBlock("view", { class: "backarea" }, [
       vue.createElementVNode("view", {
@@ -10991,8 +11017,8 @@ if (uni.restoreGlobal) {
       ])
     ]);
   }
-  const PagesSetSet = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$3], ["__file", "D:/ruangong/emosphere/pages/set/set.vue"]]);
-  const _sfc_main$9 = {
+  const PagesSetSet = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$5], ["__file", "D:/ruangong/emosphere/pages/set/set.vue"]]);
+  const _sfc_main$b = {
     setup() {
       const keyboardHeight = vue.ref(0);
       const bottomHeight = vue.ref(0);
@@ -11123,7 +11149,7 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "backarea" }, [
       vue.createElementVNode("view", { style: { "width": "100%", "height": "5%" } }),
       vue.createElementVNode("view", { class: "header" }, [
@@ -11255,8 +11281,8 @@ if (uni.restoreGlobal) {
       ])
     ]);
   }
-  const PagesTestTest = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$2], ["__scopeId", "data-v-727d09f0"], ["__file", "D:/ruangong/emosphere/pages/test/test.vue"]]);
-  const _sfc_main$8 = {
+  const PagesTestTest = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$4], ["__scopeId", "data-v-727d09f0"], ["__file", "D:/ruangong/emosphere/pages/test/test.vue"]]);
+  const _sfc_main$a = {
     name: "tuiTabs",
     emits: ["change"],
     props: {
@@ -11452,7 +11478,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
     return $data.tabsWidth > 0 ? (vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -11539,8 +11565,8 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     )) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_0 = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$1], ["__scopeId", "data-v-aff741f1"], ["__file", "D:/ruangong/emosphere/node_modules/thorui-uni/lib/thorui/tui-tabs/tui-tabs.vue"]]);
-  const _sfc_main$7 = {
+  const __easycom_0 = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$3], ["__scopeId", "data-v-aff741f1"], ["__file", "D:/ruangong/emosphere/node_modules/thorui-uni/lib/thorui/tui-tabs/tui-tabs.vue"]]);
+  const _sfc_main$9 = {
     __name: "interest",
     setup(__props) {
       const dataList = vue.ref([
@@ -11761,8 +11787,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const __easycom_2$1 = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__scopeId", "data-v-bc3d731e"], ["__file", "D:/ruangong/emosphere/components/interest/interest.vue"]]);
-  const _sfc_main$6 = {
+  const __easycom_2$1 = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__scopeId", "data-v-bc3d731e"], ["__file", "D:/ruangong/emosphere/components/interest/interest.vue"]]);
+  const _sfc_main$8 = {
     __name: "tuijian",
     setup(__props) {
       const dataList = vue.ref([
@@ -11948,8 +11974,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const __easycom_3 = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-089fc835"], ["__file", "D:/ruangong/emosphere/components/tuijian/tuijian.vue"]]);
-  const _sfc_main$5 = {
+  const __easycom_3 = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__scopeId", "data-v-089fc835"], ["__file", "D:/ruangong/emosphere/components/tuijian/tuijian.vue"]]);
+  const _sfc_main$7 = {
     __name: "space",
     setup(__props) {
       let router2 = j();
@@ -12025,8 +12051,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesSpaceSpace = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__file", "D:/ruangong/emosphere/pages/space/space.vue"]]);
-  const _sfc_main$4 = {
+  const PagesSpaceSpace = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__file", "D:/ruangong/emosphere/pages/space/space.vue"]]);
+  const _sfc_main$6 = {
     __name: "my",
     setup(__props) {
       const dataList = vue.ref([
@@ -12212,8 +12238,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const __easycom_1 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-ea4ef091"], ["__file", "D:/ruangong/emosphere/components/my/my.vue"]]);
-  const _sfc_main$3 = {
+  const __easycom_1 = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-ea4ef091"], ["__file", "D:/ruangong/emosphere/components/my/my.vue"]]);
+  const _sfc_main$5 = {
     __name: "zan",
     setup(__props) {
       const dataList = vue.ref([
@@ -12399,8 +12425,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const __easycom_2 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-d4284ccd"], ["__file", "D:/ruangong/emosphere/components/zan/zan.vue"]]);
-  const _sfc_main$2 = {
+  const __easycom_2 = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-d4284ccd"], ["__file", "D:/ruangong/emosphere/components/zan/zan.vue"]]);
+  const _sfc_main$4 = {
     __name: "me",
     setup(__props) {
       let currentTab = vue.ref(0);
@@ -12528,13 +12554,13 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesUserMe = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-4dafeecb"], ["__file", "D:/ruangong/emosphere/pages/user/me.vue"]]);
-  const _sfc_main$1 = {
+  const PagesUserMe = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-4dafeecb"], ["__file", "D:/ruangong/emosphere/pages/user/me.vue"]]);
+  const _sfc_main$3 = {
     __name: "history",
     setup(__props) {
-      const router2 = useRouter();
+      let router2 = j();
       const getback = () => {
-        router2.push("/pages/relax/relax");
+        router2.replace("/pages/relax/relax");
       };
       return (_ctx, _cache) => {
         const _component_uni_datetime_picker = resolveEasycom(vue.resolveDynamicComponent("uni-datetime-picker"), __easycom_0$1);
@@ -12566,7 +12592,7 @@ if (uni.restoreGlobal) {
           vue.createElementVNode("view", { class: "relax-list" }, [
             vue.createElementVNode("view", { class: "relax-item" }, [
               vue.createElementVNode("span", null, "日期：2023-11-13"),
-              vue.createElementVNode("span", null, "放松方式：冥想"),
+              vue.createElementVNode("span", null, "放松方式：音乐"),
               vue.createElementVNode("span", null, "放松时长：20分钟")
             ]),
             vue.createElementVNode("view", { class: "relax-item" }, [
@@ -12589,7 +12615,1484 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesHistoryHistory = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__file", "D:/ruangong/emosphere/pages/history/history.vue"]]);
+  const PagesHistoryHistory = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__file", "D:/ruangong/emosphere/pages/history/history.vue"]]);
+  const _sfc_main$2 = {
+    data() {
+      return {
+        show: false
+      };
+    },
+    props: {
+      value: {
+        type: [Boolean, String],
+        default: false
+      }
+    },
+    watch: {
+      value(val) {
+        if (val) {
+          this.show = val;
+        } else {
+          this.handleHidden();
+        }
+      }
+    },
+    methods: {
+      closeModal(e2) {
+        this.$emit("input", false);
+      },
+      handleHidden() {
+        setTimeout(() => {
+          this.show = false;
+        }, 300);
+      }
+    }
+  };
+  function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
+    return vue.openBlock(), vue.createElementBlock("view", null, [
+      vue.createElementVNode(
+        "view",
+        {
+          class: vue.normalizeClass([[$props.value ? "show" : ""], "yy-modal"]),
+          id: "show",
+          onClick: _cache[1] || (_cache[1] = (...args) => $options.closeModal && $options.closeModal(...args))
+        },
+        [
+          vue.createElementVNode("div", {
+            onClick: _cache[0] || (_cache[0] = vue.withModifiers(() => {
+            }, ["stop"])),
+            class: "content"
+          }, [
+            vue.renderSlot(_ctx.$slots, "default", {}, void 0, true)
+          ])
+        ],
+        2
+        /* CLASS */
+      )
+    ]);
+  }
+  const PagesQuestionsModal = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$2], ["__scopeId", "data-v-9afb92b6"], ["__file", "D:/ruangong/emosphere/pages/questions/modal.vue"]]);
+  const _sfc_main$1 = {
+    data() {
+      return {
+        currentIndex: 0,
+        swiperHeight: 0,
+        modalHeight: "",
+        modalContentHeight: "",
+        showQuestion: false,
+        finish: false
+      };
+    },
+    watch: {
+      currentSwiperItem(val) {
+        this.currentIndex = val;
+      }
+    },
+    props: {
+      isReviewed: {
+        type: Boolean,
+        default: false
+      },
+      currentSwiperItem: {
+        type: [String, Number],
+        default: 0
+      },
+      duration: {
+        type: [String, Number],
+        default: 300
+      },
+      questtionList: {
+        type: Array,
+        default: () => {
+          return [
+            {
+              "id": 1,
+              "title": "头痛",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": ""
+            },
+            {
+              "id": 2,
+              "title": "神经过敏，心中不踏实",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": ""
+            },
+            {
+              "id": 3,
+              "title": "头脑中有不必要的想法或字句盘旋",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": ""
+            },
+            {
+              "id": 4,
+              "title": "头昏或昏倒",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": ""
+            },
+            {
+              "id": 5,
+              "title": "对异性的兴趣减退",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": ""
+            },
+            {
+              "id": 6,
+              "title": "对旁人责备求全",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": ""
+            },
+            {
+              "id": 7,
+              "title": "感到别人能控制您的思想",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": ""
+            },
+            {
+              "id": 8,
+              "title": "责怪别人制造麻烦",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": ""
+            },
+            {
+              "id": 9,
+              "title": "忘性大",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": ""
+            },
+            {
+              "id": 10,
+              "title": "担心自己的衣饰是否整齐及仪态是否端正",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": ""
+            },
+            {
+              "id": 11,
+              "title": "容易烦恼和激动",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": ""
+            },
+            {
+              "id": 12,
+              "title": "胸痛",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": ""
+            },
+            {
+              "id": 13,
+              "title": "害怕空旷的场所或街道",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": ""
+            },
+            {
+              "id": 14,
+              "title": "感到自己的精力下降，活动减慢",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": ""
+            },
+            {
+              "id": 15,
+              "title": "想结束自己的生命",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": ""
+            },
+            {
+              "id": 16,
+              "title": "听到旁人听不到的声音",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": ""
+            },
+            {
+              "id": 17,
+              "title": "发抖",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": ""
+            }
+            // {
+            // 	"id":18,
+            // 	"title":"感到大多数人都不可信任",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":19,
+            // 	"title":"胃口不好",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":20,
+            // 	"title":"容易哭泣",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":21,
+            // 	"title":"同异性相处时感到害羞和不自在",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":22,
+            // 	"title":"感到受骗，中了圈套或有人想抓住您",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":23,
+            // 	"title":"无缘无故地突然感到害怕",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":24,
+            // 	"title":"自己不能控制地大发脾气",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":25,
+            // 	"title":"怕单独出门",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":26,
+            // 	"title":"经常责怪自己",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":27,
+            // 	"title":"腰痛",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":28,
+            // 	"title":"感到难以完成任务",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":29,
+            // 	"title":"感到孤独",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":30,
+            // 	"title":"感到苦闷",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":31,
+            // 	"title":"过分担忧",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":32,
+            // 	"title":"对事物不感兴趣",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":33,
+            // 	"title":"感到害怕",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":34,
+            // 	"title":"您的感情容易受到伤害",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":35,
+            // 	"title":"旁人能知道您的私下想法",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":36,
+            // 	"title":"感到别人不理解您，不同情您",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":37,
+            // 	"title":"感到人们对您不友好，不喜欢您",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":38,
+            // 	"title":"做事必须做得很慢以保证做得正确",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":39,
+            // 	"title":"心跳得很厉害",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":40,
+            // 	"title":"恶心或胃部不舒服",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":41,
+            // 	"title":"感到比不上他人",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":42,
+            // 	"title":"肌肉酸痛",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":43,
+            // 	"title":"感到有人在监视您、谈论您",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":44,
+            // 	"title":"难以入睡",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":45,
+            // 	"title":"做事必须反复检查",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":46,
+            // 	"title":"难以作出决定",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":47,
+            // 	"title":"怕乘电车、公共汽车、地铁或火车",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":48,
+            // 	"title":"呼吸有困难",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":49,
+            // 	"title":"一阵阵发冷或发热",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":50,
+            // 	"title":"因为感到害怕而避开某些东西、场合或活动",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":51,
+            // 	"title":"脑子变空了",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":52,
+            // 	"title":"身体发麻或刺痛",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":53,
+            // 	"title":"喉咙有梗塞感",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":54,
+            // 	"title":"感到前途没有希望",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":55,
+            // 	"title":"不能集中注意力",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":56,
+            // 	"title":"感到身体的某一部分软弱无力",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":57,
+            // 	"title":"感到紧张或容易紧张",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":58,
+            // 	"title":"感到手或脚发重",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":59,
+            // 	"title":"想到死亡的事",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":60,
+            // 	"title":"吃得太多",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":61,
+            // 	"title":"当别人看着您或谈论您时感到不自在",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":62,
+            // 	"title":"有一些不属于您自己的想法",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":63,
+            // 	"title":"有想打人或伤害他人的冲动",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":64,
+            // 	"title":"醒得太早",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":65,
+            // 	"title":"必须反复洗手、点数",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":66,
+            // 	"title":"睡得不稳、不深",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":67,
+            // 	"title":"有想摔坏或破坏东西的想法",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":68,
+            // 	"title":"有一些别人没有的想法",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":69,
+            // 	"title":"感到对别人神经过敏",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":70,
+            // 	"title":"在商店或电影院等人多的地方感到不自在",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":71,
+            // 	"title":"感到任何事情都很困难",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":72,
+            // 	"title":"一阵阵恐惧或惊恐",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":73,
+            // 	"title":"感到公共场合吃东西很不舒服",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":74,
+            // 	"title":"经常与人争论",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":75,
+            // 	"title":"单独一人时神经很紧张",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":76,
+            // 	"title":"别人对您的成绩没有做出恰当的评价",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":77,
+            // 	"title":"即使和别人在一起也感到孤单",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":78,
+            // 	"title":"感到坐立不安心神不宁",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":79,
+            // 	"title":"感到自己没有什么价值",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":80,
+            // 	"title":"感到熟悉的东西变成陌生或不像是真的",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":81,
+            // 	"title":"大叫或摔东西",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":82,
+            // 	"title":"害怕会在公共场合昏倒",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":83,
+            // 	"title":"感到别人想占您的便宜",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":84,
+            // 	"title":"为一些有关性的想法而很苦恼",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":85,
+            // 	"title":"您认为应该因为自己的过错而受到惩罚",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":86,
+            // 	"title":"感到要很快把事情做完",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":87,
+            // 	"title":"感到自己的身体有严重问题",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":88,
+            // 	"title":"从未感到和其他人很亲近",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":89,
+            // 	"title":"感到自己有罪",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+            // {
+            // 	"id":90,
+            // 	"title":"感到自己脑子有毛病",
+            // 	"optionList":[
+            // 	{"id":"A","content":"从无",},
+            // 	{"id":"B","content":"轻度",},
+            // 	{"id":"C","content":"中度",},
+            // 	{"id":"D","content":"偏重",},
+            // 	{"id":"E","content":"严重",},
+            // 	],
+            // 	"userAnswer":""
+            // },
+          ];
+        }
+      }
+    },
+    mounted() {
+      this.setAnswerHeight();
+    },
+    components: {
+      Modal: PagesQuestionsModal
+    },
+    methods: {
+      /*设置题目的高度
+       */
+      setAnswerHeight() {
+        let that = this;
+        let tempHeight = 0;
+        uni.getSystemInfo({
+          //获取手机屏幕高度信息，让swiper的高度和手机屏幕一样高                
+          success: function(res) {
+            tempHeight = res.windowHeight;
+            that.modalHeight = res.windowHeight - uni.upx2px(200) + "px";
+            that.modalContentHeight = res.windowHeight - uni.upx2px(380) + "px";
+            uni.createSelectorQuery().select("#header").fields({
+              size: true,
+              scrollOffset: true
+            }, (data) => {
+              tempHeight -= data.height;
+              uni.createSelectorQuery().select("#subHeader").fields({
+                size: true,
+                scrollOffset: true
+              }, (data2) => {
+                tempHeight -= data2.height;
+                uni.createSelectorQuery().select("#footer").fields({
+                  size: true,
+                  scrollOffset: true
+                }, (data3) => {
+                  tempHeight -= data3.height;
+                  that.swiperHeight = tempHeight + "px";
+                }).exec();
+              }).exec();
+            }).exec();
+          }
+        });
+      },
+      /*跳转指定题目
+      * */
+      handleJumpSwiper(index) {
+        this.currentIndex = index;
+        this.showQuestion = false;
+      },
+      /* 滑动题目
+       */
+      handleSwiperChanged(event) {
+        this.currentIndex = event.detail.current;
+      },
+      /* 调用上一页，下一页
+       */
+      handleChangeCurrentSwiper(operation) {
+        let max = this.questtionList.length - 1;
+        let min = 0;
+        if (this.currentIndex > min && operation < 0 || this.currentIndex < max && operation > 0) {
+          this.currentIndex += operation;
+          formatAppLog("log", "at pages/questions/answer.vue:1236", "index:" + this.currentIndex);
+        }
+      },
+      /* 选择答案（单选，判断）
+       */
+      chooseSolution(item, subItem) {
+        if (!this.isReviewed) {
+          item.userAnswer = subItem.id;
+          setTimeout(() => {
+            if (this.currentIndex < this.questtionList.length - 1)
+              this.currentIndex += 1;
+            else {
+              this.currentIndex = this.questtionList.length;
+              this.currentIndex = this.currentIndex - 1;
+            }
+          }, 250);
+          this.onAnswerChange(item);
+        }
+        formatAppLog("log", "at pages/questions/answer.vue:1254", "index:" + this.currentIndex + " answer:" + item.userAnswer);
+      },
+      /* 题目答案变化
+       */
+      onAnswerChange(item) {
+        JSON.parse(JSON.stringify(item));
+        this.$emit("onChange", item);
+      },
+      /* 提交答案
+       */
+      handleSubmit() {
+        var sig = 1, score = 0;
+        for (var i2 = 0; i2 < this.questtionList.length; ++i2) {
+          if (this.questtionList[i2].userAnswer == "") {
+            alert("请完成所有题目！");
+            sig = 0;
+            break;
+          }
+          if (this.questtionList[i2].userAnswer == "A")
+            score += 0;
+          if (this.questtionList[i2].userAnswer == "B")
+            score += 1;
+          if (this.questtionList[i2].userAnswer == "C")
+            score += 2;
+          if (this.questtionList[i2].userAnswer == "D")
+            score += 3;
+          if (this.questtionList[i2].userAnswer == "E")
+            score += 4;
+          formatAppLog("log", "at pages/questions/answer.vue:1281", i2 + ":" + this.questtionList[i2].userAnswer + " ");
+        }
+        if (sig == 1) {
+          this.$router.replace("/pages/result/result");
+          formatAppLog("log", "at pages/questions/answer.vue:1286", "Submit successed!\n");
+          formatAppLog("log", "at pages/questions/answer.vue:1287", "Your score is " + score + ". Average score: " + score / 90);
+        }
+        if (sig == 0)
+          formatAppLog("log", "at pages/questions/answer.vue:1291", "Submit failed!");
+      }
+    }
+  };
+  function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_modal = vue.resolveComponent("modal");
+    return vue.openBlock(), vue.createElementBlock("view", null, [
+      vue.createElementVNode("view", {
+        class: "header",
+        id: "header"
+      }, [
+        vue.createElementVNode(
+          "span",
+          null,
+          "第" + vue.toDisplayString($data.currentIndex + 1) + "题",
+          1
+          /* TEXT */
+        ),
+        !$props.isReviewed ? (vue.openBlock(), vue.createElementBlock("span", {
+          key: 0,
+          class: "header-button",
+          onClick: _cache[0] || (_cache[0] = (...args) => $options.handleSubmit && $options.handleSubmit(...args))
+        }, "提交")) : vue.createCommentVNode("v-if", true)
+      ]),
+      vue.createElementVNode("view", { id: "subHeader" }, [
+        $props.questtionList.length > 0 ? (vue.openBlock(), vue.createElementBlock("view", {
+          key: 0,
+          class: "sub-header"
+        }, [
+          vue.createElementVNode(
+            "span",
+            { class: "sub-header-number" },
+            vue.toDisplayString($data.currentIndex + 1) + "/" + vue.toDisplayString($props.questtionList.length) + " 题",
+            1
+            /* TEXT */
+          )
+        ])) : vue.createCommentVNode("v-if", true)
+      ]),
+      $props.questtionList.length > 0 ? (vue.openBlock(), vue.createElementBlock("swiper", {
+        key: 0,
+        class: "content",
+        duration: $props.duration,
+        current: $data.currentIndex,
+        onChange: _cache[1] || (_cache[1] = (...args) => $options.handleSwiperChanged && $options.handleSwiperChanged(...args)),
+        style: vue.normalizeStyle({ "height": $data.swiperHeight })
+      }, [
+        (vue.openBlock(true), vue.createElementBlock(
+          vue.Fragment,
+          null,
+          vue.renderList($props.questtionList, (item) => {
+            return vue.openBlock(), vue.createElementBlock("swiper-item", { class: "content-item" }, [
+              vue.createElementVNode(
+                "scroll-view",
+                {
+                  "scroll-y": "",
+                  style: vue.normalizeStyle({ "height": $data.swiperHeight })
+                },
+                [
+                  vue.createElementVNode(
+                    "view",
+                    { class: "content-title" },
+                    vue.toDisplayString(item.title),
+                    1
+                    /* TEXT */
+                  ),
+                  vue.createElementVNode("view", { class: "content-solutions" }, [
+                    (vue.openBlock(true), vue.createElementBlock(
+                      vue.Fragment,
+                      null,
+                      vue.renderList(item.optionList, (subItem) => {
+                        return vue.openBlock(), vue.createElementBlock("view", {
+                          class: "content-solutions-item",
+                          onClick: ($event) => $options.chooseSolution(item, subItem)
+                        }, [
+                          vue.createElementVNode(
+                            "view",
+                            { class: "content-solutions-item-single" },
+                            vue.toDisplayString(subItem.id),
+                            1
+                            /* TEXT */
+                          ),
+                          vue.createElementVNode(
+                            "view",
+                            {
+                              class: vue.normalizeClass([item.userAnswer == subItem.id ? "content-solutions-item-select" : "", "content-solutions-item-content"])
+                            },
+                            vue.toDisplayString(subItem.content),
+                            3
+                            /* TEXT, CLASS */
+                          )
+                        ], 8, ["onClick"]);
+                      }),
+                      256
+                      /* UNKEYED_FRAGMENT */
+                    ))
+                  ])
+                ],
+                4
+                /* STYLE */
+              )
+            ]);
+          }),
+          256
+          /* UNKEYED_FRAGMENT */
+        ))
+      ], 44, ["duration", "current"])) : vue.createCommentVNode("v-if", true),
+      vue.createElementVNode("view", {
+        class: "footer",
+        id: "footer"
+      }, [
+        vue.createElementVNode("view", {
+          class: "footer-back",
+          onClick: _cache[2] || (_cache[2] = ($event) => $options.handleChangeCurrentSwiper(-1))
+        }, "上一题"),
+        vue.createElementVNode("view", {
+          class: "footer-card",
+          onClick: _cache[3] || (_cache[3] = ($event) => $data.showQuestion = true)
+        }, "答题卡"),
+        vue.createElementVNode("view", {
+          class: "footer-right",
+          onClick: _cache[4] || (_cache[4] = ($event) => $options.handleChangeCurrentSwiper(1))
+        }, "下一题")
+      ]),
+      vue.createVNode(_component_modal, {
+        modelValue: $data.showQuestion,
+        "onUpdate:modelValue": _cache[5] || (_cache[5] = ($event) => $data.showQuestion = $event),
+        value: $data.showQuestion
+      }, {
+        default: vue.withCtx(() => [
+          vue.createElementVNode(
+            "view",
+            {
+              class: "question-modal",
+              style: vue.normalizeStyle({ "height": $data.modalHeight })
+            },
+            [
+              vue.createElementVNode("view", {
+                class: "question-modal-header",
+                id: "questionHeader"
+              }, " 答题卡 "),
+              vue.createElementVNode(
+                "scroll-view",
+                {
+                  "scroll-y": "",
+                  class: "question-modal-body",
+                  style: vue.normalizeStyle({ "height": $data.modalContentHeight })
+                },
+                [
+                  (vue.openBlock(true), vue.createElementBlock(
+                    vue.Fragment,
+                    null,
+                    vue.renderList($props.questtionList, (item, index) => {
+                      return vue.openBlock(), vue.createElementBlock(
+                        vue.Fragment,
+                        null,
+                        [
+                          item.userAnswer && $props.isReviewed ? (vue.openBlock(), vue.createElementBlock("view", {
+                            key: 0,
+                            class: "question-modal-body-item question-modal-body-item-failed",
+                            onClick: ($event) => $options.handleJumpSwiper(index)
+                          }, vue.toDisplayString(index + 1), 9, ["onClick"])) : item.userAnswer ? (vue.openBlock(), vue.createElementBlock("view", {
+                            key: 1,
+                            class: "question-modal-body-item question-modal-body-item-select",
+                            onClick: ($event) => $options.handleJumpSwiper(index)
+                          }, vue.toDisplayString(index + 1), 9, ["onClick"])) : (vue.openBlock(), vue.createElementBlock("view", {
+                            key: 2,
+                            class: "question-modal-body-item",
+                            onClick: ($event) => $options.handleJumpSwiper(index)
+                          }, vue.toDisplayString(index + 1), 9, ["onClick"]))
+                        ],
+                        64
+                        /* STABLE_FRAGMENT */
+                      );
+                    }),
+                    256
+                    /* UNKEYED_FRAGMENT */
+                  ))
+                ],
+                4
+                /* STYLE */
+              )
+            ],
+            4
+            /* STYLE */
+          )
+        ]),
+        _: 1
+        /* STABLE */
+      }, 8, ["modelValue", "value"])
+    ]);
+  }
+  const PagesQuestionsAnswer = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render$1], ["__file", "D:/ruangong/emosphere/pages/questions/answer.vue"]]);
   __definePage("pages/enter/enter", PagesEnterEnter);
   __definePage("pages/login/login", PagesLoginLogin);
   __definePage("pages/calendar/calendar", PagesCalendarCalendar);
@@ -12611,6 +14114,8 @@ if (uni.restoreGlobal) {
   __definePage("pages/space/space", PagesSpaceSpace);
   __definePage("pages/user/me", PagesUserMe);
   __definePage("pages/history/history", PagesHistoryHistory);
+  __definePage("pages/questions/modal", PagesQuestionsModal);
+  __definePage("pages/questions/answer", PagesQuestionsAnswer);
   const _sfc_main = {
     onLaunch: function() {
       formatAppLog("log", "at App.vue:12", "App Launch");
@@ -12802,6 +14307,20 @@ if (uni.restoreGlobal) {
         navigationBarTitleText: "",
         enablePullDownRefresh: false,
         navigationStyle: "custom"
+      }
+    },
+    {
+      path: "pages/questions/modal",
+      style: {
+        navigationBarTitleText: "",
+        enablePullDownRefresh: false
+      }
+    },
+    {
+      path: "pages/questions/answer",
+      style: {
+        navigationBarTitleText: "",
+        enablePullDownRefresh: false
       }
     }
   ];

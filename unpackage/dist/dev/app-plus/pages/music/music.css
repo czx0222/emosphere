@@ -63,12 +63,13 @@
 }
 .audio-number[data-v-8a21190d] {
 		width: 3.75rem;
-		font-size: 0.75rem;
+		font-size: 0.9375rem;
 		line-height: 1;
 		color: #333;
 		text-align: center;
 }
 .audio-slider[data-v-8a21190d] {
+		margin: 1.5625rem 0;
 		flex: 1;
 		margin: 0;
 }
@@ -86,12 +87,16 @@
 		border-radius: 50%;
 		padding: 0.5rem;
 }
+.audio-control-prev[data-v-8a21190d] {
+		font-size: 1.40625rem;
+}
 .audio-control-next[data-v-8a21190d] {
+		font-size: 1.40625rem;
 		transform: rotate(180deg);
 }
 .audio-control-switch[data-v-8a21190d] {
-		font-size: 1.25rem;
-		margin: 0 3.125rem;
+		font-size: 2.0625rem;
+		margin: 1.125rem 3.125rem;
 }
 .audioLoading[data-v-8a21190d] {
 		animation: loading-8a21190d 2s;
@@ -134,7 +139,7 @@ to {
 .scrollPage {
 		display: flex;
 		flex-direction: column;
-		background-image: url('../../static/images/design09.jpg');
+		background-image: url('../../static/images/back2.png');
 		background-size: cover;
 		background-repeat: no-repeat;
 		width: 100%;
@@ -142,11 +147,11 @@ to {
 		align-items: center;
 }
 .choose {
-		background-color: rgb(131, 166, 100, 0.7);
+		background-color: rgb(195, 212, 208, 0.5);
 		border-radius: 5px;
-}
-.choose uni-image {
-		width: 90px;
+		width: 80px;
+		display: flex;
+		justify-content: center;
 }
 .content {
 		padding: 5px;
