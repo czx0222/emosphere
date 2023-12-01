@@ -26,7 +26,7 @@
 			</view>
 
 			<!-- 收藏内容 -->
-			<view class="menu-item" >
+			<view class="menu-item" @click="golike" >
 				<text class="menu-text">收藏内容</text>
 				<image src="/static/images/heijiantou.png" alt=""></image>
 			</view>
@@ -74,7 +74,6 @@
 	let username = ref('');
 	let userid = ref('');
 	let userAvatar = ref('');
-	
 	onMounted(()=>{
 		userbirthday.value = store.getters.getUserBirthday
 		age.value = calculateAge(userbirthday.value)
@@ -90,7 +89,9 @@
 	const goBack = () => {
 		router.replace('/pages/main/main');
 	};
-
+	const golike = () => {
+		router.replace('/pages/user/me');
+	};
 	const goToProfile = () => {
 		router.push('/pages/aboutme/aboutme');
 	};

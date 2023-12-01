@@ -3,15 +3,14 @@
 
 	<view class="about">
 		<view class="box" style="width: 100%;height: 5%;"></view>
-		<view class="header">
-			<router-link :to="{ path: '/pages/myScreen/myScreen' }">
+		<view class="header" @click="fan">
 				<image src="/static/images/fan.png"></image>
-			</router-link>
 			<span>关于EmoSphere</span>
 		</view>
 		<image class="logo" src="/static/images/logo.png"></image>
-		<image alt="图片23" src="/static/images/23.png"
-			style="position: absolute; top: 38%; left: 50%; transform: translateX(-50%);height: 60px;width: 60%;"></image>
+		<view class="version">
+			<text>Version 1.0.0</text>
+		</view>
 
 		<view class="help">
 			<view @click="showFeedback = true">
@@ -43,9 +42,16 @@
 </template>
 
 <script>
+	import { useRouter } from 'uni-mini-router'
 	export default {
 		data() {
+			
+			let router = useRouter()
+			const fan = ()=>{
+				router.replace('/pages/myScreen/myScreen')
+			}
 			return {
+				fan,
 				showPopup: false,
 				showFeedback: false,
 				description: 'Emosphere: 一款致力于帮助人们放松，舒缓心情的软件，有AI聊天，社区，星期日历，放松等模块，多方面帮助心理压抑的人群去放松。',
@@ -66,6 +72,20 @@
 </script>
 
 <style scoped>
+	.version{
+		position: relative;
+		top: 5rem;
+		width: 40%;
+		height: 5%;
+		display: flex;
+		font-weight: bold;
+		font-size: 20px;
+		flex-direction: column;
+		border-radius: 10px;
+		align-items: center;
+		justify-content: center;
+		background-color: rgba(165,192,183, 0.8);
+	}
 	.help {
 		position: relative;
 		width: 90%;

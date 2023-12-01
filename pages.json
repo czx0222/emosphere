@@ -109,15 +109,6 @@
 			}
 		},
 		{
-			"path" : "pages/questions/questions",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle": "custom"
-			}
-		},
-		{
 			"path" : "pages/result/result",
 			"style" : 
 			{
@@ -194,11 +185,21 @@
 			"style" : 
 			{
 				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false
+				"enablePullDownRefresh" : false,
+				"navigationStyle": "custom"
 			}
 		},
 		{
 			"path" : "pages/questions/answer",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false,
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path" : "pages/report/report",
 			"style" : 
 			{
 				"navigationBarTitleText" : "",

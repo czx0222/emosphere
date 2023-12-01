@@ -15,26 +15,14 @@
 		</view>
 
 		<view class="relax-list">
-			<view class="relax-item">
-				<span>日期：2023-11-13</span>
-				<span>放松方式：音乐</span>
-				<span>放松时长：20分钟</span>
-			</view>
-			<view class="relax-item">
-				<span>日期：2023-11-13</span>
-				<span>放松方式：渐进性放松法</span>
-				<span>放松时长：10分钟</span>
-			</view>
-			<view class="relax-item">
-				<span>日期：2023-11-13</span>
-				<span>放松方式：呼吸放松法</span>
-				<span>放松时长：5分钟</span>
-			</view>
-			<view class="relax-item">
-				<span>日期：2023-11-13</span>
-				<span>放松方式：冥想</span>
-				<span>放松时长：25分钟</span>
-			</view>
+			<template v-for="(record, index) in records" :key="index">
+				<view class="relax-item">
+					<span>日期:{{ formatDate(record.createDate)}}</span>
+					<span>放松方式:{{record.type}}</span>
+					<span>放松时长：{{ Math.floor(record.duration / 60) }}分{{ record.duration % 60 }}秒</span>
+
+				</view>
+			</template>
 		</view>
 	</view>
 </template>
@@ -42,14 +30,40 @@
 
 
 
-
-
 <script setup>
 	import { useRouter } from 'uni-mini-router'
+	import {ref,onMounted} from 'vue';
 	let router = useRouter();
+	const records = ref([]);
 	const getback = () => {
 		router.replace('/pages/relax/relax');
 	};
+	const formatDate = (dateString) => {
+		const originalDate = new Date(dateString);
+		const month = originalDate.getMonth() + 1; 
+		const day = originalDate.getDate();
+		return `${month}月${day}日`;
+	};
+	const geterelax = () => {
+		uni.request({
+			url: 'http://8.136.81.197:8080/relax_record/uid',
+			data: {
+				uid: 5,
+				pageSize: 5,
+				currentPage:1
+			},
+			success: (response) => {
+				console.log(response.data);
+				records.value = response.data['records'];
+			},
+			fail: (error) => {
+				console.error(error);
+			}
+		});
+	};
+	onMounted(() => {
+		geterelax();
+	});
 </script>
 
 <style>

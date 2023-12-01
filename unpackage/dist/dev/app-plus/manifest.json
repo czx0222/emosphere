@@ -75,7 +75,7 @@
       "style": "dark",
       "background": "#F8F8F8"
     },
-    "arguments": "{\"name\":\"\",\"path\":\"\",\"query\":\"\"}",
+    "arguments": "{\"path\":\"pages/calendar/calendar\"}",
     "allowsInlineMediaPlayback": true,
     "uni-app": {
       "control": "uni-v3",

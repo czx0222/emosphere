@@ -290,7 +290,7 @@ if (uni.restoreGlobal) {
     }
     return target;
   };
-  const _sfc_main$E = {
+  const _sfc_main$D = {
     __name: "enter",
     setup(__props) {
       let router2 = j();
@@ -324,7 +324,7 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesEnterEnter = /* @__PURE__ */ _export_sfc(_sfc_main$E, [["__file", "D:/ruangong/emosphere/pages/enter/enter.vue"]]);
+  const PagesEnterEnter = /* @__PURE__ */ _export_sfc(_sfc_main$D, [["__file", "D:/ruangong/emosphere/pages/enter/enter.vue"]]);
   function getDevtoolsGlobalHook() {
     return getTarget().__VUE_DEVTOOLS_GLOBAL_HOOK__;
   }
@@ -1436,7 +1436,7 @@ if (uni.restoreGlobal) {
       getEmotionIcons: (state) => state.emotionIcons
     }
   });
-  const _sfc_main$D = {
+  const _sfc_main$C = {
     __name: "login",
     setup(__props) {
       let router2 = j();
@@ -1559,2101 +1559,1298 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesLoginLogin = /* @__PURE__ */ _export_sfc(_sfc_main$D, [["__file", "D:/ruangong/emosphere/pages/login/login.vue"]]);
-  var calendar = {
-    /**
-        * 农历1900-2100的润大小信息表
-        * @Array Of Property
-        * @return Hex
-        */
-    lunarInfo: [
-      19416,
-      19168,
-      42352,
-      21717,
-      53856,
-      55632,
-      91476,
-      22176,
-      39632,
-      21970,
-      // 1900-1909
-      19168,
-      42422,
-      42192,
-      53840,
-      119381,
-      46400,
-      54944,
-      44450,
-      38320,
-      84343,
-      // 1910-1919
-      18800,
-      42160,
-      46261,
-      27216,
-      27968,
-      109396,
-      11104,
-      38256,
-      21234,
-      18800,
-      // 1920-1929
-      25958,
-      54432,
-      59984,
-      28309,
-      23248,
-      11104,
-      100067,
-      37600,
-      116951,
-      51536,
-      // 1930-1939
-      54432,
-      120998,
-      46416,
-      22176,
-      107956,
-      9680,
-      37584,
-      53938,
-      43344,
-      46423,
-      // 1940-1949
-      27808,
-      46416,
-      86869,
-      19872,
-      42416,
-      83315,
-      21168,
-      43432,
-      59728,
-      27296,
-      // 1950-1959
-      44710,
-      43856,
-      19296,
-      43748,
-      42352,
-      21088,
-      62051,
-      55632,
-      23383,
-      22176,
-      // 1960-1969
-      38608,
-      19925,
-      19152,
-      42192,
-      54484,
-      53840,
-      54616,
-      46400,
-      46752,
-      103846,
-      // 1970-1979
-      38320,
-      18864,
-      43380,
-      42160,
-      45690,
-      27216,
-      27968,
-      44870,
-      43872,
-      38256,
-      // 1980-1989
-      19189,
-      18800,
-      25776,
-      29859,
-      59984,
-      27480,
-      23232,
-      43872,
-      38613,
-      37600,
-      // 1990-1999
-      51552,
-      55636,
-      54432,
-      55888,
-      30034,
-      22176,
-      43959,
-      9680,
-      37584,
-      51893,
-      // 2000-2009
-      43344,
-      46240,
-      47780,
-      44368,
-      21977,
-      19360,
-      42416,
-      86390,
-      21168,
-      43312,
-      // 2010-2019
-      31060,
-      27296,
-      44368,
-      23378,
-      19296,
-      42726,
-      42208,
-      53856,
-      60005,
-      54576,
-      // 2020-2029
-      23200,
-      30371,
-      38608,
-      19195,
-      19152,
-      42192,
-      118966,
-      53840,
-      54560,
-      56645,
-      // 2030-2039
-      46496,
-      22224,
-      21938,
-      18864,
-      42359,
-      42160,
-      43600,
-      111189,
-      27936,
-      44448,
-      // 2040-2049
-      /** Add By JJonline@JJonline.Cn**/
-      84835,
-      37744,
-      18936,
-      18800,
-      25776,
-      92326,
-      59984,
-      27424,
-      108228,
-      43744,
-      // 2050-2059
-      41696,
-      53987,
-      51552,
-      54615,
-      54432,
-      55888,
-      23893,
-      22176,
-      42704,
-      21972,
-      // 2060-2069
-      21200,
-      43448,
-      43344,
-      46240,
-      46758,
-      44368,
-      21920,
-      43940,
-      42416,
-      21168,
-      // 2070-2079
-      45683,
-      26928,
-      29495,
-      27296,
-      44368,
-      84821,
-      19296,
-      42352,
-      21732,
-      53600,
-      // 2080-2089
-      59752,
-      54560,
-      55968,
-      92838,
-      22224,
-      19168,
-      43476,
-      41680,
-      53584,
-      62034,
-      // 2090-2099
-      54560
-    ],
-    // 2100
-    /**
-        * 公历每个月份的天数普通表
-        * @Array Of Property
-        * @return Number
-        */
-    solarMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
-    /**
-        * 天干地支之天干速查表
-        * @Array Of Property trans["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"]
-        * @return Cn string
-        */
-    Gan: ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"],
-    /**
-        * 天干地支之地支速查表
-        * @Array Of Property
-        * @trans["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"]
-        * @return Cn string
-        */
-    Zhi: ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"],
-    /**
-        * 天干地支之地支速查表<=>生肖
-        * @Array Of Property
-        * @trans["鼠","牛","虎","兔","龙","蛇","马","羊","猴","鸡","狗","猪"]
-        * @return Cn string
-        */
-    Animals: ["鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪"],
-    /**
-        * 24节气速查表
-        * @Array Of Property
-        * @trans["小寒","大寒","立春","雨水","惊蛰","春分","清明","谷雨","立夏","小满","芒种","夏至","小暑","大暑","立秋","处暑","白露","秋分","寒露","霜降","立冬","小雪","大雪","冬至"]
-        * @return Cn string
-        */
-    solarTerm: ["小寒", "大寒", "立春", "雨水", "惊蛰", "春分", "清明", "谷雨", "立夏", "小满", "芒种", "夏至", "小暑", "大暑", "立秋", "处暑", "白露", "秋分", "寒露", "霜降", "立冬", "小雪", "大雪", "冬至"],
-    /**
-        * 1900-2100各年的24节气日期速查表
-        * @Array Of Property
-        * @return 0x string For splice
-        */
-    sTermInfo: [
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b97bd19801ec9210c965cc920e",
-      "97bcf97c3598082c95f8c965cc920f",
-      "97bd0b06bdb0722c965ce1cfcc920f",
-      "b027097bd097c36b0b6fc9274c91aa",
-      "97b6b97bd19801ec9210c965cc920e",
-      "97bcf97c359801ec95f8c965cc920f",
-      "97bd0b06bdb0722c965ce1cfcc920f",
-      "b027097bd097c36b0b6fc9274c91aa",
-      "97b6b97bd19801ec9210c965cc920e",
-      "97bcf97c359801ec95f8c965cc920f",
-      "97bd0b06bdb0722c965ce1cfcc920f",
-      "b027097bd097c36b0b6fc9274c91aa",
-      "9778397bd19801ec9210c965cc920e",
-      "97b6b97bd19801ec95f8c965cc920f",
-      "97bd09801d98082c95f8e1cfcc920f",
-      "97bd097bd097c36b0b6fc9210c8dc2",
-      "9778397bd197c36c9210c9274c91aa",
-      "97b6b97bd19801ec95f8c965cc920e",
-      "97bd09801d98082c95f8e1cfcc920f",
-      "97bd097bd097c36b0b6fc9210c8dc2",
-      "9778397bd097c36c9210c9274c91aa",
-      "97b6b97bd19801ec95f8c965cc920e",
-      "97bcf97c3598082c95f8e1cfcc920f",
-      "97bd097bd097c36b0b6fc9210c8dc2",
-      "9778397bd097c36c9210c9274c91aa",
-      "97b6b97bd19801ec9210c965cc920e",
-      "97bcf97c3598082c95f8c965cc920f",
-      "97bd097bd097c35b0b6fc920fb0722",
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b97bd19801ec9210c965cc920e",
-      "97bcf97c3598082c95f8c965cc920f",
-      "97bd097bd097c35b0b6fc920fb0722",
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b97bd19801ec9210c965cc920e",
-      "97bcf97c359801ec95f8c965cc920f",
-      "97bd097bd097c35b0b6fc920fb0722",
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b97bd19801ec9210c965cc920e",
-      "97bcf97c359801ec95f8c965cc920f",
-      "97bd097bd097c35b0b6fc920fb0722",
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b97bd19801ec9210c965cc920e",
-      "97bcf97c359801ec95f8c965cc920f",
-      "97bd097bd07f595b0b6fc920fb0722",
-      "9778397bd097c36b0b6fc9210c8dc2",
-      "9778397bd19801ec9210c9274c920e",
-      "97b6b97bd19801ec95f8c965cc920f",
-      "97bd07f5307f595b0b0bc920fb0722",
-      "7f0e397bd097c36b0b6fc9210c8dc2",
-      "9778397bd097c36c9210c9274c920e",
-      "97b6b97bd19801ec95f8c965cc920f",
-      "97bd07f5307f595b0b0bc920fb0722",
-      "7f0e397bd097c36b0b6fc9210c8dc2",
-      "9778397bd097c36c9210c9274c91aa",
-      "97b6b97bd19801ec9210c965cc920e",
-      "97bd07f1487f595b0b0bc920fb0722",
-      "7f0e397bd097c36b0b6fc9210c8dc2",
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b97bd19801ec9210c965cc920e",
-      "97bcf7f1487f595b0b0bb0b6fb0722",
-      "7f0e397bd097c35b0b6fc920fb0722",
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b97bd19801ec9210c965cc920e",
-      "97bcf7f1487f595b0b0bb0b6fb0722",
-      "7f0e397bd097c35b0b6fc920fb0722",
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b97bd19801ec9210c965cc920e",
-      "97bcf7f1487f531b0b0bb0b6fb0722",
-      "7f0e397bd097c35b0b6fc920fb0722",
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b97bd19801ec9210c965cc920e",
-      "97bcf7f1487f531b0b0bb0b6fb0722",
-      "7f0e397bd07f595b0b6fc920fb0722",
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b97bd19801ec9210c9274c920e",
-      "97bcf7f0e47f531b0b0bb0b6fb0722",
-      "7f0e397bd07f595b0b0bc920fb0722",
-      "9778397bd097c36b0b6fc9210c91aa",
-      "97b6b97bd197c36c9210c9274c920e",
-      "97bcf7f0e47f531b0b0bb0b6fb0722",
-      "7f0e397bd07f595b0b0bc920fb0722",
-      "9778397bd097c36b0b6fc9210c8dc2",
-      "9778397bd097c36c9210c9274c920e",
-      "97b6b7f0e47f531b0723b0b6fb0722",
-      "7f0e37f5307f595b0b0bc920fb0722",
-      "7f0e397bd097c36b0b6fc9210c8dc2",
-      "9778397bd097c36b0b70c9274c91aa",
-      "97b6b7f0e47f531b0723b0b6fb0721",
-      "7f0e37f1487f595b0b0bb0b6fb0722",
-      "7f0e397bd097c35b0b6fc9210c8dc2",
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b7f0e47f531b0723b0b6fb0721",
-      "7f0e27f1487f595b0b0bb0b6fb0722",
-      "7f0e397bd097c35b0b6fc920fb0722",
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b7f0e47f531b0723b0b6fb0721",
-      "7f0e27f1487f531b0b0bb0b6fb0722",
-      "7f0e397bd097c35b0b6fc920fb0722",
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b7f0e47f531b0723b0b6fb0721",
-      "7f0e27f1487f531b0b0bb0b6fb0722",
-      "7f0e397bd097c35b0b6fc920fb0722",
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b7f0e47f531b0723b0b6fb0721",
-      "7f0e27f1487f531b0b0bb0b6fb0722",
-      "7f0e397bd07f595b0b0bc920fb0722",
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b7f0e47f531b0723b0787b0721",
-      "7f0e27f0e47f531b0b0bb0b6fb0722",
-      "7f0e397bd07f595b0b0bc920fb0722",
-      "9778397bd097c36b0b6fc9210c91aa",
-      "97b6b7f0e47f149b0723b0787b0721",
-      "7f0e27f0e47f531b0723b0b6fb0722",
-      "7f0e397bd07f595b0b0bc920fb0722",
-      "9778397bd097c36b0b6fc9210c8dc2",
-      "977837f0e37f149b0723b0787b0721",
-      "7f07e7f0e47f531b0723b0b6fb0722",
-      "7f0e37f5307f595b0b0bc920fb0722",
-      "7f0e397bd097c35b0b6fc9210c8dc2",
-      "977837f0e37f14998082b0787b0721",
-      "7f07e7f0e47f531b0723b0b6fb0721",
-      "7f0e37f1487f595b0b0bb0b6fb0722",
-      "7f0e397bd097c35b0b6fc9210c8dc2",
-      "977837f0e37f14998082b0787b06bd",
-      "7f07e7f0e47f531b0723b0b6fb0721",
-      "7f0e27f1487f531b0b0bb0b6fb0722",
-      "7f0e397bd097c35b0b6fc920fb0722",
-      "977837f0e37f14998082b0787b06bd",
-      "7f07e7f0e47f531b0723b0b6fb0721",
-      "7f0e27f1487f531b0b0bb0b6fb0722",
-      "7f0e397bd097c35b0b6fc920fb0722",
-      "977837f0e37f14998082b0787b06bd",
-      "7f07e7f0e47f531b0723b0b6fb0721",
-      "7f0e27f1487f531b0b0bb0b6fb0722",
-      "7f0e397bd07f595b0b0bc920fb0722",
-      "977837f0e37f14998082b0787b06bd",
-      "7f07e7f0e47f531b0723b0b6fb0721",
-      "7f0e27f1487f531b0b0bb0b6fb0722",
-      "7f0e397bd07f595b0b0bc920fb0722",
-      "977837f0e37f14998082b0787b06bd",
-      "7f07e7f0e47f149b0723b0787b0721",
-      "7f0e27f0e47f531b0b0bb0b6fb0722",
-      "7f0e397bd07f595b0b0bc920fb0722",
-      "977837f0e37f14998082b0723b06bd",
-      "7f07e7f0e37f149b0723b0787b0721",
-      "7f0e27f0e47f531b0723b0b6fb0722",
-      "7f0e397bd07f595b0b0bc920fb0722",
-      "977837f0e37f14898082b0723b02d5",
-      "7ec967f0e37f14998082b0787b0721",
-      "7f07e7f0e47f531b0723b0b6fb0722",
-      "7f0e37f1487f595b0b0bb0b6fb0722",
-      "7f0e37f0e37f14898082b0723b02d5",
-      "7ec967f0e37f14998082b0787b0721",
-      "7f07e7f0e47f531b0723b0b6fb0722",
-      "7f0e37f1487f531b0b0bb0b6fb0722",
-      "7f0e37f0e37f14898082b0723b02d5",
-      "7ec967f0e37f14998082b0787b06bd",
-      "7f07e7f0e47f531b0723b0b6fb0721",
-      "7f0e37f1487f531b0b0bb0b6fb0722",
-      "7f0e37f0e37f14898082b072297c35",
-      "7ec967f0e37f14998082b0787b06bd",
-      "7f07e7f0e47f531b0723b0b6fb0721",
-      "7f0e27f1487f531b0b0bb0b6fb0722",
-      "7f0e37f0e37f14898082b072297c35",
-      "7ec967f0e37f14998082b0787b06bd",
-      "7f07e7f0e47f531b0723b0b6fb0721",
-      "7f0e27f1487f531b0b0bb0b6fb0722",
-      "7f0e37f0e366aa89801eb072297c35",
-      "7ec967f0e37f14998082b0787b06bd",
-      "7f07e7f0e47f149b0723b0787b0721",
-      "7f0e27f1487f531b0b0bb0b6fb0722",
-      "7f0e37f0e366aa89801eb072297c35",
-      "7ec967f0e37f14998082b0723b06bd",
-      "7f07e7f0e47f149b0723b0787b0721",
-      "7f0e27f0e47f531b0723b0b6fb0722",
-      "7f0e37f0e366aa89801eb072297c35",
-      "7ec967f0e37f14998082b0723b06bd",
-      "7f07e7f0e37f14998083b0787b0721",
-      "7f0e27f0e47f531b0723b0b6fb0722",
-      "7f0e37f0e366aa89801eb072297c35",
-      "7ec967f0e37f14898082b0723b02d5",
-      "7f07e7f0e37f14998082b0787b0721",
-      "7f07e7f0e47f531b0723b0b6fb0722",
-      "7f0e36665b66aa89801e9808297c35",
-      "665f67f0e37f14898082b0723b02d5",
-      "7ec967f0e37f14998082b0787b0721",
-      "7f07e7f0e47f531b0723b0b6fb0722",
-      "7f0e36665b66a449801e9808297c35",
-      "665f67f0e37f14898082b0723b02d5",
-      "7ec967f0e37f14998082b0787b06bd",
-      "7f07e7f0e47f531b0723b0b6fb0721",
-      "7f0e36665b66a449801e9808297c35",
-      "665f67f0e37f14898082b072297c35",
-      "7ec967f0e37f14998082b0787b06bd",
-      "7f07e7f0e47f531b0723b0b6fb0721",
-      "7f0e26665b66a449801e9808297c35",
-      "665f67f0e37f1489801eb072297c35",
-      "7ec967f0e37f14998082b0787b06bd",
-      "7f07e7f0e47f531b0723b0b6fb0721",
-      "7f0e27f1487f531b0b0bb0b6fb0722"
-    ],
-    /**
-        * 数字转中文速查表
-        * @Array Of Property
-        * @trans ['日','一','二','三','四','五','六','七','八','九','十']
-        * @return Cn string
-        */
-    nStr1: ["日", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十"],
-    /**
-        * 日期转农历称呼速查表
-        * @Array Of Property
-        * @trans ['初','十','廿','卅']
-        * @return Cn string
-        */
-    nStr2: ["初", "十", "廿", "卅"],
-    /**
-        * 月份转农历称呼速查表
-        * @Array Of Property
-        * @trans ['正','一','二','三','四','五','六','七','八','九','十','冬','腊']
-        * @return Cn string
-        */
-    nStr3: ["正", "二", "三", "四", "五", "六", "七", "八", "九", "十", "冬", "腊"],
-    /**
-        * 返回农历y年一整年的总天数
-        * @param lunar Year
-        * @return Number
-        * @eg:var count = calendar.lYearDays(1987) ;//count=387
-        */
-    lYearDays: function(y2) {
-      var i2;
-      var sum = 348;
-      for (i2 = 32768; i2 > 8; i2 >>= 1) {
-        sum += this.lunarInfo[y2 - 1900] & i2 ? 1 : 0;
-      }
-      return sum + this.leapDays(y2);
-    },
-    /**
-        * 返回农历y年闰月是哪个月；若y年没有闰月 则返回0
-        * @param lunar Year
-        * @return Number (0-12)
-        * @eg:var leapMonth = calendar.leapMonth(1987) ;//leapMonth=6
-        */
-    leapMonth: function(y2) {
-      return this.lunarInfo[y2 - 1900] & 15;
-    },
-    /**
-        * 返回农历y年闰月的天数 若该年没有闰月则返回0
-        * @param lunar Year
-        * @return Number (0、29、30)
-        * @eg:var leapMonthDay = calendar.leapDays(1987) ;//leapMonthDay=29
-        */
-    leapDays: function(y2) {
-      if (this.leapMonth(y2)) {
-        return this.lunarInfo[y2 - 1900] & 65536 ? 30 : 29;
-      }
-      return 0;
-    },
-    /**
-        * 返回农历y年m月（非闰月）的总天数，计算m为闰月时的天数请使用leapDays方法
-        * @param lunar Year
-        * @return Number (-1、29、30)
-        * @eg:var MonthDay = calendar.monthDays(1987,9) ;//MonthDay=29
-        */
-    monthDays: function(y2, m2) {
-      if (m2 > 12 || m2 < 1) {
-        return -1;
-      }
-      return this.lunarInfo[y2 - 1900] & 65536 >> m2 ? 30 : 29;
-    },
-    /**
-        * 返回公历(!)y年m月的天数
-        * @param solar Year
-        * @return Number (-1、28、29、30、31)
-        * @eg:var solarMonthDay = calendar.leapDays(1987) ;//solarMonthDay=30
-        */
-    solarDays: function(y2, m2) {
-      if (m2 > 12 || m2 < 1) {
-        return -1;
-      }
-      var ms = m2 - 1;
-      if (ms == 1) {
-        return y2 % 4 == 0 && y2 % 100 != 0 || y2 % 400 == 0 ? 29 : 28;
-      } else {
-        return this.solarMonth[ms];
-      }
-    },
-    /**
-       * 农历年份转换为干支纪年
-       * @param  lYear 农历年的年份数
-       * @return Cn string
-       */
-    toGanZhiYear: function(lYear) {
-      var ganKey = (lYear - 3) % 10;
-      var zhiKey = (lYear - 3) % 12;
-      if (ganKey == 0)
-        ganKey = 10;
-      if (zhiKey == 0)
-        zhiKey = 12;
-      return this.Gan[ganKey - 1] + this.Zhi[zhiKey - 1];
-    },
-    /**
-       * 公历月、日判断所属星座
-       * @param  cMonth [description]
-       * @param  cDay [description]
-       * @return Cn string
-       */
-    toAstro: function(cMonth, cDay) {
-      var s2 = "魔羯水瓶双鱼白羊金牛双子巨蟹狮子处女天秤天蝎射手魔羯";
-      var arr = [20, 19, 21, 21, 21, 22, 23, 23, 23, 23, 22, 22];
-      return s2.substr(cMonth * 2 - (cDay < arr[cMonth - 1] ? 2 : 0), 2) + "座";
-    },
-    /**
-        * 传入offset偏移量返回干支
-        * @param offset 相对甲子的偏移量
-        * @return Cn string
-        */
-    toGanZhi: function(offset) {
-      return this.Gan[offset % 10] + this.Zhi[offset % 12];
-    },
-    /**
-        * 传入公历(!)y年获得该年第n个节气的公历日期
-        * @param y公历年(1900-2100)；n二十四节气中的第几个节气(1~24)；从n=1(小寒)算起
-        * @return day Number
-        * @eg:var _24 = calendar.getTerm(1987,3) ;//_24=4;意即1987年2月4日立春
-        */
-    getTerm: function(y2, n2) {
-      if (y2 < 1900 || y2 > 2100) {
-        return -1;
-      }
-      if (n2 < 1 || n2 > 24) {
-        return -1;
-      }
-      var _table = this.sTermInfo[y2 - 1900];
-      var _info = [
-        parseInt("0x" + _table.substr(0, 5)).toString(),
-        parseInt("0x" + _table.substr(5, 5)).toString(),
-        parseInt("0x" + _table.substr(10, 5)).toString(),
-        parseInt("0x" + _table.substr(15, 5)).toString(),
-        parseInt("0x" + _table.substr(20, 5)).toString(),
-        parseInt("0x" + _table.substr(25, 5)).toString()
-      ];
-      var _calday = [
-        _info[0].substr(0, 1),
-        _info[0].substr(1, 2),
-        _info[0].substr(3, 1),
-        _info[0].substr(4, 2),
-        _info[1].substr(0, 1),
-        _info[1].substr(1, 2),
-        _info[1].substr(3, 1),
-        _info[1].substr(4, 2),
-        _info[2].substr(0, 1),
-        _info[2].substr(1, 2),
-        _info[2].substr(3, 1),
-        _info[2].substr(4, 2),
-        _info[3].substr(0, 1),
-        _info[3].substr(1, 2),
-        _info[3].substr(3, 1),
-        _info[3].substr(4, 2),
-        _info[4].substr(0, 1),
-        _info[4].substr(1, 2),
-        _info[4].substr(3, 1),
-        _info[4].substr(4, 2),
-        _info[5].substr(0, 1),
-        _info[5].substr(1, 2),
-        _info[5].substr(3, 1),
-        _info[5].substr(4, 2)
-      ];
-      return parseInt(_calday[n2 - 1]);
-    },
-    /**
-        * 传入农历数字月份返回汉语通俗表示法
-        * @param lunar month
-        * @return Cn string
-        * @eg:var cnMonth = calendar.toChinaMonth(12) ;//cnMonth='腊月'
-        */
-    toChinaMonth: function(m2) {
-      if (m2 > 12 || m2 < 1) {
-        return -1;
-      }
-      var s2 = this.nStr3[m2 - 1];
-      s2 += "月";
-      return s2;
-    },
-    /**
-        * 传入农历日期数字返回汉字表示法
-        * @param lunar day
-        * @return Cn string
-        * @eg:var cnDay = calendar.toChinaDay(21) ;//cnMonth='廿一'
-        */
-    toChinaDay: function(d2) {
-      var s2;
-      switch (d2) {
-        case 10:
-          s2 = "初十";
-          break;
-        case 20:
-          s2 = "二十";
-          break;
-        case 30:
-          s2 = "三十";
-          break;
-        default:
-          s2 = this.nStr2[Math.floor(d2 / 10)];
-          s2 += this.nStr1[d2 % 10];
-      }
-      return s2;
-    },
-    /**
-        * 年份转生肖[!仅能大致转换] => 精确划分生肖分界线是“立春”
-        * @param y year
-        * @return Cn string
-        * @eg:var animal = calendar.getAnimal(1987) ;//animal='兔'
-        */
-    getAnimal: function(y2) {
-      return this.Animals[(y2 - 4) % 12];
-    },
-    /**
-        * 传入阳历年月日获得详细的公历、农历object信息 <=>JSON
-        * @param y  solar year
-        * @param m  solar month
-        * @param d  solar day
-        * @return JSON object
-        * @eg:__f__('log','at uni_modules/uni-calendar/components/uni-calendar/calendar.js:381',calendar.solar2lunar(1987,11,01));
-        */
-    solar2lunar: function(y2, m2, d2) {
-      if (y2 < 1900 || y2 > 2100) {
-        return -1;
-      }
-      if (y2 == 1900 && m2 == 1 && d2 < 31) {
-        return -1;
-      }
-      if (!y2) {
-        var objDate = /* @__PURE__ */ new Date();
-      } else {
-        var objDate = new Date(y2, parseInt(m2) - 1, d2);
-      }
-      var i2;
-      var leap = 0;
-      var temp = 0;
-      var y2 = objDate.getFullYear();
-      var m2 = objDate.getMonth() + 1;
-      var d2 = objDate.getDate();
-      var offset = (Date.UTC(objDate.getFullYear(), objDate.getMonth(), objDate.getDate()) - Date.UTC(1900, 0, 31)) / 864e5;
-      for (i2 = 1900; i2 < 2101 && offset > 0; i2++) {
-        temp = this.lYearDays(i2);
-        offset -= temp;
-      }
-      if (offset < 0) {
-        offset += temp;
-        i2--;
-      }
-      var isTodayObj = /* @__PURE__ */ new Date();
-      var isToday = false;
-      if (isTodayObj.getFullYear() == y2 && isTodayObj.getMonth() + 1 == m2 && isTodayObj.getDate() == d2) {
-        isToday = true;
-      }
-      var nWeek = objDate.getDay();
-      var cWeek = this.nStr1[nWeek];
-      if (nWeek == 0) {
-        nWeek = 7;
-      }
-      var year = i2;
-      var leap = this.leapMonth(i2);
-      var isLeap = false;
-      for (i2 = 1; i2 < 13 && offset > 0; i2++) {
-        if (leap > 0 && i2 == leap + 1 && isLeap == false) {
-          --i2;
-          isLeap = true;
-          temp = this.leapDays(year);
-        } else {
-          temp = this.monthDays(year, i2);
-        }
-        if (isLeap == true && i2 == leap + 1) {
-          isLeap = false;
-        }
-        offset -= temp;
-      }
-      if (offset == 0 && leap > 0 && i2 == leap + 1) {
-        if (isLeap) {
-          isLeap = false;
-        } else {
-          isLeap = true;
-          --i2;
-        }
-      }
-      if (offset < 0) {
-        offset += temp;
-        --i2;
-      }
-      var month = i2;
-      var day = offset + 1;
-      var sm = m2 - 1;
-      var gzY = this.toGanZhiYear(year);
-      var firstNode = this.getTerm(y2, m2 * 2 - 1);
-      var secondNode = this.getTerm(y2, m2 * 2);
-      var gzM = this.toGanZhi((y2 - 1900) * 12 + m2 + 11);
-      if (d2 >= firstNode) {
-        gzM = this.toGanZhi((y2 - 1900) * 12 + m2 + 12);
-      }
-      var isTerm = false;
-      var Term = null;
-      if (firstNode == d2) {
-        isTerm = true;
-        Term = this.solarTerm[m2 * 2 - 2];
-      }
-      if (secondNode == d2) {
-        isTerm = true;
-        Term = this.solarTerm[m2 * 2 - 1];
-      }
-      var dayCyclical = Date.UTC(y2, sm, 1, 0, 0, 0, 0) / 864e5 + 25567 + 10;
-      var gzD = this.toGanZhi(dayCyclical + d2 - 1);
-      var astro = this.toAstro(m2, d2);
-      return { "lYear": year, "lMonth": month, "lDay": day, "Animal": this.getAnimal(year), "IMonthCn": (isLeap ? "闰" : "") + this.toChinaMonth(month), "IDayCn": this.toChinaDay(day), "cYear": y2, "cMonth": m2, "cDay": d2, "gzYear": gzY, "gzMonth": gzM, "gzDay": gzD, "isToday": isToday, "isLeap": isLeap, "nWeek": nWeek, "ncWeek": "星期" + cWeek, "isTerm": isTerm, "Term": Term, "astro": astro };
-    },
-    /**
-        * 传入农历年月日以及传入的月份是否闰月获得详细的公历、农历object信息 <=>JSON
-        * @param y  lunar year
-        * @param m  lunar month
-        * @param d  lunar day
-        * @param isLeapMonth  lunar month is leap or not.[如果是农历闰月第四个参数赋值true即可]
-        * @return JSON object
-        * @eg:__f__('log','at uni_modules/uni-calendar/components/uni-calendar/calendar.js:500',calendar.lunar2solar(1987,9,10));
-        */
-    lunar2solar: function(y2, m2, d2, isLeapMonth) {
-      var isLeapMonth = !!isLeapMonth;
-      var leapMonth = this.leapMonth(y2);
-      this.leapDays(y2);
-      if (isLeapMonth && leapMonth != m2) {
-        return -1;
-      }
-      if (y2 == 2100 && m2 == 12 && d2 > 1 || y2 == 1900 && m2 == 1 && d2 < 31) {
-        return -1;
-      }
-      var day = this.monthDays(y2, m2);
-      var _day = day;
-      if (isLeapMonth) {
-        _day = this.leapDays(y2, m2);
-      }
-      if (y2 < 1900 || y2 > 2100 || d2 > _day) {
-        return -1;
-      }
-      var offset = 0;
-      for (var i2 = 1900; i2 < y2; i2++) {
-        offset += this.lYearDays(i2);
-      }
-      var leap = 0;
-      var isAdd = false;
-      for (var i2 = 1; i2 < m2; i2++) {
-        leap = this.leapMonth(y2);
-        if (!isAdd) {
-          if (leap <= i2 && leap > 0) {
-            offset += this.leapDays(y2);
-            isAdd = true;
-          }
-        }
-        offset += this.monthDays(y2, i2);
-      }
-      if (isLeapMonth) {
-        offset += day;
-      }
-      var stmap = Date.UTC(1900, 1, 30, 0, 0, 0);
-      var calObj = new Date((offset + d2 - 31) * 864e5 + stmap);
-      var cY = calObj.getUTCFullYear();
-      var cM = calObj.getUTCMonth() + 1;
-      var cD = calObj.getUTCDate();
-      return this.solar2lunar(cY, cM, cD);
+  const PagesLoginLogin = /* @__PURE__ */ _export_sfc(_sfc_main$C, [["__file", "D:/ruangong/emosphere/pages/login/login.vue"]]);
+  class MPAnimation {
+    constructor(options, _this) {
+      this.options = options;
+      this.animation = uni.createAnimation({
+        ...options
+      });
+      this.currentStepAnimates = {};
+      this.next = 0;
+      this.$ = _this;
     }
-  };
-  let Calendar$2 = class Calendar {
-    constructor({
-      date,
-      selected,
-      startDate,
-      endDate,
-      range
-    } = {}) {
-      this.date = this.getDate(/* @__PURE__ */ new Date());
-      this.selected = selected || [];
-      this.startDate = startDate;
-      this.endDate = endDate;
-      this.range = range;
-      this.cleanMultipleStatus();
-      this.weeks = {};
-    }
-    /**
-     * 设置日期
-     * @param {Object} date
-     */
-    setDate(date) {
-      this.selectDate = this.getDate(date);
-      this._getWeek(this.selectDate.fullDate);
-    }
-    /**
-     * 清理多选状态
-     */
-    cleanMultipleStatus() {
-      this.multipleStatus = {
-        before: "",
-        after: "",
-        data: []
-      };
-    }
-    /**
-     * 重置开始日期
-     */
-    resetSatrtDate(startDate) {
-      this.startDate = startDate;
-    }
-    /**
-     * 重置结束日期
-     */
-    resetEndDate(endDate) {
-      this.endDate = endDate;
-    }
-    /**
-     * 获取任意时间
-     */
-    getDate(date, AddDayCount = 0, str = "day") {
-      if (!date) {
-        date = /* @__PURE__ */ new Date();
-      }
-      if (typeof date !== "object") {
-        date = date.replace(/-/g, "/");
-      }
-      const dd = new Date(date);
-      switch (str) {
-        case "day":
-          dd.setDate(dd.getDate() + AddDayCount);
-          break;
-        case "month":
-          if (dd.getDate() === 31 && AddDayCount > 0) {
-            dd.setDate(dd.getDate() + AddDayCount);
-          } else {
-            const preMonth = dd.getMonth();
-            dd.setMonth(preMonth + AddDayCount);
-            const nextMonth = dd.getMonth();
-            if (AddDayCount < 0 && preMonth !== 0 && nextMonth - preMonth > AddDayCount) {
-              dd.setMonth(nextMonth + (nextMonth - preMonth + AddDayCount));
-            }
-            if (AddDayCount > 0 && nextMonth - preMonth > AddDayCount) {
-              dd.setMonth(nextMonth - (nextMonth - preMonth - AddDayCount));
-            }
-          }
-          break;
-        case "year":
-          dd.setFullYear(dd.getFullYear() + AddDayCount);
-          break;
-      }
-      const y2 = dd.getFullYear();
-      const m2 = dd.getMonth() + 1 < 10 ? "0" + (dd.getMonth() + 1) : dd.getMonth() + 1;
-      const d2 = dd.getDate() < 10 ? "0" + dd.getDate() : dd.getDate();
-      return {
-        fullDate: y2 + "-" + m2 + "-" + d2,
-        year: y2,
-        month: m2,
-        date: d2,
-        day: dd.getDay()
-      };
-    }
-    /**
-     * 获取上月剩余天数
-     */
-    _getLastMonthDays(firstDay, full) {
-      let dateArr = [];
-      for (let i2 = firstDay; i2 > 0; i2--) {
-        const beforeDate = new Date(full.year, full.month - 1, -i2 + 1).getDate();
-        dateArr.push({
-          date: beforeDate,
-          month: full.month - 1,
-          lunar: this.getlunar(full.year, full.month - 1, beforeDate),
-          disable: true
-        });
-      }
-      return dateArr;
-    }
-    /**
-     * 获取本月天数
-     */
-    _currentMonthDys(dateData, full) {
-      let dateArr = [];
-      let fullDate = this.date.fullDate;
-      for (let i2 = 1; i2 <= dateData; i2++) {
-        let nowDate = full.year + "-" + (full.month < 10 ? full.month : full.month) + "-" + (i2 < 10 ? "0" + i2 : i2);
-        let isDay = fullDate === nowDate;
-        let info = this.selected && this.selected.find((item) => {
-          if (this.dateEqual(nowDate, item.date)) {
-            return item;
-          }
-        });
-        let disableBefore = true;
-        let disableAfter = true;
-        if (this.startDate) {
-          disableBefore = this.dateCompare(this.startDate, nowDate);
-        }
-        if (this.endDate) {
-          disableAfter = this.dateCompare(nowDate, this.endDate);
-        }
-        let multiples = this.multipleStatus.data;
-        let checked = false;
-        let multiplesStatus = -1;
-        if (this.range) {
-          if (multiples) {
-            multiplesStatus = multiples.findIndex((item) => {
-              return this.dateEqual(item, nowDate);
-            });
-          }
-          if (multiplesStatus !== -1) {
-            checked = true;
-          }
-        }
-        let data = {
-          fullDate: nowDate,
-          year: full.year,
-          date: i2,
-          multiple: this.range ? checked : false,
-          beforeMultiple: this.dateEqual(this.multipleStatus.before, nowDate),
-          afterMultiple: this.dateEqual(this.multipleStatus.after, nowDate),
-          month: full.month,
-          lunar: this.getlunar(full.year, full.month, i2),
-          disable: !(disableBefore && disableAfter),
-          isDay
+    _nvuePushAnimates(type, args) {
+      let aniObj = this.currentStepAnimates[this.next];
+      let styles = {};
+      if (!aniObj) {
+        styles = {
+          styles: {},
+          config: {}
         };
-        if (info) {
-          data.extraInfo = info;
+      } else {
+        styles = aniObj;
+      }
+      if (animateTypes1.includes(type)) {
+        if (!styles.styles.transform) {
+          styles.styles.transform = "";
         }
-        dateArr.push(data);
-      }
-      return dateArr;
-    }
-    /**
-     * 获取下月天数
-     */
-    _getNextMonthDays(surplus, full) {
-      let dateArr = [];
-      for (let i2 = 1; i2 < surplus + 1; i2++) {
-        dateArr.push({
-          date: i2,
-          month: Number(full.month) + 1,
-          lunar: this.getlunar(full.year, Number(full.month) + 1, i2),
-          disable: true
-        });
-      }
-      return dateArr;
-    }
-    /**
-     * 获取当前日期详情
-     * @param {Object} date
-     */
-    getInfo(date) {
-      if (!date) {
-        date = /* @__PURE__ */ new Date();
-      }
-      const dateInfo = this.canlender.find((item) => item.fullDate === this.getDate(date).fullDate);
-      return dateInfo;
-    }
-    /**
-     * 比较时间大小
-     */
-    dateCompare(startDate, endDate) {
-      startDate = new Date(startDate.replace("-", "/").replace("-", "/"));
-      endDate = new Date(endDate.replace("-", "/").replace("-", "/"));
-      if (startDate <= endDate) {
-        return true;
+        let unit = "";
+        if (type === "rotate") {
+          unit = "deg";
+        }
+        styles.styles.transform += `${type}(${args + unit}) `;
       } else {
-        return false;
+        styles.styles[type] = `${args}`;
       }
+      this.currentStepAnimates[this.next] = styles;
     }
-    /**
-     * 比较时间是否相等
-     */
-    dateEqual(before, after) {
-      before = new Date(before.replace("-", "/").replace("-", "/"));
-      after = new Date(after.replace("-", "/").replace("-", "/"));
-      if (before.getTime() - after.getTime() === 0) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-    /**
-     * 获取日期范围内所有日期
-     * @param {Object} begin
-     * @param {Object} end
-     */
-    geDateAll(begin, end) {
-      var arr = [];
-      var ab = begin.split("-");
-      var ae = end.split("-");
-      var db = /* @__PURE__ */ new Date();
-      db.setFullYear(ab[0], ab[1] - 1, ab[2]);
-      var de = /* @__PURE__ */ new Date();
-      de.setFullYear(ae[0], ae[1] - 1, ae[2]);
-      var unixDb = db.getTime() - 24 * 60 * 60 * 1e3;
-      var unixDe = de.getTime() - 24 * 60 * 60 * 1e3;
-      for (var k2 = unixDb; k2 <= unixDe; ) {
-        k2 = k2 + 24 * 60 * 60 * 1e3;
-        arr.push(this.getDate(new Date(parseInt(k2))).fullDate);
-      }
-      return arr;
-    }
-    /**
-     * 计算阴历日期显示
-     */
-    getlunar(year, month, date) {
-      return calendar.solar2lunar(year, month, date);
-    }
-    /**
-     * 设置打点
-     */
-    setSelectInfo(data, value) {
-      this.selected = value;
-      this._getWeek(data);
-    }
-    /**
-     *  获取多选状态
-     */
-    setMultiple(fullDate) {
-      let {
-        before,
-        after
-      } = this.multipleStatus;
-      if (!this.range)
+    _animateRun(styles = {}, config = {}) {
+      let ref = this.$.$refs["ani"].ref;
+      if (!ref)
         return;
-      if (before && after) {
-        this.multipleStatus.before = "";
-        this.multipleStatus.after = "";
-        this.multipleStatus.data = [];
-      } else {
-        if (!before) {
-          this.multipleStatus.before = fullDate;
-        } else {
-          this.multipleStatus.after = fullDate;
-          if (this.dateCompare(this.multipleStatus.before, this.multipleStatus.after)) {
-            this.multipleStatus.data = this.geDateAll(this.multipleStatus.before, this.multipleStatus.after);
-          } else {
-            this.multipleStatus.data = this.geDateAll(this.multipleStatus.after, this.multipleStatus.before);
-          }
-        }
-      }
-      this._getWeek(fullDate);
-    }
-    /**
-     * 获取每周数据
-     * @param {Object} dateData
-     */
-    _getWeek(dateData) {
-      const {
-        year,
-        month
-      } = this.getDate(dateData);
-      let firstDay = new Date(year, month - 1, 1).getDay();
-      let currentDay = new Date(year, month, 0).getDate();
-      let dates = {
-        lastMonthDays: this._getLastMonthDays(firstDay, this.getDate(dateData)),
-        // 上个月末尾几天
-        currentMonthDys: this._currentMonthDys(currentDay, this.getDate(dateData)),
-        // 本月天数
-        nextMonthDays: [],
-        // 下个月开始几天
-        weeks: []
-      };
-      let canlender = [];
-      const surplus = 42 - (dates.lastMonthDays.length + dates.currentMonthDys.length);
-      dates.nextMonthDays = this._getNextMonthDays(surplus, this.getDate(dateData));
-      canlender = canlender.concat(dates.lastMonthDays, dates.currentMonthDys, dates.nextMonthDays);
-      let weeks = {};
-      for (let i2 = 0; i2 < canlender.length; i2++) {
-        if (i2 % 7 === 0) {
-          weeks[parseInt(i2 / 7)] = new Array(7);
-        }
-        weeks[parseInt(i2 / 7)][i2 % 7] = canlender[i2];
-      }
-      this.canlender = canlender;
-      this.weeks = weeks;
-    }
-    //静态方法
-    // static init(date) {
-    // 	if (!this.instance) {
-    // 		this.instance = new Calendar(date);
-    // 	}
-    // 	return this.instance;
-    // }
-  };
-  const isObject = (val) => val !== null && typeof val === "object";
-  const defaultDelimiters = ["{", "}"];
-  class BaseFormatter {
-    constructor() {
-      this._caches = /* @__PURE__ */ Object.create(null);
-    }
-    interpolate(message, values, delimiters = defaultDelimiters) {
-      if (!values) {
-        return [message];
-      }
-      let tokens = this._caches[message];
-      if (!tokens) {
-        tokens = parse(message, delimiters);
-        this._caches[message] = tokens;
-      }
-      return compile(tokens, values);
-    }
-  }
-  const RE_TOKEN_LIST_VALUE = /^(?:\d)+/;
-  const RE_TOKEN_NAMED_VALUE = /^(?:\w)+/;
-  function parse(format, [startDelimiter, endDelimiter]) {
-    const tokens = [];
-    let position = 0;
-    let text = "";
-    while (position < format.length) {
-      let char = format[position++];
-      if (char === startDelimiter) {
-        if (text) {
-          tokens.push({ type: "text", value: text });
-        }
-        text = "";
-        let sub = "";
-        char = format[position++];
-        while (char !== void 0 && char !== endDelimiter) {
-          sub += char;
-          char = format[position++];
-        }
-        const isClosed = char === endDelimiter;
-        const type = RE_TOKEN_LIST_VALUE.test(sub) ? "list" : isClosed && RE_TOKEN_NAMED_VALUE.test(sub) ? "named" : "unknown";
-        tokens.push({ value: sub, type });
-      } else {
-        text += char;
-      }
-    }
-    text && tokens.push({ type: "text", value: text });
-    return tokens;
-  }
-  function compile(tokens, values) {
-    const compiled = [];
-    let index = 0;
-    const mode = Array.isArray(values) ? "list" : isObject(values) ? "named" : "unknown";
-    if (mode === "unknown") {
-      return compiled;
-    }
-    while (index < tokens.length) {
-      const token = tokens[index];
-      switch (token.type) {
-        case "text":
-          compiled.push(token.value);
-          break;
-        case "list":
-          compiled.push(values[parseInt(token.value, 10)]);
-          break;
-        case "named":
-          if (mode === "named") {
-            compiled.push(values[token.value]);
-          } else {
-            {
-              console.warn(`Type of token '${token.type}' and format of value '${mode}' don't match!`);
-            }
-          }
-          break;
-        case "unknown":
-          {
-            console.warn(`Detect 'unknown' type of token!`);
-          }
-          break;
-      }
-      index++;
-    }
-    return compiled;
-  }
-  const LOCALE_ZH_HANS = "zh-Hans";
-  const LOCALE_ZH_HANT = "zh-Hant";
-  const LOCALE_EN = "en";
-  const LOCALE_FR = "fr";
-  const LOCALE_ES = "es";
-  const hasOwnProperty = Object.prototype.hasOwnProperty;
-  const hasOwn = (val, key) => hasOwnProperty.call(val, key);
-  const defaultFormatter = new BaseFormatter();
-  function include(str, parts) {
-    return !!parts.find((part) => str.indexOf(part) !== -1);
-  }
-  function startsWith(str, parts) {
-    return parts.find((part) => str.indexOf(part) === 0);
-  }
-  function normalizeLocale(locale, messages) {
-    if (!locale) {
-      return;
-    }
-    locale = locale.trim().replace(/_/g, "-");
-    if (messages && messages[locale]) {
-      return locale;
-    }
-    locale = locale.toLowerCase();
-    if (locale === "chinese") {
-      return LOCALE_ZH_HANS;
-    }
-    if (locale.indexOf("zh") === 0) {
-      if (locale.indexOf("-hans") > -1) {
-        return LOCALE_ZH_HANS;
-      }
-      if (locale.indexOf("-hant") > -1) {
-        return LOCALE_ZH_HANT;
-      }
-      if (include(locale, ["-tw", "-hk", "-mo", "-cht"])) {
-        return LOCALE_ZH_HANT;
-      }
-      return LOCALE_ZH_HANS;
-    }
-    let locales = [LOCALE_EN, LOCALE_FR, LOCALE_ES];
-    if (messages && Object.keys(messages).length > 0) {
-      locales = Object.keys(messages);
-    }
-    const lang = startsWith(locale, locales);
-    if (lang) {
-      return lang;
-    }
-  }
-  class I18n {
-    constructor({ locale, fallbackLocale, messages, watcher, formater }) {
-      this.locale = LOCALE_EN;
-      this.fallbackLocale = LOCALE_EN;
-      this.message = {};
-      this.messages = {};
-      this.watchers = [];
-      if (fallbackLocale) {
-        this.fallbackLocale = fallbackLocale;
-      }
-      this.formater = formater || defaultFormatter;
-      this.messages = messages || {};
-      this.setLocale(locale || LOCALE_EN);
-      if (watcher) {
-        this.watchLocale(watcher);
-      }
-    }
-    setLocale(locale) {
-      const oldLocale = this.locale;
-      this.locale = normalizeLocale(locale, this.messages) || this.fallbackLocale;
-      if (!this.messages[this.locale]) {
-        this.messages[this.locale] = {};
-      }
-      this.message = this.messages[this.locale];
-      if (oldLocale !== this.locale) {
-        this.watchers.forEach((watcher) => {
-          watcher(this.locale, oldLocale);
+      return new Promise((resolve, reject) => {
+        nvueAnimation.transition(ref, {
+          styles,
+          ...config
+        }, (res) => {
+          resolve();
         });
-      }
-    }
-    getLocale() {
-      return this.locale;
-    }
-    watchLocale(fn) {
-      const index = this.watchers.push(fn) - 1;
-      return () => {
-        this.watchers.splice(index, 1);
-      };
-    }
-    add(locale, message, override = true) {
-      const curMessages = this.messages[locale];
-      if (curMessages) {
-        if (override) {
-          Object.assign(curMessages, message);
-        } else {
-          Object.keys(message).forEach((key) => {
-            if (!hasOwn(curMessages, key)) {
-              curMessages[key] = message[key];
-            }
-          });
-        }
-      } else {
-        this.messages[locale] = message;
-      }
-    }
-    f(message, values, delimiters) {
-      return this.formater.interpolate(message, values, delimiters).join("");
-    }
-    t(key, locale, values) {
-      let message = this.message;
-      if (typeof locale === "string") {
-        locale = normalizeLocale(locale, this.messages);
-        locale && (message = this.messages[locale]);
-      } else {
-        values = locale;
-      }
-      if (!hasOwn(message, key)) {
-        console.warn(`Cannot translate the value of keypath ${key}. Use the value of keypath as default.`);
-        return key;
-      }
-      return this.formater.interpolate(message[key], values).join("");
-    }
-  }
-  function watchAppLocale(appVm, i18n) {
-    if (appVm.$watchLocale) {
-      appVm.$watchLocale((newLocale) => {
-        i18n.setLocale(newLocale);
-      });
-    } else {
-      appVm.$watch(() => appVm.$locale, (newLocale) => {
-        i18n.setLocale(newLocale);
       });
     }
-  }
-  function getDefaultLocale() {
-    if (typeof uni !== "undefined" && uni.getLocale) {
-      return uni.getLocale();
-    }
-    if (typeof global !== "undefined" && global.getLocale) {
-      return global.getLocale();
-    }
-    return LOCALE_EN;
-  }
-  function initVueI18n(locale, messages = {}, fallbackLocale, watcher) {
-    if (typeof locale !== "string") {
-      [locale, messages] = [
-        messages,
-        locale
-      ];
-    }
-    if (typeof locale !== "string") {
-      locale = getDefaultLocale();
-    }
-    if (typeof fallbackLocale !== "string") {
-      fallbackLocale = typeof __uniConfig !== "undefined" && __uniConfig.fallbackLocale || LOCALE_EN;
-    }
-    const i18n = new I18n({
-      locale,
-      fallbackLocale,
-      messages,
-      watcher
-    });
-    let t2 = (key, values) => {
-      if (typeof getApp !== "function") {
-        t2 = function(key2, values2) {
-          return i18n.t(key2, values2);
-        };
+    _nvueNextAnimate(animates, step = 0, fn) {
+      let obj = animates[step];
+      if (obj) {
+        let {
+          styles,
+          config
+        } = obj;
+        this._animateRun(styles, config).then(() => {
+          step += 1;
+          this._nvueNextAnimate(animates, step, fn);
+        });
       } else {
-        let isWatchedAppLocale = false;
-        t2 = function(key2, values2) {
-          const appVm = getApp().$vm;
-          if (appVm) {
-            appVm.$locale;
-            if (!isWatchedAppLocale) {
-              isWatchedAppLocale = true;
-              watchAppLocale(appVm, i18n);
-            }
-          }
-          return i18n.t(key2, values2);
-        };
-      }
-      return t2(key, values);
-    };
-    return {
-      i18n,
-      f(message, values, delimiters) {
-        return i18n.f(message, values, delimiters);
-      },
-      t(key, values) {
-        return t2(key, values);
-      },
-      add(locale2, message, override = true) {
-        return i18n.add(locale2, message, override);
-      },
-      watch(fn) {
-        return i18n.watchLocale(fn);
-      },
-      getLocale() {
-        return i18n.getLocale();
-      },
-      setLocale(newLocale) {
-        return i18n.setLocale(newLocale);
-      }
-    };
-  }
-  const en$1 = {
-    "uni-calender.ok": "ok",
-    "uni-calender.cancel": "cancel",
-    "uni-calender.today": "today",
-    "uni-calender.MON": "MON",
-    "uni-calender.TUE": "TUE",
-    "uni-calender.WED": "WED",
-    "uni-calender.THU": "THU",
-    "uni-calender.FRI": "FRI",
-    "uni-calender.SAT": "SAT",
-    "uni-calender.SUN": "SUN"
-  };
-  const zhHans$1 = {
-    "uni-calender.ok": "确定",
-    "uni-calender.cancel": "取消",
-    "uni-calender.today": "今日",
-    "uni-calender.SUN": "日",
-    "uni-calender.MON": "一",
-    "uni-calender.TUE": "二",
-    "uni-calender.WED": "三",
-    "uni-calender.THU": "四",
-    "uni-calender.FRI": "五",
-    "uni-calender.SAT": "六"
-  };
-  const zhHant$1 = {
-    "uni-calender.ok": "確定",
-    "uni-calender.cancel": "取消",
-    "uni-calender.today": "今日",
-    "uni-calender.SUN": "日",
-    "uni-calender.MON": "一",
-    "uni-calender.TUE": "二",
-    "uni-calender.WED": "三",
-    "uni-calender.THU": "四",
-    "uni-calender.FRI": "五",
-    "uni-calender.SAT": "六"
-  };
-  const i18nMessages$1 = {
-    en: en$1,
-    "zh-Hans": zhHans$1,
-    "zh-Hant": zhHant$1
-  };
-  const { t: t$4 } = initVueI18n(i18nMessages$1);
-  const _sfc_main$C = {
-    emits: ["change"],
-    props: {
-      weeks: {
-        type: Object,
-        default() {
-          return {};
-        }
-      },
-      calendar: {
-        type: Object,
-        default: () => {
-          return {};
-        }
-      },
-      selected: {
-        type: Array,
-        default: () => {
-          return [];
-        }
-      },
-      lunar: {
-        type: Boolean,
-        default: false
-      }
-    },
-    computed: {
-      todayText() {
-        return t$4("uni-calender.today");
-      }
-    },
-    methods: {
-      choiceDate(weeks) {
-        this.$emit("change", weeks);
+        this.currentStepAnimates = {};
+        typeof fn === "function" && fn();
+        this.isEnd = true;
       }
     }
-  };
-  function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
-    return vue.openBlock(), vue.createElementBlock(
-      "view",
-      {
-        class: vue.normalizeClass(["uni-calendar-item__weeks-box", {
-          "uni-calendar-item--disable": $props.weeks.disable,
-          "uni-calendar-item--isDay": $props.calendar.fullDate === $props.weeks.fullDate && $props.weeks.isDay,
-          "uni-calendar-item--checked": $props.calendar.fullDate === $props.weeks.fullDate && !$props.weeks.isDay,
-          "uni-calendar-item--before-checked": $props.weeks.beforeMultiple,
-          "uni-calendar-item--multiple": $props.weeks.multiple,
-          "uni-calendar-item--after-checked": $props.weeks.afterMultiple
-        }]),
-        onClick: _cache[0] || (_cache[0] = ($event) => $options.choiceDate($props.weeks))
-      },
-      [
-        vue.createElementVNode("view", { class: "uni-calendar-item__weeks-box-item" }, [
-          $props.selected && $props.weeks.extraInfo ? (vue.openBlock(), vue.createElementBlock("text", {
-            key: 0,
-            class: "uni-calendar-item__weeks-box-circle"
-          })) : vue.createCommentVNode("v-if", true),
-          vue.createElementVNode(
-            "text",
-            {
-              class: vue.normalizeClass(["uni-calendar-item__weeks-box-text", {
-                "uni-calendar-item--isDay-text": $props.weeks.isDay,
-                "uni-calendar-item--isDay": $props.calendar.fullDate === $props.weeks.fullDate && $props.weeks.isDay,
-                "uni-calendar-item--checked": $props.calendar.fullDate === $props.weeks.fullDate && !$props.weeks.isDay,
-                "uni-calendar-item--before-checked": $props.weeks.beforeMultiple,
-                "uni-calendar-item--multiple": $props.weeks.multiple,
-                "uni-calendar-item--after-checked": $props.weeks.afterMultiple,
-                "uni-calendar-item--disable": $props.weeks.disable
-              }])
-            },
-            vue.toDisplayString($props.weeks.date),
-            3
-            /* TEXT, CLASS */
-          ),
-          !$props.lunar && !$props.weeks.extraInfo && $props.weeks.isDay ? (vue.openBlock(), vue.createElementBlock(
-            "text",
-            {
-              key: 1,
-              class: vue.normalizeClass(["uni-calendar-item__weeks-lunar-text", {
-                "uni-calendar-item--isDay-text": $props.weeks.isDay,
-                "uni-calendar-item--isDay": $props.calendar.fullDate === $props.weeks.fullDate && $props.weeks.isDay,
-                "uni-calendar-item--checked": $props.calendar.fullDate === $props.weeks.fullDate && !$props.weeks.isDay,
-                "uni-calendar-item--before-checked": $props.weeks.beforeMultiple,
-                "uni-calendar-item--multiple": $props.weeks.multiple,
-                "uni-calendar-item--after-checked": $props.weeks.afterMultiple
-              }])
-            },
-            vue.toDisplayString($options.todayText),
-            3
-            /* TEXT, CLASS */
-          )) : vue.createCommentVNode("v-if", true),
-          $props.lunar && !$props.weeks.extraInfo ? (vue.openBlock(), vue.createElementBlock(
-            "text",
-            {
-              key: 2,
-              class: vue.normalizeClass(["uni-calendar-item__weeks-lunar-text", {
-                "uni-calendar-item--isDay-text": $props.weeks.isDay,
-                "uni-calendar-item--isDay": $props.calendar.fullDate === $props.weeks.fullDate && $props.weeks.isDay,
-                "uni-calendar-item--checked": $props.calendar.fullDate === $props.weeks.fullDate && !$props.weeks.isDay,
-                "uni-calendar-item--before-checked": $props.weeks.beforeMultiple,
-                "uni-calendar-item--multiple": $props.weeks.multiple,
-                "uni-calendar-item--after-checked": $props.weeks.afterMultiple,
-                "uni-calendar-item--disable": $props.weeks.disable
-              }])
-            },
-            vue.toDisplayString($props.weeks.isDay ? $options.todayText : $props.weeks.lunar.IDayCn === "初一" ? $props.weeks.lunar.IMonthCn : $props.weeks.lunar.IDayCn),
-            3
-            /* TEXT, CLASS */
-          )) : vue.createCommentVNode("v-if", true),
-          $props.weeks.extraInfo && $props.weeks.extraInfo.info ? (vue.openBlock(), vue.createElementBlock(
-            "text",
-            {
-              key: 3,
-              class: vue.normalizeClass(["uni-calendar-item__weeks-lunar-text", {
-                "uni-calendar-item--extra": $props.weeks.extraInfo.info,
-                "uni-calendar-item--isDay-text": $props.weeks.isDay,
-                "uni-calendar-item--isDay": $props.calendar.fullDate === $props.weeks.fullDate && $props.weeks.isDay,
-                "uni-calendar-item--checked": $props.calendar.fullDate === $props.weeks.fullDate && !$props.weeks.isDay,
-                "uni-calendar-item--before-checked": $props.weeks.beforeMultiple,
-                "uni-calendar-item--multiple": $props.weeks.multiple,
-                "uni-calendar-item--after-checked": $props.weeks.afterMultiple,
-                "uni-calendar-item--disable": $props.weeks.disable
-              }])
-            },
-            vue.toDisplayString($props.weeks.extraInfo.info),
-            3
-            /* TEXT, CLASS */
-          )) : vue.createCommentVNode("v-if", true)
-        ])
-      ],
-      2
-      /* CLASS */
-    );
+    step(config = {}) {
+      this.animation.step(config);
+      return this;
+    }
+    run(fn) {
+      this.$.animationData = this.animation.export();
+      this.$.timer = setTimeout(() => {
+        typeof fn === "function" && fn();
+      }, this.$.durationTime);
+    }
   }
-  const CalendarItem = /* @__PURE__ */ _export_sfc(_sfc_main$C, [["render", _sfc_render$n], ["__scopeId", "data-v-65626c58"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-calendar/components/uni-calendar/uni-calendar-item.vue"]]);
-  const { t: t$3 } = initVueI18n(i18nMessages$1);
+  const animateTypes1 = [
+    "matrix",
+    "matrix3d",
+    "rotate",
+    "rotate3d",
+    "rotateX",
+    "rotateY",
+    "rotateZ",
+    "scale",
+    "scale3d",
+    "scaleX",
+    "scaleY",
+    "scaleZ",
+    "skew",
+    "skewX",
+    "skewY",
+    "translate",
+    "translate3d",
+    "translateX",
+    "translateY",
+    "translateZ"
+  ];
+  const animateTypes2 = ["opacity", "backgroundColor"];
+  const animateTypes3 = ["width", "height", "left", "right", "top", "bottom"];
+  animateTypes1.concat(animateTypes2, animateTypes3).forEach((type) => {
+    MPAnimation.prototype[type] = function(...args) {
+      this.animation[type](...args);
+      return this;
+    };
+  });
+  function createAnimation(option, _this) {
+    if (!_this)
+      return;
+    clearTimeout(_this.timer);
+    return new MPAnimation(option, _this);
+  }
   const _sfc_main$B = {
-    components: {
-      CalendarItem
-    },
-    emits: ["close", "confirm", "change", "monthSwitch"],
+    name: "uniTransition",
+    emits: ["click", "change"],
     props: {
-      date: {
-        type: String,
-        default: ""
+      show: {
+        type: Boolean,
+        default: false
       },
-      selected: {
-        type: Array,
+      modeClass: {
+        type: [Array, String],
         default() {
-          return [];
+          return "fade";
         }
       },
-      lunar: {
-        type: Boolean,
-        default: false
+      duration: {
+        type: Number,
+        default: 300
       },
-      startDate: {
+      styles: {
+        type: Object,
+        default() {
+          return {};
+        }
+      },
+      customClass: {
         type: String,
         default: ""
       },
-      endDate: {
-        type: String,
-        default: ""
-      },
-      range: {
+      onceRender: {
         type: Boolean,
         default: false
-      },
-      insert: {
-        type: Boolean,
-        default: true
-      },
-      showMonth: {
-        type: Boolean,
-        default: true
-      },
-      clearDate: {
-        type: Boolean,
-        default: true
       }
     },
     data() {
       return {
-        show: false,
-        weeks: [],
-        calendar: {},
-        nowDate: "",
-        aniMaskShow: false
+        isShow: false,
+        transform: "",
+        opacity: 1,
+        animationData: {},
+        durationTime: 300,
+        config: {}
       };
     },
-    computed: {
-      /**
-       * for i18n
-       */
-      okText() {
-        return t$3("uni-calender.ok");
-      },
-      cancelText() {
-        return t$3("uni-calender.cancel");
-      },
-      todayText() {
-        return t$3("uni-calender.today");
-      },
-      monText() {
-        return t$3("uni-calender.MON");
-      },
-      TUEText() {
-        return t$3("uni-calender.TUE");
-      },
-      WEDText() {
-        return t$3("uni-calender.WED");
-      },
-      THUText() {
-        return t$3("uni-calender.THU");
-      },
-      FRIText() {
-        return t$3("uni-calender.FRI");
-      },
-      SATText() {
-        return t$3("uni-calender.SAT");
-      },
-      SUNText() {
-        return t$3("uni-calender.SUN");
+    watch: {
+      show: {
+        handler(newVal) {
+          if (newVal) {
+            this.open();
+          } else {
+            if (this.isShow) {
+              this.close();
+            }
+          }
+        },
+        immediate: true
       }
     },
-    watch: {
-      date(newVal) {
-        this.init(newVal);
+    computed: {
+      // 生成样式数据
+      stylesObject() {
+        let styles = {
+          ...this.styles,
+          "transition-duration": this.duration / 1e3 + "s"
+        };
+        let transform = "";
+        for (let i2 in styles) {
+          let line = this.toLine(i2);
+          transform += line + ":" + styles[i2] + ";";
+        }
+        return transform;
       },
-      startDate(val) {
-        this.cale.resetSatrtDate(val);
-        this.cale.setDate(this.nowDate.fullDate);
-        this.weeks = this.cale.weeks;
-      },
-      endDate(val) {
-        this.cale.resetEndDate(val);
-        this.cale.setDate(this.nowDate.fullDate);
-        this.weeks = this.cale.weeks;
-      },
-      selected(newVal) {
-        this.cale.setSelectInfo(this.nowDate.fullDate, newVal);
-        this.weeks = this.cale.weeks;
+      // 初始化动画条件
+      transformStyles() {
+        return "transform:" + this.transform + ";opacity:" + this.opacity + ";" + this.stylesObject;
       }
     },
     created() {
-      this.cale = new Calendar$2({
-        selected: this.selected,
-        startDate: this.startDate,
-        endDate: this.endDate,
-        range: this.range
-      });
-      this.init(this.date);
+      this.config = {
+        duration: this.duration,
+        timingFunction: "ease",
+        transformOrigin: "50% 50%",
+        delay: 0
+      };
+      this.durationTime = this.duration;
     },
     methods: {
-      // 取消穿透
-      clean() {
+      /**
+       *  ref 触发 初始化动画
+       */
+      init(obj = {}) {
+        if (obj.duration) {
+          this.durationTime = obj.duration;
+        }
+        this.animation = createAnimation(Object.assign(this.config, obj), this);
       },
-      bindDateChange(e2) {
-        const value = e2.detail.value + "-1";
-        this.setDate(value);
-        const { year, month } = this.cale.getDate(value);
-        this.$emit("monthSwitch", {
-          year,
-          month
+      /**
+       * 点击组件触发回调
+       */
+      onClick() {
+        this.$emit("click", {
+          detail: this.isShow
         });
       },
       /**
-       * 初始化日期显示
-       * @param {Object} date
+       * ref 触发 动画分组
+       * @param {Object} obj
        */
-      init(date) {
-        this.cale.setDate(date);
-        this.weeks = this.cale.weeks;
-        this.nowDate = this.calendar = this.cale.getInfo(date);
+      step(obj, config = {}) {
+        if (!this.animation)
+          return;
+        for (let i2 in obj) {
+          try {
+            if (typeof obj[i2] === "object") {
+              this.animation[i2](...obj[i2]);
+            } else {
+              this.animation[i2](obj[i2]);
+            }
+          } catch (e2) {
+            formatAppLog("error", "at uni_modules/uni-transition/components/uni-transition/uni-transition.vue:143", `方法 ${i2} 不存在`);
+          }
+        }
+        this.animation.step(config);
+        return this;
       },
       /**
-       * 打开日历弹窗
+       *  ref 触发 执行动画
        */
+      run(fn) {
+        if (!this.animation)
+          return;
+        this.animation.run(fn);
+      },
+      // 开始过度动画
       open() {
-        if (this.clearDate && !this.insert) {
-          this.cale.cleanMultipleStatus();
-          this.init(this.date);
+        clearTimeout(this.timer);
+        this.transform = "";
+        this.isShow = true;
+        let { opacity, transform } = this.styleInit(false);
+        if (typeof opacity !== "undefined") {
+          this.opacity = opacity;
         }
-        this.show = true;
+        this.transform = transform;
         this.$nextTick(() => {
-          setTimeout(() => {
-            this.aniMaskShow = true;
-          }, 50);
+          this.timer = setTimeout(() => {
+            this.animation = createAnimation(this.config, this);
+            this.tranfromInit(false).step();
+            this.animation.run();
+            this.$emit("change", {
+              detail: this.isShow
+            });
+          }, 20);
         });
       },
-      /**
-       * 关闭日历弹窗
-       */
-      close() {
-        this.aniMaskShow = false;
-        this.$nextTick(() => {
-          setTimeout(() => {
-            this.show = false;
-            this.$emit("close");
-          }, 300);
-        });
-      },
-      /**
-       * 确认按钮
-       */
-      confirm() {
-        this.setEmit("confirm");
-        this.close();
-      },
-      /**
-       * 变化触发
-       */
-      change() {
-        if (!this.insert)
+      // 关闭过度动画
+      close(type) {
+        if (!this.animation)
           return;
-        this.setEmit("change");
-      },
-      /**
-       * 选择月份触发
-       */
-      monthSwitch() {
-        let {
-          year,
-          month
-        } = this.nowDate;
-        this.$emit("monthSwitch", {
-          year,
-          month: Number(month)
+        this.tranfromInit(true).step().run(() => {
+          this.isShow = false;
+          this.animationData = null;
+          this.animation = null;
+          let { opacity, transform } = this.styleInit(false);
+          this.opacity = opacity || 1;
+          this.transform = transform;
+          this.$emit("change", {
+            detail: this.isShow
+          });
         });
       },
-      /**
-       * 派发事件
-       * @param {Object} name
-       */
-      setEmit(name) {
-        let {
-          year,
-          month,
-          date,
-          fullDate,
-          lunar,
-          extraInfo
-        } = this.calendar;
-        this.$emit(name, {
-          range: this.cale.multipleStatus,
-          year,
-          month,
-          date,
-          fulldate: fullDate,
-          lunar,
-          extraInfo: extraInfo || {}
-        });
-      },
-      /**
-       * 选择天触发
-       * @param {Object} weeks
-       */
-      choiceDate(weeks) {
-        if (weeks.disable)
-          return;
-        this.calendar = weeks;
-        this.cale.setMultiple(this.calendar.fullDate);
-        this.weeks = this.cale.weeks;
-        this.change();
-      },
-      /**
-       * 回到今天
-       */
-      backToday() {
-        const nowYearMonth = `${this.nowDate.year}-${this.nowDate.month}`;
-        const date = this.cale.getDate(/* @__PURE__ */ new Date());
-        const todayYearMonth = `${date.year}-${date.month}`;
-        if (nowYearMonth !== todayYearMonth) {
-          this.monthSwitch();
+      // 处理动画开始前的默认样式
+      styleInit(type) {
+        let styles = {
+          transform: ""
+        };
+        let buildStyle = (type2, mode) => {
+          if (mode === "fade") {
+            styles.opacity = this.animationType(type2)[mode];
+          } else {
+            styles.transform += this.animationType(type2)[mode] + " ";
+          }
+        };
+        if (typeof this.modeClass === "string") {
+          buildStyle(type, this.modeClass);
+        } else {
+          this.modeClass.forEach((mode) => {
+            buildStyle(type, mode);
+          });
         }
-        this.init(date.fullDate);
-        this.change();
+        return styles;
       },
-      /**
-       * 上个月
-       */
-      pre() {
-        const preDate = this.cale.getDate(this.nowDate.fullDate, -1, "month").fullDate;
-        this.setDate(preDate);
-        this.monthSwitch();
+      // 处理内置组合动画
+      tranfromInit(type) {
+        let buildTranfrom = (type2, mode) => {
+          let aniNum = null;
+          if (mode === "fade") {
+            aniNum = type2 ? 0 : 1;
+          } else {
+            aniNum = type2 ? "-100%" : "0";
+            if (mode === "zoom-in") {
+              aniNum = type2 ? 0.8 : 1;
+            }
+            if (mode === "zoom-out") {
+              aniNum = type2 ? 1.2 : 1;
+            }
+            if (mode === "slide-right") {
+              aniNum = type2 ? "100%" : "0";
+            }
+            if (mode === "slide-bottom") {
+              aniNum = type2 ? "100%" : "0";
+            }
+          }
+          this.animation[this.animationMode()[mode]](aniNum);
+        };
+        if (typeof this.modeClass === "string") {
+          buildTranfrom(type, this.modeClass);
+        } else {
+          this.modeClass.forEach((mode) => {
+            buildTranfrom(type, mode);
+          });
+        }
+        return this.animation;
       },
-      /**
-       * 下个月
-       */
-      next() {
-        const nextDate = this.cale.getDate(this.nowDate.fullDate, 1, "month").fullDate;
-        this.setDate(nextDate);
-        this.monthSwitch();
+      animationType(type) {
+        return {
+          fade: type ? 1 : 0,
+          "slide-top": `translateY(${type ? "0" : "-100%"})`,
+          "slide-right": `translateX(${type ? "0" : "100%"})`,
+          "slide-bottom": `translateY(${type ? "0" : "100%"})`,
+          "slide-left": `translateX(${type ? "0" : "-100%"})`,
+          "zoom-in": `scaleX(${type ? 1 : 0.8}) scaleY(${type ? 1 : 0.8})`,
+          "zoom-out": `scaleX(${type ? 1 : 1.2}) scaleY(${type ? 1 : 1.2})`
+        };
       },
-      /**
-       * 设置日期
-       * @param {Object} date
-       */
-      setDate(date) {
-        this.cale.setDate(date);
-        this.weeks = this.cale.weeks;
-        this.nowDate = this.cale.getInfo(date);
+      // 内置动画类型与实际动画对应字典
+      animationMode() {
+        return {
+          fade: "opacity",
+          "slide-top": "translateY",
+          "slide-right": "translateX",
+          "slide-bottom": "translateY",
+          "slide-left": "translateX",
+          "zoom-in": "scale",
+          "zoom-out": "scale"
+        };
+      },
+      // 驼峰转中横线
+      toLine(name) {
+        return name.replace(/([A-Z])/g, "-$1").toLowerCase();
       }
     }
   };
-  function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_calendar_item = vue.resolveComponent("calendar-item");
-    return vue.openBlock(), vue.createElementBlock("view", { class: "uni-calendar" }, [
-      !$props.insert && $data.show ? (vue.openBlock(), vue.createElementBlock(
-        "view",
-        {
-          key: 0,
-          class: vue.normalizeClass(["uni-calendar__mask", { "uni-calendar--mask-show": $data.aniMaskShow }]),
-          onClick: _cache[0] || (_cache[0] = (...args) => $options.clean && $options.clean(...args))
+  function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
+    return $data.isShow || $props.onceRender ? vue.withDirectives((vue.openBlock(), vue.createElementBlock("view", {
+      key: 0,
+      ref: "ani",
+      animation: $data.animationData,
+      class: vue.normalizeClass($props.customClass),
+      style: vue.normalizeStyle($options.transformStyles),
+      onClick: _cache[0] || (_cache[0] = (...args) => $options.onClick && $options.onClick(...args))
+    }, [
+      vue.renderSlot(_ctx.$slots, "default")
+    ], 14, ["animation"])), [
+      [vue.vShow, $data.isShow]
+    ]) : vue.createCommentVNode("v-if", true);
+  }
+  const __easycom_0$7 = /* @__PURE__ */ _export_sfc(_sfc_main$B, [["render", _sfc_render$p], ["__file", "D:/ruangong/emosphere/uni_modules/uni-transition/components/uni-transition/uni-transition.vue"]]);
+  const _sfc_main$A = {
+    name: "uniPopup",
+    components: {},
+    emits: ["change", "maskClick"],
+    props: {
+      // 开启动画
+      animation: {
+        type: Boolean,
+        default: true
+      },
+      // 弹出层类型，可选值，top: 顶部弹出层；bottom：底部弹出层；center：全屏弹出层
+      // message: 消息提示 ; dialog : 对话框
+      type: {
+        type: String,
+        default: "center"
+      },
+      // maskClick
+      isMaskClick: {
+        type: Boolean,
+        default: null
+      },
+      // TODO 2 个版本后废弃属性 ，使用 isMaskClick
+      maskClick: {
+        type: Boolean,
+        default: null
+      },
+      backgroundColor: {
+        type: String,
+        default: "none"
+      },
+      safeArea: {
+        type: Boolean,
+        default: true
+      },
+      maskBackgroundColor: {
+        type: String,
+        default: "rgba(0, 0, 0, 0.4)"
+      }
+    },
+    watch: {
+      /**
+       * 监听type类型
+       */
+      type: {
+        handler: function(type) {
+          if (!this.config[type])
+            return;
+          this[this.config[type]](true);
         },
-        null,
-        2
-        /* CLASS */
-      )) : vue.createCommentVNode("v-if", true),
-      $props.insert || $data.show ? (vue.openBlock(), vue.createElementBlock(
-        "view",
-        {
-          key: 1,
-          class: vue.normalizeClass(["uni-calendar__content", { "uni-calendar--fixed": !$props.insert, "uni-calendar--ani-show": $data.aniMaskShow }])
+        immediate: true
+      },
+      isDesktop: {
+        handler: function(newVal) {
+          if (!this.config[newVal])
+            return;
+          this[this.config[this.type]](true);
         },
-        [
-          !$props.insert ? (vue.openBlock(), vue.createElementBlock("view", {
-            key: 0,
-            class: "uni-calendar__header uni-calendar--fixed-top"
-          }, [
-            vue.createElementVNode("view", {
-              class: "uni-calendar__header-btn-box",
-              onClick: _cache[1] || (_cache[1] = (...args) => $options.close && $options.close(...args))
-            }, [
+        immediate: true
+      },
+      /**
+       * 监听遮罩是否可点击
+       * @param {Object} val
+       */
+      maskClick: {
+        handler: function(val) {
+          this.mkclick = val;
+        },
+        immediate: true
+      },
+      isMaskClick: {
+        handler: function(val) {
+          this.mkclick = val;
+        },
+        immediate: true
+      },
+      // H5 下禁止底部滚动
+      showPopup(show) {
+      }
+    },
+    data() {
+      return {
+        duration: 300,
+        ani: [],
+        showPopup: false,
+        showTrans: false,
+        popupWidth: 0,
+        popupHeight: 0,
+        config: {
+          top: "top",
+          bottom: "bottom",
+          center: "center",
+          left: "left",
+          right: "right",
+          message: "top",
+          dialog: "center",
+          share: "bottom"
+        },
+        maskClass: {
+          position: "fixed",
+          bottom: 0,
+          top: 0,
+          left: 0,
+          right: 0,
+          backgroundColor: "rgba(0, 0, 0, 0.4)"
+        },
+        transClass: {
+          position: "fixed",
+          left: 0,
+          right: 0
+        },
+        maskShow: true,
+        mkclick: true,
+        popupstyle: this.isDesktop ? "fixforpc-top" : "top"
+      };
+    },
+    computed: {
+      isDesktop() {
+        return this.popupWidth >= 500 && this.popupHeight >= 500;
+      },
+      bg() {
+        if (this.backgroundColor === "" || this.backgroundColor === "none") {
+          return "transparent";
+        }
+        return this.backgroundColor;
+      }
+    },
+    mounted() {
+      const fixSize = () => {
+        const {
+          windowWidth,
+          windowHeight,
+          windowTop,
+          safeArea,
+          screenHeight,
+          safeAreaInsets
+        } = uni.getSystemInfoSync();
+        this.popupWidth = windowWidth;
+        this.popupHeight = windowHeight + (windowTop || 0);
+        if (safeArea && this.safeArea) {
+          this.safeAreaInsets = safeAreaInsets.bottom;
+        } else {
+          this.safeAreaInsets = 0;
+        }
+      };
+      fixSize();
+    },
+    // TODO vue3
+    unmounted() {
+      this.setH5Visible();
+    },
+    created() {
+      if (this.isMaskClick === null && this.maskClick === null) {
+        this.mkclick = true;
+      } else {
+        this.mkclick = this.isMaskClick !== null ? this.isMaskClick : this.maskClick;
+      }
+      if (this.animation) {
+        this.duration = 300;
+      } else {
+        this.duration = 0;
+      }
+      this.messageChild = null;
+      this.clearPropagation = false;
+      this.maskClass.backgroundColor = this.maskBackgroundColor;
+    },
+    methods: {
+      setH5Visible() {
+      },
+      /**
+       * 公用方法，不显示遮罩层
+       */
+      closeMask() {
+        this.maskShow = false;
+      },
+      /**
+       * 公用方法，遮罩层禁止点击
+       */
+      disableMask() {
+        this.mkclick = false;
+      },
+      // TODO nvue 取消冒泡
+      clear(e2) {
+        e2.stopPropagation();
+        this.clearPropagation = true;
+      },
+      open(direction) {
+        if (this.showPopup) {
+          return;
+        }
+        let innerType = ["top", "center", "bottom", "left", "right", "message", "dialog", "share"];
+        if (!(direction && innerType.indexOf(direction) !== -1)) {
+          direction = this.type;
+        }
+        if (!this.config[direction]) {
+          formatAppLog("error", "at uni_modules/uni-popup/components/uni-popup/uni-popup.vue:279", "缺少类型：", direction);
+          return;
+        }
+        this[this.config[direction]]();
+        this.$emit("change", {
+          show: true,
+          type: direction
+        });
+      },
+      close(type) {
+        this.showTrans = false;
+        this.$emit("change", {
+          show: false,
+          type: this.type
+        });
+        clearTimeout(this.timer);
+        this.timer = setTimeout(() => {
+          this.showPopup = false;
+        }, 300);
+      },
+      // TODO 处理冒泡事件，头条的冒泡事件有问题 ，先这样兼容
+      touchstart() {
+        this.clearPropagation = false;
+      },
+      onTap() {
+        if (this.clearPropagation) {
+          this.clearPropagation = false;
+          return;
+        }
+        this.$emit("maskClick");
+        if (!this.mkclick)
+          return;
+        this.close();
+      },
+      /**
+       * 顶部弹出样式处理
+       */
+      top(type) {
+        this.popupstyle = this.isDesktop ? "fixforpc-top" : "top";
+        this.ani = ["slide-top"];
+        this.transClass = {
+          position: "fixed",
+          left: 0,
+          right: 0,
+          backgroundColor: this.bg
+        };
+        if (type)
+          return;
+        this.showPopup = true;
+        this.showTrans = true;
+        this.$nextTick(() => {
+          if (this.messageChild && this.type === "message") {
+            this.messageChild.timerClose();
+          }
+        });
+      },
+      /**
+       * 底部弹出样式处理
+       */
+      bottom(type) {
+        this.popupstyle = "bottom";
+        this.ani = ["slide-bottom"];
+        this.transClass = {
+          position: "fixed",
+          left: 0,
+          right: 0,
+          bottom: 0,
+          paddingBottom: this.safeAreaInsets + "px",
+          backgroundColor: this.bg
+        };
+        if (type)
+          return;
+        this.showPopup = true;
+        this.showTrans = true;
+      },
+      /**
+       * 中间弹出样式处理
+       */
+      center(type) {
+        this.popupstyle = "center";
+        this.ani = ["zoom-out", "fade"];
+        this.transClass = {
+          position: "fixed",
+          display: "flex",
+          flexDirection: "column",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          top: 0,
+          justifyContent: "center",
+          alignItems: "center"
+        };
+        if (type)
+          return;
+        this.showPopup = true;
+        this.showTrans = true;
+      },
+      left(type) {
+        this.popupstyle = "left";
+        this.ani = ["slide-left"];
+        this.transClass = {
+          position: "fixed",
+          left: 0,
+          bottom: 0,
+          top: 0,
+          backgroundColor: this.bg,
+          display: "flex",
+          flexDirection: "column"
+        };
+        if (type)
+          return;
+        this.showPopup = true;
+        this.showTrans = true;
+      },
+      right(type) {
+        this.popupstyle = "right";
+        this.ani = ["slide-right"];
+        this.transClass = {
+          position: "fixed",
+          bottom: 0,
+          right: 0,
+          top: 0,
+          backgroundColor: this.bg,
+          display: "flex",
+          flexDirection: "column"
+        };
+        if (type)
+          return;
+        this.showPopup = true;
+        this.showTrans = true;
+      }
+    }
+  };
+  function _sfc_render$o(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_uni_transition = resolveEasycom(vue.resolveDynamicComponent("uni-transition"), __easycom_0$7);
+    return $data.showPopup ? (vue.openBlock(), vue.createElementBlock(
+      "view",
+      {
+        key: 0,
+        class: vue.normalizeClass(["uni-popup", [$data.popupstyle, $options.isDesktop ? "fixforpc-z-index" : ""]])
+      },
+      [
+        vue.createElementVNode(
+          "view",
+          {
+            onTouchstart: _cache[1] || (_cache[1] = (...args) => $options.touchstart && $options.touchstart(...args))
+          },
+          [
+            $data.maskShow ? (vue.openBlock(), vue.createBlock(_component_uni_transition, {
+              key: "1",
+              name: "mask",
+              "mode-class": "fade",
+              styles: $data.maskClass,
+              duration: $data.duration,
+              show: $data.showTrans,
+              onClick: $options.onTap
+            }, null, 8, ["styles", "duration", "show", "onClick"])) : vue.createCommentVNode("v-if", true),
+            vue.createVNode(_component_uni_transition, {
+              key: "2",
+              "mode-class": $data.ani,
+              name: "content",
+              styles: $data.transClass,
+              duration: $data.duration,
+              show: $data.showTrans,
+              onClick: $options.onTap
+            }, {
+              default: vue.withCtx(() => [
+                vue.createElementVNode(
+                  "view",
+                  {
+                    class: vue.normalizeClass(["uni-popup__wrapper", [$data.popupstyle]]),
+                    style: vue.normalizeStyle({ backgroundColor: $options.bg }),
+                    onClick: _cache[0] || (_cache[0] = (...args) => $options.clear && $options.clear(...args))
+                  },
+                  [
+                    vue.renderSlot(_ctx.$slots, "default", {}, void 0, true)
+                  ],
+                  6
+                  /* CLASS, STYLE */
+                )
+              ]),
+              _: 3
+              /* FORWARDED */
+            }, 8, ["mode-class", "styles", "duration", "show", "onClick"])
+          ],
+          32
+          /* HYDRATE_EVENTS */
+        )
+      ],
+      2
+      /* CLASS */
+    )) : vue.createCommentVNode("v-if", true);
+  }
+  const __easycom_0$6 = /* @__PURE__ */ _export_sfc(_sfc_main$A, [["render", _sfc_render$o], ["__scopeId", "data-v-4dd3c44b"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-popup/components/uni-popup/uni-popup.vue"]]);
+  const _sfc_main$z = {
+    name: "calendar",
+    data() {
+      return {
+        popupContents: [],
+        click_day: {},
+        unfold: true,
+        week: [
+          {
+            label: "日",
+            value: 7
+          },
+          {
+            label: "一",
+            value: 1
+          },
+          {
+            label: "二",
+            value: 2
+          },
+          {
+            label: "三",
+            value: 3
+          },
+          {
+            label: "四",
+            value: 4
+          },
+          {
+            label: "五",
+            value: 5
+          },
+          {
+            label: "六",
+            value: 6
+          }
+        ],
+        blankDay: 0,
+        //空白天数
+        today: {},
+        //当天
+        current: {},
+        //当前的年月
+        daysArr: [],
+        list: [],
+        //需要下标的日期
+        currentYearMonth: {}
+        //当前年月
+      };
+    },
+    computed: {
+      contentHeight() {
+        let height = Math.ceil((this.blankDay + this.daysArr.length) / 7) * 88;
+        return height + "rpx";
+      }
+    },
+    props: {
+      pointList: {
+        type: Array,
+        default() {
+          return [];
+        }
+      },
+      defaultDate: {
+        type: String,
+        default() {
+          return "";
+        }
+      },
+      showBtn: {
+        type: Boolean,
+        default() {
+          return true;
+        }
+      },
+      show: {
+        type: Boolean,
+        default() {
+          return true;
+        }
+      },
+      background: {
+        type: String,
+        default() {
+          return "rgb(255, 255, 255,0.6)";
+        }
+      },
+      weekColor: {
+        type: String,
+        default() {
+          return "#000";
+        }
+      },
+      dayColor: {
+        type: String,
+        default() {
+          return "#000";
+        }
+      },
+      selectBg: {
+        type: String,
+        default() {
+          return "#488C88";
+        }
+      },
+      pointColor: {
+        type: String,
+        default() {
+          return "#000";
+        }
+      },
+      backColor: {
+        type: String,
+        default() {
+          return "#000";
+        }
+      },
+      backBg: {
+        type: String,
+        default() {
+          return "rgba(255, 255, 255, 0.19)";
+        }
+      },
+      actionColor: {
+        type: String,
+        default() {
+          return "#000";
+        }
+      },
+      unfoldBtnColor: {
+        type: String,
+        default() {
+          return "#000";
+        }
+      }
+    },
+    created() {
+      this.unfold = this.show;
+      this.list = this.pointList;
+      this.fomatePointTime();
+      this.init(this.defaultDate == "");
+    },
+    methods: {
+      changMonth(num) {
+        const {
+          year,
+          month
+        } = this.getMonthYear(num);
+        this.makeCalendar(year, month);
+      },
+      // 获取前几个月,未来几个月的年份和月份
+      getMonthYear(num) {
+        let month = this.currentYearMonth.month;
+        let year = this.currentYearMonth.year;
+        let year2 = year;
+        let month2 = month + num;
+        if (month + num <= 0) {
+          year2 = year - 1 - parseInt(Math.abs(month2) / 12);
+          month2 = 12 - Math.abs(month2) % 12;
+        } else if (month2 / 12 > 1) {
+          year2 = year + (month2 % 12 == 0 ? 0 : parseInt(month2 / 12));
+          month2 = parseInt(month2 % 12) == 0 ? 12 : parseInt(month2 % 12);
+        }
+        return {
+          year: year2,
+          month: month2
+        };
+      },
+      changeDay(item) {
+        this.current = item;
+        let { year, month, day } = item;
+        this.$emit("changeDate", { year, month, day });
+        this.click_day = `${year}-${month}-${day}`;
+        this.$refs.popup.open(item);
+        uni.request({
+          url: "http://8.136.81.197:8080/mood_record/day",
+          method: "GET",
+          data: {
+            uid: store.state.userId,
+            date: `${year}-${month}-${day}`
+          },
+          success: (response) => {
+            formatAppLog("log", "at uni_modules/tmt-calendar/components/tmt-calendar/tmt-calendar.vue:243", response.data);
+            if (response.data["record"]) {
+              const newData = {
+                mood: response.data["record"].mood,
+                title: response.data["record"].title,
+                content: response.data["record"].content
+              };
+              this.$set(this.popupContents, 0, newData);
+            } else {
+              const defaultData = {
+                mood: "question",
+                title: "???",
+                content: "?"
+              };
+              this.$set(this.popupContents, 0, defaultData);
+            }
+          },
+          fail: (error) => {
+            formatAppLog("error", "at uni_modules/tmt-calendar/components/tmt-calendar/tmt-calendar.vue:267", error);
+          }
+        });
+      },
+      // 获取某年某月的天数
+      getDays(year, month) {
+        let now = new Date(year, month, 0);
+        return now.getDate();
+      },
+      //获取某一天为星期几
+      getWeekByDay(time2) {
+        let day = new Date(Date.parse(time2.replace(/-/g, "/")));
+        return day.getDay() == 0 ? 7 : day.getDay();
+      },
+      init(nowTime) {
+        let setTime = nowTime ? /* @__PURE__ */ new Date() : new Date(this.defaultDate);
+        let year = setTime.getFullYear();
+        let month = setTime.getMonth() + 1;
+        let day = setTime.getDate();
+        if (!(this.defaultDate != "" && nowTime)) {
+          this.current = {
+            year,
+            month,
+            day
+          };
+        }
+        this.today = {
+          year: (/* @__PURE__ */ new Date()).getFullYear(),
+          month: (/* @__PURE__ */ new Date()).getMonth() + 1,
+          day: (/* @__PURE__ */ new Date()).getDate()
+        };
+        this.makeCalendar(year, month);
+      },
+      fomatePointTime() {
+        let pointList = this.list;
+        pointList = pointList.map((item) => {
+          item = item.replace(/-/g, "/");
+          let timeArr = item.split("/");
+          let timeStr = "";
+          timeArr.map((time2) => {
+            time2 = parseInt(time2);
+            timeStr += time2;
+            return time2;
+          });
+          return timeStr;
+        });
+        this.list = pointList;
+      },
+      makeCalendar(year, month) {
+        let today = this.today;
+        let days = this.getDays(year, month);
+        formatAppLog("log", "at uni_modules/tmt-calendar/components/tmt-calendar/tmt-calendar.vue:319", days);
+        let firstDayWeek = this.getWeekByDay(`${year}-${month}-1`);
+        let weekIndex = this.week.findIndex((item) => {
+          return item.value == firstDayWeek;
+        });
+        let daysArr = [];
+        for (let i2 = 1; i2 <= days; i2++) {
+          let point = this.list.findIndex((item) => {
+            return item == String(year) + String(month) + String(i2);
+          }) != -1;
+          daysArr.push({
+            year,
+            month,
+            day: i2,
+            point,
+            today: year == today.year && month == today.month && i2 == today.day
+          });
+        }
+        this.currentYearMonth = {
+          year,
+          month
+        };
+        this.daysArr = daysArr;
+        this.blankDay = weekIndex == -1 ? 0 : weekIndex;
+      }
+    }
+  };
+  function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_uni_popup = resolveEasycom(vue.resolveDynamicComponent("uni-popup"), __easycom_0$6);
+    return vue.openBlock(), vue.createElementBlock(
+      "view",
+      {
+        class: "container",
+        style: vue.normalizeStyle({ background: $props.background })
+      },
+      [
+        vue.createElementVNode("view", { class: "tmt-header" }, [
+          vue.createElementVNode(
+            "view",
+            {
+              class: "select-wrap",
+              style: vue.normalizeStyle({ color: $props.actionColor })
+            },
+            [
+              vue.createElementVNode("view", {
+                class: "p20",
+                onClick: _cache[0] || (_cache[0] = ($event) => $options.changMonth(-1))
+              }, [
+                vue.createElementVNode(
+                  "view",
+                  {
+                    class: "arrow-left",
+                    style: vue.normalizeStyle([{ "border-left-color": $props.actionColor }, { "border-bottom-color": $props.actionColor }])
+                  },
+                  null,
+                  4
+                  /* STYLE */
+                )
+              ]),
               vue.createElementVNode(
-                "text",
-                { class: "uni-calendar__header-text uni-calendar--fixed-width" },
-                vue.toDisplayString($options.cancelText),
+                "view",
+                { class: "time" },
+                vue.toDisplayString(`${$data.currentYearMonth.year}年${$data.currentYearMonth.month >= 10 ? $data.currentYearMonth.month : "0" + $data.currentYearMonth.month}月`),
                 1
                 /* TEXT */
-              )
-            ]),
-            vue.createElementVNode("view", {
-              class: "uni-calendar__header-btn-box",
-              onClick: _cache[2] || (_cache[2] = (...args) => $options.confirm && $options.confirm(...args))
-            }, [
-              vue.createElementVNode(
-                "text",
-                { class: "uni-calendar__header-text uni-calendar--fixed-width" },
-                vue.toDisplayString($options.okText),
-                1
-                /* TEXT */
-              )
-            ])
-          ])) : vue.createCommentVNode("v-if", true),
-          vue.createElementVNode("view", { class: "uni-calendar__header" }, [
-            vue.createElementVNode("view", {
-              class: "uni-calendar__header-btn-box",
-              onClick: _cache[3] || (_cache[3] = vue.withModifiers((...args) => $options.pre && $options.pre(...args), ["stop"]))
-            }, [
-              vue.createElementVNode("view", { class: "uni-calendar__header-btn uni-calendar--left" })
-            ]),
-            vue.createElementVNode("picker", {
-              mode: "date",
-              value: $props.date,
-              fields: "month",
-              onChange: _cache[4] || (_cache[4] = (...args) => $options.bindDateChange && $options.bindDateChange(...args))
-            }, [
-              vue.createElementVNode(
-                "text",
-                { class: "uni-calendar__header-text" },
-                vue.toDisplayString(($data.nowDate.year || "") + " / " + ($data.nowDate.month || "")),
-                1
-                /* TEXT */
-              )
-            ], 40, ["value"]),
-            vue.createElementVNode("view", {
-              class: "uni-calendar__header-btn-box",
-              onClick: _cache[5] || (_cache[5] = vue.withModifiers((...args) => $options.next && $options.next(...args), ["stop"]))
-            }, [
-              vue.createElementVNode("view", { class: "uni-calendar__header-btn uni-calendar--right" })
-            ]),
-            vue.createElementVNode(
-              "text",
-              {
-                class: "uni-calendar__backtoday",
-                onClick: _cache[6] || (_cache[6] = (...args) => $options.backToday && $options.backToday(...args))
-              },
-              vue.toDisplayString($options.todayText),
-              1
-              /* TEXT */
-            )
-          ]),
-          vue.createElementVNode("view", { class: "uni-calendar__box" }, [
-            $props.showMonth ? (vue.openBlock(), vue.createElementBlock("view", {
-              key: 0,
-              class: "uni-calendar__box-bg"
-            }, [
-              vue.createElementVNode(
-                "text",
-                { class: "uni-calendar__box-bg-text" },
-                vue.toDisplayString($data.nowDate.month),
-                1
-                /* TEXT */
-              )
-            ])) : vue.createCommentVNode("v-if", true),
-            vue.createElementVNode("view", { class: "uni-calendar__weeks" }, [
-              vue.createElementVNode("view", { class: "uni-calendar__weeks-day" }, [
+              ),
+              vue.createElementVNode("view", {
+                class: "p20",
+                onClick: _cache[1] || (_cache[1] = ($event) => $options.changMonth(1))
+              }, [
                 vue.createElementVNode(
-                  "text",
-                  { class: "uni-calendar__weeks-day-text" },
-                  vue.toDisplayString($options.SUNText),
-                  1
-                  /* TEXT */
-                )
-              ]),
-              vue.createElementVNode("view", { class: "uni-calendar__weeks-day" }, [
-                vue.createElementVNode(
-                  "text",
-                  { class: "uni-calendar__weeks-day-text" },
-                  vue.toDisplayString($options.monText),
-                  1
-                  /* TEXT */
-                )
-              ]),
-              vue.createElementVNode("view", { class: "uni-calendar__weeks-day" }, [
-                vue.createElementVNode(
-                  "text",
-                  { class: "uni-calendar__weeks-day-text" },
-                  vue.toDisplayString($options.TUEText),
-                  1
-                  /* TEXT */
-                )
-              ]),
-              vue.createElementVNode("view", { class: "uni-calendar__weeks-day" }, [
-                vue.createElementVNode(
-                  "text",
-                  { class: "uni-calendar__weeks-day-text" },
-                  vue.toDisplayString($options.WEDText),
-                  1
-                  /* TEXT */
-                )
-              ]),
-              vue.createElementVNode("view", { class: "uni-calendar__weeks-day" }, [
-                vue.createElementVNode(
-                  "text",
-                  { class: "uni-calendar__weeks-day-text" },
-                  vue.toDisplayString($options.THUText),
-                  1
-                  /* TEXT */
-                )
-              ]),
-              vue.createElementVNode("view", { class: "uni-calendar__weeks-day" }, [
-                vue.createElementVNode(
-                  "text",
-                  { class: "uni-calendar__weeks-day-text" },
-                  vue.toDisplayString($options.FRIText),
-                  1
-                  /* TEXT */
-                )
-              ]),
-              vue.createElementVNode("view", { class: "uni-calendar__weeks-day" }, [
-                vue.createElementVNode(
-                  "text",
-                  { class: "uni-calendar__weeks-day-text" },
-                  vue.toDisplayString($options.SATText),
-                  1
-                  /* TEXT */
+                  "view",
+                  {
+                    class: "arrow-right",
+                    style: vue.normalizeStyle([{ "border-left-color": $props.actionColor }, { "border-right-color": $props.actionColor }])
+                  },
+                  null,
+                  4
+                  /* STYLE */
                 )
               ])
-            ]),
+            ],
+            4
+            /* STYLE */
+          ),
+          vue.createElementVNode(
+            "view",
+            {
+              class: "back",
+              style: vue.normalizeStyle([{ color: $props.backColor }, { background: $props.backBg }]),
+              onClick: _cache[2] || (_cache[2] = ($event) => $options.init(true))
+            },
+            " 返回本月 ",
+            4
+            /* STYLE */
+          )
+        ]),
+        vue.createElementVNode("view", { class: "tmt-content" }, [
+          vue.createElementVNode("view", { class: "tmt-week-wrap" }, [
             (vue.openBlock(true), vue.createElementBlock(
               vue.Fragment,
               null,
-              vue.renderList($data.weeks, (item, weekIndex) => {
-                return vue.openBlock(), vue.createElementBlock("view", {
-                  class: "uni-calendar__weeks",
-                  key: weekIndex
-                }, [
-                  (vue.openBlock(true), vue.createElementBlock(
-                    vue.Fragment,
-                    null,
-                    vue.renderList(item, (weeks, weeksIndex) => {
-                      return vue.openBlock(), vue.createElementBlock("view", {
-                        class: "uni-calendar__weeks-item",
-                        key: weeksIndex
-                      }, [
-                        vue.createVNode(_component_calendar_item, {
-                          class: "uni-calendar-item--hook",
-                          weeks,
-                          calendar: $data.calendar,
-                          selected: $props.selected,
-                          lunar: $props.lunar,
-                          onChange: $options.choiceDate
-                        }, null, 8, ["weeks", "calendar", "selected", "lunar", "onChange"])
-                      ]);
-                    }),
-                    128
-                    /* KEYED_FRAGMENT */
-                  ))
-                ]);
+              vue.renderList($data.week, (item, index) => {
+                return vue.openBlock(), vue.createElementBlock(
+                  "view",
+                  {
+                    class: "cell week-item",
+                    style: vue.normalizeStyle({ color: $props.weekColor }),
+                    key: index
+                  },
+                  vue.toDisplayString(item.label),
+                  5
+                  /* TEXT, STYLE */
+                );
               }),
               128
               /* KEYED_FRAGMENT */
             ))
-          ])
-        ],
-        2
-        /* CLASS */
-      )) : vue.createCommentVNode("v-if", true)
-    ]);
+          ]),
+          vue.createElementVNode(
+            "view",
+            {
+              class: "tmt-day-wrap",
+              style: vue.normalizeStyle([{ height: $data.unfold ? $options.contentHeight : "88rpx" }, { color: $props.dayColor }])
+            },
+            [
+              (vue.openBlock(true), vue.createElementBlock(
+                vue.Fragment,
+                null,
+                vue.renderList($data.blankDay, (index) => {
+                  return vue.openBlock(), vue.createElementBlock("view", { class: "cell" });
+                }),
+                256
+                /* UNKEYED_FRAGMENT */
+              )),
+              (vue.openBlock(true), vue.createElementBlock(
+                vue.Fragment,
+                null,
+                vue.renderList($data.daysArr, (item, index) => {
+                  return vue.openBlock(), vue.createElementBlock("view", {
+                    class: "cell",
+                    onClick: ($event) => $options.changeDay(item)
+                  }, [
+                    vue.createElementVNode(
+                      "view",
+                      {
+                        class: "dayText",
+                        style: vue.normalizeStyle($data.current.year == item.year && $data.current.month == item.month && $data.current.day == item.day ? "background:" + $props.selectBg : "")
+                      },
+                      [
+                        vue.createTextVNode(
+                          vue.toDisplayString(item.today ? "今" : item.day) + " ",
+                          1
+                          /* TEXT */
+                        ),
+                        item.point ? (vue.openBlock(), vue.createElementBlock(
+                          "view",
+                          {
+                            key: 0,
+                            class: "point",
+                            style: vue.normalizeStyle({ background: $props.pointColor })
+                          },
+                          null,
+                          4
+                          /* STYLE */
+                        )) : vue.createCommentVNode("v-if", true)
+                      ],
+                      4
+                      /* STYLE */
+                    )
+                  ], 8, ["onClick"]);
+                }),
+                256
+                /* UNKEYED_FRAGMENT */
+              ))
+            ],
+            4
+            /* STYLE */
+          )
+        ]),
+        $props.showBtn ? (vue.openBlock(), vue.createElementBlock("view", {
+          key: 0,
+          class: "tmt-footer",
+          onClick: _cache[3] || (_cache[3] = ($event) => $data.unfold = !$data.unfold)
+        }, [
+          vue.createElementVNode(
+            "view",
+            {
+              class: vue.normalizeClass(["arrow-down", { on: $data.unfold }]),
+              style: vue.normalizeStyle([{ "border-left-color": $props.unfoldBtnColor }, { "border-bottom-color": $props.unfoldBtnColor }])
+            },
+            null,
+            6
+            /* CLASS, STYLE */
+          )
+        ])) : vue.createCommentVNode("v-if", true),
+        vue.createElementVNode("view", null, [
+          vue.createCommentVNode(" 普通弹窗 "),
+          vue.createVNode(_component_uni_popup, {
+            ref: "popup",
+            "background-color": "#fff",
+            onChange: _ctx.change
+          }, {
+            default: vue.withCtx(() => [
+              vue.createElementVNode(
+                "view",
+                {
+                  class: vue.normalizeClass(["popup-content", { "popup-height": _ctx.type === "left" || _ctx.type === "right" }])
+                },
+                [
+                  $data.popupContents ? (vue.openBlock(), vue.createElementBlock("view", { key: 0 }, [
+                    (vue.openBlock(true), vue.createElementBlock(
+                      vue.Fragment,
+                      null,
+                      vue.renderList($data.popupContents, (popupContent, index) => {
+                        return vue.openBlock(), vue.createElementBlock(
+                          vue.Fragment,
+                          { key: index },
+                          [
+                            vue.createElementVNode("view", { class: "left" }, [
+                              vue.createElementVNode(
+                                "text",
+                                { class: "time" },
+                                vue.toDisplayString($data.click_day),
+                                1
+                                /* TEXT */
+                              ),
+                              vue.createElementVNode("image", {
+                                src: "/static/images/qingxu-" + popupContent.mood + ".png",
+                                alt: "",
+                                class: "photosize"
+                              }, null, 8, ["src"])
+                            ]),
+                            vue.createElementVNode("view", { class: "right" }, [
+                              vue.createElementVNode(
+                                "text",
+                                { class: "title" },
+                                vue.toDisplayString(popupContent.title),
+                                1
+                                /* TEXT */
+                              ),
+                              vue.createElementVNode(
+                                "text",
+                                { class: "content" },
+                                vue.toDisplayString(popupContent.content),
+                                1
+                                /* TEXT */
+                              )
+                            ])
+                          ],
+                          64
+                          /* STABLE_FRAGMENT */
+                        );
+                      }),
+                      128
+                      /* KEYED_FRAGMENT */
+                    ))
+                  ])) : vue.createCommentVNode("v-if", true)
+                ],
+                2
+                /* CLASS */
+              )
+            ]),
+            _: 1
+            /* STABLE */
+          }, 8, ["onChange"])
+        ])
+      ],
+      4
+      /* STYLE */
+    );
   }
-  const __easycom_0$5 = /* @__PURE__ */ _export_sfc(_sfc_main$B, [["render", _sfc_render$m], ["__scopeId", "data-v-b6ab2cfb"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-calendar/components/uni-calendar/uni-calendar.vue"]]);
-  const _sfc_main$A = {
+  const __easycom_0$5 = /* @__PURE__ */ _export_sfc(_sfc_main$z, [["render", _sfc_render$n], ["__scopeId", "data-v-d4fda4eb"], ["__file", "D:/ruangong/emosphere/uni_modules/tmt-calendar/components/tmt-calendar/tmt-calendar.vue"]]);
+  const _sfc_main$y = {
     __name: "calendar",
     setup(__props) {
       let router2 = j();
@@ -3671,17 +2868,16 @@ if (uni.restoreGlobal) {
       const getemo = () => {
         uni.request({
           url: "http://8.136.81.197:8080/mood_record",
-          method: "GET",
           data: {
-            uid: 5,
+            uid: store.state.userId,
             nums: 2
           },
           success: (response) => {
-            formatAppLog("log", "at pages/calendar/calendar.vue:62", response.data);
+            formatAppLog("log", "at pages/calendar/calendar.vue:57", response.data);
             records.value = response.data["records"];
           },
           fail: (error) => {
-            formatAppLog("error", "at pages/calendar/calendar.vue:66", error);
+            formatAppLog("error", "at pages/calendar/calendar.vue:61", error);
           }
         });
       };
@@ -3689,7 +2885,7 @@ if (uni.restoreGlobal) {
         getemo();
       });
       return (_ctx, _cache) => {
-        const _component_uni_calendar = resolveEasycom(vue.resolveDynamicComponent("uni-calendar"), __easycom_0$5);
+        const _component_tmt_calendar = resolveEasycom(vue.resolveDynamicComponent("tmt-calendar"), __easycom_0$5);
         return vue.openBlock(), vue.createElementBlock("view", { class: "backarea" }, [
           vue.createElementVNode("view", {
             class: "box",
@@ -3704,14 +2900,10 @@ if (uni.restoreGlobal) {
               vue.createElementVNode("text", null, "返回")
             ])
           ]),
-          vue.createElementVNode("view", { class: "calendar" }, [
-            vue.createElementVNode("view", null, [
-              vue.createVNode(_component_uni_calendar, {
-                class: "uni-calendar--hook",
-                showMonth: false
-              })
-            ])
-          ]),
+          vue.createVNode(_component_tmt_calendar, {
+            show: true,
+            onChangeDate: _ctx.changeDate
+          }, null, 8, ["onChangeDate"]),
           vue.createElementVNode("view", { class: "calendar-content" }, [
             (vue.openBlock(true), vue.createElementBlock(
               vue.Fragment,
@@ -3760,8 +2952,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesCalendarCalendar = /* @__PURE__ */ _export_sfc(_sfc_main$A, [["__file", "D:/ruangong/emosphere/pages/calendar/calendar.vue"]]);
-  const _sfc_main$z = {
+  const PagesCalendarCalendar = /* @__PURE__ */ _export_sfc(_sfc_main$y, [["__file", "D:/ruangong/emosphere/pages/calendar/calendar.vue"]]);
+  const _sfc_main$x = {
     __name: "main",
     setup(__props) {
       let router2 = j();
@@ -3887,8 +3079,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesMainMain = /* @__PURE__ */ _export_sfc(_sfc_main$z, [["__file", "D:/ruangong/emosphere/pages/main/main.vue"]]);
-  const _sfc_main$y = {
+  const PagesMainMain = /* @__PURE__ */ _export_sfc(_sfc_main$x, [["__file", "D:/ruangong/emosphere/pages/main/main.vue"]]);
+  const _sfc_main$w = {
     __name: "EmoRecord",
     setup(__props) {
       let router2 = j();
@@ -3899,7 +3091,7 @@ if (uni.restoreGlobal) {
       };
       const selectIcon = (iconName) => {
         Icon = Icon === iconName ? null : iconName;
-        formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:105", "选中的图标：", Icon);
+        formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:103", "选中的图标：", Icon);
       };
       const isSelected = (iconName) => {
         return Icon === iconName;
@@ -3914,17 +3106,17 @@ if (uni.restoreGlobal) {
           title: Title,
           content: Content
         };
-        formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:122", data);
+        formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:120", data);
         uni.request({
           url: "http://8.136.81.197:8080/mood_record",
           method: "POST",
           data,
           success: (response) => {
-            formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:128", response.data);
+            formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:126", response.data);
             router2.replace("/pages/calendar/calendar");
           },
           fail: (error) => {
-            formatAppLog("error", "at pages/EmoRecord/EmoRecord.vue:132", "保存失败", error);
+            formatAppLog("error", "at pages/EmoRecord/EmoRecord.vue:130", "保存失败", error);
           }
         });
       };
@@ -3936,7 +3128,7 @@ if (uni.restoreGlobal) {
           sourceType: ["album"],
           loop: true,
           success: (res) => {
-            formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:145", res);
+            formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:143", res);
             if (res.tempFilePaths.length !== 0) {
               imageList.value.push(res.tempFilePaths[0]);
               res.tempFilePaths;
@@ -3946,7 +3138,7 @@ if (uni.restoreGlobal) {
       };
       const del = (index) => {
         imageList.value.splice(index, 1);
-        formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:166", imageList);
+        formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:155", imageList);
       };
       return (_ctx, _cache) => {
         return vue.openBlock(), vue.createElementBlock("view", { class: "backarea" }, [
@@ -4088,52 +3280,50 @@ if (uni.restoreGlobal) {
                 [vue.vModelText, vue.unref(Content)]
               ])
             ]),
-            vue.createElementVNode("view", null, [
-              vue.createElementVNode("view", { class: "shangchuan" }, [
-                (vue.openBlock(true), vue.createElementBlock(
-                  vue.Fragment,
-                  null,
-                  vue.renderList(imageList.value, (item, index) => {
-                    return vue.openBlock(), vue.createElementBlock("view", {
-                      class: "sc2",
-                      key: index
-                    }, [
-                      vue.createElementVNode("image", {
-                        class: "del",
-                        onClick: ($event) => del(index),
-                        src: "/static/images/shanchu.png",
-                        mode: ""
-                      }, null, 8, ["onClick"]),
-                      vue.createElementVNode("image", {
-                        class: "image3",
-                        src: item,
-                        mode: ""
-                      }, null, 8, ["src"])
-                    ]);
-                  }),
-                  128
-                  /* KEYED_FRAGMENT */
-                )),
-                imageList.value.length < 1 ? (vue.openBlock(), vue.createElementBlock("view", {
-                  key: 0,
-                  class: "sc2",
-                  onClick: upload
-                }, [
-                  vue.createElementVNode("image", {
-                    class: "sc3",
-                    src: "/static/images/jiahao.png",
-                    mode: ""
-                  })
-                ])) : vue.createCommentVNode("v-if", true)
-              ])
+            vue.createElementVNode("view", { class: "shangchuan" }, [
+              (vue.openBlock(true), vue.createElementBlock(
+                vue.Fragment,
+                null,
+                vue.renderList(imageList.value, (item, index) => {
+                  return vue.openBlock(), vue.createElementBlock("view", {
+                    class: "sc2",
+                    key: index
+                  }, [
+                    vue.createElementVNode("image", {
+                      class: "del",
+                      onClick: ($event) => del(index),
+                      src: "/static/images/shanchu.png",
+                      mode: ""
+                    }, null, 8, ["onClick"]),
+                    vue.createElementVNode("image", {
+                      class: "image3",
+                      src: item,
+                      mode: ""
+                    }, null, 8, ["src"])
+                  ]);
+                }),
+                128
+                /* KEYED_FRAGMENT */
+              )),
+              imageList.value.length < 1 ? (vue.openBlock(), vue.createElementBlock("view", {
+                key: 0,
+                class: "sc2",
+                onClick: upload
+              }, [
+                vue.createElementVNode("image", {
+                  class: "sc3",
+                  src: "/static/images/jiahao.png",
+                  mode: ""
+                })
+              ])) : vue.createCommentVNode("v-if", true)
             ])
           ])
         ]);
       };
     }
   };
-  const PagesEmoRecordEmoRecord = /* @__PURE__ */ _export_sfc(_sfc_main$y, [["__file", "D:/ruangong/emosphere/pages/EmoRecord/EmoRecord.vue"]]);
-  const _sfc_main$x = {
+  const PagesEmoRecordEmoRecord = /* @__PURE__ */ _export_sfc(_sfc_main$w, [["__file", "D:/ruangong/emosphere/pages/EmoRecord/EmoRecord.vue"]]);
+  const _sfc_main$v = {
     data() {
       return {
         showPopup: false,
@@ -4153,7 +3343,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_router_link = vue.resolveComponent("router-link");
     return vue.openBlock(), vue.createElementBlock("view", { class: "about" }, [
       vue.createElementVNode("view", {
@@ -4255,8 +3445,8 @@ if (uni.restoreGlobal) {
       )) : vue.createCommentVNode("v-if", true)
     ]);
   }
-  const PagesAboutAbout = /* @__PURE__ */ _export_sfc(_sfc_main$x, [["render", _sfc_render$l], ["__scopeId", "data-v-13a78ac6"], ["__file", "D:/ruangong/emosphere/pages/about/about.vue"]]);
-  const _sfc_main$w = {
+  const PagesAboutAbout = /* @__PURE__ */ _export_sfc(_sfc_main$v, [["render", _sfc_render$m], ["__scopeId", "data-v-13a78ac6"], ["__file", "D:/ruangong/emosphere/pages/about/about.vue"]]);
+  const _sfc_main$u = {
     __name: "aboutme",
     setup(__props) {
       let router2 = j();
@@ -4385,8 +3575,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesAboutmeAboutme = /* @__PURE__ */ _export_sfc(_sfc_main$w, [["__file", "D:/ruangong/emosphere/pages/aboutme/aboutme.vue"]]);
-  const _sfc_main$v = {
+  const PagesAboutmeAboutme = /* @__PURE__ */ _export_sfc(_sfc_main$u, [["__file", "D:/ruangong/emosphere/pages/aboutme/aboutme.vue"]]);
+  const _sfc_main$t = {
     props: {
       message: String
     },
@@ -4399,7 +3589,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("div", { class: "confirm-dialog" }, [
       vue.createElementVNode(
         "div",
@@ -4418,8 +3608,8 @@ if (uni.restoreGlobal) {
       ])
     ]);
   }
-  const ConfirmDialog = /* @__PURE__ */ _export_sfc(_sfc_main$v, [["render", _sfc_render$k], ["__scopeId", "data-v-76a5aa76"], ["__file", "D:/ruangong/emosphere/components/ConfirmDialog/ConfirmDialog.vue"]]);
-  const _sfc_main$u = {
+  const ConfirmDialog = /* @__PURE__ */ _export_sfc(_sfc_main$t, [["render", _sfc_render$l], ["__scopeId", "data-v-76a5aa76"], ["__file", "D:/ruangong/emosphere/components/ConfirmDialog/ConfirmDialog.vue"]]);
+  const _sfc_main$s = {
     __name: "myScreen",
     setup(__props) {
       let router2 = j();
@@ -4554,8 +3744,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesMyScreenMyScreen = /* @__PURE__ */ _export_sfc(_sfc_main$u, [["__file", "D:/ruangong/emosphere/pages/myScreen/myScreen.vue"]]);
-  const _sfc_main$t = {
+  const PagesMyScreenMyScreen = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["__file", "D:/ruangong/emosphere/pages/myScreen/myScreen.vue"]]);
+  const _sfc_main$r = {
     data() {
       let router2 = j();
       const tomain = () => {
@@ -4662,6 +3852,27 @@ if (uni.restoreGlobal) {
           const completedPopup = this.popupContent[this.currentPopup].title;
           const timeSpent = this.popupContent[this.currentPopup].duration - (this.countdownMinutes * 60 + this.countdownSeconds);
           formatAppLog("log", "at pages/relax/relax.vue:182", `完成放松方法 "${completedPopup}"，花费时间: ${Math.floor(timeSpent / 60)} 分钟 ${timeSpent % 60} 秒`);
+          let useid = store.state.userId;
+          let method = completedPopup;
+          let date = (/* @__PURE__ */ new Date()).toISOString().substr(0, 10);
+          formatAppLog("log", "at pages/relax/relax.vue:187", useid + method + time + date);
+          const requestData = {
+            uid: 5,
+            type: method,
+            duration: timeSpent,
+            createDate: date
+          };
+          uni.request({
+            url: "http://8.136.81.197:8080/relax_record",
+            method: "POST",
+            data: requestData,
+            success: (response) => {
+              formatAppLog("log", "at pages/relax/relax.vue:199", response.data);
+            },
+            fail: (error) => {
+              formatAppLog("error", "at pages/relax/relax.vue:202", error);
+            }
+          });
           this.completedPopup = completedPopup;
           this.completedCount += 1;
           this.resetCountdown();
@@ -4704,7 +3915,7 @@ if (uni.restoreGlobal) {
       clearInterval(this.countdownInterval);
     }
   };
-  function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "page" }, [
       vue.createElementVNode("view", {
         class: "box",
@@ -4828,390 +4039,152 @@ if (uni.restoreGlobal) {
       ])
     ]);
   }
-  const PagesRelaxRelax = /* @__PURE__ */ _export_sfc(_sfc_main$t, [["render", _sfc_render$j], ["__file", "D:/ruangong/emosphere/pages/relax/relax.vue"]]);
-  const icons$1 = {
-    "about": "",
-    "about-fill": "",
-    "add": "",
-    "add-fill": "",
-    "addmessage": "",
-    "addressbook": "",
-    "agree": "",
-    "agree-fill": "",
-    "alarm": "",
-    "alarm-fill": "",
-    "alipay": "",
-    "android": "",
-    "applets": "",
-    "arrowdown": "",
-    "arrowleft": "",
-    "arrowright": "",
-    "arrowup": "",
-    "attestation": "",
-    "back": "",
-    "bag": "",
-    "bag-fill": "",
-    "balloon": "",
-    "bankcard": "",
-    "bankcard-fill": "",
-    "bottom": "",
-    "calendar": "",
-    "camera": "",
-    "camera-fill": "",
-    "camera-add": "",
-    "card": "",
-    "card-fill": "",
-    "cart": "",
-    "cart-fill": "",
-    "category": "",
-    "category-fill": "",
-    "check": "",
-    "circle": "",
-    "circle-fill": "",
-    "circle-selected": "",
-    "clock": "",
-    "clock-fill": "",
-    "close": "",
-    "close-fill": "",
-    "community": "",
-    "community-fill": "",
-    "computer": "",
-    "computer-fill": "",
-    "coupon": "",
-    "delete": "",
-    "deletekey": "",
-    "dingtalk": "",
-    "dissatisfied": "",
-    "down": "",
-    "download": "",
-    "edit": "",
-    "ellipsis": "",
-    "enlarge": "",
-    "evaluate": "",
-    "exchange": "",
-    "explain": "",
-    "explain-fill": "",
-    "explore": "",
-    "explore-fill": "",
-    "eye": "",
-    "feedback": "",
-    "fingerprint": "",
-    "friendadd": "",
-    "friendadd-fill": "",
-    "gps": "",
-    "histogram": "",
-    "home": "",
-    "home-fill": "",
-    "house": "",
-    "imface": "",
-    "imkeyboard": "",
-    "immore": "",
-    "imvoice": "",
-    "ios": "",
-    "kefu": "",
-    "label": "",
-    "label-fill": "",
-    "like": "",
-    "like-fill": "",
-    "link": "",
-    "listview": "",
-    "loading": "",
-    "location": "",
-    "mail": "",
-    "mail-fill": "",
-    "manage": "",
-    "manage-fill": "",
-    "member": "",
-    "member-fill": "",
-    "message": "",
-    "message-fill": "",
-    "mobile": "",
-    "moments": "",
-    "more": "",
-    "more-fill": "",
-    "narrow": "",
-    "news": "",
-    "news-fill": "",
-    "nodata": "",
-    "notice": "",
-    "notice-fill": "",
-    "offline": "",
-    "offline-fill": "",
-    "oppose": "",
-    "oppose-fill": "",
-    "order": "",
-    "partake": "",
-    "people": "",
-    "people-fill": "",
-    "pic": "",
-    "pic-fill": "",
-    "picture": "",
-    "pie": "",
-    "plus": "",
-    "polygonal": "",
-    "position": "",
-    "pwd": "",
-    "qq": "",
-    "qrcode": "",
-    "redpacket": "",
-    "redpacket-fill": "",
-    "reduce": "",
-    "refresh": "",
-    "revoke": "",
-    "satisfied": "",
-    "screen": "",
-    "search": "",
-    "search-2": "",
-    "send": "",
-    "service": "",
-    "service-fill": "",
-    "setup": "",
-    "setup-fill": "",
-    "share": "",
-    "share-fill": "",
-    "shield": "",
-    "shop": "",
-    "shop-fill": "",
-    "shut": "",
-    "signin": "",
-    "sina": "",
-    "skin": "",
-    "soso": "",
-    "square": "",
-    "square-fill": "",
-    "square-selected": "",
-    "star": "",
-    "star-fill": "",
-    "strategy": "",
-    "sweep": "",
-    "time": "",
-    "time-fill": "",
-    "todown": "",
-    "toleft": "",
-    "tool": "",
-    "top": "",
-    "toright": "",
-    "towardsleft": "",
-    "towardsright": "",
-    "towardsright-fill": "",
-    "transport": "",
-    "transport-fill": "",
-    "turningdown": "",
-    "turningleft": "",
-    "turningright": "",
-    "turningup": "",
-    "unreceive": "",
-    "seen": "",
-    "unseen": "",
-    "up": "",
-    "upload": "",
-    "video": "",
-    "voice": "",
-    "voice-fill": "",
-    "voipphone": "",
-    "wallet": "",
-    "warning": "",
-    "wealth": "",
-    "wealth-fill": "",
-    "weather": "",
-    "wechat": "",
-    "wifi": "",
-    "play": "",
-    "suspend": ""
-  };
-  const _sfc_main$s = {
-    name: "tuiIcon",
-    emits: ["click"],
-    props: {
-      name: {
-        type: String,
-        default: ""
-      },
-      customPrefix: {
-        type: String,
-        default: ""
-      },
-      size: {
-        type: [Number, String],
-        default: 0
-      },
-      //px或者rpx
-      unit: {
-        type: String,
-        default: ""
-      },
-      color: {
-        type: String,
-        default: ""
-      },
-      bold: {
-        type: Boolean,
-        default: false
-      },
-      margin: {
-        type: String,
-        default: "0"
-      },
-      index: {
-        type: Number,
-        default: 0
-      }
-    },
-    computed: {
-      getColor() {
-        return this.color || uni && uni.$tui && uni.$tui.tuiIcon.color || "#999";
-      },
-      getSize() {
-        const size = this.size || uni && uni.$tui && uni.$tui.tuiIcon.size || 32;
-        const unit = this.unit || uni && uni.$tui && uni.$tui.tuiIcon.unit || "px";
-        return size + unit;
-      }
-    },
-    data() {
-      return {
-        icons: icons$1
-      };
-    },
-    methods: {
-      handleClick() {
-        this.$emit("click", {
-          index: this.index
-        });
-      }
-    }
-  };
-  function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
-    return vue.openBlock(), vue.createElementBlock(
-      "text",
-      {
-        class: vue.normalizeClass(["tui-icon", [$props.customPrefix, $props.customPrefix ? $props.name : ""]]),
-        style: vue.normalizeStyle({ color: $options.getColor, fontSize: $options.getSize, fontWeight: $props.bold ? "bold" : "normal", margin: $props.margin }),
-        onClick: _cache[0] || (_cache[0] = (...args) => $options.handleClick && $options.handleClick(...args))
-      },
-      vue.toDisplayString($data.icons[$props.name] || ""),
-      7
-      /* TEXT, CLASS, STYLE */
-    );
-  }
-  const __easycom_0$4 = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["render", _sfc_render$i], ["__scopeId", "data-v-bfc5f459"], ["__file", "D:/ruangong/emosphere/node_modules/thorui-uni/lib/thorui/tui-icon/tui-icon.vue"]]);
-  /*!
-    * vue-router v4.1.6
-    * (c) 2022 Eduardo San Martin Morote
-    * @license MIT
-    */
-  var NavigationType;
-  (function(NavigationType2) {
-    NavigationType2["pop"] = "pop";
-    NavigationType2["push"] = "push";
-  })(NavigationType || (NavigationType = {}));
-  var NavigationDirection;
-  (function(NavigationDirection2) {
-    NavigationDirection2["back"] = "back";
-    NavigationDirection2["forward"] = "forward";
-    NavigationDirection2["unknown"] = "";
-  })(NavigationDirection || (NavigationDirection = {}));
-  var NavigationFailureType;
-  (function(NavigationFailureType2) {
-    NavigationFailureType2[NavigationFailureType2["aborted"] = 4] = "aborted";
-    NavigationFailureType2[NavigationFailureType2["cancelled"] = 8] = "cancelled";
-    NavigationFailureType2[NavigationFailureType2["duplicated"] = 16] = "duplicated";
-  })(NavigationFailureType || (NavigationFailureType = {}));
-  const routerKey = Symbol("router");
-  function useRouter() {
-    return vue.inject(routerKey);
-  }
-  const _sfc_main$r = {
+  const PagesRelaxRelax = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["render", _sfc_render$k], ["__file", "D:/ruangong/emosphere/pages/relax/relax.vue"]]);
+  const _sfc_main$q = {
     __name: "share",
     setup(__props) {
-      const router2 = useRouter();
+      let router2 = j();
       const getback = () => {
-        router2.push("/pages/space/space");
+        router2.replace("/pages/space/space");
       };
-      const userid = vue.ref(store.getters.getUserId).value;
-      const Content = vue.ref("");
+      let imageurl;
+      const imageList = vue.ref([]);
+      const upload = () => {
+        uni.chooseImage({
+          count: 3,
+          sizeType: ["original", "compressed"],
+          sourceType: ["album"],
+          loop: true,
+          success: (res) => {
+            formatAppLog("log", "at pages/share/share.vue:51", res);
+            if (res.tempFilePaths.length !== 0) {
+              imageList.value.push(res.tempFilePaths[0]);
+              var tempFilePaths = res.tempFilePaths;
+              uni.uploadFile({
+                url: "http://8.136.81.197:8080/qiniu/file",
+                filePath: tempFilePaths[0],
+                name: "file",
+                success: function(res2) {
+                  formatAppLog("log", "at pages/share/share.vue:60", res2.data);
+                  const responseData = JSON.parse(res2.data);
+                  imageurl = responseData.url;
+                },
+                fail: function(res2) {
+                  formatAppLog("log", "at pages/share/share.vue:65", res2.errMsg);
+                }
+              });
+            }
+          }
+        });
+      };
+      const del = (index) => {
+        imageList.value.splice(index, 1);
+        formatAppLog("log", "at pages/share/share.vue:76", imageList);
+      };
+      store.getters.getUserId;
+      let Content = "";
+      let date = (/* @__PURE__ */ new Date()).toISOString().substr(0, 10);
+      formatAppLog("log", "at pages/share/share.vue:82", imageurl);
       const savadata = () => {
         const data = {
-          uid: userid,
-          content: Content.value
+          uid: 5,
+          content: Content,
+          illustration: imageurl,
+          createDate: date
         };
-        formatAppLog("log", "at pages/share/share.vue:48", data);
+        formatAppLog("log", "at pages/share/share.vue:90", data);
         uni.request({
           url: "http://8.136.81.197:8080/post",
           method: "POST",
           data,
           success: (response) => {
-            formatAppLog("log", "at pages/share/share.vue:54", response.data);
+            formatAppLog("log", "at pages/share/share.vue:96", response.data);
           },
           fail: (error) => {
-            formatAppLog("error", "at pages/share/share.vue:57", "发布失败", error);
+            formatAppLog("error", "at pages/share/share.vue:99", "发布失败", error);
           }
         });
       };
-      vue.ref([]);
       return (_ctx, _cache) => {
-        const _component_tui_icon = resolveEasycom(vue.resolveDynamicComponent("tui-icon"), __easycom_0$4);
-        return vue.openBlock(), vue.createElementBlock(
-          vue.Fragment,
-          null,
-          [
-            vue.createElementVNode("view", { class: "backarea" }, [
-              vue.createElementVNode("view", { class: "top-box" }, [
-                vue.createElementVNode("view", {
-                  class: "tui-arrow",
-                  onClick: getback
-                }, [
-                  vue.createVNode(_component_tui_icon, {
-                    name: "arrowleft",
-                    size: 30,
-                    color: "#488C88",
-                    bold: "true",
-                    style: { "margin-top": "20rpx" }
-                  })
-                ]),
-                vue.createElementVNode("button", {
-                  size: "default",
-                  type: "default",
-                  style: { "color": "#ffffff", "backgroundColor": "#488C88", "borderColor": "#488C88", "margin-right": "10rpx", "margin-top": "30rpx", "border-radius": "20px" },
-                  onClick: savadata
-                }, "发布")
-              ]),
-              vue.createElementVNode("view", { class: "text-area" }, [
-                vue.createElementVNode("view", { class: "content" }, [
-                  vue.withDirectives(vue.createElementVNode(
-                    "input",
-                    {
-                      type: "text",
-                      placeholder: "What's your emotion?",
-                      "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => Content.value = $event)
-                    },
-                    null,
-                    512
-                    /* NEED_PATCH */
-                  ), [
-                    [vue.vModelText, Content.value]
-                  ])
-                ]),
-                vue.createElementVNode("view", { class: "photo" }, [
-                  vue.createElementVNode("button", { class: "circle" }, [
-                    vue.createElementVNode("img", {
-                      src: "/static/images/jiahao.png",
-                      alt: ""
-                    })
-                  ])
-                ])
+        return vue.openBlock(), vue.createElementBlock("view", { class: "backarea" }, [
+          vue.createElementVNode("view", {
+            class: "box",
+            style: { "width": "100%", "height": "5%" }
+          }),
+          vue.createElementVNode("view", { class: "header" }, [
+            vue.createElementVNode("view", {
+              class: "left",
+              onClick: getback
+            }, [
+              vue.createElementVNode("image", { src: "/static/images/fanhui.png" }),
+              vue.createElementVNode("text", null, "返回")
+            ]),
+            vue.createElementVNode("view", {
+              class: "right",
+              onClick: savadata
+            }, [
+              vue.createElementVNode("button", { class: "btn" }, "发布")
+            ])
+          ]),
+          vue.createElementVNode("view", { class: "text-area" }, [
+            vue.createElementVNode("view", { class: "content" }, [
+              vue.withDirectives(vue.createElementVNode(
+                "textarea",
+                {
+                  placeholder: "What's your emotion?",
+                  "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => vue.isRef(Content) ? Content.value = $event : Content = $event)
+                },
+                null,
+                512
+                /* NEED_PATCH */
+              ), [
+                [vue.vModelText, vue.unref(Content)]
               ])
             ]),
-            vue.createCommentVNode(' <view class="photo">\r\n	    上传图片 '),
-            vue.createCommentVNode(' <view class="shangchuan">\r\n	      <view class="sc2" v-for="(item, index) in imgList" :key="index">\r\n	        <image class="del" @click="del(index)" mode=""></image>\r\n	        <image class="Img3" :src="item" mode=""></image>\r\n	      </view>\r\n	      <view class="sc2" v-if="imgList.length < 3" @click="upload">\r\n	        <image class="sc3" mode=""></image>\r\n	      </view>\r\n	    </view>\r\n	  </view> ')
-          ],
-          2112
-          /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
-        );
+            vue.createElementVNode("view", { class: "shangchuan" }, [
+              (vue.openBlock(true), vue.createElementBlock(
+                vue.Fragment,
+                null,
+                vue.renderList(imageList.value, (item, index) => {
+                  return vue.openBlock(), vue.createElementBlock("view", {
+                    class: "sc2",
+                    key: index
+                  }, [
+                    vue.createElementVNode("image", {
+                      class: "del",
+                      onClick: ($event) => del(index),
+                      src: "/static/images/shanchu.png",
+                      mode: ""
+                    }, null, 8, ["onClick"]),
+                    vue.createElementVNode("image", {
+                      class: "image3",
+                      src: item,
+                      mode: ""
+                    }, null, 8, ["src"])
+                  ]);
+                }),
+                128
+                /* KEYED_FRAGMENT */
+              )),
+              imageList.value.length < 1 ? (vue.openBlock(), vue.createElementBlock("view", {
+                key: 0,
+                class: "sc2",
+                onClick: upload
+              }, [
+                vue.createElementVNode("image", {
+                  class: "sc3",
+                  src: "/static/images/jiahao.png",
+                  mode: ""
+                })
+              ])) : vue.createCommentVNode("v-if", true)
+            ])
+          ])
+        ]);
       };
     }
   };
-  const PagesShareShare = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["__scopeId", "data-v-ceb22cc9"], ["__file", "D:/ruangong/emosphere/pages/share/share.vue"]]);
-  const _sfc_main$q = {
+  const PagesShareShare = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["__file", "D:/ruangong/emosphere/pages/share/share.vue"]]);
+  const _sfc_main$p = {
     name: "YSteps",
     props: {
       infoList: {
@@ -5242,7 +4215,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       vue.Fragment,
       null,
@@ -5323,8 +4296,8 @@ if (uni.restoreGlobal) {
       /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
     );
   }
-  const YSteps = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["render", _sfc_render$h], ["__scopeId", "data-v-3d3a9ebb"], ["__file", "D:/ruangong/emosphere/components/Y-Steps/Y-Steps.vue"]]);
-  const _sfc_main$p = {
+  const YSteps = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["render", _sfc_render$j], ["__scopeId", "data-v-3d3a9ebb"], ["__file", "D:/ruangong/emosphere/components/Y-Steps/Y-Steps.vue"]]);
+  const _sfc_main$o = {
     components: {
       YSteps
     },
@@ -5348,7 +4321,7 @@ if (uni.restoreGlobal) {
     },
     methods: {}
   };
-  function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_a_button = vue.resolveComponent("a-button");
     const _component_YSteps = vue.resolveComponent("YSteps");
     return vue.openBlock(), vue.createElementBlock(
@@ -5391,8 +4364,8 @@ if (uni.restoreGlobal) {
       /* STABLE_FRAGMENT */
     );
   }
-  const PagesRecordRecord = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["render", _sfc_render$g], ["__file", "D:/ruangong/emosphere/pages/record/record.vue"]]);
-  const _sfc_main$o = {
+  const PagesRecordRecord = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["render", _sfc_render$i], ["__file", "D:/ruangong/emosphere/pages/record/record.vue"]]);
+  const _sfc_main$n = {
     data() {
       return {};
     },
@@ -5462,7 +4435,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -5508,8 +4481,8 @@ if (uni.restoreGlobal) {
       /* STYLE */
     );
   }
-  const __easycom_0$3 = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["render", _sfc_render$f], ["__scopeId", "data-v-42d6f2a0"], ["__file", "D:/ruangong/emosphere/uni_modules/gscosmos-dialog/components/gscosmos-dialog/gscosmos-dialog.vue"]]);
-  const _sfc_main$n = {
+  const __easycom_0$4 = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["render", _sfc_render$h], ["__scopeId", "data-v-42d6f2a0"], ["__file", "D:/ruangong/emosphere/uni_modules/gscosmos-dialog/components/gscosmos-dialog/gscosmos-dialog.vue"]]);
+  const _sfc_main$m = {
     data() {
       return {
         audio: uni.createInnerAudioContext({
@@ -5616,7 +4589,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "imt-audio" }, [
       vue.createElementVNode("view", { class: "audio-wrapper" }, [
         vue.createElementVNode(
@@ -5691,7 +4664,7 @@ if (uni.restoreGlobal) {
       )
     ]);
   }
-  const __easycom_1$1 = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["render", _sfc_render$e], ["__scopeId", "data-v-8a21190d"], ["__file", "D:/ruangong/emosphere/components/imt-audio/imt-audio.vue"]]);
+  const __easycom_1$1 = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["render", _sfc_render$g], ["__scopeId", "data-v-8a21190d"], ["__file", "D:/ruangong/emosphere/components/imt-audio/imt-audio.vue"]]);
   const __default__ = {
     data() {
       return {
@@ -5797,7 +4770,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  const _sfc_main$m = /* @__PURE__ */ vue.defineComponent({
+  const _sfc_main$l = /* @__PURE__ */ vue.defineComponent({
     ...__default__,
     __name: "music",
     setup(__props) {
@@ -5824,7 +4797,7 @@ if (uni.restoreGlobal) {
       };
       return (_ctx, _cache) => {
         const _component_a_button = vue.resolveComponent("a-button");
-        const _component_gscosmos_dialog = resolveEasycom(vue.resolveDynamicComponent("gscosmos-dialog"), __easycom_0$3);
+        const _component_gscosmos_dialog = resolveEasycom(vue.resolveDynamicComponent("gscosmos-dialog"), __easycom_0$4);
         const _component_imt_audio = resolveEasycom(vue.resolveDynamicComponent("imt-audio"), __easycom_1$1);
         return vue.openBlock(), vue.createElementBlock("view", { class: "scrollPage" }, [
           vue.createElementVNode("view", {
@@ -5998,55 +4971,262 @@ if (uni.restoreGlobal) {
       };
     }
   });
-  const PagesMusicMusic = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["__file", "D:/ruangong/emosphere/pages/music/music.vue"]]);
-  const _sfc_main$l = {
-    __name: "questions",
-    setup(__props) {
-      let router2 = j();
-      const fan = () => {
-        router2.replace("/pages/home/home");
-      };
-      return (_ctx, _cache) => {
-        return vue.openBlock(), vue.createElementBlock("view", {
-          class: "",
-          onClick: fan
-        }, [
-          vue.createElementVNode("image", {
-            src: "/static/images/fan.png",
-            mode: ""
-          })
-        ]);
-      };
-    }
-  };
-  const PagesQuestionsQuestions = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["__file", "D:/ruangong/emosphere/pages/questions/questions.vue"]]);
+  const PagesMusicMusic = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["__file", "D:/ruangong/emosphere/pages/music/music.vue"]]);
   const _sfc_main$k = {
     data() {
-      return {
-        bgColor: "#BAD0CE"
-        // 设置背景色为绿色
+      let router2 = j();
+      const fan = () => {
+        router2.replace("/pages/chat/chat");
       };
+      return {
+        bgColor: "#BAD0CE",
+        // 设置背景色为绿色
+        fan,
+        score: "",
+        average_score: "",
+        pos_items: "",
+        pas_items: "",
+        pos_sym_num: "",
+        factor1: "",
+        factor2: "",
+        factor3: "",
+        factor4: "",
+        factor5: "",
+        factor6: "",
+        factor7: "",
+        factor8: "",
+        factor9: "",
+        factor10: "",
+        situation: "",
+        text1: "",
+        text2: "",
+        text3: "",
+        text4: ""
+      };
+    },
+    onLoad(query) {
+      this.score = query.score || "";
+      this.average_score = query.average_score || "";
+      this.pos_items = query.pos_items || "";
+      this.pas_items = query.pas_items || "";
+      this.pos_sym_num = query.pos_sym_num || "";
+      this.factor1 = query.factor1 || "";
+      this.factor2 = query.factor2 || "";
+      this.factor3 = query.factor3 || "";
+      this.factor4 = query.factor4 || "";
+      this.factor5 = query.factor5 || "";
+      this.factor6 = query.factor6 || "";
+      this.factor7 = query.factor7 || "";
+      this.factor8 = query.factor8 || "";
+      this.factor9 = query.factor9 || "";
+      this.factor10 = query.factor10 || "";
+      this.average_score = parseFloat(this.average_score);
+      this.average_score = Math.floor(this.average_score * 100) / 100;
+      if (this.average_score >= 1 && this.average_score < 2) {
+        this.situation = "心理健康";
+      } else if (this.average_score >= 2 && this.average_score < 3) {
+        this.situation = "亚健康心理状态";
+      } else if (this.average_score >= 3 && this.average_score < 4) {
+        this.situation = "有心理健康问题";
+      } else if (this.average_score >= 4 && this.average_score < 5) {
+        this.situation = "有严重心理健康问题";
+      }
+      var arr = [];
+      var randomNum;
+      for (var i2 = 0; i2 < 4; ++i2) {
+        while (1) {
+          randomNum = Math.floor(Math.random() * 10) + 1;
+          if (arr[randomNum] == 1)
+            continue;
+          else {
+            arr[randomNum] = 1;
+            break;
+          }
+        }
+        if (i2 == 0) {
+          if (randomNum == 1) {
+            this.text1 = "建议进行一些放松训练，例如深呼吸、渐进性肌肉放松等，这些方法可以帮助您缓解身体紧张和不适感。";
+          }
+          if (randomNum == 2) {
+            this.text1 = "建议通过改变您的生活节奏等方式，例如减少压力、增加运动等，改变不良的思维模式和行为习惯，进而提高对于强迫症状的控制程度。";
+          }
+          if (randomNum == 3) {
+            this.text1 = "建议尝试与他人多交流，保持积极的生活态度，多参加社交活动，逐渐增加自信心和社交能力。";
+          }
+          if (randomNum == 4) {
+            this.text1 = "建议时刻关注自己的情绪变化，了解自己的情绪状态，并寻找适当的情绪调节方法。适当改变生活方式，增加运动、保持良好的作息时间和饮食习惯。";
+          }
+          if (randomNum == 5) {
+            this.text1 = "建议尝试放松训练，通过进行深呼吸等放松训练，缓解身体紧张和心理压力。与亲朋好友、同事或专业心理咨询师交流，分享自己的感受和困惑，减轻孤独感和压力。";
+          }
+          if (randomNum == 6) {
+            this.text1 = "建议尝试控制自己的情绪和行为，可以采取一些冷静下来的方法，如深呼吸、短暂停顿等。尊重他人的观点和感受，避免对他人的言论或行为过于敏感或反应过度。";
+          }
+          if (randomNum == 7) {
+            this.text1 = "建议找出导致恐惧的原因,逐渐暴露自己于恐惧的场所或物体中，以逐渐适应和克服恐惧。";
+          }
+          if (randomNum == 8) {
+            this.text1 = "建议学习一些积极的思维方式和应对策略,与亲朋好友、同事或专业心理咨询师交流，分享自己的感受和困惑，获得支持和理解。";
+          }
+          if (randomNum == 9) {
+            this.text1 = "建议睡前避免饮用咖啡、茶或含咖啡因的饮料，避免剧烈运动或观看刺激性的电视节目。避免暴饮暴食，每餐尽量控制食量，避免过饱。";
+          }
+          if (randomNum == 10) {
+            this.text1 = "建议寻求专业帮助，如果你感到抑郁或焦虑症状严重或持续存在，建议咨询心理医生或精神科医生，接受专业的评估和治疗。";
+          }
+        }
+        if (i2 == 1) {
+          if (randomNum == 1) {
+            this.text2 = "建议进行一些放松训练，例如深呼吸、渐进性肌肉放松等，这些方法可以帮助您缓解身体紧张和不适感。";
+          }
+          if (randomNum == 2) {
+            this.text2 = "建议通过改变您的生活节奏等方式，例如减少压力、增加运动等，改变不良的思维模式和行为习惯，进而提高对于强迫症状的控制程度。";
+          }
+          if (randomNum == 3) {
+            this.text2 = "建议尝试与他人多交流，保持积极的生活态度，多参加社交活动，逐渐增加自信心和社交能力。";
+          }
+          if (randomNum == 4) {
+            this.text2 = "建议时刻关注自己的情绪变化，了解自己的情绪状态，并寻找适当的情绪调节方法。适当改变生活方式，增加运动、保持良好的作息时间和饮食习惯。";
+          }
+          if (randomNum == 5) {
+            this.text2 = "建议尝试放松训练，通过进行深呼吸等放松训练，缓解身体紧张和心理压力。与亲朋好友、同事或专业心理咨询师交流，分享自己的感受和困惑，减轻孤独感和压力。";
+          }
+          if (randomNum == 6) {
+            this.text2 = "建议尝试控制自己的情绪和行为，可以采取一些冷静下来的方法，如深呼吸、短暂停顿等。尊重他人的观点和感受，避免对他人的言论或行为过于敏感或反应过度。";
+          }
+          if (randomNum == 7) {
+            this.text2 = "建议找出导致恐惧的原因,逐渐暴露自己于恐惧的场所或物体中，以逐渐适应和克服恐惧。";
+          }
+          if (randomNum == 8) {
+            this.text2 = "建议学习一些积极的思维方式和应对策略,与亲朋好友、同事或专业心理咨询师交流，分享自己的感受和困惑，获得支持和理解。";
+          }
+          if (randomNum == 9) {
+            this.text2 = "建议睡前避免饮用咖啡、茶或含咖啡因的饮料，避免剧烈运动或观看刺激性的电视节目。避免暴饮暴食，每餐尽量控制食量，避免过饱。";
+          }
+          if (randomNum == 10) {
+            this.text2 = "建议寻求专业帮助，如果你感到抑郁或焦虑症状严重或持续存在，建议咨询心理医生或精神科医生，接受专业的评估和治疗。";
+          }
+        }
+        if (i2 == 2) {
+          if (randomNum == 1) {
+            this.text3 = "建议进行一些放松训练，例如深呼吸、渐进性肌肉放松等，这些方法可以帮助您缓解身体紧张和不适感。";
+          }
+          if (randomNum == 2) {
+            this.text3 = "建议通过改变您的生活节奏等方式，例如减少压力、增加运动等，改变不良的思维模式和行为习惯，进而提高对于强迫症状的控制程度。";
+          }
+          if (randomNum == 3) {
+            this.text3 = "建议尝试与他人多交流，保持积极的生活态度，多参加社交活动，逐渐增加自信心和社交能力。";
+          }
+          if (randomNum == 4) {
+            this.text3 = "建议时刻关注自己的情绪变化，了解自己的情绪状态，并寻找适当的情绪调节方法。适当改变生活方式，增加运动、保持良好的作息时间和饮食习惯。";
+          }
+          if (randomNum == 5) {
+            this.text3 = "建议尝试放松训练，通过进行深呼吸等放松训练，缓解身体紧张和心理压力。与亲朋好友、同事或专业心理咨询师交流，分享自己的感受和困惑，减轻孤独感和压力。";
+          }
+          if (randomNum == 6) {
+            this.text3 = "建议尝试控制自己的情绪和行为，可以采取一些冷静下来的方法，如深呼吸、短暂停顿等。尊重他人的观点和感受，避免对他人的言论或行为过于敏感或反应过度。";
+          }
+          if (randomNum == 7) {
+            this.text3 = "建议找出导致恐惧的原因,逐渐暴露自己于恐惧的场所或物体中，以逐渐适应和克服恐惧。";
+          }
+          if (randomNum == 8) {
+            this.text3 = "建议学习一些积极的思维方式和应对策略,与亲朋好友、同事或专业心理咨询师交流，分享自己的感受和困惑，获得支持和理解。";
+          }
+          if (randomNum == 9) {
+            this.text3 = "建议睡前避免饮用咖啡、茶或含咖啡因的饮料，避免剧烈运动或观看刺激性的电视节目。避免暴饮暴食，每餐尽量控制食量，避免过饱。";
+          }
+          if (randomNum == 10) {
+            this.text3 = "建议寻求专业帮助，如果你感到抑郁或焦虑症状严重或持续存在，建议咨询心理医生或精神科医生，接受专业的评估和治疗。";
+          }
+        }
+        if (i2 == 3) {
+          if (randomNum == 1) {
+            this.text4 = "建议进行一些放松训练，例如深呼吸、渐进性肌肉放松等，这些方法可以帮助您缓解身体紧张和不适感。";
+          }
+          if (randomNum == 2) {
+            this.text4 = "建议通过改变您的生活节奏等方式，例如减少压力、增加运动等，改变不良的思维模式和行为习惯，进而提高对于强迫症状的控制程度。";
+          }
+          if (randomNum == 3) {
+            this.text4 = "建议尝试与他人多交流，保持积极的生活态度，多参加社交活动，逐渐增加自信心和社交能力。";
+          }
+          if (randomNum == 4) {
+            this.text4 = "建议时刻关注自己的情绪变化，了解自己的情绪状态，并寻找适当的情绪调节方法。适当改变生活方式，增加运动、保持良好的作息时间和饮食习惯。";
+          }
+          if (randomNum == 5) {
+            this.text4 = "建议尝试放松训练，通过进行深呼吸等放松训练，缓解身体紧张和心理压力。与亲朋好友、同事或专业心理咨询师交流，分享自己的感受和困惑，减轻孤独感和压力。";
+          }
+          if (randomNum == 6) {
+            this.text4 = "建议尝试控制自己的情绪和行为，可以采取一些冷静下来的方法，如深呼吸、短暂停顿等。尊重他人的观点和感受，避免对他人的言论或行为过于敏感或反应过度。";
+          }
+          if (randomNum == 7) {
+            this.text4 = "建议找出导致恐惧的原因,逐渐暴露自己于恐惧的场所或物体中，以逐渐适应和克服恐惧。";
+          }
+          if (randomNum == 8) {
+            this.text4 = "建议学习一些积极的思维方式和应对策略,与亲朋好友、同事或专业心理咨询师交流，分享自己的感受和困惑，获得支持和理解。";
+          }
+          if (randomNum == 9) {
+            this.text4 = "建议睡前避免饮用咖啡、茶或含咖啡因的饮料，避免剧烈运动或观看刺激性的电视节目。避免暴饮暴食，每餐尽量控制食量，避免过饱。";
+          }
+          if (randomNum == 10) {
+            this.text4 = "建议寻求专业帮助，如果你感到抑郁或焦虑症状严重或持续存在，建议咨询心理医生或精神科医生，接受专业的评估和治疗。";
+          }
+        }
+      }
+      formatAppLog("log", "at pages/result/result.vue:244", this.text1);
+      formatAppLog("log", "at pages/result/result.vue:245", this.text2);
+      formatAppLog("log", "at pages/result/result.vue:246", this.text3);
+      formatAppLog("log", "at pages/result/result.vue:247", this.text4);
     },
     methods: {}
   };
-  function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("div", { class: "background" }, [
+      vue.createElementVNode("p", {
+        class: "text-res",
+        style: { "position": "absolute", "left": "4%", "top": "5%" }
+      }, "测试结果："),
       vue.createElementVNode("div", {
         class: "rounded-box",
-        style: { "position": "absolute", "left": "10%", "top": "10%", "height": "20%", "width": "80%" }
+        style: { "position": "absolute", "left": "7.5%", "top": "12%", "height": "30%", "width": "85%" }
       }, [
+        vue.createElementVNode(
+          "p",
+          {
+            class: "text-output",
+            style: { "position": "absolute", "left": "5%", "top": "3%" }
+          },
+          "您的测试总分为: " + vue.toDisplayString($data.score),
+          1
+          /* TEXT */
+        ),
+        vue.createElementVNode(
+          "p",
+          {
+            class: "text-output",
+            style: { "position": "absolute", "left": "5%", "top": "18%" }
+          },
+          "测试总均分为: " + vue.toDisplayString($data.average_score),
+          1
+          /* TEXT */
+        ),
         vue.createElementVNode("p", {
           class: "text-output",
-          style: { "position": "absolute", "left": "5%", "top": "3%" }
-        }, "您的心理评价状态为:"),
-        vue.createElementVNode("p", {
-          class: "text-res",
-          style: { "position": "absolute", "left": "33%", "top": "40%" }
-        }, "优秀")
+          style: { "position": "absolute", "left": "5%", "top": "32%" }
+        }, "整体的心理健康情况为: "),
+        vue.createElementVNode(
+          "p",
+          {
+            class: "text-res",
+            style: { "position": "absolute", "left": "4%", "top": "48%" }
+          },
+          vue.toDisplayString($data.situation),
+          1
+          /* TEXT */
+        )
       ]),
       vue.createElementVNode("div", {
         class: "rounded-circle",
-        style: { "position": "absolute", "left": "35%", "top": "19%", "height": "20%", "width": "30%" }
+        style: { "position": "absolute", "left": "35%", "top": "25%", "height": "20%", "width": "30%" }
       }, [
         vue.createElementVNode("image", {
           src: "/static/images/result_1.png",
@@ -6056,57 +5236,85 @@ if (uni.restoreGlobal) {
       vue.createElementVNode("div", null, [
         vue.createElementVNode("image", {
           src: "/static/images/leaf.png",
-          style: { "position": "absolute", "left": "5%", "top": "42%", "width": "33px", "height": "33px" }
+          style: { "position": "absolute", "left": "5%", "top": "46%", "width": "33px", "height": "33px" }
         }),
         vue.createElementVNode("p", {
           class: "text-output",
-          style: { "position": "absolute", "left": "15%", "top": "42%" }
+          style: { "position": "absolute", "left": "15%", "top": "46%" }
         }, "我对您的建议为:")
       ]),
       vue.createElementVNode("div", {
         class: "rounded-res",
-        style: { "position": "absolute", "left": "5%", "top": "50%", "height": "10%", "width": "90%", "opacity": "0.8" }
+        style: { "position": "absolute", "left": "5%", "top": "52%", "height": "10%", "width": "90%", "opacity": "0.8" }
       }, [
-        vue.createElementVNode("p", {
-          class: "text-output1",
-          style: { "position": "absolute", "left": "5%", "top": "3%" }
-        }, "1、吃吃吃")
+        vue.createElementVNode(
+          "p",
+          {
+            class: "text-output1",
+            style: { "position": "absolute", "left": "5%", "top": "3%" }
+          },
+          "1." + vue.toDisplayString($data.text1),
+          1
+          /* TEXT */
+        )
       ]),
       vue.createElementVNode("div", {
         class: "rounded-res",
-        style: { "position": "absolute", "left": "5%", "top": "62%", "height": "10%", "width": "90%", "opacity": "0.8" }
+        style: { "position": "absolute", "left": "5%", "top": "64%", "height": "10%", "width": "90%", "opacity": "0.8" }
       }, [
-        vue.createElementVNode("p", {
-          class: "text-output1",
-          style: { "position": "absolute", "left": "5%", "top": "3%" }
-        }, "2、吃吃吃")
+        vue.createElementVNode(
+          "p",
+          {
+            class: "text-output1",
+            style: { "position": "absolute", "left": "5%", "top": "3%" }
+          },
+          "2." + vue.toDisplayString($data.text2),
+          1
+          /* TEXT */
+        )
       ]),
       vue.createElementVNode("div", {
         class: "rounded-res",
-        style: { "position": "absolute", "left": "5%", "top": "74%", "height": "10%", "width": "90%", "opacity": "0.8" }
+        style: { "position": "absolute", "left": "5%", "top": "76%", "height": "10%", "width": "90%", "opacity": "0.8" }
       }, [
-        vue.createElementVNode("p", {
-          class: "text-output1",
-          style: { "position": "absolute", "left": "5%", "top": "3%" }
-        }, "3、吃吃吃")
+        vue.createElementVNode(
+          "p",
+          {
+            class: "text-output1",
+            style: { "position": "absolute", "left": "5%", "top": "3%" }
+          },
+          "3." + vue.toDisplayString($data.text3),
+          1
+          /* TEXT */
+        )
       ]),
       vue.createElementVNode("div", {
         class: "rounded-res",
-        style: { "position": "absolute", "left": "5%", "top": "86%", "height": "10%", "width": "90%", "opacity": "0.8" }
+        style: { "position": "absolute", "left": "5%", "top": "88%", "height": "10%", "width": "90%", "opacity": "0.8" }
       }, [
-        vue.createElementVNode("p", {
-          class: "text-output1",
-          style: { "position": "absolute", "left": "5%", "top": "3%" }
-        }, "4、吃吃吃")
-      ])
+        vue.createElementVNode(
+          "p",
+          {
+            class: "text-output1",
+            style: { "position": "absolute", "left": "5%", "top": "3%" }
+          },
+          "4." + vue.toDisplayString($data.text4),
+          1
+          /* TEXT */
+        )
+      ]),
+      vue.createElementVNode("view", {
+        class: "login-card-loginIn-btn",
+        onClick: _cache[0] || (_cache[0] = (...args) => $data.fan && $data.fan(...args))
+      }, " 返回聊天 ")
     ]);
   }
-  const PagesResultResult = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["render", _sfc_render$d], ["__file", "D:/ruangong/emosphere/pages/result/result.vue"]]);
+  const PagesResultResult = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["render", _sfc_render$f], ["__file", "D:/ruangong/emosphere/pages/result/result.vue"]]);
   const _sfc_main$j = {
     data() {
       let router2 = j();
       const goToQ1 = () => {
-        router2.replace("/pages/questions/questions");
+        router2.replace("/pages/questions/answer");
       };
       const fan = () => {
         router2.replace("/pages/chat/chat");
@@ -6120,7 +5328,7 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "backarea" }, [
       vue.createElementVNode("view", {
         class: "box",
@@ -6162,7 +5370,7 @@ if (uni.restoreGlobal) {
       ])
     ]);
   }
-  const PagesHomeHome = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$c], ["__file", "D:/ruangong/emosphere/pages/home/home.vue"]]);
+  const PagesHomeHome = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$e], ["__file", "D:/ruangong/emosphere/pages/home/home.vue"]]);
   const _sfc_main$i = {
     data() {
       return {
@@ -6252,7 +5460,7 @@ if (uni.restoreGlobal) {
             userContent: this.chatMsg,
             userId: 0
           };
-          formatAppLog("log", "at pages/chat/chat.vue:159", this.chatMsg);
+          formatAppLog("log", "at pages/chat/chat.vue:157", this.chatMsg);
           try {
             const response = await uni.request({
               url: "http://localhost:8080/api/",
@@ -6269,9 +5477,9 @@ if (uni.restoreGlobal) {
             this.msgList.push(obj);
             this.chatMsg = "";
             this.scrollToBottom();
-            formatAppLog("log", "at pages/chat/chat.vue:177", "发送成功:", serverResponse);
+            formatAppLog("log", "at pages/chat/chat.vue:175", "发送成功:", serverResponse);
           } catch (error) {
-            formatAppLog("error", "at pages/chat/chat.vue:179", "发送消息失败:", error);
+            formatAppLog("error", "at pages/chat/chat.vue:177", "发送消息失败:", error);
             this.$modal.showToast("发送消息失败");
           }
         } else {
@@ -6280,7 +5488,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       vue.Fragment,
       null,
@@ -6333,7 +5541,6 @@ if (uni.restoreGlobal) {
                           1
                           /* TEXT */
                         ),
-                        vue.createCommentVNode(" 头像 "),
                         vue.createElementVNode("view", { class: "avatar" }, [
                           vue.createElementVNode("image", { src: "/static/images/logo.png" })
                         ])
@@ -6418,8 +5625,8 @@ if (uni.restoreGlobal) {
       /* STABLE_FRAGMENT */
     );
   }
-  const PagesChatChat = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$b], ["__scopeId", "data-v-0a633310"], ["__file", "D:/ruangong/emosphere/pages/chat/chat.vue"]]);
-  const icons = {
+  const PagesChatChat = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$d], ["__scopeId", "data-v-0a633310"], ["__file", "D:/ruangong/emosphere/pages/chat/chat.vue"]]);
+  const icons$1 = {
     "id": "2852637",
     "name": "uniui图标库",
     "font_family": "uniicons",
@@ -7617,7 +6824,7 @@ if (uni.restoreGlobal) {
     },
     data() {
       return {
-        icons: icons.glyphs
+        icons: icons$1.glyphs
       };
     },
     computed: {
@@ -7638,7 +6845,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "text",
       {
@@ -7651,7 +6858,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const __easycom_0$2 = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["render", _sfc_render$a], ["__scopeId", "data-v-d31e1c47"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-icons/components/uni-icons/uni-icons.vue"]]);
+  const __easycom_0$3 = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["render", _sfc_render$c], ["__scopeId", "data-v-d31e1c47"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-icons/components/uni-icons/uni-icons.vue"]]);
   let Calendar$1 = class Calendar {
     constructor({
       selected,
@@ -8035,7 +7242,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -8091,7 +7298,291 @@ if (uni.restoreGlobal) {
       /* CLASS, HYDRATE_EVENTS */
     );
   }
-  const calendarItem = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$9], ["__scopeId", "data-v-3c762a01"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-datetime-picker/components/uni-datetime-picker/calendar-item.vue"]]);
+  const calendarItem = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$b], ["__scopeId", "data-v-3c762a01"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-datetime-picker/components/uni-datetime-picker/calendar-item.vue"]]);
+  const isObject = (val) => val !== null && typeof val === "object";
+  const defaultDelimiters = ["{", "}"];
+  class BaseFormatter {
+    constructor() {
+      this._caches = /* @__PURE__ */ Object.create(null);
+    }
+    interpolate(message, values, delimiters = defaultDelimiters) {
+      if (!values) {
+        return [message];
+      }
+      let tokens = this._caches[message];
+      if (!tokens) {
+        tokens = parse(message, delimiters);
+        this._caches[message] = tokens;
+      }
+      return compile(tokens, values);
+    }
+  }
+  const RE_TOKEN_LIST_VALUE = /^(?:\d)+/;
+  const RE_TOKEN_NAMED_VALUE = /^(?:\w)+/;
+  function parse(format, [startDelimiter, endDelimiter]) {
+    const tokens = [];
+    let position = 0;
+    let text = "";
+    while (position < format.length) {
+      let char = format[position++];
+      if (char === startDelimiter) {
+        if (text) {
+          tokens.push({ type: "text", value: text });
+        }
+        text = "";
+        let sub = "";
+        char = format[position++];
+        while (char !== void 0 && char !== endDelimiter) {
+          sub += char;
+          char = format[position++];
+        }
+        const isClosed = char === endDelimiter;
+        const type = RE_TOKEN_LIST_VALUE.test(sub) ? "list" : isClosed && RE_TOKEN_NAMED_VALUE.test(sub) ? "named" : "unknown";
+        tokens.push({ value: sub, type });
+      } else {
+        text += char;
+      }
+    }
+    text && tokens.push({ type: "text", value: text });
+    return tokens;
+  }
+  function compile(tokens, values) {
+    const compiled = [];
+    let index = 0;
+    const mode = Array.isArray(values) ? "list" : isObject(values) ? "named" : "unknown";
+    if (mode === "unknown") {
+      return compiled;
+    }
+    while (index < tokens.length) {
+      const token = tokens[index];
+      switch (token.type) {
+        case "text":
+          compiled.push(token.value);
+          break;
+        case "list":
+          compiled.push(values[parseInt(token.value, 10)]);
+          break;
+        case "named":
+          if (mode === "named") {
+            compiled.push(values[token.value]);
+          } else {
+            {
+              console.warn(`Type of token '${token.type}' and format of value '${mode}' don't match!`);
+            }
+          }
+          break;
+        case "unknown":
+          {
+            console.warn(`Detect 'unknown' type of token!`);
+          }
+          break;
+      }
+      index++;
+    }
+    return compiled;
+  }
+  const LOCALE_ZH_HANS = "zh-Hans";
+  const LOCALE_ZH_HANT = "zh-Hant";
+  const LOCALE_EN = "en";
+  const LOCALE_FR = "fr";
+  const LOCALE_ES = "es";
+  const hasOwnProperty = Object.prototype.hasOwnProperty;
+  const hasOwn = (val, key) => hasOwnProperty.call(val, key);
+  const defaultFormatter = new BaseFormatter();
+  function include(str, parts) {
+    return !!parts.find((part) => str.indexOf(part) !== -1);
+  }
+  function startsWith(str, parts) {
+    return parts.find((part) => str.indexOf(part) === 0);
+  }
+  function normalizeLocale(locale, messages) {
+    if (!locale) {
+      return;
+    }
+    locale = locale.trim().replace(/_/g, "-");
+    if (messages && messages[locale]) {
+      return locale;
+    }
+    locale = locale.toLowerCase();
+    if (locale === "chinese") {
+      return LOCALE_ZH_HANS;
+    }
+    if (locale.indexOf("zh") === 0) {
+      if (locale.indexOf("-hans") > -1) {
+        return LOCALE_ZH_HANS;
+      }
+      if (locale.indexOf("-hant") > -1) {
+        return LOCALE_ZH_HANT;
+      }
+      if (include(locale, ["-tw", "-hk", "-mo", "-cht"])) {
+        return LOCALE_ZH_HANT;
+      }
+      return LOCALE_ZH_HANS;
+    }
+    let locales = [LOCALE_EN, LOCALE_FR, LOCALE_ES];
+    if (messages && Object.keys(messages).length > 0) {
+      locales = Object.keys(messages);
+    }
+    const lang = startsWith(locale, locales);
+    if (lang) {
+      return lang;
+    }
+  }
+  class I18n {
+    constructor({ locale, fallbackLocale, messages, watcher, formater }) {
+      this.locale = LOCALE_EN;
+      this.fallbackLocale = LOCALE_EN;
+      this.message = {};
+      this.messages = {};
+      this.watchers = [];
+      if (fallbackLocale) {
+        this.fallbackLocale = fallbackLocale;
+      }
+      this.formater = formater || defaultFormatter;
+      this.messages = messages || {};
+      this.setLocale(locale || LOCALE_EN);
+      if (watcher) {
+        this.watchLocale(watcher);
+      }
+    }
+    setLocale(locale) {
+      const oldLocale = this.locale;
+      this.locale = normalizeLocale(locale, this.messages) || this.fallbackLocale;
+      if (!this.messages[this.locale]) {
+        this.messages[this.locale] = {};
+      }
+      this.message = this.messages[this.locale];
+      if (oldLocale !== this.locale) {
+        this.watchers.forEach((watcher) => {
+          watcher(this.locale, oldLocale);
+        });
+      }
+    }
+    getLocale() {
+      return this.locale;
+    }
+    watchLocale(fn) {
+      const index = this.watchers.push(fn) - 1;
+      return () => {
+        this.watchers.splice(index, 1);
+      };
+    }
+    add(locale, message, override = true) {
+      const curMessages = this.messages[locale];
+      if (curMessages) {
+        if (override) {
+          Object.assign(curMessages, message);
+        } else {
+          Object.keys(message).forEach((key) => {
+            if (!hasOwn(curMessages, key)) {
+              curMessages[key] = message[key];
+            }
+          });
+        }
+      } else {
+        this.messages[locale] = message;
+      }
+    }
+    f(message, values, delimiters) {
+      return this.formater.interpolate(message, values, delimiters).join("");
+    }
+    t(key, locale, values) {
+      let message = this.message;
+      if (typeof locale === "string") {
+        locale = normalizeLocale(locale, this.messages);
+        locale && (message = this.messages[locale]);
+      } else {
+        values = locale;
+      }
+      if (!hasOwn(message, key)) {
+        console.warn(`Cannot translate the value of keypath ${key}. Use the value of keypath as default.`);
+        return key;
+      }
+      return this.formater.interpolate(message[key], values).join("");
+    }
+  }
+  function watchAppLocale(appVm, i18n) {
+    if (appVm.$watchLocale) {
+      appVm.$watchLocale((newLocale) => {
+        i18n.setLocale(newLocale);
+      });
+    } else {
+      appVm.$watch(() => appVm.$locale, (newLocale) => {
+        i18n.setLocale(newLocale);
+      });
+    }
+  }
+  function getDefaultLocale() {
+    if (typeof uni !== "undefined" && uni.getLocale) {
+      return uni.getLocale();
+    }
+    if (typeof global !== "undefined" && global.getLocale) {
+      return global.getLocale();
+    }
+    return LOCALE_EN;
+  }
+  function initVueI18n(locale, messages = {}, fallbackLocale, watcher) {
+    if (typeof locale !== "string") {
+      [locale, messages] = [
+        messages,
+        locale
+      ];
+    }
+    if (typeof locale !== "string") {
+      locale = getDefaultLocale();
+    }
+    if (typeof fallbackLocale !== "string") {
+      fallbackLocale = typeof __uniConfig !== "undefined" && __uniConfig.fallbackLocale || LOCALE_EN;
+    }
+    const i18n = new I18n({
+      locale,
+      fallbackLocale,
+      messages,
+      watcher
+    });
+    let t2 = (key, values) => {
+      if (typeof getApp !== "function") {
+        t2 = function(key2, values2) {
+          return i18n.t(key2, values2);
+        };
+      } else {
+        let isWatchedAppLocale = false;
+        t2 = function(key2, values2) {
+          const appVm = getApp().$vm;
+          if (appVm) {
+            appVm.$locale;
+            if (!isWatchedAppLocale) {
+              isWatchedAppLocale = true;
+              watchAppLocale(appVm, i18n);
+            }
+          }
+          return i18n.t(key2, values2);
+        };
+      }
+      return t2(key, values);
+    };
+    return {
+      i18n,
+      f(message, values, delimiters) {
+        return i18n.f(message, values, delimiters);
+      },
+      t(key, values) {
+        return t2(key, values);
+      },
+      add(locale2, message, override = true) {
+        return i18n.add(locale2, message, override);
+      },
+      watch(fn) {
+        return i18n.watchLocale(fn);
+      },
+      getLocale() {
+        return i18n.getLocale();
+      },
+      setLocale(newLocale) {
+        return i18n.setLocale(newLocale);
+      }
+    };
+  }
   const en = {
     "uni-datetime-picker.selectDate": "select date",
     "uni-datetime-picker.selectTime": "select time",
@@ -8674,17 +8165,17 @@ if (uni.restoreGlobal) {
        * 生成时间戳
        * @param {Object} time
        */
-      createTimeStamp(time) {
-        if (!time)
+      createTimeStamp(time2) {
+        if (!time2)
           return;
-        if (typeof time === "number") {
-          return time;
+        if (typeof time2 === "number") {
+          return time2;
         } else {
-          time = time.replace(/-/g, "/");
+          time2 = time2.replace(/-/g, "/");
           if (this.type === "date") {
-            time = time + " 00:00:00";
+            time2 = time2 + " 00:00:00";
           }
-          return Date.parse(time);
+          return Date.parse(time2);
         }
       },
       /**
@@ -8772,7 +8263,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "uni-datetime-picker" }, [
       vue.createElementVNode("view", {
         onClick: _cache[0] || (_cache[0] = (...args) => $options.initTimePicker && $options.initTimePicker(...args))
@@ -9049,7 +8540,7 @@ if (uni.restoreGlobal) {
       )) : vue.createCommentVNode("v-if", true)
     ]);
   }
-  const TimePicker = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$8], ["__scopeId", "data-v-1d532b70"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-datetime-picker/components/uni-datetime-picker/time-picker.vue"]]);
+  const TimePicker = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$a], ["__scopeId", "data-v-1d532b70"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-datetime-picker/components/uni-datetime-picker/time-picker.vue"]]);
   const { t: t$1 } = initVueI18n(i18nMessages);
   const _sfc_main$e = {
     components: {
@@ -9527,10 +9018,10 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_calendar_item = vue.resolveComponent("calendar-item");
     const _component_time_picker = vue.resolveComponent("time-picker");
-    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$2);
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$3);
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -9820,7 +9311,7 @@ if (uni.restoreGlobal) {
       /* HYDRATE_EVENTS */
     );
   }
-  const Calendar = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$7], ["__scopeId", "data-v-1d379219"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-datetime-picker/components/uni-datetime-picker/calendar.vue"]]);
+  const Calendar = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$9], ["__scopeId", "data-v-1d379219"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-datetime-picker/components/uni-datetime-picker/calendar.vue"]]);
   const _sfc_main$d = {
     name: "UniDatetimePicker",
     options: {
@@ -10457,8 +9948,8 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$2);
+  function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$3);
     const _component_time_picker = vue.resolveComponent("time-picker");
     const _component_Calendar = vue.resolveComponent("Calendar");
     return vue.openBlock(), vue.createElementBlock("view", { class: "uni-date" }, [
@@ -10800,7 +10291,7 @@ if (uni.restoreGlobal) {
       }, null, 8, ["date", "defTime", "start-date", "end-date", "selectableTimes", "startPlaceholder", "endPlaceholder", "default-value", "pleStatus", "range", "hasTime", "hideSecond", "onConfirm", "onMaskClose"])) : vue.createCommentVNode("v-if", true)
     ]);
   }
-  const __easycom_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$6], ["__scopeId", "data-v-9802168a"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue"]]);
+  const __easycom_0$2 = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$8], ["__scopeId", "data-v-9802168a"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue"]]);
   const _sfc_main$c = {
     setup() {
       let router2 = j();
@@ -10895,8 +10386,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_datetime_picker = resolveEasycom(vue.resolveDynamicComponent("uni-datetime-picker"), __easycom_0$1);
+  function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_uni_datetime_picker = resolveEasycom(vue.resolveDynamicComponent("uni-datetime-picker"), __easycom_0$2);
     return vue.openBlock(), vue.createElementBlock("view", { class: "backarea" }, [
       vue.createElementVNode("view", {
         class: "box",
@@ -11017,7 +10508,7 @@ if (uni.restoreGlobal) {
       ])
     ]);
   }
-  const PagesSetSet = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$5], ["__file", "D:/ruangong/emosphere/pages/set/set.vue"]]);
+  const PagesSetSet = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$7], ["__file", "D:/ruangong/emosphere/pages/set/set.vue"]]);
   const _sfc_main$b = {
     setup() {
       const keyboardHeight = vue.ref(0);
@@ -11149,7 +10640,7 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "backarea" }, [
       vue.createElementVNode("view", { style: { "width": "100%", "height": "5%" } }),
       vue.createElementVNode("view", { class: "header" }, [
@@ -11281,8 +10772,273 @@ if (uni.restoreGlobal) {
       ])
     ]);
   }
-  const PagesTestTest = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$4], ["__scopeId", "data-v-727d09f0"], ["__file", "D:/ruangong/emosphere/pages/test/test.vue"]]);
+  const PagesTestTest = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$6], ["__scopeId", "data-v-727d09f0"], ["__file", "D:/ruangong/emosphere/pages/test/test.vue"]]);
+  const icons = {
+    "about": "",
+    "about-fill": "",
+    "add": "",
+    "add-fill": "",
+    "addmessage": "",
+    "addressbook": "",
+    "agree": "",
+    "agree-fill": "",
+    "alarm": "",
+    "alarm-fill": "",
+    "alipay": "",
+    "android": "",
+    "applets": "",
+    "arrowdown": "",
+    "arrowleft": "",
+    "arrowright": "",
+    "arrowup": "",
+    "attestation": "",
+    "back": "",
+    "bag": "",
+    "bag-fill": "",
+    "balloon": "",
+    "bankcard": "",
+    "bankcard-fill": "",
+    "bottom": "",
+    "calendar": "",
+    "camera": "",
+    "camera-fill": "",
+    "camera-add": "",
+    "card": "",
+    "card-fill": "",
+    "cart": "",
+    "cart-fill": "",
+    "category": "",
+    "category-fill": "",
+    "check": "",
+    "circle": "",
+    "circle-fill": "",
+    "circle-selected": "",
+    "clock": "",
+    "clock-fill": "",
+    "close": "",
+    "close-fill": "",
+    "community": "",
+    "community-fill": "",
+    "computer": "",
+    "computer-fill": "",
+    "coupon": "",
+    "delete": "",
+    "deletekey": "",
+    "dingtalk": "",
+    "dissatisfied": "",
+    "down": "",
+    "download": "",
+    "edit": "",
+    "ellipsis": "",
+    "enlarge": "",
+    "evaluate": "",
+    "exchange": "",
+    "explain": "",
+    "explain-fill": "",
+    "explore": "",
+    "explore-fill": "",
+    "eye": "",
+    "feedback": "",
+    "fingerprint": "",
+    "friendadd": "",
+    "friendadd-fill": "",
+    "gps": "",
+    "histogram": "",
+    "home": "",
+    "home-fill": "",
+    "house": "",
+    "imface": "",
+    "imkeyboard": "",
+    "immore": "",
+    "imvoice": "",
+    "ios": "",
+    "kefu": "",
+    "label": "",
+    "label-fill": "",
+    "like": "",
+    "like-fill": "",
+    "link": "",
+    "listview": "",
+    "loading": "",
+    "location": "",
+    "mail": "",
+    "mail-fill": "",
+    "manage": "",
+    "manage-fill": "",
+    "member": "",
+    "member-fill": "",
+    "message": "",
+    "message-fill": "",
+    "mobile": "",
+    "moments": "",
+    "more": "",
+    "more-fill": "",
+    "narrow": "",
+    "news": "",
+    "news-fill": "",
+    "nodata": "",
+    "notice": "",
+    "notice-fill": "",
+    "offline": "",
+    "offline-fill": "",
+    "oppose": "",
+    "oppose-fill": "",
+    "order": "",
+    "partake": "",
+    "people": "",
+    "people-fill": "",
+    "pic": "",
+    "pic-fill": "",
+    "picture": "",
+    "pie": "",
+    "plus": "",
+    "polygonal": "",
+    "position": "",
+    "pwd": "",
+    "qq": "",
+    "qrcode": "",
+    "redpacket": "",
+    "redpacket-fill": "",
+    "reduce": "",
+    "refresh": "",
+    "revoke": "",
+    "satisfied": "",
+    "screen": "",
+    "search": "",
+    "search-2": "",
+    "send": "",
+    "service": "",
+    "service-fill": "",
+    "setup": "",
+    "setup-fill": "",
+    "share": "",
+    "share-fill": "",
+    "shield": "",
+    "shop": "",
+    "shop-fill": "",
+    "shut": "",
+    "signin": "",
+    "sina": "",
+    "skin": "",
+    "soso": "",
+    "square": "",
+    "square-fill": "",
+    "square-selected": "",
+    "star": "",
+    "star-fill": "",
+    "strategy": "",
+    "sweep": "",
+    "time": "",
+    "time-fill": "",
+    "todown": "",
+    "toleft": "",
+    "tool": "",
+    "top": "",
+    "toright": "",
+    "towardsleft": "",
+    "towardsright": "",
+    "towardsright-fill": "",
+    "transport": "",
+    "transport-fill": "",
+    "turningdown": "",
+    "turningleft": "",
+    "turningright": "",
+    "turningup": "",
+    "unreceive": "",
+    "seen": "",
+    "unseen": "",
+    "up": "",
+    "upload": "",
+    "video": "",
+    "voice": "",
+    "voice-fill": "",
+    "voipphone": "",
+    "wallet": "",
+    "warning": "",
+    "wealth": "",
+    "wealth-fill": "",
+    "weather": "",
+    "wechat": "",
+    "wifi": "",
+    "play": "",
+    "suspend": ""
+  };
   const _sfc_main$a = {
+    name: "tuiIcon",
+    emits: ["click"],
+    props: {
+      name: {
+        type: String,
+        default: ""
+      },
+      customPrefix: {
+        type: String,
+        default: ""
+      },
+      size: {
+        type: [Number, String],
+        default: 0
+      },
+      //px或者rpx
+      unit: {
+        type: String,
+        default: ""
+      },
+      color: {
+        type: String,
+        default: ""
+      },
+      bold: {
+        type: Boolean,
+        default: false
+      },
+      margin: {
+        type: String,
+        default: "0"
+      },
+      index: {
+        type: Number,
+        default: 0
+      }
+    },
+    computed: {
+      getColor() {
+        return this.color || uni && uni.$tui && uni.$tui.tuiIcon.color || "#999";
+      },
+      getSize() {
+        const size = this.size || uni && uni.$tui && uni.$tui.tuiIcon.size || 32;
+        const unit = this.unit || uni && uni.$tui && uni.$tui.tuiIcon.unit || "px";
+        return size + unit;
+      }
+    },
+    data() {
+      return {
+        icons
+      };
+    },
+    methods: {
+      handleClick() {
+        this.$emit("click", {
+          index: this.index
+        });
+      }
+    }
+  };
+  function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
+    return vue.openBlock(), vue.createElementBlock(
+      "text",
+      {
+        class: vue.normalizeClass(["tui-icon", [$props.customPrefix, $props.customPrefix ? $props.name : ""]]),
+        style: vue.normalizeStyle({ color: $options.getColor, fontSize: $options.getSize, fontWeight: $props.bold ? "bold" : "normal", margin: $props.margin }),
+        onClick: _cache[0] || (_cache[0] = (...args) => $options.handleClick && $options.handleClick(...args))
+      },
+      vue.toDisplayString($data.icons[$props.name] || ""),
+      7
+      /* TEXT, CLASS, STYLE */
+    );
+  }
+  const __easycom_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$5], ["__scopeId", "data-v-bfc5f459"], ["__file", "D:/ruangong/emosphere/node_modules/thorui-uni/lib/thorui/tui-icon/tui-icon.vue"]]);
+  const _sfc_main$9 = {
     name: "tuiTabs",
     emits: ["change"],
     props: {
@@ -11478,7 +11234,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
     return $data.tabsWidth > 0 ? (vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -11565,416 +11321,246 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     )) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_0 = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$3], ["__scopeId", "data-v-aff741f1"], ["__file", "D:/ruangong/emosphere/node_modules/thorui-uni/lib/thorui/tui-tabs/tui-tabs.vue"]]);
-  const _sfc_main$9 = {
-    __name: "interest",
-    setup(__props) {
-      const dataList = vue.ref([
-        {
-          avatar: "/static/xiaodiao.png",
-          username: "xiaodiao",
-          time: "Two minutes ago",
-          content: "谨遵陈总安排，吾等在所不辞",
-          imgsUrl: ["/static/blog1.png", "/static/blog2.png"],
-          agreeCount: "666",
-          commentCount: "777"
-        },
-        {
-          avatar: "/static/Zixin.png",
-          username: "Zixin",
-          time: "30 minutes ago",
-          content: "早上坏",
-          imgsUrl: ["/static/blog3.png"],
-          agreeCount: "666",
-          commentCount: "777"
-        },
-        {
-          avatar: "/static/xiaodiao.png",
-          username: "xiaodiao",
-          time: "One hour ago",
-          content: "111111111",
-          imgsUrl: ["/static/blog1.png", "/static/blog2.png"],
-          agreeCount: "666",
-          commentCount: "777"
-        }
-      ]);
-      const scrollTop = vue.ref(0);
-      const old = vue.ref({
-        scrollTop: 0
+  const __easycom_0 = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$4], ["__scopeId", "data-v-aff741f1"], ["__file", "D:/ruangong/emosphere/node_modules/thorui-uni/lib/thorui/tui-tabs/tui-tabs.vue"]]);
+  let watched = false;
+  let functions = [];
+  function watchUniOn(name, func) {
+    functions.push(func);
+    if (!watched) {
+      watched = true;
+      uni.$on(name, function(index) {
+        functions.forEach(function(func2) {
+          if (typeof func2 === "function") {
+            func2(index);
+          }
+        });
       });
-      const upper = (e2) => {
-        formatAppLog("log", "at components/interest/interest.vue:106", e2);
-      };
-      const lower = (e2) => {
-        formatAppLog("log", "at components/interest/interest.vue:110", e2);
-      };
-      const scroll = (e2) => {
-        formatAppLog("log", "at components/interest/interest.vue:114", e2);
-        old.value.scrollTop = e2.detail.scrollTop;
-      };
-      const agreeImg = (item, index) => {
-        item.agreeCount = item.agreeCount * 1 + 1;
-        item.isLike = true;
-      };
-      const cancelAgreeImg = (item, index) => {
-        item.agreeCount = item.agreeCount * 1 - 1;
-        item.isLike = false;
-      };
-      const showCommentBox = vue.ref(false);
-      const commentText = vue.ref("");
-      const toggleCommentBox = () => {
-        showCommentBox.value = !showCommentBox.value;
-      };
-      const postComment = () => {
-        formatAppLog("log", "at components/interest/interest.vue:149", "发送评论:", commentText.value);
-        commentText.value = "";
-        showCommentBox.value = false;
-      };
-      return (_ctx, _cache) => {
-        const _component_tui_icon = resolveEasycom(vue.resolveDynamicComponent("tui-icon"), __easycom_0$4);
-        return vue.openBlock(), vue.createElementBlock("view", { class: "container" }, [
-          vue.createElementVNode("view", null, [
-            vue.createElementVNode("scroll-view", {
-              "scroll-top": scrollTop.value,
-              "scroll-y": "true",
-              class: "scroll-Y",
-              onScrolltoupper: upper,
-              onScrolltolower: lower,
-              onScroll: scroll
-            }, [
-              vue.createElementVNode("ul", null, [
-                (vue.openBlock(true), vue.createElementBlock(
-                  vue.Fragment,
-                  null,
-                  vue.renderList(dataList.value, (item, index) => {
-                    return vue.openBlock(), vue.createElementBlock("li", { key: index }, [
-                      vue.createElementVNode("view", { class: "item" }, [
-                        vue.createElementVNode("view", { class: "avatar-user" }, [
-                          vue.createCommentVNode(" 点击头像跳转 "),
-                          vue.createElementVNode("view", { class: "avatar" }, [
-                            vue.createElementVNode("image", {
-                              src: item.avatar,
-                              mode: "aspectFill",
-                              "lazy-load": true
-                            }, null, 8, ["src"])
-                          ]),
-                          vue.createElementVNode("view", { class: "user" }, [
-                            vue.createElementVNode(
-                              "view",
-                              { class: "name" },
-                              vue.toDisplayString(item.username),
-                              1
-                              /* TEXT */
-                            ),
-                            vue.createElementVNode(
-                              "view",
-                              { class: "time" },
-                              vue.toDisplayString(item.time),
-                              1
-                              /* TEXT */
-                            )
-                          ])
-                        ])
-                      ]),
-                      vue.createElementVNode(
-                        "view",
-                        { class: "content" },
-                        vue.toDisplayString(item.content),
-                        1
-                        /* TEXT */
-                      ),
-                      vue.createElementVNode("view", { class: "main" }, [
-                        vue.createElementVNode("view", { class: "img-list" }, [
-                          (vue.openBlock(true), vue.createElementBlock(
-                            vue.Fragment,
-                            null,
-                            vue.renderList(item.imgsUrl, (img, index2) => {
-                              return vue.openBlock(), vue.createElementBlock("view", { key: index2 }, [
-                                vue.createElementVNode("image", {
-                                  src: img,
-                                  mode: "aspectFill",
-                                  "lazy-load": true,
-                                  class: "fadeImg"
-                                }, null, 8, ["src"]),
-                                vue.createCommentVNode(' <ImgFade :src="img" ></ImgFade> ')
-                              ]);
-                            }),
-                            128
-                            /* KEYED_FRAGMENT */
-                          ))
-                        ])
-                      ]),
-                      vue.createElementVNode("view", { class: "fotter" }, [
-                        vue.createElementVNode("view", { class: "icon" }, [
-                          item.isLike ? (vue.openBlock(), vue.createBlock(_component_tui_icon, {
-                            key: 0,
-                            name: "like-fill",
-                            size: "25",
-                            onClick: ($event) => cancelAgreeImg(item),
-                            color: "#488C88"
-                          }, null, 8, ["onClick"])) : (vue.openBlock(), vue.createBlock(_component_tui_icon, {
-                            key: 1,
-                            name: "like",
-                            size: "25",
-                            onClick: ($event) => agreeImg(item)
-                          }, null, 8, ["onClick"])),
-                          vue.createElementVNode(
-                            "view",
-                            { class: "count" },
-                            vue.toDisplayString(item.agreeCount),
-                            1
-                            /* TEXT */
-                          )
-                        ]),
-                        vue.createElementVNode("view", { class: "icon1" }, [
-                          vue.createVNode(_component_tui_icon, {
-                            name: "message",
-                            size: "25",
-                            onClick: toggleCommentBox
-                          }),
-                          vue.createElementVNode(
-                            "view",
-                            { class: "count" },
-                            vue.toDisplayString(item.commentCount),
-                            1
-                            /* TEXT */
-                          ),
-                          showCommentBox.value ? (vue.openBlock(), vue.createElementBlock("view", {
-                            key: 0,
-                            class: "comment-box"
-                          }, [
-                            vue.withDirectives(vue.createElementVNode(
-                              "textarea",
-                              {
-                                "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => commentText.value = $event),
-                                placeholder: "在这里输入评论"
-                              },
-                              null,
-                              512
-                              /* NEED_PATCH */
-                            ), [
-                              [vue.vModelText, commentText.value]
-                            ]),
-                            vue.createElementVNode("button", { onClick: postComment }, "发送评论")
-                          ])) : vue.createCommentVNode("v-if", true)
-                        ]),
-                        vue.createCommentVNode(" 分享")
-                      ])
-                    ]);
-                  }),
-                  128
-                  /* KEYED_FRAGMENT */
-                ))
-              ]),
-              !_ctx.isEnd && _ctx.loading ? (vue.openBlock(), vue.createElementBlock("view", {
-                key: 0,
-                class: "loadStyle"
-              }, [
-                vue.createVNode(_component_tui_icon, {
-                  name: "loading",
-                  size: 18
-                })
-              ])) : vue.createCommentVNode("v-if", true),
-              _ctx.isEnd ? (vue.openBlock(), vue.createElementBlock("view", {
-                key: 1,
-                class: "loadStyle"
-              }, "我也是有底线的~")) : vue.createCommentVNode("v-if", true)
-            ], 40, ["scroll-top"])
-          ]),
-          vue.createCommentVNode(" 弄一个回顶部的悬浮按钮"),
-          vue.createCommentVNode(" 到底标记")
-        ]);
-      };
     }
-  };
-  const __easycom_2$1 = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__scopeId", "data-v-bc3d731e"], ["__file", "D:/ruangong/emosphere/components/interest/interest.vue"]]);
+  }
+  let reLaunchInvokeFunctions = [], reLaunchCompleteFunctions = [], reLaunchinter = false;
+  let switchTabInvokeFunctions = [], switchTabCompleteFunctions = [], switchTabinter = false;
+  function addRelanchRoute(func, func1) {
+    reLaunchInvokeFunctions.push(func);
+    reLaunchCompleteFunctions.push(func1);
+    if (!reLaunchinter) {
+      reLaunchinter = true;
+      uni.addInterceptor("reLaunch", {
+        //监听关闭本页面跳转
+        invoke(e2) {
+          reLaunchInvokeFunctions.forEach(function(func2) {
+            if (typeof func2 === "function") {
+              func2(e2);
+            }
+          });
+        },
+        complete() {
+          reLaunchCompleteFunctions.forEach(function(func2) {
+            if (typeof func2 === "function") {
+              func2();
+            }
+          });
+        }
+      });
+    }
+  }
+  function addSwitchRoute(func, func1) {
+    switchTabInvokeFunctions.push(func);
+    switchTabCompleteFunctions.push(func1);
+    if (!switchTabinter) {
+      switchTabinter = true;
+      uni.addInterceptor("switchTab", {
+        //监听关闭本页面跳转
+        invoke(e2) {
+          switchTabInvokeFunctions.forEach(function(func2) {
+            if (typeof func2 === "function") {
+              func2(e2);
+            }
+          });
+        },
+        complete() {
+          switchTabCompleteFunctions.forEach(function(func2) {
+            if (typeof func2 === "function") {
+              func2();
+            }
+          });
+        }
+      });
+    }
+  }
   const _sfc_main$8 = {
-    __name: "tuijian",
-    setup(__props) {
-      const dataList = vue.ref([
-        {
-          avatar: "/static/xiaodiao.png",
-          username: "xiaodiao",
-          time: "Two minutes ago",
-          content: "谨遵陈总安排，吾等在所不辞",
-          imgsUrl: ["/static/blog1.png", "/static/blog2.png"],
-          agreeCount: "666",
-          commentCount: "777"
-        },
-        {
-          avatar: "/static/xiaodiao.png",
-          username: "xiaodiao",
-          time: "One hour ago",
-          content: "111111111",
-          imgsUrl: ["/static/blog1.png", "/static/blog2.png"],
-          agreeCount: "666",
-          commentCount: "777"
-        }
-      ]);
-      const scrollTop = vue.ref(0);
-      const old = vue.ref({
-        scrollTop: 0
+    props: {
+      showSlot: {
+        type: Boolean,
+        default: true
+      },
+      // 整个tabbar的背景颜色
+      slotColor: String,
+      // tabbar的高度，默认无
+      contentHeight: [String, Number],
+      // 是否隐藏原生tabbar
+      hideTabBar: {
+        type: Boolean,
+        default: true
+      },
+      tabbarlist: {
+        type: Array,
+        default: () => [
+          {
+            "pagePath": "pages/space/space",
+            "unactiveIconPath": "/static/tabbar/community.png",
+            "iconPath": "/static/tabbar/community_choose.png",
+            "text": "首页"
+          },
+          {
+            "pagePath": "pages/user/me",
+            "unactiveIconPath": "/static/tabbar/message_choose.png",
+            "iconPath": "/static/tabbar/me_choose.png",
+            "text": "我的"
+          }
+        ]
+      }
+    },
+    data() {
+      return {
+        containerHeight: 85,
+        current: "",
+        created: false,
+        tabIndex: -1
+      };
+    },
+    created() {
+      if (this.hideTabBar)
+        uni.hideTabBar();
+      watchUniOn("__routeChange__", (path) => {
+        this.current = path;
+        this.$emit("change", path);
       });
-      const upper = (e2) => {
-        formatAppLog("log", "at components/tuijian/tuijian.vue:92", e2);
-      };
-      const lower = (e2) => {
-        formatAppLog("log", "at components/tuijian/tuijian.vue:96", e2);
-      };
-      const scroll = (e2) => {
-        formatAppLog("log", "at components/tuijian/tuijian.vue:100", e2);
-        old.value.scrollTop = e2.detail.scrollTop;
-      };
-      const agreeImg = (item, index) => {
-        item.agreeCount = item.agreeCount * 1 + 1;
-        item.isLike = true;
-      };
-      const cancelAgreeImg = (item, index) => {
-        item.agreeCount = item.agreeCount * 1 - 1;
-        item.isLike = false;
-      };
-      return (_ctx, _cache) => {
-        const _component_tui_icon = resolveEasycom(vue.resolveDynamicComponent("tui-icon"), __easycom_0$4);
-        return vue.openBlock(), vue.createElementBlock("view", { class: "container" }, [
-          vue.createElementVNode("view", null, [
-            vue.createElementVNode("scroll-view", {
-              "scroll-top": scrollTop.value,
-              "scroll-y": "true",
-              class: "scroll-Y",
-              onScrolltoupper: upper,
-              onScrolltolower: lower,
-              onScroll: scroll
-            }, [
-              vue.createElementVNode("ul", null, [
-                (vue.openBlock(true), vue.createElementBlock(
-                  vue.Fragment,
-                  null,
-                  vue.renderList(dataList.value, (item, index) => {
-                    return vue.openBlock(), vue.createElementBlock("li", { key: index }, [
-                      vue.createElementVNode("view", { class: "item" }, [
-                        vue.createElementVNode("view", { class: "avatar-user" }, [
-                          vue.createCommentVNode(" 点击头像跳转 "),
-                          vue.createElementVNode("view", { class: "avatar" }, [
-                            vue.createElementVNode("image", {
-                              src: item.avatar,
-                              mode: "aspectFill",
-                              "lazy-load": true
-                            }, null, 8, ["src"])
-                          ]),
-                          vue.createElementVNode("view", { class: "user" }, [
-                            vue.createElementVNode(
-                              "view",
-                              { class: "name" },
-                              vue.toDisplayString(item.username),
-                              1
-                              /* TEXT */
-                            ),
-                            vue.createElementVNode(
-                              "view",
-                              { class: "time" },
-                              vue.toDisplayString(item.time),
-                              1
-                              /* TEXT */
-                            )
-                          ])
-                        ])
-                      ]),
-                      vue.createElementVNode(
-                        "view",
-                        { class: "content" },
-                        vue.toDisplayString(item.content),
-                        1
-                        /* TEXT */
-                      ),
-                      vue.createElementVNode("view", { class: "main" }, [
-                        vue.createElementVNode("view", { class: "img-list" }, [
-                          (vue.openBlock(true), vue.createElementBlock(
-                            vue.Fragment,
-                            null,
-                            vue.renderList(item.imgsUrl, (img, index2) => {
-                              return vue.openBlock(), vue.createElementBlock("view", { key: index2 }, [
-                                vue.createElementVNode("image", {
-                                  src: img,
-                                  mode: "aspectFill",
-                                  "lazy-load": true,
-                                  class: "fadeImg"
-                                }, null, 8, ["src"]),
-                                vue.createCommentVNode(' <ImgFade :src="img" ></ImgFade> ')
-                              ]);
-                            }),
-                            128
-                            /* KEYED_FRAGMENT */
-                          ))
-                        ])
-                      ]),
-                      vue.createElementVNode("view", { class: "fotter" }, [
-                        vue.createElementVNode("view", { class: "icon" }, [
-                          item.isLike ? (vue.openBlock(), vue.createBlock(_component_tui_icon, {
-                            key: 0,
-                            name: "like-fill",
-                            size: "25",
-                            onClick: ($event) => cancelAgreeImg(item),
-                            color: "#488C88"
-                          }, null, 8, ["onClick"])) : (vue.openBlock(), vue.createBlock(_component_tui_icon, {
-                            key: 1,
-                            name: "like",
-                            size: "25",
-                            onClick: ($event) => agreeImg(item)
-                          }, null, 8, ["onClick"])),
-                          vue.createElementVNode(
-                            "view",
-                            { class: "count" },
-                            vue.toDisplayString(item.agreeCount),
-                            1
-                            /* TEXT */
-                          )
-                        ]),
-                        vue.createElementVNode("view", {
-                          class: "icon1",
-                          onClick: ($event) => _ctx.getComment(item.mid)
-                        }, [
-                          vue.createVNode(_component_tui_icon, {
-                            name: "message",
-                            size: "25"
-                          }),
-                          vue.createElementVNode(
-                            "view",
-                            { class: "count" },
-                            vue.toDisplayString(item.commentCount),
-                            1
-                            /* TEXT */
-                          )
-                        ], 8, ["onClick"]),
-                        vue.createCommentVNode(" 分享")
-                      ])
-                    ]);
-                  }),
-                  128
-                  /* KEYED_FRAGMENT */
-                ))
-              ]),
-              !_ctx.isEnd && _ctx.loading ? (vue.openBlock(), vue.createElementBlock("view", {
-                key: 0,
-                class: "loadStyle"
-              }, [
-                vue.createVNode(_component_tui_icon, {
-                  name: "loading",
-                  size: 18
-                })
-              ])) : vue.createCommentVNode("v-if", true),
-              _ctx.isEnd ? (vue.openBlock(), vue.createElementBlock("view", {
-                key: 1,
-                class: "loadStyle"
-              }, "我也是有底线的~")) : vue.createCommentVNode("v-if", true)
-            ], 40, ["scroll-top"])
-          ]),
-          vue.createCommentVNode(" 弄一个回顶部的悬浮按钮"),
-          vue.createCommentVNode(" 到底标记")
-        ]);
-      };
+      addRelanchRoute((e2) => {
+        this.preRoute(e2.url);
+      });
+      addSwitchRoute((e2) => {
+        this.preRoute(e2.url);
+      });
+      this.tabIndex = this.changeRoute();
+      this.created = true;
+    },
+    mounted() {
+      const query = uni.createSelectorQuery().in(this);
+      query.select("#navigatorContent").boundingClientRect((data) => {
+        if (data) {
+          this.containerHeight = data.height;
+          uni.setStorage({
+            key: "navigatorContainerHeight",
+            data: data.height
+          });
+        }
+      }).exec();
+    },
+    methods: {
+      preRoute(path) {
+        if (this.created) {
+          const f2 = this.tabbarlist.find((item) => `/${item.pagePath}` === path);
+          if (f2) {
+            uni.$emit("__routeChange__", f2.pagePath);
+          }
+        }
+      },
+      changeRoute() {
+        if (!this.created) {
+          let pages2 = getCurrentPages() || [];
+          const f2 = this.tabbarlist.find((item) => item.pagePath === (pages2[pages2.length - 1] ? pages2[pages2.length - 1].route : "none"));
+          if (f2) {
+            uni.$emit("__routeChange__", f2.pagePath);
+            return f2;
+          }
+        }
+      },
+      // 切换tab
+      switchTab(pagePath) {
+        let pages2 = getCurrentPages();
+        if (pages2[pages2.length - 1].route.indexOf(pagePath) > -1)
+          return;
+        uni.navigateTo({
+          url: "/" + pagePath
+        });
+      }
     }
   };
-  const __easycom_3 = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__scopeId", "data-v-089fc835"], ["__file", "D:/ruangong/emosphere/components/tuijian/tuijian.vue"]]);
+  function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
+    return vue.openBlock(), vue.createElementBlock(
+      "view",
+      {
+        class: "u-tabbar",
+        onTouchmove: _cache[0] || (_cache[0] = vue.withModifiers(() => {
+        }, ["stop", "prevent"]))
+      },
+      [
+        vue.createElementVNode(
+          "view",
+          {
+            id: "navigatorContent",
+            class: "u-tabbar__content safe-area-inset-bottom",
+            style: vue.normalizeStyle({
+              height: typeof $props.contentHeight === "number" ? $props.contentHeight + "rpx" : $props.contentHeight
+            })
+          },
+          [
+            (vue.openBlock(true), vue.createElementBlock(
+              vue.Fragment,
+              null,
+              vue.renderList($props.tabbarlist, (item, index) => {
+                return vue.openBlock(), vue.createElementBlock("view", {
+                  class: vue.normalizeClass(["u-tabbar__content__item", $data.current === item.pagePath ? "active" : "default"]),
+                  key: index,
+                  onClick: vue.withModifiers(($event) => $options.switchTab(item.pagePath), ["stop"])
+                }, [
+                  $data.current === item.pagePath ? (vue.openBlock(), vue.createElementBlock("image", {
+                    key: 0,
+                    src: item.iconPath,
+                    class: "tab-image actived",
+                    style: {}
+                  }, null, 8, ["src"])) : (vue.openBlock(), vue.createElementBlock("image", {
+                    key: 1,
+                    src: item.unactiveIconPath,
+                    class: "tab-image",
+                    style: {}
+                  }, null, 8, ["src"])),
+                  vue.createElementVNode(
+                    "view",
+                    { class: "u-tabbar__content__item__text one-line" },
+                    vue.toDisplayString(item.text),
+                    1
+                    /* TEXT */
+                  )
+                ], 10, ["onClick"]);
+              }),
+              128
+              /* KEYED_FRAGMENT */
+            ))
+          ],
+          4
+          /* STYLE */
+        ),
+        $props.showSlot ? (vue.openBlock(), vue.createElementBlock(
+          "view",
+          {
+            key: 0,
+            class: "tabbar-slot safe-area-inset-bottom",
+            style: vue.normalizeStyle({
+              background: $props.slotColor,
+              height: $data.containerHeight + "px"
+            })
+          },
+          null,
+          4
+          /* STYLE */
+        )) : vue.createCommentVNode("v-if", true)
+      ],
+      32
+      /* HYDRATE_EVENTS */
+    );
+  }
+  const __easycom_2$1 = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$3], ["__scopeId", "data-v-06a0561c"], ["__file", "D:/ruangong/emosphere/components/ren-customer-navigator/ren-customer-navigator.vue"]]);
   const _sfc_main$7 = {
     __name: "space",
     setup(__props) {
@@ -12000,13 +11586,12 @@ if (uni.restoreGlobal) {
       vue.ref("");
       vue.ref("loadmore");
       return (_ctx, _cache) => {
-        const _component_tui_icon = resolveEasycom(vue.resolveDynamicComponent("tui-icon"), __easycom_0$4);
+        const _component_tui_icon = resolveEasycom(vue.resolveDynamicComponent("tui-icon"), __easycom_0$1);
         const _component_tui_tabs = resolveEasycom(vue.resolveDynamicComponent("tui-tabs"), __easycom_0);
-        const _component_interest = resolveEasycom(vue.resolveDynamicComponent("interest"), __easycom_2$1);
-        const _component_tuijian = resolveEasycom(vue.resolveDynamicComponent("tuijian"), __easycom_3);
-        return vue.openBlock(), vue.createElementBlock("view", { class: "container" }, [
-          vue.createElementVNode("view", { style: { "width": "100%", "height": "5%" } }),
-          vue.createElementVNode("view", { class: "tui-content-box" }, [
+        const _component_ren_customer_navigator = resolveEasycom(vue.resolveDynamicComponent("ren-customer-navigator"), __easycom_2$1);
+        return vue.openBlock(), vue.createElementBlock("view", { class: "backarea" }, [
+          vue.createElementVNode("view", { style: { "width": "100%", "height": "2rem" } }),
+          vue.createElementVNode("view", { class: "header" }, [
             vue.createElementVNode("view", {
               class: "tui-arrow",
               onClick: getback,
@@ -12031,7 +11616,7 @@ if (uni.restoreGlobal) {
               })
             ])
           ]),
-          vue.createElementVNode("view", null, [
+          vue.createElementVNode("view", { class: "top-tab" }, [
             vue.createVNode(_component_tui_tabs, {
               tabs: list1.value,
               currentTab: vue.unref(currentTab),
@@ -12044,9 +11629,9 @@ if (uni.restoreGlobal) {
               size: "30"
             }, null, 8, ["tabs", "currentTab"])
           ]),
-          vue.createElementVNode("view", { class: "gray-line" }),
-          vue.unref(currentTab) == 0 ? (vue.openBlock(), vue.createBlock(_component_interest, { key: 0 })) : vue.createCommentVNode("v-if", true),
-          vue.unref(currentTab) == 1 ? (vue.openBlock(), vue.createBlock(_component_tuijian, { key: 1 })) : vue.createCommentVNode("v-if", true)
+          vue.createCommentVNode(' 		<view class="gray-line"></view> '),
+          vue.createCommentVNode(' 		<interest v-if="currentTab == 0"></interest>\r\n		<tuijian v-if="currentTab == 1"></tuijian> '),
+          vue.createVNode(_component_ren_customer_navigator)
         ]);
       };
     }
@@ -12098,7 +11683,7 @@ if (uni.restoreGlobal) {
         item.isLike = false;
       };
       return (_ctx, _cache) => {
-        const _component_tui_icon = resolveEasycom(vue.resolveDynamicComponent("tui-icon"), __easycom_0$4);
+        const _component_tui_icon = resolveEasycom(vue.resolveDynamicComponent("tui-icon"), __easycom_0$1);
         return vue.openBlock(), vue.createElementBlock("view", { class: "container" }, [
           vue.createElementVNode("view", null, [
             vue.createElementVNode("scroll-view", {
@@ -12285,7 +11870,7 @@ if (uni.restoreGlobal) {
         item.isLike = false;
       };
       return (_ctx, _cache) => {
-        const _component_tui_icon = resolveEasycom(vue.resolveDynamicComponent("tui-icon"), __easycom_0$4);
+        const _component_tui_icon = resolveEasycom(vue.resolveDynamicComponent("tui-icon"), __easycom_0$1);
         return vue.openBlock(), vue.createElementBlock("view", { class: "container" }, [
           vue.createElementVNode("view", null, [
             vue.createElementVNode("scroll-view", {
@@ -12559,11 +12144,38 @@ if (uni.restoreGlobal) {
     __name: "history",
     setup(__props) {
       let router2 = j();
+      const records = vue.ref([]);
       const getback = () => {
         router2.replace("/pages/relax/relax");
       };
+      const formatDate = (dateString) => {
+        const originalDate = new Date(dateString);
+        const month = originalDate.getMonth() + 1;
+        const day = originalDate.getDate();
+        return `${month}月${day}日`;
+      };
+      const geterelax = () => {
+        uni.request({
+          url: "http://8.136.81.197:8080/relax_record/uid",
+          data: {
+            uid: 5,
+            pageSize: 5,
+            currentPage: 1
+          },
+          success: (response) => {
+            formatAppLog("log", "at pages/history/history.vue:56", response.data);
+            records.value = response.data["records"];
+          },
+          fail: (error) => {
+            formatAppLog("error", "at pages/history/history.vue:60", error);
+          }
+        });
+      };
+      vue.onMounted(() => {
+        geterelax();
+      });
       return (_ctx, _cache) => {
-        const _component_uni_datetime_picker = resolveEasycom(vue.resolveDynamicComponent("uni-datetime-picker"), __easycom_0$1);
+        const _component_uni_datetime_picker = resolveEasycom(vue.resolveDynamicComponent("uni-datetime-picker"), __easycom_0$2);
         return vue.openBlock(), vue.createElementBlock("view", { class: "backarea" }, [
           vue.createElementVNode("view", {
             class: "box",
@@ -12590,26 +12202,40 @@ if (uni.restoreGlobal) {
             }, null, 8, ["start", "end", "fields", "value", "onConfirm"])
           ]),
           vue.createElementVNode("view", { class: "relax-list" }, [
-            vue.createElementVNode("view", { class: "relax-item" }, [
-              vue.createElementVNode("span", null, "日期：2023-11-13"),
-              vue.createElementVNode("span", null, "放松方式：音乐"),
-              vue.createElementVNode("span", null, "放松时长：20分钟")
-            ]),
-            vue.createElementVNode("view", { class: "relax-item" }, [
-              vue.createElementVNode("span", null, "日期：2023-11-13"),
-              vue.createElementVNode("span", null, "放松方式：渐进性放松法"),
-              vue.createElementVNode("span", null, "放松时长：10分钟")
-            ]),
-            vue.createElementVNode("view", { class: "relax-item" }, [
-              vue.createElementVNode("span", null, "日期：2023-11-13"),
-              vue.createElementVNode("span", null, "放松方式：呼吸放松法"),
-              vue.createElementVNode("span", null, "放松时长：5分钟")
-            ]),
-            vue.createElementVNode("view", { class: "relax-item" }, [
-              vue.createElementVNode("span", null, "日期：2023-11-13"),
-              vue.createElementVNode("span", null, "放松方式：冥想"),
-              vue.createElementVNode("span", null, "放松时长：25分钟")
-            ])
+            (vue.openBlock(true), vue.createElementBlock(
+              vue.Fragment,
+              null,
+              vue.renderList(records.value, (record, index) => {
+                return vue.openBlock(), vue.createElementBlock("view", {
+                  key: index,
+                  class: "relax-item"
+                }, [
+                  vue.createElementVNode(
+                    "span",
+                    null,
+                    "日期:" + vue.toDisplayString(formatDate(record.createDate)),
+                    1
+                    /* TEXT */
+                  ),
+                  vue.createElementVNode(
+                    "span",
+                    null,
+                    "放松方式:" + vue.toDisplayString(record.type),
+                    1
+                    /* TEXT */
+                  ),
+                  vue.createElementVNode(
+                    "span",
+                    null,
+                    "放松时长：" + vue.toDisplayString(Math.floor(record.duration / 60)) + "分" + vue.toDisplayString(record.duration % 60) + "秒",
+                    1
+                    /* TEXT */
+                  )
+                ]);
+              }),
+              128
+              /* KEYED_FRAGMENT */
+            ))
           ])
         ]);
       };
@@ -12715,7 +12341,8 @@ if (uni.restoreGlobal) {
                 { "id": "D", "content": "偏重" },
                 { "id": "E", "content": "严重" }
               ],
-              "userAnswer": ""
+              "userAnswer": "",
+              "answerscore": ""
             },
             {
               "id": 2,
@@ -12727,7 +12354,8 @@ if (uni.restoreGlobal) {
                 { "id": "D", "content": "偏重" },
                 { "id": "E", "content": "严重" }
               ],
-              "userAnswer": ""
+              "userAnswer": "",
+              "answerscore": ""
             },
             {
               "id": 3,
@@ -12739,7 +12367,8 @@ if (uni.restoreGlobal) {
                 { "id": "D", "content": "偏重" },
                 { "id": "E", "content": "严重" }
               ],
-              "userAnswer": ""
+              "userAnswer": "",
+              "answerscore": ""
             },
             {
               "id": 4,
@@ -12751,7 +12380,8 @@ if (uni.restoreGlobal) {
                 { "id": "D", "content": "偏重" },
                 { "id": "E", "content": "严重" }
               ],
-              "userAnswer": ""
+              "userAnswer": "",
+              "answerscore": ""
             },
             {
               "id": 5,
@@ -12763,7 +12393,8 @@ if (uni.restoreGlobal) {
                 { "id": "D", "content": "偏重" },
                 { "id": "E", "content": "严重" }
               ],
-              "userAnswer": ""
+              "userAnswer": "",
+              "answerscore": ""
             },
             {
               "id": 6,
@@ -12775,7 +12406,8 @@ if (uni.restoreGlobal) {
                 { "id": "D", "content": "偏重" },
                 { "id": "E", "content": "严重" }
               ],
-              "userAnswer": ""
+              "userAnswer": "",
+              "answerscore": ""
             },
             {
               "id": 7,
@@ -12787,7 +12419,8 @@ if (uni.restoreGlobal) {
                 { "id": "D", "content": "偏重" },
                 { "id": "E", "content": "严重" }
               ],
-              "userAnswer": ""
+              "userAnswer": "",
+              "answerscore": ""
             },
             {
               "id": 8,
@@ -12799,7 +12432,8 @@ if (uni.restoreGlobal) {
                 { "id": "D", "content": "偏重" },
                 { "id": "E", "content": "严重" }
               ],
-              "userAnswer": ""
+              "userAnswer": "",
+              "answerscore": ""
             },
             {
               "id": 9,
@@ -12811,7 +12445,8 @@ if (uni.restoreGlobal) {
                 { "id": "D", "content": "偏重" },
                 { "id": "E", "content": "严重" }
               ],
-              "userAnswer": ""
+              "userAnswer": "",
+              "answerscore": ""
             },
             {
               "id": 10,
@@ -12823,7 +12458,8 @@ if (uni.restoreGlobal) {
                 { "id": "D", "content": "偏重" },
                 { "id": "E", "content": "严重" }
               ],
-              "userAnswer": ""
+              "userAnswer": "",
+              "answerscore": ""
             },
             {
               "id": 11,
@@ -12835,7 +12471,8 @@ if (uni.restoreGlobal) {
                 { "id": "D", "content": "偏重" },
                 { "id": "E", "content": "严重" }
               ],
-              "userAnswer": ""
+              "userAnswer": "",
+              "answerscore": ""
             },
             {
               "id": 12,
@@ -12847,7 +12484,8 @@ if (uni.restoreGlobal) {
                 { "id": "D", "content": "偏重" },
                 { "id": "E", "content": "严重" }
               ],
-              "userAnswer": ""
+              "userAnswer": "",
+              "answerscore": ""
             },
             {
               "id": 13,
@@ -12859,7 +12497,8 @@ if (uni.restoreGlobal) {
                 { "id": "D", "content": "偏重" },
                 { "id": "E", "content": "严重" }
               ],
-              "userAnswer": ""
+              "userAnswer": "",
+              "answerscore": ""
             },
             {
               "id": 14,
@@ -12871,7 +12510,8 @@ if (uni.restoreGlobal) {
                 { "id": "D", "content": "偏重" },
                 { "id": "E", "content": "严重" }
               ],
-              "userAnswer": ""
+              "userAnswer": "",
+              "answerscore": ""
             },
             {
               "id": 15,
@@ -12883,7 +12523,8 @@ if (uni.restoreGlobal) {
                 { "id": "D", "content": "偏重" },
                 { "id": "E", "content": "严重" }
               ],
-              "userAnswer": ""
+              "userAnswer": "",
+              "answerscore": ""
             },
             {
               "id": 16,
@@ -12895,7 +12536,8 @@ if (uni.restoreGlobal) {
                 { "id": "D", "content": "偏重" },
                 { "id": "E", "content": "严重" }
               ],
-              "userAnswer": ""
+              "userAnswer": "",
+              "answerscore": ""
             },
             {
               "id": 17,
@@ -12907,884 +12549,958 @@ if (uni.restoreGlobal) {
                 { "id": "D", "content": "偏重" },
                 { "id": "E", "content": "严重" }
               ],
-              "userAnswer": ""
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 18,
+              "title": "感到大多数人都不可信任",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 19,
+              "title": "胃口不好",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 20,
+              "title": "容易哭泣",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 21,
+              "title": "同异性相处时感到害羞和不自在",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 22,
+              "title": "感到受骗，中了圈套或有人想抓住您",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 23,
+              "title": "无缘无故地突然感到害怕",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 24,
+              "title": "自己不能控制地大发脾气",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 25,
+              "title": "怕单独出门",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 26,
+              "title": "经常责怪自己",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 27,
+              "title": "腰痛",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 28,
+              "title": "感到难以完成任务",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 29,
+              "title": "感到孤独",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 30,
+              "title": "感到苦闷",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 31,
+              "title": "过分担忧",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 32,
+              "title": "对事物不感兴趣",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 33,
+              "title": "感到害怕",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 34,
+              "title": "您的感情容易受到伤害",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 35,
+              "title": "旁人能知道您的私下想法",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 36,
+              "title": "感到别人不理解您，不同情您",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 37,
+              "title": "感到人们对您不友好，不喜欢您",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 38,
+              "title": "做事必须做得很慢以保证做得正确",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 39,
+              "title": "心跳得很厉害",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 40,
+              "title": "恶心或胃部不舒服",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 41,
+              "title": "感到比不上他人",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 42,
+              "title": "肌肉酸痛",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 43,
+              "title": "感到有人在监视您、谈论您",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 44,
+              "title": "难以入睡",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 45,
+              "title": "做事必须反复检查",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 46,
+              "title": "难以作出决定",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 47,
+              "title": "怕乘电车、公共汽车、地铁或火车",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 48,
+              "title": "呼吸有困难",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 49,
+              "title": "一阵阵发冷或发热",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 50,
+              "title": "因为感到害怕而避开某些东西、场合或活动",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 51,
+              "title": "脑子变空了",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 52,
+              "title": "身体发麻或刺痛",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 53,
+              "title": "喉咙有梗塞感",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 54,
+              "title": "感到前途没有希望",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 55,
+              "title": "不能集中注意力",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 56,
+              "title": "感到身体的某一部分软弱无力",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 57,
+              "title": "感到紧张或容易紧张",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 58,
+              "title": "感到手或脚发重",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 59,
+              "title": "想到死亡的事",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 60,
+              "title": "吃得太多",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 61,
+              "title": "当别人看着您或谈论您时感到不自在",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 62,
+              "title": "有一些不属于您自己的想法",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 63,
+              "title": "有想打人或伤害他人的冲动",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 64,
+              "title": "醒得太早",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 65,
+              "title": "必须反复洗手、点数",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 66,
+              "title": "睡得不稳、不深",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 67,
+              "title": "有想摔坏或破坏东西的想法",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 68,
+              "title": "有一些别人没有的想法",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 69,
+              "title": "感到对别人神经过敏",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 70,
+              "title": "在商店或电影院等人多的地方感到不自在",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 71,
+              "title": "感到任何事情都很困难",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 72,
+              "title": "一阵阵恐惧或惊恐",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 73,
+              "title": "感到公共场合吃东西很不舒服",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 74,
+              "title": "经常与人争论",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 75,
+              "title": "单独一人时神经很紧张",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 76,
+              "title": "别人对您的成绩没有做出恰当的评价",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 77,
+              "title": "即使和别人在一起也感到孤单",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 78,
+              "title": "感到坐立不安心神不宁",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 79,
+              "title": "感到自己没有什么价值",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 80,
+              "title": "感到熟悉的东西变成陌生或不像是真的",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 81,
+              "title": "大叫或摔东西",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 82,
+              "title": "害怕会在公共场合昏倒",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 83,
+              "title": "感到别人想占您的便宜",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 84,
+              "title": "为一些有关性的想法而很苦恼",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 85,
+              "title": "您认为应该因为自己的过错而受到惩罚",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 86,
+              "title": "感到要很快把事情做完",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 87,
+              "title": "感到自己的身体有严重问题",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 88,
+              "title": "从未感到和其他人很亲近",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 89,
+              "title": "感到自己有罪",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
+            },
+            {
+              "id": 90,
+              "title": "感到自己脑子有毛病",
+              "optionList": [
+                { "id": "A", "content": "从无" },
+                { "id": "B", "content": "轻度" },
+                { "id": "C", "content": "中度" },
+                { "id": "D", "content": "偏重" },
+                { "id": "E", "content": "严重" }
+              ],
+              "userAnswer": "",
+              "answerscore": ""
             }
-            // {
-            // 	"id":18,
-            // 	"title":"感到大多数人都不可信任",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":19,
-            // 	"title":"胃口不好",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":20,
-            // 	"title":"容易哭泣",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":21,
-            // 	"title":"同异性相处时感到害羞和不自在",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":22,
-            // 	"title":"感到受骗，中了圈套或有人想抓住您",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":23,
-            // 	"title":"无缘无故地突然感到害怕",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":24,
-            // 	"title":"自己不能控制地大发脾气",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":25,
-            // 	"title":"怕单独出门",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":26,
-            // 	"title":"经常责怪自己",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":27,
-            // 	"title":"腰痛",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":28,
-            // 	"title":"感到难以完成任务",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":29,
-            // 	"title":"感到孤独",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":30,
-            // 	"title":"感到苦闷",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":31,
-            // 	"title":"过分担忧",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":32,
-            // 	"title":"对事物不感兴趣",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":33,
-            // 	"title":"感到害怕",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":34,
-            // 	"title":"您的感情容易受到伤害",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":35,
-            // 	"title":"旁人能知道您的私下想法",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":36,
-            // 	"title":"感到别人不理解您，不同情您",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":37,
-            // 	"title":"感到人们对您不友好，不喜欢您",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":38,
-            // 	"title":"做事必须做得很慢以保证做得正确",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":39,
-            // 	"title":"心跳得很厉害",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":40,
-            // 	"title":"恶心或胃部不舒服",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":41,
-            // 	"title":"感到比不上他人",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":42,
-            // 	"title":"肌肉酸痛",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":43,
-            // 	"title":"感到有人在监视您、谈论您",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":44,
-            // 	"title":"难以入睡",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":45,
-            // 	"title":"做事必须反复检查",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":46,
-            // 	"title":"难以作出决定",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":47,
-            // 	"title":"怕乘电车、公共汽车、地铁或火车",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":48,
-            // 	"title":"呼吸有困难",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":49,
-            // 	"title":"一阵阵发冷或发热",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":50,
-            // 	"title":"因为感到害怕而避开某些东西、场合或活动",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":51,
-            // 	"title":"脑子变空了",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":52,
-            // 	"title":"身体发麻或刺痛",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":53,
-            // 	"title":"喉咙有梗塞感",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":54,
-            // 	"title":"感到前途没有希望",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":55,
-            // 	"title":"不能集中注意力",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":56,
-            // 	"title":"感到身体的某一部分软弱无力",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":57,
-            // 	"title":"感到紧张或容易紧张",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":58,
-            // 	"title":"感到手或脚发重",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":59,
-            // 	"title":"想到死亡的事",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":60,
-            // 	"title":"吃得太多",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":61,
-            // 	"title":"当别人看着您或谈论您时感到不自在",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":62,
-            // 	"title":"有一些不属于您自己的想法",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":63,
-            // 	"title":"有想打人或伤害他人的冲动",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":64,
-            // 	"title":"醒得太早",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":65,
-            // 	"title":"必须反复洗手、点数",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":66,
-            // 	"title":"睡得不稳、不深",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":67,
-            // 	"title":"有想摔坏或破坏东西的想法",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":68,
-            // 	"title":"有一些别人没有的想法",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":69,
-            // 	"title":"感到对别人神经过敏",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":70,
-            // 	"title":"在商店或电影院等人多的地方感到不自在",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":71,
-            // 	"title":"感到任何事情都很困难",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":72,
-            // 	"title":"一阵阵恐惧或惊恐",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":73,
-            // 	"title":"感到公共场合吃东西很不舒服",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":74,
-            // 	"title":"经常与人争论",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":75,
-            // 	"title":"单独一人时神经很紧张",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":76,
-            // 	"title":"别人对您的成绩没有做出恰当的评价",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":77,
-            // 	"title":"即使和别人在一起也感到孤单",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":78,
-            // 	"title":"感到坐立不安心神不宁",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":79,
-            // 	"title":"感到自己没有什么价值",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":80,
-            // 	"title":"感到熟悉的东西变成陌生或不像是真的",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":81,
-            // 	"title":"大叫或摔东西",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":82,
-            // 	"title":"害怕会在公共场合昏倒",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":83,
-            // 	"title":"感到别人想占您的便宜",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":84,
-            // 	"title":"为一些有关性的想法而很苦恼",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":85,
-            // 	"title":"您认为应该因为自己的过错而受到惩罚",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":86,
-            // 	"title":"感到要很快把事情做完",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":87,
-            // 	"title":"感到自己的身体有严重问题",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":88,
-            // 	"title":"从未感到和其他人很亲近",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":89,
-            // 	"title":"感到自己有罪",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
-            // {
-            // 	"id":90,
-            // 	"title":"感到自己脑子有毛病",
-            // 	"optionList":[
-            // 	{"id":"A","content":"从无",},
-            // 	{"id":"B","content":"轻度",},
-            // 	{"id":"C","content":"中度",},
-            // 	{"id":"D","content":"偏重",},
-            // 	{"id":"E","content":"严重",},
-            // 	],
-            // 	"userAnswer":""
-            // },
           ];
         }
       }
@@ -13847,7 +13563,7 @@ if (uni.restoreGlobal) {
         let min = 0;
         if (this.currentIndex > min && operation < 0 || this.currentIndex < max && operation > 0) {
           this.currentIndex += operation;
-          formatAppLog("log", "at pages/questions/answer.vue:1236", "index:" + this.currentIndex);
+          formatAppLog("log", "at pages/questions/answer.vue:1328", "index:" + this.currentIndex);
         }
       },
       /* 选择答案（单选，判断）
@@ -13865,7 +13581,7 @@ if (uni.restoreGlobal) {
           }, 250);
           this.onAnswerChange(item);
         }
-        formatAppLog("log", "at pages/questions/answer.vue:1254", "index:" + this.currentIndex + " answer:" + item.userAnswer);
+        formatAppLog("log", "at pages/questions/answer.vue:1346", "index:" + this.currentIndex + " answer:" + item.userAnswer);
       },
       /* 题目答案变化
        */
@@ -13876,221 +13592,265 @@ if (uni.restoreGlobal) {
       /* 提交答案
        */
       handleSubmit() {
-        var sig = 1, score = 0;
+        var sig = 1;
+        var score = 0, average_score = 0;
+        var pos_items = 0, pas_items = 0;
+        var pos_sym_num = 0;
+        var factor1, factor2, factor3, factor4, factor5, factor6, factor7, factor8, factor9, factor10;
         for (var i2 = 0; i2 < this.questtionList.length; ++i2) {
           if (this.questtionList[i2].userAnswer == "") {
             alert("请完成所有题目！");
             sig = 0;
             break;
           }
-          if (this.questtionList[i2].userAnswer == "A")
-            score += 0;
-          if (this.questtionList[i2].userAnswer == "B")
+          if (this.questtionList[i2].userAnswer == "A") {
+            this.questtionList[i2].answerscore = 1;
             score += 1;
-          if (this.questtionList[i2].userAnswer == "C")
+            pas_items += 1;
+          }
+          if (this.questtionList[i2].userAnswer == "B") {
+            this.questtionList[i2].answerscore = 2;
             score += 2;
-          if (this.questtionList[i2].userAnswer == "D")
+            pos_items += 1;
+          }
+          if (this.questtionList[i2].userAnswer == "C") {
+            this.questtionList[i2].answerscore = 3;
             score += 3;
-          if (this.questtionList[i2].userAnswer == "E")
+            pos_items += 1;
+          }
+          if (this.questtionList[i2].userAnswer == "D") {
+            this.questtionList[i2].answerscore = 4;
             score += 4;
-          formatAppLog("log", "at pages/questions/answer.vue:1281", i2 + ":" + this.questtionList[i2].userAnswer + " ");
+            pos_items += 1;
+          }
+          if (this.questtionList[i2].userAnswer == "E") {
+            this.questtionList[i2].answerscore = 5;
+            score += 5;
+            pos_items += 1;
+          }
+          formatAppLog("log", "at pages/questions/answer.vue:1398", i2 + ":" + this.questtionList[i2].userAnswer + " ");
         }
+        factor1 = this.questtionList[0].answerscore + this.questtionList[3].answerscore + this.questtionList[11].answerscore + this.questtionList[26].answerscore + this.questtionList[39].answerscore + this.questtionList[41].answerscore + this.questtionList[47].answerscore + this.questtionList[48].answerscore + this.questtionList[51].answerscore + this.questtionList[52].answerscore + this.questtionList[55].answerscore + this.questtionList[57].answerscore;
+        factor2 = this.questtionList[2].answerscore + this.questtionList[8].answerscore + this.questtionList[9].answerscore + this.questtionList[27].answerscore + this.questtionList[37].answerscore + this.questtionList[44].answerscore + this.questtionList[45].answerscore + this.questtionList[50].answerscore + this.questtionList[54].answerscore + this.questtionList[64].answerscore;
+        factor3 = this.questtionList[5].answerscore + this.questtionList[20].answerscore + this.questtionList[33].answerscore + this.questtionList[35].answerscore + this.questtionList[36].answerscore + this.questtionList[40].answerscore + this.questtionList[60].answerscore + this.questtionList[68].answerscore + this.questtionList[72].answerscore;
+        factor4 = this.questtionList[4].answerscore + this.questtionList[13].answerscore + this.questtionList[14].answerscore + this.questtionList[19].answerscore + this.questtionList[21].answerscore + this.questtionList[25].answerscore + this.questtionList[28].answerscore + this.questtionList[29].answerscore + this.questtionList[30].answerscore + this.questtionList[31].answerscore + this.questtionList[53].answerscore + this.questtionList[70].answerscore + this.questtionList[78].answerscore;
+        factor5 = this.questtionList[1].answerscore + this.questtionList[16].answerscore + this.questtionList[22].answerscore + this.questtionList[32].answerscore + this.questtionList[38].answerscore + this.questtionList[56].answerscore + this.questtionList[71].answerscore + this.questtionList[77].answerscore + this.questtionList[79].answerscore + this.questtionList[85].answerscore;
+        factor6 = this.questtionList[10].answerscore + this.questtionList[23].answerscore + this.questtionList[62].answerscore + this.questtionList[66].answerscore + this.questtionList[73].answerscore + this.questtionList[80].answerscore;
+        factor7 = this.questtionList[12].answerscore + this.questtionList[24].answerscore + this.questtionList[46].answerscore + this.questtionList[49].answerscore + this.questtionList[69].answerscore + this.questtionList[74].answerscore + this.questtionList[81].answerscore;
+        factor8 = this.questtionList[7].answerscore + this.questtionList[17].answerscore + this.questtionList[42].answerscore + this.questtionList[67].answerscore + this.questtionList[75].answerscore + this.questtionList[82].answerscore;
+        factor9 = this.questtionList[6].answerscore + this.questtionList[15].answerscore + this.questtionList[34].answerscore + this.questtionList[61].answerscore + this.questtionList[76].answerscore + this.questtionList[83].answerscore + this.questtionList[84].answerscore + this.questtionList[86].answerscore + this.questtionList[87].answerscore + this.questtionList[89].answerscore;
+        factor10 = this.questtionList[18].answerscore + this.questtionList[43].answerscore + this.questtionList[58].answerscore + this.questtionList[59].answerscore + this.questtionList[63].answerscore + this.questtionList[65].answerscore + this.questtionList[88].answerscore;
         if (sig == 1) {
-          this.$router.replace("/pages/result/result");
-          formatAppLog("log", "at pages/questions/answer.vue:1286", "Submit successed!\n");
-          formatAppLog("log", "at pages/questions/answer.vue:1287", "Your score is " + score + ". Average score: " + score / 90);
+          average_score = score / 90;
+          pos_sym_num = (score - pas_items) / pos_items;
+          uni.navigateTo({
+            url: "/pages/result/result?score=" + score + "&average_score=" + average_score + "&pos_items=" + pos_items + "&pas_items=" + pas_items + "&pos_sym_num=" + pos_sym_num + "&factor1=" + factor1 + "&factor2=" + factor2 + "&factor3=" + factor3 + "&factor4=" + factor4 + "&factor5=" + factor5 + "&factor6=" + factor6 + "&factor7=" + factor7 + "&factor8=" + factor8 + "&factor9=" + factor9 + "&factor10=" + factor10
+          });
+          formatAppLog("log", "at pages/questions/answer.vue:1452", "Submit successed!\n");
         }
         if (sig == 0)
-          formatAppLog("log", "at pages/questions/answer.vue:1291", "Submit failed!");
+          formatAppLog("log", "at pages/questions/answer.vue:1456", "Submit failed!");
       }
     }
   };
   function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_modal = vue.resolveComponent("modal");
-    return vue.openBlock(), vue.createElementBlock("view", null, [
-      vue.createElementVNode("view", {
-        class: "header",
-        id: "header"
-      }, [
-        vue.createElementVNode(
-          "span",
-          null,
-          "第" + vue.toDisplayString($data.currentIndex + 1) + "题",
-          1
-          /* TEXT */
-        ),
-        !$props.isReviewed ? (vue.openBlock(), vue.createElementBlock("span", {
-          key: 0,
-          class: "header-button",
-          onClick: _cache[0] || (_cache[0] = (...args) => $options.handleSubmit && $options.handleSubmit(...args))
-        }, "提交")) : vue.createCommentVNode("v-if", true)
-      ]),
-      vue.createElementVNode("view", { id: "subHeader" }, [
-        $props.questtionList.length > 0 ? (vue.openBlock(), vue.createElementBlock("view", {
-          key: 0,
-          class: "sub-header"
-        }, [
-          vue.createElementVNode(
-            "span",
-            { class: "sub-header-number" },
-            vue.toDisplayString($data.currentIndex + 1) + "/" + vue.toDisplayString($props.questtionList.length) + " 题",
-            1
-            /* TEXT */
-          )
-        ])) : vue.createCommentVNode("v-if", true)
-      ]),
-      $props.questtionList.length > 0 ? (vue.openBlock(), vue.createElementBlock("swiper", {
-        key: 0,
-        class: "content",
-        duration: $props.duration,
-        current: $data.currentIndex,
-        onChange: _cache[1] || (_cache[1] = (...args) => $options.handleSwiperChanged && $options.handleSwiperChanged(...args)),
-        style: vue.normalizeStyle({ "height": $data.swiperHeight })
-      }, [
-        (vue.openBlock(true), vue.createElementBlock(
-          vue.Fragment,
-          null,
-          vue.renderList($props.questtionList, (item) => {
-            return vue.openBlock(), vue.createElementBlock("swiper-item", { class: "content-item" }, [
+    return vue.openBlock(), vue.createElementBlock(
+      vue.Fragment,
+      null,
+      [
+        vue.createElementVNode("view", {
+          class: "box",
+          style: { "width": "100%", "height": "2rem" }
+        }),
+        vue.createElementVNode("view", null, [
+          vue.createElementVNode("view", {
+            class: "header",
+            id: "header"
+          }, [
+            vue.createElementVNode(
+              "span",
+              null,
+              "第" + vue.toDisplayString($data.currentIndex + 1) + "题",
+              1
+              /* TEXT */
+            ),
+            !$props.isReviewed ? (vue.openBlock(), vue.createElementBlock("span", {
+              key: 0,
+              class: "header-button",
+              onClick: _cache[0] || (_cache[0] = (...args) => $options.handleSubmit && $options.handleSubmit(...args))
+            }, "提交")) : vue.createCommentVNode("v-if", true)
+          ]),
+          vue.createElementVNode("view", { id: "subHeader" }, [
+            $props.questtionList.length > 0 ? (vue.openBlock(), vue.createElementBlock("view", {
+              key: 0,
+              class: "sub-header"
+            }, [
               vue.createElementVNode(
-                "scroll-view",
-                {
-                  "scroll-y": "",
-                  style: vue.normalizeStyle({ "height": $data.swiperHeight })
-                },
-                [
-                  vue.createElementVNode(
-                    "view",
-                    { class: "content-title" },
-                    vue.toDisplayString(item.title),
-                    1
-                    /* TEXT */
-                  ),
-                  vue.createElementVNode("view", { class: "content-solutions" }, [
-                    (vue.openBlock(true), vue.createElementBlock(
-                      vue.Fragment,
-                      null,
-                      vue.renderList(item.optionList, (subItem) => {
-                        return vue.openBlock(), vue.createElementBlock("view", {
-                          class: "content-solutions-item",
-                          onClick: ($event) => $options.chooseSolution(item, subItem)
-                        }, [
-                          vue.createElementVNode(
-                            "view",
-                            { class: "content-solutions-item-single" },
-                            vue.toDisplayString(subItem.id),
-                            1
-                            /* TEXT */
-                          ),
-                          vue.createElementVNode(
-                            "view",
-                            {
-                              class: vue.normalizeClass([item.userAnswer == subItem.id ? "content-solutions-item-select" : "", "content-solutions-item-content"])
-                            },
-                            vue.toDisplayString(subItem.content),
-                            3
-                            /* TEXT, CLASS */
-                          )
-                        ], 8, ["onClick"]);
-                      }),
-                      256
-                      /* UNKEYED_FRAGMENT */
-                    ))
-                  ])
-                ],
-                4
-                /* STYLE */
+                "span",
+                { class: "sub-header-number" },
+                vue.toDisplayString($data.currentIndex + 1) + "/" + vue.toDisplayString($props.questtionList.length) + " 题",
+                1
+                /* TEXT */
               )
-            ]);
-          }),
-          256
-          /* UNKEYED_FRAGMENT */
-        ))
-      ], 44, ["duration", "current"])) : vue.createCommentVNode("v-if", true),
-      vue.createElementVNode("view", {
-        class: "footer",
-        id: "footer"
-      }, [
-        vue.createElementVNode("view", {
-          class: "footer-back",
-          onClick: _cache[2] || (_cache[2] = ($event) => $options.handleChangeCurrentSwiper(-1))
-        }, "上一题"),
-        vue.createElementVNode("view", {
-          class: "footer-card",
-          onClick: _cache[3] || (_cache[3] = ($event) => $data.showQuestion = true)
-        }, "答题卡"),
-        vue.createElementVNode("view", {
-          class: "footer-right",
-          onClick: _cache[4] || (_cache[4] = ($event) => $options.handleChangeCurrentSwiper(1))
-        }, "下一题")
-      ]),
-      vue.createVNode(_component_modal, {
-        modelValue: $data.showQuestion,
-        "onUpdate:modelValue": _cache[5] || (_cache[5] = ($event) => $data.showQuestion = $event),
-        value: $data.showQuestion
-      }, {
-        default: vue.withCtx(() => [
-          vue.createElementVNode(
-            "view",
-            {
-              class: "question-modal",
-              style: vue.normalizeStyle({ "height": $data.modalHeight })
-            },
-            [
-              vue.createElementVNode("view", {
-                class: "question-modal-header",
-                id: "questionHeader"
-              }, " 答题卡 "),
+            ])) : vue.createCommentVNode("v-if", true)
+          ]),
+          $props.questtionList.length > 0 ? (vue.openBlock(), vue.createElementBlock("swiper", {
+            key: 0,
+            class: "content",
+            duration: $props.duration,
+            current: $data.currentIndex,
+            onChange: _cache[1] || (_cache[1] = (...args) => $options.handleSwiperChanged && $options.handleSwiperChanged(...args)),
+            style: vue.normalizeStyle({ "height": $data.swiperHeight })
+          }, [
+            (vue.openBlock(true), vue.createElementBlock(
+              vue.Fragment,
+              null,
+              vue.renderList($props.questtionList, (item) => {
+                return vue.openBlock(), vue.createElementBlock("swiper-item", { class: "content-item" }, [
+                  vue.createElementVNode(
+                    "scroll-view",
+                    {
+                      "scroll-y": "",
+                      style: vue.normalizeStyle({ "height": $data.swiperHeight })
+                    },
+                    [
+                      vue.createElementVNode(
+                        "view",
+                        { class: "content-title" },
+                        vue.toDisplayString(item.title),
+                        1
+                        /* TEXT */
+                      ),
+                      vue.createElementVNode("view", { class: "content-solutions" }, [
+                        (vue.openBlock(true), vue.createElementBlock(
+                          vue.Fragment,
+                          null,
+                          vue.renderList(item.optionList, (subItem) => {
+                            return vue.openBlock(), vue.createElementBlock("view", {
+                              class: "content-solutions-item",
+                              onClick: ($event) => $options.chooseSolution(item, subItem)
+                            }, [
+                              vue.createElementVNode(
+                                "view",
+                                { class: "content-solutions-item-single" },
+                                vue.toDisplayString(subItem.id),
+                                1
+                                /* TEXT */
+                              ),
+                              vue.createElementVNode(
+                                "view",
+                                {
+                                  class: vue.normalizeClass([item.userAnswer == subItem.id ? "content-solutions-item-select" : "", "content-solutions-item-content"])
+                                },
+                                vue.toDisplayString(subItem.content),
+                                3
+                                /* TEXT, CLASS */
+                              )
+                            ], 8, ["onClick"]);
+                          }),
+                          256
+                          /* UNKEYED_FRAGMENT */
+                        ))
+                      ])
+                    ],
+                    4
+                    /* STYLE */
+                  )
+                ]);
+              }),
+              256
+              /* UNKEYED_FRAGMENT */
+            ))
+          ], 44, ["duration", "current"])) : vue.createCommentVNode("v-if", true),
+          vue.createElementVNode("view", {
+            class: "footer",
+            id: "footer"
+          }, [
+            vue.createElementVNode("view", {
+              class: "footer-back",
+              onClick: _cache[2] || (_cache[2] = ($event) => $options.handleChangeCurrentSwiper(-1))
+            }, "上一题"),
+            vue.createElementVNode("view", {
+              class: "footer-card",
+              onClick: _cache[3] || (_cache[3] = ($event) => $data.showQuestion = true)
+            }, "答题卡"),
+            vue.createElementVNode("view", {
+              class: "footer-right",
+              onClick: _cache[4] || (_cache[4] = ($event) => $options.handleChangeCurrentSwiper(1))
+            }, "下一题")
+          ]),
+          vue.createVNode(_component_modal, {
+            modelValue: $data.showQuestion,
+            "onUpdate:modelValue": _cache[5] || (_cache[5] = ($event) => $data.showQuestion = $event),
+            value: $data.showQuestion
+          }, {
+            default: vue.withCtx(() => [
               vue.createElementVNode(
-                "scroll-view",
+                "view",
                 {
-                  "scroll-y": "",
-                  class: "question-modal-body",
-                  style: vue.normalizeStyle({ "height": $data.modalContentHeight })
+                  class: "question-modal",
+                  style: vue.normalizeStyle({ "height": $data.modalHeight })
                 },
                 [
-                  (vue.openBlock(true), vue.createElementBlock(
-                    vue.Fragment,
-                    null,
-                    vue.renderList($props.questtionList, (item, index) => {
-                      return vue.openBlock(), vue.createElementBlock(
+                  vue.createElementVNode("view", {
+                    class: "question-modal-header",
+                    id: "questionHeader"
+                  }, " 答题卡 "),
+                  vue.createElementVNode(
+                    "scroll-view",
+                    {
+                      "scroll-y": "",
+                      class: "question-modal-body",
+                      style: vue.normalizeStyle({ "height": $data.modalContentHeight })
+                    },
+                    [
+                      (vue.openBlock(true), vue.createElementBlock(
                         vue.Fragment,
                         null,
-                        [
-                          item.userAnswer && $props.isReviewed ? (vue.openBlock(), vue.createElementBlock("view", {
-                            key: 0,
-                            class: "question-modal-body-item question-modal-body-item-failed",
-                            onClick: ($event) => $options.handleJumpSwiper(index)
-                          }, vue.toDisplayString(index + 1), 9, ["onClick"])) : item.userAnswer ? (vue.openBlock(), vue.createElementBlock("view", {
-                            key: 1,
-                            class: "question-modal-body-item question-modal-body-item-select",
-                            onClick: ($event) => $options.handleJumpSwiper(index)
-                          }, vue.toDisplayString(index + 1), 9, ["onClick"])) : (vue.openBlock(), vue.createElementBlock("view", {
-                            key: 2,
-                            class: "question-modal-body-item",
-                            onClick: ($event) => $options.handleJumpSwiper(index)
-                          }, vue.toDisplayString(index + 1), 9, ["onClick"]))
-                        ],
-                        64
-                        /* STABLE_FRAGMENT */
-                      );
-                    }),
-                    256
-                    /* UNKEYED_FRAGMENT */
-                  ))
+                        vue.renderList($props.questtionList, (item, index) => {
+                          return vue.openBlock(), vue.createElementBlock(
+                            vue.Fragment,
+                            null,
+                            [
+                              item.userAnswer && $props.isReviewed ? (vue.openBlock(), vue.createElementBlock("view", {
+                                key: 0,
+                                class: "question-modal-body-item question-modal-body-item-failed",
+                                onClick: ($event) => $options.handleJumpSwiper(index)
+                              }, vue.toDisplayString(index + 1), 9, ["onClick"])) : item.userAnswer ? (vue.openBlock(), vue.createElementBlock("view", {
+                                key: 1,
+                                class: "question-modal-body-item question-modal-body-item-select",
+                                onClick: ($event) => $options.handleJumpSwiper(index)
+                              }, vue.toDisplayString(index + 1), 9, ["onClick"])) : (vue.openBlock(), vue.createElementBlock("view", {
+                                key: 2,
+                                class: "question-modal-body-item",
+                                onClick: ($event) => $options.handleJumpSwiper(index)
+                              }, vue.toDisplayString(index + 1), 9, ["onClick"]))
+                            ],
+                            64
+                            /* STABLE_FRAGMENT */
+                          );
+                        }),
+                        256
+                        /* UNKEYED_FRAGMENT */
+                      ))
+                    ],
+                    4
+                    /* STYLE */
+                  )
                 ],
                 4
                 /* STYLE */
               )
-            ],
-            4
-            /* STYLE */
-          )
-        ]),
-        _: 1
-        /* STABLE */
-      }, 8, ["modelValue", "value"])
-    ]);
+            ]),
+            _: 1
+            /* STABLE */
+          }, 8, ["modelValue", "value"])
+        ])
+      ],
+      64
+      /* STABLE_FRAGMENT */
+    );
   }
   const PagesQuestionsAnswer = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render$1], ["__file", "D:/ruangong/emosphere/pages/questions/answer.vue"]]);
   __definePage("pages/enter/enter", PagesEnterEnter);
@@ -14105,7 +13865,6 @@ if (uni.restoreGlobal) {
   __definePage("pages/share/share", PagesShareShare);
   __definePage("pages/record/record", PagesRecordRecord);
   __definePage("pages/music/music", PagesMusicMusic);
-  __definePage("pages/questions/questions", PagesQuestionsQuestions);
   __definePage("pages/result/result", PagesResultResult);
   __definePage("pages/home/home", PagesHomeHome);
   __definePage("pages/chat/chat", PagesChatChat);
@@ -14238,14 +13997,6 @@ if (uni.restoreGlobal) {
       }
     },
     {
-      path: "pages/questions/questions",
-      style: {
-        navigationBarTitleText: "",
-        enablePullDownRefresh: false,
-        navigationStyle: "custom"
-      }
-    },
-    {
       path: "pages/result/result",
       style: {
         navigationBarTitleText: "",
@@ -14313,14 +14064,16 @@ if (uni.restoreGlobal) {
       path: "pages/questions/modal",
       style: {
         navigationBarTitleText: "",
-        enablePullDownRefresh: false
+        enablePullDownRefresh: false,
+        navigationStyle: "custom"
       }
     },
     {
       path: "pages/questions/answer",
       style: {
         navigationBarTitleText: "",
-        enablePullDownRefresh: false
+        enablePullDownRefresh: false,
+        navigationStyle: "custom"
       }
     }
   ];

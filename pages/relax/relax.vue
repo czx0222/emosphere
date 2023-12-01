@@ -69,7 +69,7 @@
 	import {
 		useRouter
 	} from 'uni-mini-router'
-import store from '../../store';
+	import store from '@/store';
 	export default {
 		data() {
 			let router = useRouter()
@@ -180,30 +180,28 @@ import store from '../../store';
 						.countdownSeconds);
 
 					console.log(`完成放松方法 "${completedPopup}"，花费时间: ${Math.floor(timeSpent / 60)} 分钟 ${timeSpent % 60} 秒`);
-					
-					// let useid = store.state.userId
-					// let method = completedPopup
-					// let time = ${Math.floor(timeSpent / 60)} 分钟 ${timeSpent % 60} 秒
-					// let date = ew Date().toISOString() 
-					// console.log(useid+method+time+date)
-					// const requestData = {
-					// 	method: completedPopup,
-					// 	duration: timeSpent,
-					// 	date: new Date().toISOString() 
-					// };
 
-					
-					// uni.request({
-					// 	url: 'http://8.136.81.197:8080/relax_record',
-					// 	method: 'POST',
-					// 	data: requestData,
-					// 	success: (res) => {
-					// 		console.log('数据发送成功', res);
-					// 	},
-					// 	fail: (err) => {
-					// 		console.error('数据发送失败', err);
-					// 	}
-					// });
+					let useid = store.state.userId
+					let method = completedPopup
+					let date = new Date().toISOString().substr(0, 10);
+					console.log(useid + method + time + date);
+					const requestData = {
+						uid:5,
+						type: method,
+						duration: timeSpent,
+						createDate: date
+					};
+					uni.request({
+						url: 'http://8.136.81.197:8080/relax_record',
+						method: 'POST',
+						data: requestData,
+						success: (response) => {
+							console.log(response.data)
+						},
+						fail: (error) => {
+							console.error(error);
+						}
+					});
 					this.completedPopup = completedPopup;
 					this.completedCount += 1;
 					this.resetCountdown()

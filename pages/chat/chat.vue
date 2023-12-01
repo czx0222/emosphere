@@ -32,7 +32,6 @@
 							<view class="content right">
 								{{item.userContent}}
 							</view>
-							<!-- 头像 -->
 							<view class="avatar">
 								<image src="/static/images/logo.png" ></image>
 							</view>
@@ -94,7 +93,6 @@
 			}
 		},
 		updated() {
-	
 			this.scrollToBottom();
 		},
 		computed: {

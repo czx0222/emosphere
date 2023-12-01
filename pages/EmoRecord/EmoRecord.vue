@@ -73,7 +73,6 @@
 				<input type="text" placeholder="请具体描述" v-model="Content">
 			</view>
 
-			<view >
 				<view class="shangchuan">
 					<view class="sc2" v-for="(item, index) in imageList" :key="index">
 						<image class="del" @click="del(index)" src="/static/images/shanchu.png" mode=""></image>
@@ -83,7 +82,6 @@
 						<image class="sc3" src="/static/images/jiahao.png" mode=""></image>
 					</view>
 				</view>
-			</view>
 		</view>
 	</view>
 </template>
@@ -146,15 +144,6 @@
 				if (res.tempFilePaths.length !== 0) {
 					imageList.value.push(res.tempFilePaths[0]);
 					var tempFilePaths = res.tempFilePaths;
-					// uni.uploadFile({
-					//   url: 'http://douzhuoqianshouba.xieenguoji.com/api/ajax/upload',
-					//   filePath: tempFilePaths[0],
-					//   name: 'file',
-					//   success: (uploadFileRes) => {},
-					//   fail: (err) => {
-					//     console.log(err);
-					//   },
-					// });
 				}
 			},
 		});

@@ -1,0 +1,17 @@
+{
+    "id": "ren-customer-navigator",
+    "name": "自定义底部导航栏无任何依赖，直接使用",
+    "displayName": "自定义底部导航栏无任何依赖，直接使用",
+    "version": "1.6",
+    "description": "自定义底部导航栏无任何依赖，直接使用，支持vue3",
+    "keywords": [
+        "tabbar",
+        "custom"
+    ],
+    "dcloudext": {
+        "category": [
+            "前端组件",
+            "通用组件"
+        ]
+    }
+}

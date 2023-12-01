@@ -3,17 +3,16 @@
 		<view>
 			<scroll-view :scroll-top="scrollTop" scroll-y="true" class="scroll-Y" @scrolltoupper="upper"
 				@scrolltolower="lower" @scroll="scroll">
-				<ul>
-					<li v-for="(item, index) in dataList" :key="index">
+				<ul >
+					<li class="box" v-for="(item, index) in dataList" :key="index">
 						<view class="item">
 							<view class="avatar-user">
-								<!-- 点击头像跳转 -->
 								<view class="avatar">
 									<image :src=item.avatar mode="aspectFill" :lazy-load='true' />
 								</view>
 								<view class="user">
 									<view class="name">{{ item.username }}</view>
-									<view class="time">{{ item.time }}</view>
+									<view class="time">{{ item.createDate }}</view>
 								</view>
 							</view>	
 						</view>
@@ -21,15 +20,10 @@
 							{{ item.content }}
 						</view>
 						<view class="main">
-						
-							<view class="img-list">
-								<view v-for="(img, index) in item.imgsUrl" :key="index">
-						
-									<image :src="img" mode="aspectFill" :lazy-load='true' class="fadeImg" />
-									<!-- <ImgFade :src="img" ></ImgFade> -->
-								</view>
-						
-							</view>
+							<div v-if="item.illustration === null"></div>
+							<div v-else>
+								<image :src=item.illustration mode="aspectFill" :lazy-load='true' class="fadeImg" />
+							 </div>
 						</view>
 						
 						<view class="fotter">
@@ -65,38 +59,58 @@
 </template>
 
 <script setup>
-	import {ref} from 'vue';
+	import {
+		onMounted,
+		ref
+	} from 'vue';
+	const dataList = ref([])
+	// 发起第一个请求，获取posts数据
+	uni.request({
+	    url: 'http://8.136.81.197:8080/post/recent',
+	    method: 'GET',
+	    data: {
+	        currentPage: 1,
+	        pageSize: 6,
+	    },
+	    success: (response) => {
+	        // console.log(response.data);
 	
-	const dataList = ref([
-		{
-			avatar: "/static/xiaodiao.png", 
-			username: "xiaodiao", 
-			time: "Two minutes ago", 
-			content: "谨遵陈总安排，吾等在所不辞",
-			imgsUrl:["/static/blog1.png","/static/blog2.png"],
-			agreeCount:"666",
-			commentCount:"777"
-		},
-		{
-			avatar: "/static/Zixin.png", 
-			username: "Zixin", 
-			time: "30 minutes ago", 
-			content: "早上坏",
-			imgsUrl:["/static/blog3.png"],
-			agreeCount:"666",
-			commentCount:"777"
-		},
-		{
-			avatar: "/static/xiaodiao.png", 
-			username: "xiaodiao", 
-			time: "One hour ago", 
-			content: "111111111",
-			imgsUrl:["/static/blog1.png","/static/blog2.png"],
-			agreeCount:"666",
-			commentCount:"777"
-		},
-	]);
+	        // 遍历每个帖子
+	        response.data['posts'].forEach((post, index) => {
+	            // 获取每个帖子的id
+	            const postId = post.uid;
+				// console.log(postId)
+	            // 发起第二个请求，通过id获取用户信息
+	            uni.request({
+	                url: 'http://8.136.81.197:8080/user/update',
+	                method: 'POST',
+	                data: {
+	                    id: 5,
+	                },
+	                success: (userResponse) => {
+	                    // console.log(userResponse.data);
 	
+	                    // 获取用户头像信息
+	                    const avatar1 = userResponse.data['user'].avatar;
+						const username1 = userResponse.data['user'].username;
+	                    const updatedDataList = response.data['posts'];
+	                    updatedDataList[index].avatar=avatar1
+	                    // 将更新后的dataList赋值给原始dataList
+						updatedDataList[index].username=username1
+	                    dataList.value = updatedDataList;
+						console.log(dataList.value)
+	                },
+	                fail: (userError) => {
+	                    console.error(userError);
+	                }
+	            });
+	        });
+	    },
+	    fail: (error) => {
+	        console.error(error);
+	    }
+	});
+
 	const scrollTop = ref(0);
 	const old = ref({
 	  scrollTop: 0
@@ -152,202 +166,7 @@
 	  // 隐藏评论框
 	  showCommentBox.value = false;
 	};
-	// import {
-	// 	getAllFollowTrends
-	// } from "@/api/interest.js"
-	// import {
-	// 	addBrowseRecord
-	// } from "@/api/browseRecord.js"
-	// import TrendComment from "@/components/trendComment.vue"
-	// import {
-	// 	agree,
-	// 	cancelAgree
-	// } from "@/api/agreeCollect.js"
-	// import {
-	// 	timeAgo
-	// } from "@/utils/webUtils.js"
-	// export default {
-	// 	components: {
-	// 		TrendComment,
-	// 	},
-	// 	data() {
-	// 		return {
-	// 			userInfo: {},
-	// 			triggered: false,
-	// 			page: 1,
-	// 			limit: 4,
-	// 			userInfo: {},
-	// 			dataList: [],
-	// 			popupShow: false,
-	// 			isEnd: false, //是否到底底部了
-	// 			loading: false, //是否正在加载
-	// 			total: 0,
-	// 			mid: '',
-	// 			seed: 0,
-	// 			scrollTop: 0,
-	// 			old: {
-	// 				scrollTop: 0
-	// 			},
-	// 		}
-	// 	},
-	// 	created() {
-	// 		this.userInfo = uni.getStorageSync("userInfo")
-	// 		if (typeof this.userInfo == 'undefined' || this.userInfo == null || this.userInfo == '') {
-	// 			uni.showToast({
-	// 				title: "用户未登录",
-	// 				icon: 'none',
-	// 			})
-	// 			return;
-	// 		} else {
-	// 			this.getAllFollowTrends()
-	// 		}
-
-	// 	},
-
-	// 	methods: {
-	// 		getComment(mid) {
-
-	// 			this.mid = mid
-	// 			this.seed = Math.random()
-	// 			this.popupShow = true;
-	// 			uni.hideTabBar()
-	// 		},
-	// 		popup(popupShow) {
-
-	// 			this.popupShow = popupShow
-	// 		},
-	// 		getAllFollowTrends() {
-
-	// 			let params = {
-	// 				uid: this.userInfo.id
-	// 			}
-	// 			getAllFollowTrends(this.page, this.limit, params).then(res => {
-	// 				res.data.forEach(e => {
-	// 					e.time = timeAgo(e.time)
-	// 					e.imgsUrl = JSON.parse(e.imgsUrl)
-
-	// 					this.dataList.push(e)
-	// 				})
-
-	// 				this.total = res.data.length
-
-	// 			})
-	// 		},
-
-	// 		onRefresh() {
-	// 			this.triggered = true;
-
-	// 			setTimeout(() => {
-	// 				this.triggered = false;
-	// 			}, 1000)
-	// 			this.page = 1
-
-	// 			//刷新数据
-	// 			let params = {
-	// 				uid: this.userInfo.id
-	// 			}
-	// 			getAllFollowTrends(this.page, this.limit, params).then(res => {
-
-	// 				let list = []
-	// 				res.data.forEach(e => {
-	// 					e.time = timeAgo(e.time)
-	// 					e.imgsUrl = JSON.parse(e.imgsUrl)
-
-	// 					list.push(e)
-	// 				})
-
-	// 				this.dataList = list
-
-	// 				this.total = res.data.length
-
-	// 			})
-	// 		},
-
-
-	// 		loadData() {
-
-	// 			this.loading = true
-	// 			setTimeout(() => {
-	// 				if (this.total < this.limit) {
-	// 					this.isEnd = true
-	// 					return
-	// 				}
-	// 				this.page = this.page + 1;
-	// 				let params = {
-	// 					uid: this.userInfo.id
-	// 				}
-
-	// 				getAllFollowTrends(this.page, this.limit, params).then(res => {
-
-	// 					res.data.forEach(e => {
-	// 						e.time = timeAgo(e.time)
-	// 						e.imgsUrl = JSON.parse(e.imgsUrl)
-
-	// 						this.dataList.push(e)
-	// 					})
-
-	// 					this.total = res.data.length
-
-	// 				})
-	// 			}, 100)
-	// 		},
-
-	// 		getUserInfo(uid) {
-	// 			uni.navigateTo({
-	// 				url: "/pages/otherUser/otherUser?uid=" + uid
-	// 			})
-	// 		},
-
-	// 		toMain(mid) {
-
-	// 			let data = {}
-	// 			data.uid = this.userInfo.id
-	// 			data.mid = mid
-
-	// 			addBrowseRecord(data).then(res => {
-	// 				uni.navigateTo({
-	// 					url: "/pages/main/main?mid=" + mid
-	// 				})
-	// 			})
-	// 		},
-	// 		toAlbum(aid) {
-	// 			uni.navigateTo({
-	// 				url: "/pages/user/albums/albumInfo?albumId=" + aid
-	// 			})
-	// 		},
-
-	// 		agreeImg(item, index) {
-	// 			let data = {}
-	// 			data.uid = uni.getStorageSync("userInfo").id
-	// 			data.type = 1
-	// 			data.agreeCollectId = item.mid
-	// 			data.agreeCollectUid = item.userId
-
-	// 			agree(data).then(res => {
-	// 				this.dataList[index].agreeCount = this.dataList[index].agreeCount * 1 + 1
-	// 				this.dataList[index].isAgree = true
-	// 			})
-	// 		},
-
-	// 		cancelAgreeImg(item, index) {
-
-	// 			let data = {}
-	// 			data.uid = uni.getStorageSync("userInfo").id
-	// 			data.agreeCollectId = item.mid
-	// 			data.agreeCollectUid = item.userId
-	// 			data.type = 1
-	// 			cancelAgree(data).then(res => {
-	// 				this.dataList[index].agreeCount = this.dataList[index].agreeCount * 1 - 1
-	// 				this.dataList[index].isAgree = false
-	// 			})
-	// 		},
-	// 		scroll(e) {
-
-	// 			this.old.scrollTop = e.detail.scrollTop
-	// 		},
-
-	// 	}
-	// }
+	
 </script>
 
 <style scoped>
@@ -378,5 +197,10 @@
 	  background-color: #fff;
 	  border: 1px solid #ccc;
 	  padding: 10px;
+	}
+	.box{
+		width: 22rem;
+		border-left: 3px solid #488C88;
+		border-right: 3px solid #488C88;
 	}
 </style>

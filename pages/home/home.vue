@@ -33,7 +33,7 @@
 		data() {
 			let router = useRouter()
 			const goToQ1 = () => {
-				router.replace('/pages/questions/questions');
+				router.replace('/pages/questions/answer');
 			};
 			const fan = () =>{
 				router.replace('/pages/chat/chat')
