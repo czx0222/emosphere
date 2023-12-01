@@ -161,18 +161,6 @@
 					this.completeRelaxation();
 				}
 			},
-			// completeRelaxation() {
-			// 	if (this.currentPopup) {
-			// 		this.completedPopup = this.popupContent[this.currentPopup].title;
-			// 		this.completedCount += 1;
-			// 		this.resetCountdown();
-
-			// 		setTimeout(() => {
-			// 			this.completedPopup = '';
-			// 			this.currentPopup = '';
-			// 			this.closePopup(); 
-			// 	}
-			// },
 			completeRelaxation() {
 				if (this.currentPopup) {
 					const completedPopup = this.popupContent[this.currentPopup].title;
@@ -184,7 +172,6 @@
 					let useid = store.state.userId
 					let method = completedPopup
 					let date = new Date().toISOString().substr(0, 10);
-					console.log(useid + method + time + date);
 					const requestData = {
 						uid:5,
 						type: method,

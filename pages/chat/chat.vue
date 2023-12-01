@@ -157,7 +157,7 @@
 			        console.log(this.chatMsg);
 			        try {
 			            const response = await uni.request({
-			                url: 'http://localhost:8080/api/',
+			                url: 'http://192.168.43.143:8080/api/',
 			                method: 'POST',
 			                data: {
 			                    message: this.chatMsg
@@ -172,9 +172,17 @@
 			            this.msgList.push(obj);
 			            this.chatMsg = '';
 			            this.scrollToBottom();
+						uni.showToast({
+							title: '发送成功',
+							icon: 'none'
+						});
 			            console.log('发送成功:', serverResponse);
 			        } catch (error) {
-			            console.error('发送消息失败:', error);
+			            console.error(':', error);
+						uni.showToast({
+							title: '发送消息失败',
+							icon: 'none'
+						});
 			            this.$modal.showToast('发送消息失败');
 			        }
 			    } else {

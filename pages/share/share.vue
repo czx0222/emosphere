@@ -79,10 +79,11 @@
 	let Title = '';
 	let Content = '';
 	let date = new Date().toISOString().substr(0, 10);
-	console.log(imageurl)
+	
 	const savadata = () => {
+		console.log(imageurl)
 		const data = {
-			uid: store.state.userId,
+			uid: userid,
 			content: Content,
 			illustration: imageurl,
 			createDate: date

@@ -39,8 +39,8 @@
 	import { getCurrentInstance } from 'vue'
 	import store from '@/store';
 	let router = useRouter()
-	const phoneNumber = ref('15159606435');
-	const password = ref('123456');
+	const phoneNumber = ref('');
+	const password = ref('');
 	const agreementChecked = ref(false);
 	const handleLogin = () => {
 		if (!agreementChecked.value) {

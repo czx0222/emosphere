@@ -77,10 +77,10 @@ const get = async () => {
         url: 'http://8.136.81.197:8080/user/update',
         method: 'POST',
         data: {
-          id: store.state.userId,
+          id: postId,
         },
       });
-
+		
       const avatar1 = userResponse.data['user'].avatar;
       const username1 = userResponse.data['user'].username;
 

@@ -145,15 +145,6 @@
 			}
 		},
 		{
-			"path" : "pages/test/test",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
-				"enablePullDownRefresh" : false,
-				"navigationStyle": "custom"
-			}
-		},
-		{
 			"path" : "pages/space/space",
 			"style" : 
 			{

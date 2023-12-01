@@ -118,18 +118,40 @@
 			content: Content,
 		};
 		console.log(data);
-		uni.request({
-			url: 'http://8.136.81.197:8080/mood_record',
-			method: 'POST',
-			data: data,
-			success: (response) => {
-				console.log(response.data);
-				router.replace('/pages/calendar/calendar');
-			},
-			fail: (error) => {
-				console.error('保存失败', error);
-			},
-		});
+uni.request({
+  url: 'http://8.136.81.197:8080/mood_record',
+  method: 'POST',
+  data: data,
+  success: (response) => {
+    console.log(response.data);
+    
+    if (response.statusCode === 200) {
+      // HTTP 状态码为 200，表示请求成功
+      if (String(response.data['success']) === 'false')  {
+        uni.showToast({
+          title: '今日已记录，不要重复记录',
+          icon: 'none',
+        });
+      } else {
+        router.replace('/pages/calendar/calendar');
+      }
+    } else {
+      // HTTP 状态码不为 200，表示请求失败
+      console.error('请求失败，状态码：', response.statusCode);
+      uni.showToast({
+        title: '请求失败，请稍后再试',
+        icon: 'none',
+      });
+    }
+  },
+  fail: (error) => {
+    console.error('请求失败', error);
+    uni.showToast({
+      title: '请求失败，请稍后再试',
+      icon: 'none',
+    });
+  },
+});
 	};
 
 	const imageList = ref([]);

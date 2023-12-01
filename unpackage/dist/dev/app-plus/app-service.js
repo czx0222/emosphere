@@ -290,7 +290,7 @@ if (uni.restoreGlobal) {
     }
     return target;
   };
-  const _sfc_main$G = {
+  const _sfc_main$F = {
     __name: "enter",
     setup(__props) {
       let router2 = j();
@@ -324,7 +324,7 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesEnterEnter = /* @__PURE__ */ _export_sfc(_sfc_main$G, [["__file", "D:/ruangong/emosphere/pages/enter/enter.vue"]]);
+  const PagesEnterEnter = /* @__PURE__ */ _export_sfc(_sfc_main$F, [["__file", "D:/ruangong/emosphere/pages/enter/enter.vue"]]);
   function getDevtoolsGlobalHook() {
     return getTarget().__VUE_DEVTOOLS_GLOBAL_HOOK__;
   }
@@ -1429,12 +1429,12 @@ if (uni.restoreGlobal) {
       getEmotionIcons: (state) => state.emotionIcons
     }
   });
-  const _sfc_main$F = {
+  const _sfc_main$E = {
     __name: "login",
     setup(__props) {
       let router2 = j();
-      const phoneNumber = vue.ref("15159606435");
-      const password = vue.ref("123456");
+      const phoneNumber = vue.ref("");
+      const password = vue.ref("");
       const agreementChecked = vue.ref(false);
       const handleLogin = () => {
         if (!agreementChecked.value) {
@@ -1552,7 +1552,7 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesLoginLogin = /* @__PURE__ */ _export_sfc(_sfc_main$F, [["__file", "D:/ruangong/emosphere/pages/login/login.vue"]]);
+  const PagesLoginLogin = /* @__PURE__ */ _export_sfc(_sfc_main$E, [["__file", "D:/ruangong/emosphere/pages/login/login.vue"]]);
   class MPAnimation {
     constructor(options, _this) {
       this.options = options;
@@ -1665,7 +1665,7 @@ if (uni.restoreGlobal) {
     clearTimeout(_this.timer);
     return new MPAnimation(option, _this);
   }
-  const _sfc_main$E = {
+  const _sfc_main$D = {
     name: "uniTransition",
     emits: ["click", "change"],
     props: {
@@ -1916,7 +1916,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$q(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
     return $data.isShow || $props.onceRender ? vue.withDirectives((vue.openBlock(), vue.createElementBlock("view", {
       key: 0,
       ref: "ani",
@@ -1930,8 +1930,8 @@ if (uni.restoreGlobal) {
       [vue.vShow, $data.isShow]
     ]) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_0$6 = /* @__PURE__ */ _export_sfc(_sfc_main$E, [["render", _sfc_render$q], ["__file", "D:/ruangong/emosphere/uni_modules/uni-transition/components/uni-transition/uni-transition.vue"]]);
-  const _sfc_main$D = {
+  const __easycom_0$6 = /* @__PURE__ */ _export_sfc(_sfc_main$D, [["render", _sfc_render$p], ["__file", "D:/ruangong/emosphere/uni_modules/uni-transition/components/uni-transition/uni-transition.vue"]]);
+  const _sfc_main$C = {
     name: "uniPopup",
     components: {},
     emits: ["change", "maskClick"],
@@ -2258,7 +2258,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$o(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_uni_transition = resolveEasycom(vue.resolveDynamicComponent("uni-transition"), __easycom_0$6);
     return $data.showPopup ? (vue.openBlock(), vue.createElementBlock(
       "view",
@@ -2318,8 +2318,8 @@ if (uni.restoreGlobal) {
       /* CLASS */
     )) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_0$5 = /* @__PURE__ */ _export_sfc(_sfc_main$D, [["render", _sfc_render$p], ["__scopeId", "data-v-4dd3c44b"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-popup/components/uni-popup/uni-popup.vue"]]);
-  const _sfc_main$C = {
+  const __easycom_0$5 = /* @__PURE__ */ _export_sfc(_sfc_main$C, [["render", _sfc_render$o], ["__scopeId", "data-v-4dd3c44b"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-popup/components/uni-popup/uni-popup.vue"]]);
+  const _sfc_main$B = {
     name: "calendar",
     data() {
       return {
@@ -2529,8 +2529,8 @@ if (uni.restoreGlobal) {
         return now.getDate();
       },
       //获取某一天为星期几
-      getWeekByDay(time2) {
-        let day = new Date(Date.parse(time2.replace(/-/g, "/")));
+      getWeekByDay(time) {
+        let day = new Date(Date.parse(time.replace(/-/g, "/")));
         return day.getDay() == 0 ? 7 : day.getDay();
       },
       init(nowTime) {
@@ -2558,10 +2558,10 @@ if (uni.restoreGlobal) {
           item = item.replace(/-/g, "/");
           let timeArr = item.split("/");
           let timeStr = "";
-          timeArr.map((time2) => {
-            time2 = parseInt(time2);
-            timeStr += time2;
-            return time2;
+          timeArr.map((time) => {
+            time = parseInt(time);
+            timeStr += time;
+            return time;
           });
           return timeStr;
         });
@@ -2597,7 +2597,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$o(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_uni_popup = resolveEasycom(vue.resolveDynamicComponent("uni-popup"), __easycom_0$5);
     return vue.openBlock(), vue.createElementBlock(
       "view",
@@ -2842,8 +2842,8 @@ if (uni.restoreGlobal) {
       /* STYLE */
     );
   }
-  const __easycom_0$4 = /* @__PURE__ */ _export_sfc(_sfc_main$C, [["render", _sfc_render$o], ["__scopeId", "data-v-d4fda4eb"], ["__file", "D:/ruangong/emosphere/uni_modules/tmt-calendar/components/tmt-calendar/tmt-calendar.vue"]]);
-  const _sfc_main$B = {
+  const __easycom_0$4 = /* @__PURE__ */ _export_sfc(_sfc_main$B, [["render", _sfc_render$n], ["__scopeId", "data-v-d4fda4eb"], ["__file", "D:/ruangong/emosphere/uni_modules/tmt-calendar/components/tmt-calendar/tmt-calendar.vue"]]);
+  const _sfc_main$A = {
     __name: "calendar",
     setup(__props) {
       let router2 = j();
@@ -2984,8 +2984,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesCalendarCalendar = /* @__PURE__ */ _export_sfc(_sfc_main$B, [["__file", "D:/ruangong/emosphere/pages/calendar/calendar.vue"]]);
-  const _sfc_main$A = {
+  const PagesCalendarCalendar = /* @__PURE__ */ _export_sfc(_sfc_main$A, [["__file", "D:/ruangong/emosphere/pages/calendar/calendar.vue"]]);
+  const _sfc_main$z = {
     __name: "main",
     setup(__props) {
       let router2 = j();
@@ -3107,8 +3107,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesMainMain = /* @__PURE__ */ _export_sfc(_sfc_main$A, [["__file", "D:/ruangong/emosphere/pages/main/main.vue"]]);
-  const _sfc_main$z = {
+  const PagesMainMain = /* @__PURE__ */ _export_sfc(_sfc_main$z, [["__file", "D:/ruangong/emosphere/pages/main/main.vue"]]);
+  const _sfc_main$y = {
     __name: "EmoRecord",
     setup(__props) {
       let router2 = j();
@@ -3141,10 +3141,29 @@ if (uni.restoreGlobal) {
           data,
           success: (response) => {
             formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:126", response.data);
-            router2.replace("/pages/calendar/calendar");
+            if (response.statusCode === 200) {
+              if (String(response.data["success"]) === "false") {
+                uni.showToast({
+                  title: "今日已记录，不要重复记录",
+                  icon: "none"
+                });
+              } else {
+                router2.replace("/pages/calendar/calendar");
+              }
+            } else {
+              formatAppLog("error", "at pages/EmoRecord/EmoRecord.vue:140", "请求失败，状态码：", response.statusCode);
+              uni.showToast({
+                title: "请求失败，请稍后再试",
+                icon: "none"
+              });
+            }
           },
           fail: (error) => {
-            formatAppLog("error", "at pages/EmoRecord/EmoRecord.vue:130", "保存失败", error);
+            formatAppLog("error", "at pages/EmoRecord/EmoRecord.vue:148", "请求失败", error);
+            uni.showToast({
+              title: "请求失败，请稍后再试",
+              icon: "none"
+            });
           }
         });
       };
@@ -3156,7 +3175,7 @@ if (uni.restoreGlobal) {
           sourceType: ["album"],
           loop: true,
           success: (res) => {
-            formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:143", res);
+            formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:165", res);
             if (res.tempFilePaths.length !== 0) {
               imageList.value.push(res.tempFilePaths[0]);
               res.tempFilePaths;
@@ -3166,7 +3185,7 @@ if (uni.restoreGlobal) {
       };
       const del = (index) => {
         imageList.value.splice(index, 1);
-        formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:155", imageList);
+        formatAppLog("log", "at pages/EmoRecord/EmoRecord.vue:177", imageList);
       };
       return (_ctx, _cache) => {
         return vue.openBlock(), vue.createElementBlock("view", { class: "backarea" }, [
@@ -3350,8 +3369,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesEmoRecordEmoRecord = /* @__PURE__ */ _export_sfc(_sfc_main$z, [["__file", "D:/ruangong/emosphere/pages/EmoRecord/EmoRecord.vue"]]);
-  const _sfc_main$y = {
+  const PagesEmoRecordEmoRecord = /* @__PURE__ */ _export_sfc(_sfc_main$y, [["__file", "D:/ruangong/emosphere/pages/EmoRecord/EmoRecord.vue"]]);
+  const _sfc_main$x = {
     data() {
       let router2 = j();
       const fan = () => {
@@ -3376,7 +3395,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "about" }, [
       vue.createElementVNode("view", {
         class: "box",
@@ -3472,8 +3491,8 @@ if (uni.restoreGlobal) {
       )) : vue.createCommentVNode("v-if", true)
     ]);
   }
-  const PagesAboutAbout = /* @__PURE__ */ _export_sfc(_sfc_main$y, [["render", _sfc_render$n], ["__scopeId", "data-v-13a78ac6"], ["__file", "D:/ruangong/emosphere/pages/about/about.vue"]]);
-  const _sfc_main$x = {
+  const PagesAboutAbout = /* @__PURE__ */ _export_sfc(_sfc_main$x, [["render", _sfc_render$m], ["__scopeId", "data-v-13a78ac6"], ["__file", "D:/ruangong/emosphere/pages/about/about.vue"]]);
+  const _sfc_main$w = {
     __name: "aboutme",
     setup(__props) {
       let router2 = j();
@@ -3490,7 +3509,7 @@ if (uni.restoreGlobal) {
         userAvatar.value = store.state.ImagePath;
       });
       const edit = () => {
-        router2.push("/pages/set/set");
+        router2.replace("/pages/set/set");
       };
       const fan = () => {
         router2.replace("/pages/myScreen/myScreen");
@@ -3602,8 +3621,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesAboutmeAboutme = /* @__PURE__ */ _export_sfc(_sfc_main$x, [["__file", "D:/ruangong/emosphere/pages/aboutme/aboutme.vue"]]);
-  const _sfc_main$w = {
+  const PagesAboutmeAboutme = /* @__PURE__ */ _export_sfc(_sfc_main$w, [["__file", "D:/ruangong/emosphere/pages/aboutme/aboutme.vue"]]);
+  const _sfc_main$v = {
     props: {
       message: String
     },
@@ -3616,7 +3635,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("div", { class: "confirm-dialog" }, [
       vue.createElementVNode(
         "div",
@@ -3635,8 +3654,8 @@ if (uni.restoreGlobal) {
       ])
     ]);
   }
-  const ConfirmDialog = /* @__PURE__ */ _export_sfc(_sfc_main$w, [["render", _sfc_render$m], ["__scopeId", "data-v-76a5aa76"], ["__file", "D:/ruangong/emosphere/components/ConfirmDialog/ConfirmDialog.vue"]]);
-  const _sfc_main$v = {
+  const ConfirmDialog = /* @__PURE__ */ _export_sfc(_sfc_main$v, [["render", _sfc_render$l], ["__scopeId", "data-v-76a5aa76"], ["__file", "D:/ruangong/emosphere/components/ConfirmDialog/ConfirmDialog.vue"]]);
+  const _sfc_main$u = {
     __name: "myScreen",
     setup(__props) {
       let router2 = j();
@@ -3777,8 +3796,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesMyScreenMyScreen = /* @__PURE__ */ _export_sfc(_sfc_main$v, [["__file", "D:/ruangong/emosphere/pages/myScreen/myScreen.vue"]]);
-  const _sfc_main$u = {
+  const PagesMyScreenMyScreen = /* @__PURE__ */ _export_sfc(_sfc_main$u, [["__file", "D:/ruangong/emosphere/pages/myScreen/myScreen.vue"]]);
+  const _sfc_main$t = {
     data() {
       let router2 = j();
       const tomain = () => {
@@ -3869,26 +3888,14 @@ if (uni.restoreGlobal) {
           this.completeRelaxation();
         }
       },
-      // completeRelaxation() {
-      // 	if (this.currentPopup) {
-      // 		this.completedPopup = this.popupContent[this.currentPopup].title;
-      // 		this.completedCount += 1;
-      // 		this.resetCountdown();
-      // 		setTimeout(() => {
-      // 			this.completedPopup = '';
-      // 			this.currentPopup = '';
-      // 			this.closePopup(); 
-      // 	}
-      // },
       completeRelaxation() {
         if (this.currentPopup) {
           const completedPopup = this.popupContent[this.currentPopup].title;
           const timeSpent = this.popupContent[this.currentPopup].duration - (this.countdownMinutes * 60 + this.countdownSeconds);
-          formatAppLog("log", "at pages/relax/relax.vue:182", `完成放松方法 "${completedPopup}"，花费时间: ${Math.floor(timeSpent / 60)} 分钟 ${timeSpent % 60} 秒`);
-          let useid = store.state.userId;
+          formatAppLog("log", "at pages/relax/relax.vue:170", `完成放松方法 "${completedPopup}"，花费时间: ${Math.floor(timeSpent / 60)} 分钟 ${timeSpent % 60} 秒`);
+          store.state.userId;
           let method = completedPopup;
           let date = (/* @__PURE__ */ new Date()).toISOString().substr(0, 10);
-          formatAppLog("log", "at pages/relax/relax.vue:187", useid + method + time + date);
           const requestData = {
             uid: 5,
             type: method,
@@ -3900,10 +3907,10 @@ if (uni.restoreGlobal) {
             method: "POST",
             data: requestData,
             success: (response) => {
-              formatAppLog("log", "at pages/relax/relax.vue:199", response.data);
+              formatAppLog("log", "at pages/relax/relax.vue:186", response.data);
             },
             fail: (error) => {
-              formatAppLog("error", "at pages/relax/relax.vue:202", error);
+              formatAppLog("error", "at pages/relax/relax.vue:189", error);
             }
           });
           this.completedPopup = completedPopup;
@@ -3948,7 +3955,7 @@ if (uni.restoreGlobal) {
       clearInterval(this.countdownInterval);
     }
   };
-  function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "page" }, [
       vue.createElementVNode("view", {
         class: "box",
@@ -4072,8 +4079,8 @@ if (uni.restoreGlobal) {
       ])
     ]);
   }
-  const PagesRelaxRelax = /* @__PURE__ */ _export_sfc(_sfc_main$u, [["render", _sfc_render$l], ["__file", "D:/ruangong/emosphere/pages/relax/relax.vue"]]);
-  const _sfc_main$t = {
+  const PagesRelaxRelax = /* @__PURE__ */ _export_sfc(_sfc_main$t, [["render", _sfc_render$k], ["__file", "D:/ruangong/emosphere/pages/relax/relax.vue"]]);
+  const _sfc_main$s = {
     __name: "share",
     setup(__props) {
       let router2 = j();
@@ -4114,24 +4121,24 @@ if (uni.restoreGlobal) {
         imageList.value.splice(index, 1);
         formatAppLog("log", "at pages/share/share.vue:76", imageList);
       };
-      store.getters.getUserId;
+      const userid = store.getters.getUserId;
       let Content = "";
       let date = (/* @__PURE__ */ new Date()).toISOString().substr(0, 10);
-      formatAppLog("log", "at pages/share/share.vue:82", imageurl);
       const savadata = () => {
+        formatAppLog("log", "at pages/share/share.vue:84", imageurl);
         const data = {
-          uid: store.state.userId,
+          uid: userid,
           content: Content,
           illustration: imageurl,
           createDate: date
         };
-        formatAppLog("log", "at pages/share/share.vue:90", data);
+        formatAppLog("log", "at pages/share/share.vue:91", data);
         uni.request({
           url: "http://8.136.81.197:8080/post",
           method: "POST",
           data,
           success: (response) => {
-            formatAppLog("log", "at pages/share/share.vue:96", response.data);
+            formatAppLog("log", "at pages/share/share.vue:97", response.data);
             uni.showToast({
               title: "发布成功",
               icon: "none"
@@ -4224,8 +4231,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesShareShare = /* @__PURE__ */ _export_sfc(_sfc_main$t, [["__file", "D:/ruangong/emosphere/pages/share/share.vue"]]);
-  const _sfc_main$s = {
+  const PagesShareShare = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["__file", "D:/ruangong/emosphere/pages/share/share.vue"]]);
+  const _sfc_main$r = {
     name: "YSteps",
     props: {
       infoList: {
@@ -4256,7 +4263,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       vue.Fragment,
       null,
@@ -4337,8 +4344,8 @@ if (uni.restoreGlobal) {
       /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
     );
   }
-  const YSteps = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["render", _sfc_render$k], ["__scopeId", "data-v-3d3a9ebb"], ["__file", "D:/ruangong/emosphere/components/Y-Steps/Y-Steps.vue"]]);
-  const _sfc_main$r = {
+  const YSteps = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["render", _sfc_render$j], ["__scopeId", "data-v-3d3a9ebb"], ["__file", "D:/ruangong/emosphere/components/Y-Steps/Y-Steps.vue"]]);
+  const _sfc_main$q = {
     components: {
       YSteps
     },
@@ -4362,7 +4369,7 @@ if (uni.restoreGlobal) {
     },
     methods: {}
   };
-  function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_a_button = vue.resolveComponent("a-button");
     const _component_YSteps = vue.resolveComponent("YSteps");
     return vue.openBlock(), vue.createElementBlock(
@@ -4405,8 +4412,8 @@ if (uni.restoreGlobal) {
       /* STABLE_FRAGMENT */
     );
   }
-  const PagesRecordRecord = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["render", _sfc_render$j], ["__file", "D:/ruangong/emosphere/pages/record/record.vue"]]);
-  const _sfc_main$q = {
+  const PagesRecordRecord = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["render", _sfc_render$i], ["__file", "D:/ruangong/emosphere/pages/record/record.vue"]]);
+  const _sfc_main$p = {
     data() {
       return {};
     },
@@ -4476,7 +4483,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -4522,8 +4529,8 @@ if (uni.restoreGlobal) {
       /* STYLE */
     );
   }
-  const __easycom_0$3 = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["render", _sfc_render$i], ["__scopeId", "data-v-42d6f2a0"], ["__file", "D:/ruangong/emosphere/uni_modules/gscosmos-dialog/components/gscosmos-dialog/gscosmos-dialog.vue"]]);
-  const _sfc_main$p = {
+  const __easycom_0$3 = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["render", _sfc_render$h], ["__scopeId", "data-v-42d6f2a0"], ["__file", "D:/ruangong/emosphere/uni_modules/gscosmos-dialog/components/gscosmos-dialog/gscosmos-dialog.vue"]]);
+  const _sfc_main$o = {
     data() {
       return {
         audio: uni.createInnerAudioContext({
@@ -4630,7 +4637,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "imt-audio" }, [
       vue.createElementVNode("view", { class: "audio-wrapper" }, [
         vue.createElementVNode(
@@ -4705,7 +4712,7 @@ if (uni.restoreGlobal) {
       )
     ]);
   }
-  const __easycom_1$2 = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["render", _sfc_render$h], ["__scopeId", "data-v-8a21190d"], ["__file", "D:/ruangong/emosphere/components/imt-audio/imt-audio.vue"]]);
+  const __easycom_1$2 = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["render", _sfc_render$g], ["__scopeId", "data-v-8a21190d"], ["__file", "D:/ruangong/emosphere/components/imt-audio/imt-audio.vue"]]);
   const __default__ = {
     data() {
       return {
@@ -4811,7 +4818,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  const _sfc_main$o = /* @__PURE__ */ vue.defineComponent({
+  const _sfc_main$n = /* @__PURE__ */ vue.defineComponent({
     ...__default__,
     __name: "music",
     setup(__props) {
@@ -5012,8 +5019,8 @@ if (uni.restoreGlobal) {
       };
     }
   });
-  const PagesMusicMusic = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["__file", "D:/ruangong/emosphere/pages/music/music.vue"]]);
-  const _sfc_main$n = {
+  const PagesMusicMusic = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["__file", "D:/ruangong/emosphere/pages/music/music.vue"]]);
+  const _sfc_main$m = {
     data() {
       let router2 = j();
       const fan = () => {
@@ -5220,7 +5227,7 @@ if (uni.restoreGlobal) {
     },
     methods: {}
   };
-  function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("div", { class: "background" }, [
       vue.createElementVNode("p", {
         class: "text-res",
@@ -5350,8 +5357,8 @@ if (uni.restoreGlobal) {
       }, " 返回聊天 ")
     ]);
   }
-  const PagesResultResult = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["render", _sfc_render$g], ["__file", "D:/ruangong/emosphere/pages/result/result.vue"]]);
-  const _sfc_main$m = {
+  const PagesResultResult = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["render", _sfc_render$f], ["__file", "D:/ruangong/emosphere/pages/result/result.vue"]]);
+  const _sfc_main$l = {
     data() {
       let router2 = j();
       const goToQ1 = () => {
@@ -5369,7 +5376,7 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "backarea" }, [
       vue.createElementVNode("view", {
         class: "box",
@@ -5411,8 +5418,8 @@ if (uni.restoreGlobal) {
       ])
     ]);
   }
-  const PagesHomeHome = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["render", _sfc_render$f], ["__file", "D:/ruangong/emosphere/pages/home/home.vue"]]);
-  const _sfc_main$l = {
+  const PagesHomeHome = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$e], ["__file", "D:/ruangong/emosphere/pages/home/home.vue"]]);
+  const _sfc_main$k = {
     data() {
       return {
         keyboardHeight: 0,
@@ -5504,7 +5511,7 @@ if (uni.restoreGlobal) {
           formatAppLog("log", "at pages/chat/chat.vue:157", this.chatMsg);
           try {
             const response = await uni.request({
-              url: "http://localhost:8080/api/",
+              url: "http://192.168.43.143:8080/api/",
               method: "POST",
               data: {
                 message: this.chatMsg
@@ -5518,9 +5525,17 @@ if (uni.restoreGlobal) {
             this.msgList.push(obj);
             this.chatMsg = "";
             this.scrollToBottom();
-            formatAppLog("log", "at pages/chat/chat.vue:175", "发送成功:", serverResponse);
+            uni.showToast({
+              title: "发送成功",
+              icon: "none"
+            });
+            formatAppLog("log", "at pages/chat/chat.vue:179", "发送成功:", serverResponse);
           } catch (error) {
-            formatAppLog("error", "at pages/chat/chat.vue:177", "发送消息失败:", error);
+            formatAppLog("error", "at pages/chat/chat.vue:181", ":", error);
+            uni.showToast({
+              title: "发送消息失败",
+              icon: "none"
+            });
             this.$modal.showToast("发送消息失败");
           }
         } else {
@@ -5529,7 +5544,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       vue.Fragment,
       null,
@@ -5666,7 +5681,7 @@ if (uni.restoreGlobal) {
       /* STABLE_FRAGMENT */
     );
   }
-  const PagesChatChat = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$e], ["__scopeId", "data-v-0a633310"], ["__file", "D:/ruangong/emosphere/pages/chat/chat.vue"]]);
+  const PagesChatChat = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["render", _sfc_render$d], ["__scopeId", "data-v-0a633310"], ["__file", "D:/ruangong/emosphere/pages/chat/chat.vue"]]);
   const icons$1 = {
     "id": "2852637",
     "name": "uniui图标库",
@@ -6842,7 +6857,7 @@ if (uni.restoreGlobal) {
     const reg = /^[0-9]*$/g;
     return typeof val === "number" || reg.test(val) ? val + "px" : val;
   };
-  const _sfc_main$k = {
+  const _sfc_main$j = {
     name: "UniIcons",
     emits: ["click"],
     props: {
@@ -6886,7 +6901,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "text",
       {
@@ -6899,7 +6914,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const __easycom_0$2 = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["render", _sfc_render$d], ["__scopeId", "data-v-d31e1c47"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-icons/components/uni-icons/uni-icons.vue"]]);
+  const __easycom_0$2 = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$c], ["__scopeId", "data-v-d31e1c47"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-icons/components/uni-icons/uni-icons.vue"]]);
   let Calendar$1 = class Calendar {
     constructor({
       selected,
@@ -7249,7 +7264,7 @@ if (uni.restoreGlobal) {
     }
     return value;
   }
-  const _sfc_main$j = {
+  const _sfc_main$i = {
     props: {
       weeks: {
         type: Object,
@@ -7283,7 +7298,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -7339,7 +7354,7 @@ if (uni.restoreGlobal) {
       /* CLASS, HYDRATE_EVENTS */
     );
   }
-  const calendarItem = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$c], ["__scopeId", "data-v-3c762a01"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-datetime-picker/components/uni-datetime-picker/calendar-item.vue"]]);
+  const calendarItem = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$b], ["__scopeId", "data-v-3c762a01"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-datetime-picker/components/uni-datetime-picker/calendar-item.vue"]]);
   const isObject = (val) => val !== null && typeof val === "object";
   const defaultDelimiters = ["{", "}"];
   class BaseFormatter {
@@ -7696,7 +7711,7 @@ if (uni.restoreGlobal) {
     "zh-Hant": zhHant
   };
   const { t: t$2 } = initVueI18n(i18nMessages);
-  const _sfc_main$i = {
+  const _sfc_main$h = {
     name: "UniDatetimePicker",
     data() {
       return {
@@ -8206,17 +8221,17 @@ if (uni.restoreGlobal) {
        * 生成时间戳
        * @param {Object} time
        */
-      createTimeStamp(time2) {
-        if (!time2)
+      createTimeStamp(time) {
+        if (!time)
           return;
-        if (typeof time2 === "number") {
-          return time2;
+        if (typeof time === "number") {
+          return time;
         } else {
-          time2 = time2.replace(/-/g, "/");
+          time = time.replace(/-/g, "/");
           if (this.type === "date") {
-            time2 = time2 + " 00:00:00";
+            time = time + " 00:00:00";
           }
-          return Date.parse(time2);
+          return Date.parse(time);
         }
       },
       /**
@@ -8304,7 +8319,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "uni-datetime-picker" }, [
       vue.createElementVNode("view", {
         onClick: _cache[0] || (_cache[0] = (...args) => $options.initTimePicker && $options.initTimePicker(...args))
@@ -8581,9 +8596,9 @@ if (uni.restoreGlobal) {
       )) : vue.createCommentVNode("v-if", true)
     ]);
   }
-  const TimePicker = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$b], ["__scopeId", "data-v-1d532b70"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-datetime-picker/components/uni-datetime-picker/time-picker.vue"]]);
+  const TimePicker = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["render", _sfc_render$a], ["__scopeId", "data-v-1d532b70"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-datetime-picker/components/uni-datetime-picker/time-picker.vue"]]);
   const { t: t$1 } = initVueI18n(i18nMessages);
-  const _sfc_main$h = {
+  const _sfc_main$g = {
     components: {
       calendarItem,
       timePicker: TimePicker
@@ -9059,7 +9074,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_calendar_item = vue.resolveComponent("calendar-item");
     const _component_time_picker = vue.resolveComponent("time-picker");
     const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$2);
@@ -9352,8 +9367,8 @@ if (uni.restoreGlobal) {
       /* HYDRATE_EVENTS */
     );
   }
-  const Calendar = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["render", _sfc_render$a], ["__scopeId", "data-v-1d379219"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-datetime-picker/components/uni-datetime-picker/calendar.vue"]]);
-  const _sfc_main$g = {
+  const Calendar = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$9], ["__scopeId", "data-v-1d379219"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-datetime-picker/components/uni-datetime-picker/calendar.vue"]]);
+  const _sfc_main$f = {
     name: "UniDatetimePicker",
     options: {
       virtualHost: true
@@ -9989,7 +10004,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$2);
     const _component_time_picker = vue.resolveComponent("time-picker");
     const _component_Calendar = vue.resolveComponent("Calendar");
@@ -10332,8 +10347,8 @@ if (uni.restoreGlobal) {
       }, null, 8, ["date", "defTime", "start-date", "end-date", "selectableTimes", "startPlaceholder", "endPlaceholder", "default-value", "pleStatus", "range", "hasTime", "hideSecond", "onConfirm", "onMaskClose"])) : vue.createCommentVNode("v-if", true)
     ]);
   }
-  const __easycom_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$9], ["__scopeId", "data-v-9802168a"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue"]]);
-  const _sfc_main$f = {
+  const __easycom_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$8], ["__scopeId", "data-v-9802168a"], ["__file", "D:/ruangong/emosphere/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue"]]);
+  const _sfc_main$e = {
     setup() {
       let router2 = j();
       const single = vue.ref("");
@@ -10427,7 +10442,7 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_uni_datetime_picker = resolveEasycom(vue.resolveDynamicComponent("uni-datetime-picker"), __easycom_0$1);
     return vue.openBlock(), vue.createElementBlock("view", { class: "backarea" }, [
       vue.createElementVNode("view", {
@@ -10549,271 +10564,7 @@ if (uni.restoreGlobal) {
       ])
     ]);
   }
-  const PagesSetSet = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$8], ["__file", "D:/ruangong/emosphere/pages/set/set.vue"]]);
-  const _sfc_main$e = {
-    setup() {
-      const keyboardHeight = vue.ref(0);
-      const bottomHeight = vue.ref(0);
-      const scrollTop = vue.ref(0);
-      const userId = vue.ref("");
-      const chatMsg = vue.ref("");
-      const msgList = vue.ref([
-        {
-          botContent: "hello，请问我有什么可以帮助你的吗？",
-          recordId: 0,
-          titleId: 0,
-          userContent: "",
-          userId: 0
-        },
-        {
-          botContent: "",
-          recordId: 0,
-          titleId: 0,
-          userContent: "",
-          userId: 0
-        }
-      ]);
-      const router2 = j();
-      const fan = () => {
-        router2.replace("/pages/main/main");
-      };
-      const test = () => {
-        router2.replace("/pages/questions/questions");
-      };
-      const focus = () => {
-        scrollToBottom();
-      };
-      const blur = () => {
-        scrollToBottom();
-      };
-      const rpxTopx = (px) => {
-        const deviceWidth = wx.getSystemInfoSync().windowWidth;
-        return Math.floor(750 / deviceWidth * Number(px));
-      };
-      const sendHeight = () => {
-        setTimeout(() => {
-          const query = uni.createSelectorQuery();
-          query.select(".send-msg").boundingClientRect();
-          query.exec((res) => {
-            bottomHeight.value = rpxTopx(res[0].height);
-          });
-        }, 10);
-      };
-      const scrollToBottom = () => {
-        setTimeout(() => {
-          const query = uni.createSelectorQuery().in(this);
-          query.select("#scrollview").boundingClientRect();
-          query.select("#msglistview").boundingClientRect();
-          query.exec((res) => {
-            if (res[1].height > res[0].height) {
-              scrollTop.value = rpxTopx(res[1].height - res[0].height);
-            }
-          });
-        }, 15);
-      };
-      const handleSend = async () => {
-        if (!chatMsg.value || !/^\s+$/.test(chatMsg.value)) {
-          let obj = {
-            botContent: "",
-            recordId: 0,
-            titleId: 0,
-            userContent: chatMsg.value,
-            userId: 0
-          };
-          try {
-            const response = await uni.request({
-              url: "http://localhost:8080/api/",
-              method: "POST",
-              data: {
-                message: chatMsg.value
-              },
-              header: {
-                "content-type": "application/json"
-              }
-            });
-            const serverResponse = response.data;
-            obj.botContent = serverResponse.message;
-            msgList.value.push(obj);
-            chatMsg.value = "";
-            scrollToBottom();
-            formatAppLog("log", "at pages/test/test.vue:163", "发送成功:", serverResponse);
-          } catch (error) {
-            formatAppLog("error", "at pages/test/test.vue:165", "发送消息失败:", error);
-            uni.showToast({
-              title: "发送消息失败",
-              icon: "none"
-            });
-          }
-        } else {
-          uni.showToast({
-            title: "不能发送空白消息",
-            icon: "none"
-          });
-        }
-      };
-      vue.onMounted(() => {
-        uni.onKeyboardHeightChange((res) => {
-          keyboardHeight.value = rpxTopx(res.height - 30);
-          if (keyboardHeight.value < 0)
-            keyboardHeight.value = 0;
-        });
-      });
-      vue.onUnmounted(() => {
-        uni.offKeyboardHeightChange();
-      });
-      vue.onMounted(() => {
-        scrollToBottom();
-      });
-      return {
-        keyboardHeight,
-        bottomHeight,
-        scrollTop,
-        userId,
-        chatMsg,
-        msgList,
-        fan,
-        test,
-        focus,
-        blur,
-        sendHeight,
-        rpxTopx,
-        handleSend
-      };
-    }
-  };
-  function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
-    return vue.openBlock(), vue.createElementBlock("view", { class: "backarea" }, [
-      vue.createElementVNode("view", { style: { "width": "100%", "height": "5%" } }),
-      vue.createElementVNode("view", { class: "header" }, [
-        vue.createElementVNode("view", {
-          class: "head-left",
-          onClick: _cache[0] || (_cache[0] = (...args) => $setup.fan && $setup.fan(...args))
-        }, [
-          vue.createElementVNode("image", { src: "/static/images/fanhui.jpg" }),
-          vue.createElementVNode("text", null, "返回")
-        ]),
-        vue.createElementVNode("view", {
-          class: "head-right",
-          onClick: _cache[1] || (_cache[1] = (...args) => $setup.test && $setup.test(...args))
-        }, [
-          vue.createElementVNode("image", { src: "/static/images/test.png" }),
-          vue.createElementVNode("text", null, "测试")
-        ])
-      ]),
-      vue.createElementVNode("view", { class: "chat" }, [
-        vue.createElementVNode("scroll-view", {
-          style: vue.normalizeStyle({ height: `${_ctx.windowHeight - _ctx.inputHeight}rpx` }),
-          id: "scrollview",
-          "scroll-y": "true",
-          "scroll-top": $setup.scrollTop,
-          class: "scroll-view"
-        }, [
-          vue.createCommentVNode(" 聊天主体 "),
-          vue.createElementVNode("view", {
-            id: "msglistview",
-            class: "chat-body"
-          }, [
-            vue.createCommentVNode(" 聊天记录 "),
-            (vue.openBlock(true), vue.createElementBlock(
-              vue.Fragment,
-              null,
-              vue.renderList($setup.msgList, (item, index) => {
-                return vue.openBlock(), vue.createElementBlock("view", { key: index }, [
-                  vue.createCommentVNode(" 自己发的消息 "),
-                  item.userContent != "" ? (vue.openBlock(), vue.createElementBlock("view", {
-                    key: 0,
-                    class: "item self"
-                  }, [
-                    vue.createCommentVNode(" 文字内容 "),
-                    vue.createElementVNode(
-                      "view",
-                      { class: "content right" },
-                      vue.toDisplayString(item.userContent),
-                      1
-                      /* TEXT */
-                    ),
-                    vue.createCommentVNode(" 头像 "),
-                    vue.createElementVNode("view", { class: "avatar" }, [
-                      vue.createElementVNode("image", { src: "/static/images/logo.png" })
-                    ])
-                  ])) : vue.createCommentVNode("v-if", true),
-                  vue.createCommentVNode(" 机器人发的消息 "),
-                  item.botContent != "" ? (vue.openBlock(), vue.createElementBlock("view", {
-                    key: 1,
-                    class: "item Ai"
-                  }, [
-                    vue.createCommentVNode(" 头像 "),
-                    vue.createElementVNode("view", { class: "avatar" }, [
-                      vue.createElementVNode("image", { src: "/static/images/ai.png" })
-                    ]),
-                    vue.createCommentVNode(" 文字内容 "),
-                    vue.createElementVNode(
-                      "view",
-                      { class: "content left" },
-                      vue.toDisplayString(item.botContent),
-                      1
-                      /* TEXT */
-                    )
-                  ])) : vue.createCommentVNode("v-if", true)
-                ]);
-              }),
-              128
-              /* KEYED_FRAGMENT */
-            ))
-          ])
-        ], 12, ["scroll-top"]),
-        vue.createElementVNode(
-          "view",
-          {
-            class: "chat-bottom",
-            style: vue.normalizeStyle({ height: `${_ctx.inputHeight}rpx` })
-          },
-          [
-            vue.createElementVNode(
-              "view",
-              {
-                class: "send-msg",
-                style: vue.normalizeStyle({ bottom: `${$setup.keyboardHeight}rpx` })
-              },
-              [
-                vue.createElementVNode("view", { class: "uni-textarea" }, [
-                  vue.withDirectives(vue.createElementVNode(
-                    "textarea",
-                    {
-                      "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => $setup.chatMsg = $event),
-                      maxlength: "300",
-                      "confirm-type": "send",
-                      onConfirm: _cache[3] || (_cache[3] = (...args) => $setup.handleSend && $setup.handleSend(...args)),
-                      "show-confirm-bar": false,
-                      "adjust-position": false,
-                      onLinechange: _cache[4] || (_cache[4] = (...args) => $setup.sendHeight && $setup.sendHeight(...args)),
-                      onFocus: _cache[5] || (_cache[5] = (...args) => $setup.focus && $setup.focus(...args)),
-                      onBlur: _cache[6] || (_cache[6] = (...args) => $setup.blur && $setup.blur(...args)),
-                      "auto-height": ""
-                    },
-                    null,
-                    544
-                    /* HYDRATE_EVENTS, NEED_PATCH */
-                  ), [
-                    [vue.vModelText, $setup.chatMsg]
-                  ])
-                ]),
-                vue.createElementVNode("button", {
-                  onClick: _cache[7] || (_cache[7] = (...args) => $setup.handleSend && $setup.handleSend(...args)),
-                  class: "send-btn"
-                }, "发送")
-              ],
-              4
-              /* STYLE */
-            )
-          ],
-          4
-          /* STYLE */
-        )
-      ])
-    ]);
-  }
-  const PagesTestTest = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$7], ["__scopeId", "data-v-727d09f0"], ["__file", "D:/ruangong/emosphere/pages/test/test.vue"]]);
+  const PagesSetSet = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$7], ["__file", "D:/ruangong/emosphere/pages/set/set.vue"]]);
   const icons = {
     "about": "",
     "about-fill": "",
@@ -11083,53 +10834,48 @@ if (uni.restoreGlobal) {
     __name: "interest",
     setup(__props) {
       const dataList = vue.ref([]);
-      uni.request({
-        url: "http://8.136.81.197:8080/post/recent",
-        method: "GET",
-        data: {
-          currentPage: 1,
-          pageSize: 6
-        },
-        success: (response) => {
-          response.data["posts"].forEach((post, index) => {
-            post.uid;
-            uni.request({
+      const get = async () => {
+        try {
+          const response = await uni.request({
+            url: "http://8.136.81.197:8080/post/recent",
+            method: "GET",
+            data: {
+              currentPage: 1,
+              pageSize: 6
+            }
+          });
+          const updatedDataList = await Promise.all(response.data["posts"].map(async (post, index) => {
+            const postId = post.uid;
+            const userResponse = await uni.request({
               url: "http://8.136.81.197:8080/user/update",
               method: "POST",
               data: {
-                id: store.state.userId
-              },
-              success: (userResponse) => {
-                formatAppLog("log", "at components/interest/interest.vue:78", "你好");
-                const avatar1 = userResponse.data["user"].avatar;
-                const username1 = userResponse.data["user"].username;
-                const updatedDataList = response.data["posts"];
-                updatedDataList[index].avatar = avatar1;
-                updatedDataList[index].username = username1;
-                dataList.value = updatedDataList;
-              },
-              fail: (userError) => {
-                formatAppLog("error", "at components/interest/interest.vue:87", userError);
+                id: postId
               }
             });
-          });
-        },
-        fail: (error) => {
-          formatAppLog("error", "at components/interest/interest.vue:93", error);
+            const avatar1 = userResponse.data["user"].avatar;
+            const username1 = userResponse.data["user"].username;
+            post.avatar = avatar1;
+            post.username = username1;
+            return post;
+          }));
+          dataList.value = updatedDataList;
+        } catch (error) {
+          formatAppLog("error", "at components/interest/interest.vue:95", error);
         }
-      });
+      };
       const scrollTop = vue.ref(0);
       const old = vue.ref({
         scrollTop: 0
       });
       const upper = (e2) => {
-        formatAppLog("log", "at components/interest/interest.vue:103", e2);
+        formatAppLog("log", "at components/interest/interest.vue:104", e2);
       };
       const lower = (e2) => {
-        formatAppLog("log", "at components/interest/interest.vue:107", e2);
+        formatAppLog("log", "at components/interest/interest.vue:108", e2);
       };
       const scroll = (e2) => {
-        formatAppLog("log", "at components/interest/interest.vue:111", e2);
+        formatAppLog("log", "at components/interest/interest.vue:112", e2);
         old.value.scrollTop = e2.detail.scrollTop;
       };
       const agreeImg = (item, index) => {
@@ -11141,10 +10887,10 @@ if (uni.restoreGlobal) {
             postId: item.id
           },
           success: (userResponse) => {
-            formatAppLog("log", "at components/interest/interest.vue:135", userResponse.data);
+            formatAppLog("log", "at components/interest/interest.vue:136", userResponse.data);
           },
           fail: (userError) => {
-            formatAppLog("error", "at components/interest/interest.vue:138", userError);
+            formatAppLog("error", "at components/interest/interest.vue:139", userError);
           }
         });
         item.isLike = true;
@@ -11158,16 +10904,19 @@ if (uni.restoreGlobal) {
             postId: item.id
           },
           success: (userResponse) => {
-            formatAppLog("log", "at components/interest/interest.vue:153", userResponse.data);
+            formatAppLog("log", "at components/interest/interest.vue:154", userResponse.data);
           },
           fail: (userError) => {
-            formatAppLog("error", "at components/interest/interest.vue:156", userError);
+            formatAppLog("error", "at components/interest/interest.vue:157", userError);
           }
         });
         item.isLike = false;
       };
       vue.ref(false);
       vue.ref("");
+      vue.onMounted(() => {
+        get();
+      });
       return (_ctx, _cache) => {
         const _component_tui_icon = resolveEasycom(vue.resolveDynamicComponent("tui-icon"), __easycom_0);
         return vue.openBlock(), vue.createElementBlock("view", { class: "container" }, [
@@ -12087,60 +11836,57 @@ if (uni.restoreGlobal) {
     __name: "my",
     setup(__props) {
       const dataList = vue.ref([]);
-      uni.request({
-        url: "http://8.136.81.197:8080/post/uid",
-        method: "GET",
-        data: {
-          //uid: store.state.userId,
-          uid: store.state.userId,
-          pageSize: 10,
-          currentPage: 1
-        },
-        success: (response) => {
-          response.data["posts"].forEach((post, index) => {
-            post.uid;
-            uni.request({
+      const getmy = async () => {
+        try {
+          const response = await uni.request({
+            url: "http://8.136.81.197:8080/post/uid",
+            method: "GET",
+            data: {
+              uid: store.state.userId,
+              pageSize: 10,
+              currentPage: 1
+            }
+          });
+          const updatedDataList = await Promise.all(response.data["posts"].map(async (post) => {
+            const postId = post.uid;
+            const userResponse = await uni.request({
               url: "http://8.136.81.197:8080/user/update",
               method: "POST",
               data: {
-                // id:store.state.userId,
                 id: store.state.userId
-              },
-              success: (userResponse) => {
-                const avatar1 = userResponse.data["user"].avatar;
-                const username1 = userResponse.data["user"].username;
-                const updatedDataList = response.data["posts"];
-                updatedDataList[index].avatar = avatar1;
-                updatedDataList[index].username = username1;
-                dataList.value = updatedDataList;
-                formatAppLog("log", "at components/my/my.vue:83", dataList.value);
-              },
-              fail: (userError) => {
-                formatAppLog("error", "at components/my/my.vue:86", userError);
               }
             });
-          });
-        },
-        fail: (error) => {
-          formatAppLog("error", "at components/my/my.vue:92", error);
+            const avatar1 = userResponse.data["user"].avatar;
+            const username1 = userResponse.data["user"].username;
+            post.avatar = avatar1;
+            post.username = username1;
+            return post;
+          }));
+          dataList.value = updatedDataList;
+          formatAppLog("log", "at components/my/my.vue:79", dataList.value);
+        } catch (error) {
+          formatAppLog("error", "at components/my/my.vue:81", error);
         }
-      });
+      };
       const scrollTop = vue.ref(0);
       const old = vue.ref({
         scrollTop: 0
       });
       const upper = (e2) => {
-        formatAppLog("log", "at components/my/my.vue:102", e2);
+        formatAppLog("log", "at components/my/my.vue:92", e2);
       };
       const lower = (e2) => {
-        formatAppLog("log", "at components/my/my.vue:106", e2);
+        formatAppLog("log", "at components/my/my.vue:96", e2);
       };
       const scroll = (e2) => {
-        formatAppLog("log", "at components/my/my.vue:110", e2);
+        formatAppLog("log", "at components/my/my.vue:100", e2);
         old.value.scrollTop = e2.detail.scrollTop;
       };
       vue.ref(false);
       vue.ref("");
+      vue.onMounted(() => {
+        getmy();
+      });
       return (_ctx, _cache) => {
         const _component_tui_icon = resolveEasycom(vue.resolveDynamicComponent("tui-icon"), __easycom_0);
         return vue.openBlock(), vue.createElementBlock("view", { class: "container" }, [
@@ -12224,81 +11970,66 @@ if (uni.restoreGlobal) {
     __name: "zan",
     setup(__props) {
       const dataList = vue.ref([]);
-      uni.request({
-        url: "http://8.136.81.197:8080/post_mark/",
-        method: "GET",
-        data: {
-          //uid: store.state.userId,
-          uid: store.state.userId
-        },
-        success: (response) => {
-          formatAppLog("log", "at components/zan/zan.vue:59", response.data);
-          response.data["postMarks"].forEach((post, index) => {
-            const postId1 = post.postId;
-            uni.request({
+      const getzan = async () => {
+        try {
+          const response = await uni.request({
+            url: "http://8.136.81.197:8080/post_mark/",
+            method: "GET",
+            data: {
+              uid: store.state.userId
+            }
+          });
+          const postMarks = response.data["postMarks"];
+          const requests = postMarks.map(async (post, index) => {
+            const postId = post.postId;
+            const postResponse = await uni.request({
               url: "http://8.136.81.197:8080/post/id",
               method: "get",
               data: {
-                // id:store.state.userId,
-                id: postId1
-              },
-              success: (userResponse) => {
-                formatAppLog("log", "at components/zan/zan.vue:72", "帖子成功");
-                const content1 = userResponse.data["post"].content;
-                const illustration1 = userResponse.data["post"].illustration;
-                const updatedDataList = response.data["postMarks"];
-                updatedDataList[index].content = content1;
-                updatedDataList[index].illustration = illustration1;
-                dataList.value = updatedDataList;
-              },
-              fail: (userError) => {
-                formatAppLog("error", "at components/zan/zan.vue:81", userError);
+                id: postId
               }
             });
-          });
-          response.data["postMarks"].forEach((post, index) => {
-            const postId = post.uid;
-            uni.request({
+            const userResponse = await uni.request({
               url: "http://8.136.81.197:8080/user/update",
               method: "POST",
               data: {
-                id: postId
-              },
-              success: (userResponse) => {
-                formatAppLog("log", "at components/zan/zan.vue:95", "头像成功");
-                const avatar1 = userResponse.data["user"].avatar;
-                const username1 = userResponse.data["user"].username;
-                const updatedDataList1 = response.data["postMarks"];
-                updatedDataList1[index].avatar = avatar1;
-                updatedDataList1[index].username = username1;
-                dataList.value = updatedDataList1;
-              },
-              fail: (userError) => {
-                formatAppLog("error", "at components/zan/zan.vue:105", userError);
+                id: post.uid
               }
             });
+            return {
+              content: postResponse.data["post"].content,
+              illustration: postResponse.data["post"].illustration,
+              avatar: userResponse.data["user"].avatar,
+              username: userResponse.data["user"].username,
+              ...post
+              // Include other properties from postMarks
+            };
           });
-        },
-        fail: (error) => {
-          formatAppLog("error", "at components/zan/zan.vue:111", error);
+          const updatedDataList = await Promise.all(requests);
+          dataList.value = updatedDataList;
+        } catch (error) {
+          formatAppLog("error", "at components/zan/zan.vue:96", error);
         }
-      });
+      };
       const scrollTop = vue.ref(0);
       const old = vue.ref({
         scrollTop: 0
       });
       const upper = (e2) => {
-        formatAppLog("log", "at components/zan/zan.vue:121", e2);
+        formatAppLog("log", "at components/zan/zan.vue:107", e2);
       };
       const lower = (e2) => {
-        formatAppLog("log", "at components/zan/zan.vue:125", e2);
+        formatAppLog("log", "at components/zan/zan.vue:111", e2);
       };
       const scroll = (e2) => {
-        formatAppLog("log", "at components/zan/zan.vue:129", e2);
+        formatAppLog("log", "at components/zan/zan.vue:115", e2);
         old.value.scrollTop = e2.detail.scrollTop;
       };
       vue.ref(false);
       vue.ref("");
+      vue.onMounted(() => {
+        getzan();
+      });
       return (_ctx, _cache) => {
         const _component_tui_icon = resolveEasycom(vue.resolveDynamicComponent("tui-icon"), __easycom_0);
         return vue.openBlock(), vue.createElementBlock("view", { class: "container" }, [
@@ -12401,7 +12132,7 @@ if (uni.restoreGlobal) {
       };
       let router2 = j();
       const getback = () => {
-        router2.replace("/pages/main/main");
+        router2.replace("/pages/myScreen/myScreen");
       };
       const tabs = vue.ref([
         {
@@ -12492,19 +12223,21 @@ if (uni.restoreGlobal) {
         return `${month}月${day}日`;
       };
       const geterelax = () => {
+        const data = {
+          uid: store.state.userId,
+          pageSize: 5,
+          currentPage: 1
+        };
+        formatAppLog("log", "at pages/history/history.vue:55", data);
         uni.request({
           url: "http://8.136.81.197:8080/relax_record/uid",
-          data: {
-            uid: 5,
-            pageSize: 5,
-            currentPage: 1
-          },
+          data,
           success: (response) => {
-            formatAppLog("log", "at pages/history/history.vue:56", response.data);
+            formatAppLog("log", "at pages/history/history.vue:60", response.data);
             records.value = response.data["records"];
           },
           fail: (error) => {
-            formatAppLog("error", "at pages/history/history.vue:60", error);
+            formatAppLog("error", "at pages/history/history.vue:64", error);
           }
         });
       };
@@ -15580,7 +15313,6 @@ if (uni.restoreGlobal) {
   __definePage("pages/home/home", PagesHomeHome);
   __definePage("pages/chat/chat", PagesChatChat);
   __definePage("pages/set/set", PagesSetSet);
-  __definePage("pages/test/test", PagesTestTest);
   __definePage("pages/space/space", PagesSpaceSpace);
   __definePage("pages/user/me", PagesUserMe);
   __definePage("pages/history/history", PagesHistoryHistory);
@@ -15734,14 +15466,6 @@ if (uni.restoreGlobal) {
     },
     {
       path: "pages/set/set",
-      style: {
-        navigationBarTitleText: "",
-        enablePullDownRefresh: false,
-        navigationStyle: "custom"
-      }
-    },
-    {
-      path: "pages/test/test",
       style: {
         navigationBarTitleText: "",
         enablePullDownRefresh: false,

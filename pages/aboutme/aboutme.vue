@@ -75,7 +75,7 @@
 	
 	
 	const edit = () => {
-			router.push('/pages/set/set')
+			router.replace('/pages/set/set')
 		}
 	const fan = () =>{
 		router.replace('/pages/myScreen/myScreen')

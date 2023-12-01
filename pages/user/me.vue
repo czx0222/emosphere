@@ -40,7 +40,7 @@
 		};
 		let router = useRouter()
 	const getback = () => {
-		router.replace('/pages/main/main')
+		router.replace('/pages/myScreen/myScreen')
 	}
 	const tabs = ref([{
 			name: "我的"

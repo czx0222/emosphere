@@ -33,6 +33,7 @@
 <script setup>
 	import { useRouter } from 'uni-mini-router'
 	import {ref,onMounted} from 'vue';
+import store from '../../store';
 	let router = useRouter();
 	const records = ref([]);
 	const getback = () => {
@@ -45,13 +46,16 @@
 		return `${month}月${day}日`;
 	};
 	const geterelax = () => {
+		
+		const data = {
+			uid: store.state.userId,
+			pageSize: 5,
+			currentPage:1
+		};
+		console.log(data)
 		uni.request({
 			url: 'http://8.136.81.197:8080/relax_record/uid',
-			data: {
-				uid: 5,
-				pageSize: 5,
-				currentPage:1
-			},
+			data: data,
 			success: (response) => {
 				console.log(response.data);
 				records.value = response.data['records'];
@@ -61,6 +65,7 @@
 			}
 		});
 	};
+	
 	onMounted(() => {
 		geterelax();
 	});

@@ -4,10 +4,10 @@
     "iPhone",
     "iPad"
   ],
-  "id": "__UNI__985B614",
-  "name": "额",
+  "id": "__UNI__9F5361B",
+  "name": "emosphere",
   "version": {
-    "name": "1.0.0",
+    "name": "1.0.5",
     "code": "100"
   },
   "description": "",
@@ -61,8 +61,11 @@
           "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
         ]
       },
-      "apple": {},
+      "apple": {
+        "dSYMs": false
+      },
       "plugins": {
+        "ad": {},
         "audio": {
           "mp3": {
             "description": "Android平台录音支持MP3格式文件"
@@ -75,7 +78,7 @@
       "style": "dark",
       "background": "#F8F8F8"
     },
-    "arguments": "{\"path\":\"pages/music/music\"}",
+    "arguments": "{\"name\":\"\",\"path\":\"\",\"query\":\"\"}",
     "allowsInlineMediaPlayback": true,
     "uni-app": {
       "control": "uni-v3",
