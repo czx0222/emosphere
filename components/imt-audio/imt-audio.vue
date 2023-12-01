@@ -130,12 +130,12 @@
 <style>
 	@font-face {
 		font-family: 'icon';
-		src: url('//at.alicdn.com/t/font_1104838_fxzimc34xw.eot');
-		src: url('//at.alicdn.com/t/font_1104838_fxzimc34xw.eot?#iefix') format('embedded-opentype'),
-			url('//at.alicdn.com/t/font_1104838_fxzimc34xw.woff2') format('woff2'),
-			url('//at.alicdn.com/t/font_1104838_fxzimc34xw.woff') format('woff'),
-			url('//at.alicdn.com/t/font_1104838_fxzimc34xw.ttf') format('truetype'),
-			url('//at.alicdn.com/t/font_1104838_fxzimc34xw.svg#iconfont') format('svg');
+		src: url('http://at.alicdn.com/t/font_1104838_fxzimc34xw.eot');
+		src: url('http://at.alicdn.com/t/font_1104838_fxzimc34xw.eot?#iefix') format('embedded-opentype'),
+			url('http://at.alicdn.com/t/font_1104838_fxzimc34xw.woff2') format('woff2'),
+			url('http://at.alicdn.com/t/font_1104838_fxzimc34xw.woff') format('woff'),
+			url('http://at.alicdn.com/t/font_1104838_fxzimc34xw.ttf') format('truetype'),
+			url('http://at.alicdn.com/t/font_1104838_fxzimc34xw.svg#iconfont') format('svg');
 	}
 
 	.imt-audio {

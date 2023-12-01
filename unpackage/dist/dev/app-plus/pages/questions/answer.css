@@ -34,7 +34,8 @@
 body {
   background-color: #FFFFFF;
 }
-#header, #subHeader {
+#header,
+#subHeader {
   height: 3.125rem;
 }
 .header {
@@ -193,4 +194,18 @@ body {
 }
 .right {
   border: 0.15625rem solid #000000;
+}
+.btn {
+  width: 2.5rem;
+  height: 1.25rem;
+  line-height: 1.25rem;
+  position: absolute;
+  top: 0.625rem;
+  left: 1.25rem;
+  padding: 0.3125rem 0.625rem;
+  border-radius: 0.46875rem;
+  letter-spacing: 0.0625rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  background-color: #00b881;
 }

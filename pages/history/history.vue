@@ -103,7 +103,7 @@
 		position: relative;
 		top: 3rem;
 		left: -6rem;
-		width: 280rpx;
+		width: 300rpx;
 	}
 
 	.background-title {
@@ -120,7 +120,7 @@
 		background-size: cover;
 		background-repeat: no-repeat;
 		width: 100%;
-		height: 120vh;
+		height: 130vh;
 		align-items: center;
 
 	}

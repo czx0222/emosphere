@@ -71,7 +71,6 @@
 		usergender.value = store.state.usergender
 		userstatus.value = store.state.userstatus
 		userAvatar.value = store.state.ImagePath
-		
 	})
 	
 	

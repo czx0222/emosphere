@@ -12,6 +12,11 @@ export default defineConfig({
 				target:  "http://134.175.108.202:12347", // 目标服务  
 				changeOrigin: true,
 				rewrite: path => path.replace(/^\/api/, ''),
+			},
+			'/class': {
+				target:  "http://10.194.26.250:12346", // 目标服务  
+				changeOrigin: true,
+				rewrite: path => path.replace(/^\/class/, ''),
 			}
 		}
 	}

@@ -1,4 +1,18 @@
 
+.version[data-v-13a78ac6]{
+		position: relative;
+		top: 5rem;
+		width: 40%;
+		height: 5%;
+		display: flex;
+		font-weight: bold;
+		font-size: 20px;
+		flex-direction: column;
+		border-radius: 10px;
+		align-items: center;
+		justify-content: center;
+		background-color: rgba(165,192,183, 0.8);
+}
 .help[data-v-13a78ac6] {
 		position: relative;
 		width: 90%;

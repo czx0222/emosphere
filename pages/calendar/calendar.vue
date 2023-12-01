@@ -56,7 +56,7 @@
 			url: 'http://8.136.81.197:8080/mood_record',
 			data: {
 				uid: store.state.userId,
-				nums: 2,
+				nums: 3,
 			},
 			success: (response) => {
 				console.log(response.data);
@@ -67,6 +67,41 @@
 			}
 		});
 	};
+	const test = ()=>{
+		let date = new Date().toISOString().substr(0, 10);
+		console.log(store.state.userId+date)
+		const data = {
+			message:"666"
+		}
+		uni.request({
+			url:"http://8.136.81.197:8080/mood_record/day",
+			method: 'GET',
+			data:{
+				uid:store.state.userId,
+				date:date
+			},
+
+			success: (res) => {
+				console.log(res.data);
+				let today_record = res.data['record'];
+				console.log(today_record.content)
+				uni.request({
+					url:'http://localhost:8080/class/',
+					method: 'POST',
+					data:data,
+				success: (r) => {
+					
+					console.log(r.data)
+				}
+				})
+			},
+			fail: (error) => {
+				uni.showToast({
+					title: '获取失败'
+				});
+			}
+		})
+	}
 	onMounted(() => {
 		getemo();
 	});

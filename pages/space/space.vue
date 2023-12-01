@@ -1,19 +1,15 @@
 <template>
+	<view style="width: 100%; height:2rem"></view>
 	<view class="backarea">
-		<view style="width: 100%; height:2rem;"></view>
+		
 		<view class="header">
+			
 			<view class="tui-arrow" @click="getback" style="margin-left:10rpx"><tui-icon name="arrowleft" :size="35"
 					color="#488C88" bold="true"></tui-icon></view>
 			<view class="tui-notice-box" @click="goshare">
 				<tui-icon name="evaluate" size="35" color="#488C88" bold="true"></tui-icon>
 			</view>
 		</view>
-		
-		<view class="top-tab">
-			<tui-tabs :tabs="list1" :currentTab="currentTab" @change="change" sliderBgColor="#488C88" color="#000000"
-				selectedColor="#488C88" scale="1.5" height="120" size="40"></tui-tabs>
-		</view>
-
 
 		<view class="content">
 			<interest v-if="currentTab == 0"></interest>
@@ -25,8 +21,10 @@
 </template>
 
 <script setup>
+	import store from '@/store';
 	import {
-		ref
+		ref,
+		onMounted
 	} from 'vue';
 	import {
 		useRouter
@@ -38,19 +36,42 @@
 	const getback = () => {
 		router.replace('/pages/main/main');
 	}
-	const list1 = ref([{
-			name: '最新'
-		},
-		{
-			name: '推荐'
-		}
-	]);
 	let currentTab = ref(0);
 	const change = (e) => {
 		currentTab.value = e.index;
 	};
 	let postList = ref("")
 	const loadPostStatus = ref('loadmore')
+	
+	let savecollect = ref([])
+	
+	const getsave = () => {
+		uni.request({
+			url: 'http://8.136.81.197:8080/post_mark/',
+			data: {
+				uid: 5,
+			},
+			success: (response) => {
+				const postMarksArray = response.data['postMarks'];
+				
+				if (postMarksArray && postMarksArray.length > 0) {
+				  postMarksArray.forEach((item) => {
+				    const id1 = item.postId;
+				    savecollect.value.push(id1);
+				  });
+				}
+			},
+			fail: (error) => {
+				console.error(error);
+			}
+		});
+		console.log(savecollect.value)
+	};
+	
+	onMounted(() => {
+		// 在页面加载时自动调用 getemo 函数
+		getsave();
+	});
 </script>
 
 <style>

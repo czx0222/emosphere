@@ -82,7 +82,7 @@
 	console.log(imageurl)
 	const savadata = () => {
 		const data = {
-			uid: 5,
+			uid: store.state.userId,
 			content: Content,
 			illustration: imageurl,
 			createDate: date
@@ -94,9 +94,18 @@
 			data: data,
 			success: (response) => {
 				console.log(response.data);
+				uni.showToast({
+					title: '发布成功',
+					icon: 'none'
+				});
+				router.replace('/pages/space/space')
 			},
 			fail: (error) => {
-				console.error('发布失败', error);
+
+				uni.showToast({
+					title: '发布失败',
+					icon: 'none'
+				});
 			},
 		});
 		// router.replace('/pages/space/space');
@@ -104,8 +113,7 @@
 </script>
 
 
-<style >
-
+<style>
 	.text-area {
 		width: 90%;
 		position: relative;

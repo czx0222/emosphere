@@ -16,7 +16,7 @@
 								</view>
 							</view>	
 						</view>
-						<view class="content">
+						<view class="cont">
 							{{ item.content }}
 						</view>
 						<view class="main">
@@ -32,14 +32,6 @@
 									@click="cancelAgreeImg(item, index)" color="#488C88"></tui-icon>
 								<tui-icon name="like" size="25" v-else @click="agreeImg(item, index)"></tui-icon>
 								<view class="count">{{ item.agreeCount }}</view>
-							</view>
-							<view class="icon1">
-								<tui-icon name="message" size="25" @click="toggleCommentBox"></tui-icon>
-								<view class="count">{{ item.commentCount }}</view>
-								<view v-if="showCommentBox" class="comment-box">
-									<textarea v-model="commentText" placeholder="在这里输入评论"></textarea>
-									<button @click="postComment">发送评论</button>
-								</view>
 							</view>
 							
 							<!-- 分享-->
@@ -63,54 +55,46 @@
 		onMounted,
 		ref
 	} from 'vue';
+import store from '../../store';
 	const dataList = ref([])
-	// 发起第一个请求，获取posts数据
-	uni.request({
-	    url: 'http://8.136.81.197:8080/post/recent',
-	    method: 'GET',
-	    data: {
-	        currentPage: 1,
-	        pageSize: 6,
-	    },
-	    success: (response) => {
-	        // console.log(response.data);
 	
-	        // 遍历每个帖子
-	        response.data['posts'].forEach((post, index) => {
-	            // 获取每个帖子的id
-	            const postId = post.uid;
-				// console.log(postId)
-	            // 发起第二个请求，通过id获取用户信息
-	            uni.request({
-	                url: 'http://8.136.81.197:8080/user/update',
-	                method: 'POST',
-	                data: {
-	                    id: 5,
-	                },
-	                success: (userResponse) => {
-	                    // console.log(userResponse.data);
-	
-	                    // 获取用户头像信息
-	                    const avatar1 = userResponse.data['user'].avatar;
-						const username1 = userResponse.data['user'].username;
-	                    const updatedDataList = response.data['posts'];
-	                    updatedDataList[index].avatar=avatar1
-	                    // 将更新后的dataList赋值给原始dataList
-						updatedDataList[index].username=username1
-	                    dataList.value = updatedDataList;
-						console.log(dataList.value)
-	                },
-	                fail: (userError) => {
-	                    console.error(userError);
-	                }
-	            });
-	        });
-	    },
-	    fail: (error) => {
-	        console.error(error);
-	    }
-	});
 
+const get = async () => {
+  try {
+    const response = await uni.request({
+      url: 'http://8.136.81.197:8080/post/recent',
+      method: 'GET',
+      data: {
+        currentPage: 1,
+        pageSize: 6,
+      },
+    });
+
+    const updatedDataList = await Promise.all(response.data['posts'].map(async (post, index) => {
+      const postId = post.uid;
+
+      const userResponse = await uni.request({
+        url: 'http://8.136.81.197:8080/user/update',
+        method: 'POST',
+        data: {
+          id: store.state.userId,
+        },
+      });
+
+      const avatar1 = userResponse.data['user'].avatar;
+      const username1 = userResponse.data['user'].username;
+
+      post.avatar = avatar1;
+      post.username = username1;
+
+      return post;
+    }));
+
+    dataList.value = updatedDataList;
+  } catch (error) {
+    console.error(error);
+  }
+};
 	const scrollTop = ref(0);
 	const old = ref({
 	  scrollTop: 0
@@ -141,13 +125,39 @@
 	};
 
 	const agreeImg = (item, index) => {
-	  item.agreeCount = item.agreeCount * 1 + 1;
-	  item.isLike = true;
+		uni.request({
+		    url: 'http://8.136.81.197:8080/post_mark/',
+		    method: 'POST',
+		    data: {
+		        uid: item.uid,
+		        postId: item.id,
+		    },
+		    success: (userResponse) => {
+		        console.log(userResponse.data);
+		    },
+		    fail: (userError) => {
+		        console.error(userError);
+		    }
+		});
+		item.isLike = true;
 	};
 	
 	const cancelAgreeImg = (item, index) => {
-	  item.agreeCount = item.agreeCount * 1 - 1;
-	  item.isLike = false;
+		uni.request({
+		    url: 'http://8.136.81.197:8080/post_mark/',
+		    method: 'POST',
+		    data: {
+		        uid: item.uid,
+		        postId: item.id,
+		    },
+		    success: (userResponse) => {
+		        console.log(userResponse.data);
+		    },
+		    fail: (userError) => {
+		        console.error(userError);
+		    }
+		});
+		item.isLike = false;
 	};
 	
 	const showCommentBox = ref(false);
@@ -166,13 +176,15 @@
 	  // 隐藏评论框
 	  showCommentBox.value = false;
 	};
-	
+	onMounted(() => {
+		get();
+	});
 </script>
 
 <style scoped>
 	@import url(./interest.css);
 	.scroll-Y {
-		height: 1300rpx;
+		height: 1500rpx;
 	}
 	.scroll-view_H {
 		white-space: nowrap;
@@ -192,15 +204,12 @@
 		text-align: center;
 		font-size: 36rpx;
 	}
-	.comment-box {
-	  position: absolute;
-	  background-color: #fff;
-	  border: 1px solid #ccc;
-	  padding: 10px;
-	}
 	.box{
 		width: 22rem;
 		border-left: 3px solid #488C88;
 		border-right: 3px solid #488C88;
+	}
+	.cont{
+		padding-left: 10px;
 	}
 </style>

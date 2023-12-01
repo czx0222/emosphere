@@ -6,18 +6,21 @@ li {
 	list-style: none;
 }
 
+
 .container {
 	background-color: #fff;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
-
 .page {
 	height: 90vh;
 }
 
 
-.item {
+/* .item {
 	background-color: #fff;
-}
+} */
 
 li:not(:first-child) {
 	margin-top: 5px;
@@ -46,14 +49,16 @@ li:not(:first-child) {
 }
 
 .time {
-	color: #9c9c9c;
-	font-size: 24rpx;
-	margin-left: 10rpx;
+	font-size: 30rpx;
+	margin-left: 8rpx;
 	margin-top: 10rpx;
+	font-weight: bold;
+	color: #bfbfbf;
 }
 
 .main {
 	padding-top: 10px;
+	padding-left: 10px;
 }
 
 
@@ -102,39 +107,6 @@ li:not(:first-child) {
 	border-bottom: 5px solid #DDDDDD;
 }
 
-.content {
-	margin-top: 10px;
-	margin-left: 20px;
-	font-size: 32rpx;
-	clear: both;
-	/* 清除左右浮动 */
-	word-break: break-word;
-	/* 文本行的任意字内断开，就算是一个单词也会分开 */
-
-	word-wrap: break-word;
-	/* IE */
-
-	white-space: -moz-pre-wrap;
-	/* Mozilla */
-
-	white-space: -hp-pre-wrap;
-	/* HP printers */
-
-	white-space: -o-pre-wrap;
-	/* Opera 7 */
-
-	white-space: -pre-wrap;
-	/* Opera 4-6 */
-
-	white-space: pre;
-	/* CSS2 */
-
-	white-space: pre-wrap;
-	/* CSS 2.1 */
-
-	white-space: pre-line;
-	/* CSS 3 (and 2.1 as well, actually) */
-}
 
 .icon {
 	display: flex;

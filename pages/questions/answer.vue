@@ -2641,7 +2641,10 @@
 				var factor1, factor2, factor3, factor4, factor5, factor6, factor7, factor8, factor9, factor10
 				for (var i = 0; i < this.questtionList.length; ++i) {
 					if (this.questtionList[i].userAnswer == "") {
-						alert("请完成所有题目！")
+						uni.showToast({
+							title: '请完成所有题目再提交',
+							icon: 'none'
+						});
 						sig = 0;
 						break;
 					}
